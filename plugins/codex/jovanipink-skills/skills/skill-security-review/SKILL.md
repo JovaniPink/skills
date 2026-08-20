@@ -5,8 +5,10 @@ license: MIT
 metadata:
   author: "Jovani Pink"
   version: "0.1.0"
-  jovanipink.invocation: "implicit"
-  jovanipink.provenance: "clean-room"
+  plugin: "jovanipink-skills"
+  invocation: "implicit"
+  provenance: "clean-room"
+  risk_class: "read-only"
 ---
 
 # Skill Security Review

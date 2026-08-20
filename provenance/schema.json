@@ -3,20 +3,24 @@
   "$id": "https://jovanipink.com/schemas/skill-provenance-v1.json",
   "title": "JovaniPink skill provenance catalog",
   "type": "object",
-  "required": ["catalog_version", "reviewed_on", "entries"],
+  "required": ["$schema", "catalog_version", "reviewed_on", "entries"],
   "properties": {
+    "$schema": {"const": "./schema.json"},
     "catalog_version": {"const": 1},
     "reviewed_on": {"type": "string", "format": "date"},
     "entries": {
       "type": "array",
+      "minItems": 1,
       "items": {
         "type": "object",
         "required": [
           "skill",
           "disposition",
+          "implementation_method",
           "source_url",
           "upstream_license",
           "pinned_revision",
+          "reviewed_on",
           "reviewed_material",
           "local_changes",
           "security_review",
@@ -24,16 +28,18 @@
           "revocation"
         ],
         "properties": {
-          "skill": {"type": "string"},
-          "disposition": {"enum": ["original", "clean-room", "adapted", "vendored", "rejected"]},
-          "source_url": {"type": "string"},
-          "upstream_license": {"type": "string"},
-          "pinned_revision": {"type": "string"},
-          "reviewed_material": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-          "local_changes": {"type": "string"},
-          "security_review": {"type": "string"},
-          "rereview_triggers": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-          "revocation": {"type": "string"}
+          "skill": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "disposition": {"enum": ["covered", "partial", "public_candidate", "private_overlay", "rejected"]},
+          "implementation_method": {"enum": ["original", "clean-room", "adapted", "vendored", "reference-only", "not-applicable"]},
+          "source_url": {"type": "string", "format": "uri"},
+          "upstream_license": {"type": "string", "minLength": 1},
+          "pinned_revision": {"type": "string", "minLength": 1},
+          "reviewed_on": {"type": "string", "format": "date"},
+          "reviewed_material": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "local_changes": {"type": "string", "minLength": 1},
+          "security_review": {"type": "string", "minLength": 1},
+          "rereview_triggers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "revocation": {"type": "string", "minLength": 1}
         },
         "additionalProperties": false
       }

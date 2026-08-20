@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jovanipink.com/schemas/public-skill-roadmap-v1.json",
+  "title": "Public skill roadmap",
+  "type": "object",
+  "required": ["$schema", "roadmap_version", "updated_on", "tracks"],
+  "properties": {
+    "$schema": {"const": "./roadmap-schema.json"},
+    "roadmap_version": {"const": 1},
+    "updated_on": {"type": "string", "format": "date"},
+    "tracks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "target_release", "plugin", "status", "skills", "entry_criteria"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "target_release": {"type": "string", "minLength": 1},
+          "plugin": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "status": {"enum": ["planned", "incubating", "deferred", "rejected"]},
+          "skills": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+          },
+          "entry_criteria": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -5,8 +5,10 @@ license: MIT
 metadata:
   author: "Jovani Pink"
   version: "0.1.0"
-  jovanipink.invocation: "explicit"
-  jovanipink.provenance: "clean-room"
+  plugin: "jovanipink-skills"
+  invocation: "explicit"
+  provenance: "clean-room"
+  risk_class: "trust-decision"
 ---
 
 # Skill Import Provenance
@@ -19,15 +21,16 @@ Do not copy first and investigate later. Read [provenance record](references/pro
 2. Confirm the license permits the intended copying, modification, redistribution, and commercial or internal use. Missing or proprietary permission blocks public import.
 3. Inventory the exact files proposed for import and their dependencies, scripts, assets, hooks, and network behavior.
 4. Run or obtain a security review appropriate to the package's influence and execution surface.
-5. Choose one disposition:
-   - `vendor`: preserve source with license and notices
-   - `adapt`: record upstream and material changes under a compatible license
-   - `clean-room`: use only public behavior or capability requirements and independently author
-   - `reference`: link without copying
-   - `reject`: do not import
-6. Record provenance before materializing the import.
-7. Apply the smallest authorized change. Preserve upstream notices and avoid unrelated updates.
-8. Validate the result in every supported host and record rereview triggers, update policy, and revocation path.
+5. Choose one capability disposition used throughout the catalog:
+   - `covered`: an accepted public capability already satisfies the need
+   - `partial`: existing public coverage leaves a named gap
+   - `public_candidate`: the capability is reusable and can be independently supported
+   - `private_overlay`: correct use depends on private context or authority
+   - `rejected`: the capability is unsafe, unsupported, obsolete, duplicative, or not permitted
+6. For a `public_candidate`, choose an implementation method: `original`, `clean-room`, `adapted`, `vendored`, or `reference-only`. Missing or proprietary permission permits only clean-room capability analysis, a private overlay, or rejection; it does not permit copying.
+7. Record provenance before materializing the import using the exact schema field names, including `pinned_revision`, `reviewed_on`, and `reviewed_material`.
+8. Apply the smallest authorized change. Preserve upstream notices and avoid unrelated updates.
+9. Validate the result in every supported host and record rereview triggers, update policy, and revocation path.
 
 ## Stop conditions
 

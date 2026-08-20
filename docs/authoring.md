@@ -16,12 +16,14 @@ license: MIT
 metadata:
   author: "Jovani Pink"
   version: "0.1.0"
-  jovanipink.invocation: "implicit"
-  jovanipink.provenance: "original"
+  plugin: "jovanipink-skills"
+  invocation: "implicit"
+  provenance: "original"
+  risk_class: "read-only"
 ---
 ```
 
-Invocation is either `implicit` or `explicit`. Use explicit invocation when the workflow primarily coordinates publication, deployment, destructive mutation, credentialed writes, import of untrusted code, or a similarly consequential trust decision.
+All metadata values are strings. Invocation is either `implicit` or `explicit`. Use explicit invocation when the workflow primarily coordinates publication, deployment, destructive mutation, credentialed writes, import of untrusted code, or a similarly consequential trust decision. `plugin` selects the generated distribution. `provenance` records implementation method, while the catalog separately records capability disposition. `risk_class` is one of `read-only`, `bounded-execution`, `network-read`, `external-write`, or `trust-decision`.
 
 ## Codex interface
 

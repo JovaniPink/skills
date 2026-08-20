@@ -5,8 +5,10 @@ license: MIT
 metadata:
   author: "Jovani Pink"
   version: "0.1.0"
-  jovanipink.invocation: "explicit"
-  jovanipink.provenance: "adapted"
+  plugin: "jovanipink-skills"
+  invocation: "explicit"
+  provenance: "adapted"
+  risk_class: "external-write"
 disable-model-invocation: true
 ---
 

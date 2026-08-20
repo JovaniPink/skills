@@ -5,8 +5,10 @@ license: MIT
 metadata:
   author: "Jovani Pink"
   version: "0.1.0"
-  jovanipink.invocation: "implicit"
-  jovanipink.provenance: "original"
+  plugin: "jovanipink-skills"
+  invocation: "implicit"
+  provenance: "original"
+  risk_class: "bounded-execution"
 ---
 
 # Systematic Diagnosis

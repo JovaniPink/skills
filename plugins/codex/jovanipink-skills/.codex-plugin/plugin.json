@@ -17,8 +17,10 @@
     "developerName": "Jovani Pink",
     "category": "Developer Tools",
     "capabilities": [
-      "skills"
+      "Skills"
     ],
-    "defaultPrompt": "Help me choose and use a JovaniPink workflow skill."
+    "defaultPrompt": [
+      "Help me choose and use a JovaniPink workflow skill."
+    ]
   }
 }

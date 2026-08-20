@@ -1,0 +1,111 @@
+{
+  "$schema": "./roadmap-schema.json",
+  "roadmap_version": 1,
+  "updated_on": "2026-08-20",
+  "tracks": [
+    {
+      "id": "engineering-lifecycle",
+      "target_release": "v0.2",
+      "plugin": "jovanipink-engineering",
+      "status": "planned",
+      "skills": [
+        "problem-framing",
+        "implementation-planning",
+        "plan-execution",
+        "test-driven-change",
+        "test-strategy",
+        "worktree-isolation",
+        "request-code-review",
+        "respond-to-code-review",
+        "finish-development-branch",
+        "multi-agent-orchestration"
+      ],
+      "entry_criteria": [
+        "v0.1 acceptance evidence is complete",
+        "clean-room public source packet is recorded",
+        "trigger and output evaluations pass",
+        "client-specific authority boundaries are documented"
+      ]
+    },
+    {
+      "id": "engineering-quality",
+      "target_release": "v0.3",
+      "plugin": "jovanipink-engineering",
+      "status": "planned",
+      "skills": [
+        "application-security-review",
+        "dependency-supply-chain-review",
+        "observability-design",
+        "performance-scalability-diagnosis",
+        "data-migration-readiness",
+        "api-contract-compatibility-review",
+        "test-quality-review",
+        "accessibility-review",
+        "operational-readiness-review"
+      ],
+      "entry_criteria": [
+        "primary standards are pinned in provenance",
+        "review output avoids unsupported compliance claims",
+        "positive, near-miss, safety, and output-quality evaluations pass"
+      ]
+    },
+    {
+      "id": "confirmed-stack-profiles",
+      "target_release": "v0.3",
+      "plugin": "jovanipink-stack-profiles",
+      "status": "planned",
+      "skills": [
+        "go-engineering-profile",
+        "python-engineering-profile",
+        "swift-swiftui-engineering-profile",
+        "typescript-javascript-engineering-profile",
+        "postgresql-sql-engineering-profile",
+        "terraform-engineering-profile"
+      ],
+      "entry_criteria": [
+        "official toolchain guidance is pinned",
+        "a representative fixture exercises discovery and one judgment failure",
+        "the profile does not prescribe a universal command"
+      ]
+    },
+    {
+      "id": "operating-workflows",
+      "target_release": "v0.4",
+      "plugin": "jovanipink-operations",
+      "status": "planned",
+      "skills": [
+        "requirements-synthesis",
+        "decision-governance-records",
+        "workshop-planning-synthesis",
+        "kpi-outcome-measurement",
+        "value-attribution-evidence-maturity",
+        "change-adoption-planning",
+        "cross-capability-dependency-mapping",
+        "stakeholder-technical-communication",
+        "iteration-postlaunch-learning",
+        "production-incident-analysis",
+        "data-authority-migration-ratification"
+      ],
+      "entry_criteria": [
+        "terminology is generic and independently authored",
+        "observed, proposed, ratified, estimated, and causal claims remain distinct",
+        "private authority contracts are supplied only through repo-local overlays"
+      ]
+    },
+    {
+      "id": "additional-stack-profiles",
+      "target_release": "unassigned",
+      "plugin": "jovanipink-stack-profiles",
+      "status": "incubating",
+      "skills": [
+        "java-engineering-profile",
+        "dotnet-engineering-profile"
+      ],
+      "entry_criteria": [
+        "an active authorized repository demonstrates recurring use",
+        "general quality-gate guidance is insufficient",
+        "a primary-source packet and representative fixture exist"
+      ]
+    }
+  ]
+}

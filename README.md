@@ -26,6 +26,7 @@ This repository is an independent MIT-licensed work. It does not redistribute pr
 - `incubator/` is intentionally undiscoverable unfinished work.
 - `evals/` contains trigger and safety cases.
 - `provenance/catalog.json` records the origin and review policy of every skill.
+- `provenance/inventory-summary.json` publishes only reconciled aggregate capability-disposition counts.
 - `scripts/` contains standard-library-only generation, packaging, and validation.
 
 Do not hand-edit generated plugin trees. Change the canonical skill, then run:
@@ -52,6 +53,8 @@ Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketpl
 Run `python3 scripts/package_claude_ai.py`. Upload an individual ZIP from `dist/claude-ai/`; each archive contains one correctly nested skill directory.
 
 Client behavior can change independently. See [manual smoke tests](docs/manual-smoke-tests.md) for observed-versus-pending evidence instead of assuming parity.
+
+Private product or organization facts use the repo-local overlay model described in [Private overlays](docs/private-overlays.md); they never enter the public catalog.
 
 ## Security and contribution policy
 

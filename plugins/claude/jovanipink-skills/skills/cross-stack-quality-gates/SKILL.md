@@ -5,8 +5,10 @@ license: MIT
 metadata:
   author: "Jovani Pink"
   version: "0.1.0"
-  jovanipink.invocation: "implicit"
-  jovanipink.provenance: "adapted"
+  plugin: "jovanipink-skills"
+  invocation: "implicit"
+  provenance: "adapted"
+  risk_class: "bounded-execution"
 ---
 
 # Cross Stack Quality Gates

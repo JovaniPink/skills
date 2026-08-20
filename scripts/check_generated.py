@@ -3,10 +3,11 @@
 
 from __future__ import annotations
 
+import json
 import tempfile
 from pathlib import Path
 
-from build_distributions import build
+from build_distributions import build, marketplace_documents
 from cataloglib import PLUGIN_NAME, ROOT, directory_hashes
 
 
@@ -27,6 +28,18 @@ def check() -> list[str]:
                 errors.append(f"{client} generated file unexpected: {path}")
             for path in changed:
                 errors.append(f"{client} generated file drifted: {path}")
+
+        codex_marketplace, claude_marketplace = marketplace_documents()
+        expected_marketplaces = (
+            (ROOT / ".agents" / "plugins" / "marketplace.json", codex_marketplace),
+            (ROOT / ".claude-plugin" / "marketplace.json", claude_marketplace),
+        )
+        for path, expected in expected_marketplaces:
+            rendered = json.dumps(expected, indent=2, sort_keys=False) + "\n"
+            if not path.is_file():
+                errors.append(f"generated marketplace missing: {path.relative_to(ROOT)}")
+            elif path.read_text(encoding="utf-8") != rendered:
+                errors.append(f"generated marketplace drifted: {path.relative_to(ROOT)}")
     return errors
 
 

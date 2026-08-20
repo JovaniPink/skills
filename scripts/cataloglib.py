@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = "0.1.0"
 PLUGIN_NAME = "jovanipink-skills"
+PLUGIN_CATEGORY = "Developer Tools"
 SKILLS = (
     "authority-boundary-review",
     "claim-verification",
@@ -64,8 +65,10 @@ def read_skill_metadata(skill_dir: Path) -> dict[str, str]:
         "license": _scalar(frontmatter, "license"),
         "author": _metadata_scalar(frontmatter, "author"),
         "version": _metadata_scalar(frontmatter, "version"),
-        "invocation": _metadata_scalar(frontmatter, "jovanipink.invocation"),
-        "provenance": _metadata_scalar(frontmatter, "jovanipink.provenance"),
+        "plugin": _metadata_scalar(frontmatter, "plugin"),
+        "invocation": _metadata_scalar(frontmatter, "invocation"),
+        "provenance": _metadata_scalar(frontmatter, "provenance"),
+        "risk_class": _metadata_scalar(frontmatter, "risk_class"),
     }
     result["claude_explicit"] = "true" if re.search(
         r"(?m)^disable-model-invocation:\s*true\s*$", frontmatter

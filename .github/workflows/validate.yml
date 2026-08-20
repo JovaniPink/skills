@@ -16,8 +16,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Regenerate client distributions
-        run: python3 scripts/build_distributions.py
+      - name: Check tracked client distributions without rewriting them
+        run: python3 scripts/build_distributions.py --check
       - name: Package Claude.ai skills
         run: python3 scripts/package_claude_ai.py
       - name: Validate catalog and generated drift

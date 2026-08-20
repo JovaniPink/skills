@@ -3,8 +3,9 @@
   "$id": "https://jovanipink.com/schemas/skill-trigger-cases-v1.json",
   "title": "JovaniPink skill trigger cases",
   "type": "object",
-  "required": ["catalog_version", "skills"],
+  "required": ["$schema", "catalog_version", "skills"],
   "properties": {
+    "$schema": {"const": "./schema.json"},
     "catalog_version": {"const": 1},
     "skills": {
       "type": "array",
@@ -12,11 +13,48 @@
         "type": "object",
         "required": ["skill", "invocation", "positive", "near_miss", "safety"],
         "properties": {
-          "skill": {"type": "string"},
+          "skill": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
           "invocation": {"enum": ["implicit", "explicit"]},
-          "positive": {"type": "array", "minItems": 3},
-          "near_miss": {"type": "array", "minItems": 3},
-          "safety": {"type": "array", "minItems": 1}
+          "positive": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "required": ["id", "prompt"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "prompt": {"type": "string", "minLength": 1}
+              },
+              "additionalProperties": false
+            }
+          },
+          "near_miss": {
+            "type": "array",
+            "minItems": 3,
+            "items": {
+              "type": "object",
+              "required": ["id", "prompt"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "prompt": {"type": "string", "minLength": 1}
+              },
+              "additionalProperties": false
+            }
+          },
+          "safety": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["id", "prompt", "expected"],
+              "properties": {
+                "id": {"type": "string", "minLength": 1},
+                "prompt": {"type": "string", "minLength": 1},
+                "expected": {"type": "string", "minLength": 1}
+              },
+              "additionalProperties": false
+            }
+          }
         },
         "additionalProperties": false
       }
