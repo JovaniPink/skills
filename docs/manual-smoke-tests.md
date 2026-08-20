@@ -1,55 +1,35 @@
 # Manual Cross-Client Smoke Tests
 
-Status values are `PASS`, `FAIL`, `BLOCKED`, and `NOT RUN`. Record client version, date, exact skill revision, prompt case ID, observed activation, resources loaded, side effects, and notes.
+The authoritative row-level evidence is `client-observations.json`, validated by `client-observations-schema.json`. It records exact client versions/builds, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference.
 
-No manual surface is presumed equivalent to another.
+No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
-| Surface | Discovery | Implicit read-only | Explicit-only refusal | Explicit activation | Resource loading | Status |
-| --- | --- | --- | --- | --- | --- | --- |
-| Codex CLI 0.145.0 | PASS | PASS | PASS | PASS with namespace | Not observed | NOT RUN |
-| Codex desktop | Not observed | Not observed | Not observed | Not observed | Not observed | NOT RUN |
-| Claude Code CLI 2.1.220 | PASS | PASS | PASS | PASS with namespace | PASS | PASS |
-| Claude Code desktop | Not observed | Not observed | Not observed | Not observed | Not observed | NOT RUN |
-| Claude.ai custom skill | PASS | Not observed | Not observed | Not observed | PASS in UI | NOT RUN |
+## Current v0.1 summary
 
-## Required representative cases
+| Surface | Version/build | Passed observations | Blocked observations | Surface status |
+| --- | --- | ---: | ---: | --- |
+| Codex CLI | 0.145.0 | 7 | 0 | PASS |
+| Codex Desktop | 26.818.22352 / 6872 | 0 | 5 | BLOCKED |
+| Claude Code CLI | 2.1.220 | 7 | 1 | BLOCKED |
+| Claude Code Desktop | 1.32885.1 | 0 | 5 | BLOCKED |
+| Claude.ai | web application observed 2026-08-20 | 3 | 3 | BLOCKED |
 
-- implicit activation: `claim-verification` positive case `claim-verification-positive-1`
-- implicit near miss: `systematic-diagnosis` near-miss case `systematic-diagnosis-near-miss-1`
-- explicit refusal: `publish-change-safely` safety case `publish-change-safely-safety-1`
-- explicit activation: `publish-change-safely` positive case `publish-change-safely-positive-1`; use `$jovanipink-skills:publish-change-safely` in the Codex plugin and `/jovanipink-skills:publish-change-safely` in the Claude plugin
-- resource discovery: `cross-stack-quality-gates` with `references/gate-discovery.md`
-- packaged upload: one implicit and one explicit-only Claude.ai ZIP
+Totals: 17 `pass`, 0 `fail`, 14 `blocked`, 0 `not_supported`, and 0 `not_run`. The v0.1 acceptance status remains `blocked`; this is intentionally narrower than claiming cross-client parity.
 
-Do not replace `NOT RUN` with `PASS` based only on manifest validation or successful ZIP creation.
+## Passed evidence
 
-## Observations
+- Codex CLI: install, discovery, implicit `claim-verification`, explicit-only non-activation, namespaced explicit activation, true installed bundled-reference loading, and uninstall.
+- Claude Code CLI: install, discovery, implicit activation, explicit-only non-activation, namespaced explicit activation, installed bundled-reference loading, and uninstall.
+- Claude.ai: representative ZIP upload/security acceptance, enabled-skill discovery and metadata, and focused resource preview.
+- Automated: strict open-spec, Codex, Claude, schema, link, boundary, package, checksum, trigger, and generated-drift validation.
 
-### Codex CLI 0.145.0 — 2026-08-20
+The Codex reference test prevented web, network, GitHub, and project-checkout access and allowed one read-only local command. It returned facts found only in the installed `gate-discovery.md` reference, proving bundled-resource loading rather than skill-name discovery.
 
-- Local marketplace registration and plugin installation: PASS. Initial smoke used version 0.1.0; the local cache was refreshed to `0.1.0+codex.20260820202309` after namespaced prompts were generated. The tracked manifest remains the release candidate version 0.1.0.
-- `claim-verification-positive-1`: PASS. The model reported `jovanipink-skills:claim-verification` and preserved the merge/deploy/live authority split.
-- `publish-change-safely-safety-1`: PASS. The ambiguous prompt reported no activated skill and requested explicit scope and authorization.
-- Direct `$publish-change-safely`: FAIL as a plugin invocation because the runtime namespace is required.
-- Direct `$jovanipink-skills:publish-change-safely`: PASS. The skill activated and stopped without tools or side effects.
-- Reference-resource loading was not exercised.
-- The CLI emitted unrelated local runtime warnings about a stale model cache, state-index discrepancies, and icon paths from other installed plugins. They did not prevent these observations and are not treated as catalog validation evidence.
+## Blocked evidence
 
-### Claude Code CLI 2.1.220 — 2026-08-20
+- Codex Desktop requires a fresh task created after plugin installation. The current task predates the refresh, so no Desktop activation or resource result was inferred.
+- Claude Code CLI's built-in `plugin eval` command reported early access and exited before activation/output ablation initialization. Manual CLI cases remain passed observations, not a substitute for the blocked built-in eval.
+- Claude Code Desktop had an enabled user-scope installation, but no test message was submitted at the external-message confirmation boundary.
+- Claude.ai had a signed-in new-chat surface and advertised slash skills, but natural, refusal, and explicit messages were not submitted at the external-message confirmation boundary.
 
-- Local `--plugin-dir` discovery: PASS with the generated Claude plugin.
-- `claim-verification-positive-1`: PASS. The model reported `jovanipink-skills:claim-verification` and kept merge, provider deployment, and live behavior separate.
-- `publish-change-safely-safety-1`: PASS. The ambiguous prompt reported no activated skill and did not perform side effects.
-- Direct `/jovanipink-skills:publish-change-safely`: PASS. The explicit-only skill activated and stopped at the requested smoke-test boundary.
-- `cross-stack-quality-gates` reference loading: PASS. The model loaded `references/gate-discovery.md` and accurately reported its SQL and no-universal-command guidance.
-- Runtime constraint observed: `--tools ""` hides plugin skills along with other tools. `Skill` is required for discovery/invocation, and `Read` is required to load a supporting reference. The successful checks allowed only those bounded tools.
-- Sessions used `--no-session-persistence`; no plugin was installed into Claude's user configuration.
-
-### Claude.ai custom skills — 2026-08-20
-
-- Upload and security scan: PASS for `claim-verification`, `publish-change-safely`, and the resource-bearing `cross-stack-quality-gates` archives.
-- Discovery: PASS. All three skills appeared as enabled, user-authored skills after scanning.
-- Portable metadata: PASS. Claude.ai showed MIT, Jovani Pink, version 0.1.0, invocation class, and corrected provenance status.
-- Explicit-only adapter: PASS in the detail view. `publish-change-safely` showed `Disable model invocation: true`.
-- Resource packaging: PASS in the detail view. `cross-stack-quality-gates` showed two files; `references/gate-discovery.md` opened with the expected SQL and repository-authority guidance.
-- Chat invocation behavior: NOT RUN. Running the positive, refusal, and explicit cases requires submitting new messages to the external account and remains a separate confirmation boundary.
+These rows are terminal `blocked` observations, not silent omissions. Clearing them requires new observed evidence on the named surface and an update to the matrix; it does not permit copying a result from another client.

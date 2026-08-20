@@ -74,6 +74,17 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(any("expected array" in error for error in errors))
         self.assertTrue(any("additional property" in error for error in errors))
 
+    def test_client_observation_matrix_is_reconciled_and_terminal(self) -> None:
+        matrix = json.loads((ROOT / "docs" / "client-observations.json").read_text(encoding="utf-8"))
+        records = matrix["records"]
+        self.assertEqual(matrix["summary"]["total"], len(records))
+        self.assertEqual(len(records), len({record["case_id"] for record in records}))
+        self.assertNotIn("not_run", {record["result"] for record in records})
+        self.assertEqual(
+            {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"},
+            {record["surface"] for record in records},
+        )
+
     def test_boundary_scan_covers_publishable_root_and_local_denylist(self) -> None:
         publishable = {path.relative_to(ROOT).as_posix() for path in _publishable_paths(ROOT)}
         for expected in ("README.md", ".github/workflows/validate.yml", "scripts/check_public_boundary.py"):
