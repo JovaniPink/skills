@@ -1,0 +1,6 @@
+interface:
+  display_name: "Skill Import Provenance"
+  short_description: "Import skills with license provenance"
+  default_prompt: "Use $skill-import-provenance to review and import this exact skill revision."
+policy:
+  allow_implicit_invocation: false

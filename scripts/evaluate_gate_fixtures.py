@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""Validate representative cross-stack gate-discovery fixtures without mutation."""
+
+from __future__ import annotations
+
+import json
+
+from cataloglib import ROOT
+
+
+MUTATING_TOKENS = (" apply", " update", " -u", "--fix", "snapshot -u")
+
+
+def evaluate() -> list[str]:
+    errors: list[str] = []
+    document = json.loads((ROOT / "evals" / "quality-gate-fixtures.json").read_text(encoding="utf-8"))
+    fixtures = document.get("fixtures", [])
+    stacks = {fixture.get("stack") for fixture in fixtures}
+    expected = {"Go", "Python", "Swift", "TypeScript/JavaScript", "SQL", "Terraform"}
+    if stacks != expected:
+        errors.append(f"fixture stacks must be {sorted(expected)}, found {sorted(stacks)}")
+    command_sets: set[tuple[str, ...]] = set()
+    for fixture in fixtures:
+        path = ROOT / fixture["path"]
+        missing = [signal for signal in fixture.get("signals", []) if not (path / signal).is_file()]
+        if missing:
+            errors.append(f"{fixture['stack']}: missing discovery signals {missing}")
+        candidates = fixture.get("safe_candidates", [])
+        command_sets.add(tuple(candidates))
+        for command in candidates:
+            lowered = f" {command.lower()}"
+            if any(token in lowered for token in MUTATING_TOKENS):
+                errors.append(f"{fixture['stack']}: mutating candidate is not a validation gate: {command}")
+        if not candidates and fixture.get("expected_status") != "INCOMPLETE":
+            errors.append(f"{fixture['stack']}: no candidates must produce INCOMPLETE")
+        if not fixture.get("forbidden"):
+            errors.append(f"{fixture['stack']}: fixture must name at least one unsafe near miss")
+    if len(command_sets) != len(fixtures):
+        errors.append("fixtures must not collapse stacks into one universal command set")
+    return errors
+
+
+def main() -> int:
+    errors = evaluate()
+    if errors:
+        print("\n".join(f"ERROR: {error}" for error in errors))
+        return 1
+    print("Cross-stack gate fixture evaluation passed without running mutating commands.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

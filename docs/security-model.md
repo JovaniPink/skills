@@ -1,0 +1,43 @@
+# Security Model
+
+## Protected assets
+
+The catalog protects user intent, credentials, private data, repository integrity, client configuration, publication state, and the trustworthiness of conclusions produced by a skill.
+
+## Threats
+
+- instruction text that broadens authority or hides side effects
+- prompt injection embedded in imported skills or references
+- hooks or scripts that execute during discovery or installation
+- unpinned dependencies and mutable remote content
+- excessive tool, filesystem, credential, or network permissions
+- data exfiltration through commands, logs, URLs, or generated artifacts
+- secrets and private identifiers copied into a public repository
+- generated adapters drifting from reviewed canonical sources
+- claims of successful validation, deployment, or parity without observed evidence
+
+## v0.1 controls
+
+- no skill-level executables, hooks, MCP servers, dependencies, or broad tool grants
+- two explicit-only workflows for publication and import/provenance decisions
+- generated native invocation controls checked against canonical metadata
+- standard-library-only repository generation and validation
+- required trigger, provenance, reference, and public-boundary checks
+- generated distributions compared byte-for-byte with a clean temporary build
+- individual Claude.ai ZIPs with a bounded, inspectable root
+
+Host permissions remain the final enforcement layer. A skill is not a sandbox.
+
+## Review decisions
+
+Security review returns one of:
+
+- `APPROVE`: no unresolved material risk within the declared use
+- `CONDITIONAL`: acceptable only with named permissions, isolation, or modifications
+- `REJECT`: licensing, execution, authority, exfiltration, or provenance risk is unresolved
+
+A decision must identify the reviewed revision, material, behaviors, requested permissions, network activity, residual risk, and re-review triggers.
+
+## Re-review triggers
+
+Re-review when the skill body, references, invocation class, scripts, hooks, dependencies, permissions, client adapter format, network destinations, upstream ownership, or license changes. Revoke distribution immediately if a secret, incompatible license, hidden execution path, or material provenance error is discovered.

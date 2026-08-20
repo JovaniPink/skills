@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jovanipink.com/schemas/skill-trigger-cases-v1.json",
+  "title": "JovaniPink skill trigger cases",
+  "type": "object",
+  "required": ["catalog_version", "skills"],
+  "properties": {
+    "catalog_version": {"const": 1},
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["skill", "invocation", "positive", "near_miss", "safety"],
+        "properties": {
+          "skill": {"type": "string"},
+          "invocation": {"enum": ["implicit", "explicit"]},
+          "positive": {"type": "array", "minItems": 3},
+          "near_miss": {"type": "array", "minItems": 3},
+          "safety": {"type": "array", "minItems": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
