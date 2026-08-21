@@ -20,10 +20,10 @@ The catalog is split into focused plugins so clients can discover only the workf
 | `authority-boundary-review` | Map authoritative stores, projections, writers, readers, and contracts | Implicit |
 | `cross-stack-quality-gates` | Discover and run safe gates for Go, Python, Swift, TypeScript/JavaScript, SQL, and Terraform | Implicit |
 | `prelaunch-readiness` | Audit web, service, and application launch readiness | Implicit |
-| `publish-change-safely` | Verify identity, scope, checks, push, and PR state | Explicit only |
+| `publish-change-safely` | Verify identity, scope, checks, push, and PR state | Explicit-only |
 | `public-private-boundary-review` | Detect private data, internal identifiers, secrets, and unsupported public claims | Implicit |
 | `skill-security-review` | Audit skill instructions, dependencies, permissions, and network behavior | Implicit |
-| `skill-import-provenance` | Review licensing, revisions, provenance, and revocation triggers | Explicit only |
+| `skill-import-provenance` | Review licensing, revisions, provenance, and revocation triggers | Explicit-only |
 
 ### `jovanipink-engineering`
 
@@ -31,18 +31,18 @@ The catalog is split into focused plugins so clients can discover only the workf
 | --- | --- | --- |
 | `problem-framing` | Establish outcomes, evidence, constraints, unknowns, and success before implementation | Implicit |
 | `implementation-planning` | Produce decision-complete plans with interfaces, tests, rollout, and stopping conditions | Implicit |
-| `plan-execution` | Execute an approved plan with checkpoints and deviation controls | Explicit only |
+| `plan-execution` | Execute an approved plan with checkpoints and deviation controls | Explicit-only |
 | `test-driven-change` | Capture red, green, refactor, and exception evidence | Implicit |
 | `test-strategy` | Select risk-proportionate test layers and evidence | Implicit |
 | `worktree-isolation` | Assess dirty and concurrent work before authorized worktree changes | Implicit |
-| `request-code-review` | Prepare and, only when authorized, send a bounded review request | Explicit only |
+| `request-code-review` | Prepare and, only when authorized, send a bounded review request | Explicit-only |
 | `respond-to-code-review` | Verify feedback before accepting, rejecting, or deferring it | Implicit |
-| `finish-development-branch` | Present integration, retention, and cleanup options without implicit actions | Explicit only |
-| `multi-agent-orchestration` | Coordinate authorized independent tasks with ownership and reconciliation | Explicit only |
+| `finish-development-branch` | Present integration, retention, and cleanup options without implicit actions | Explicit-only |
+| `multi-agent-orchestration` | Coordinate authorized independent tasks with ownership and reconciliation | Explicit-only |
 | `code-change-review` | Review an exact diff for verified actionable defects | Implicit |
 | `module-interface-design` | Design smaller stable contracts from callers and invariants | Implicit |
-| `prototype-spike` | Test one uncertainty with isolated bounded implementation | Explicit only |
-| `merge-conflict-reconciliation` | Reconcile Git conflicts while preserving abort and action gates | Explicit only |
+| `prototype-spike` | Test one uncertainty with isolated bounded implementation | Explicit-only |
+| `merge-conflict-reconciliation` | Reconcile Git conflicts while preserving abort and action gates | Explicit-only |
 
 Engineering quality reviews in the same plugin cover application security, dependency supply chain, observability, performance and scalability, data migration readiness, API compatibility, test quality, accessibility, and operational readiness. These are implicit, read-only reviews and do not claim compliance or authorize production actions.
 

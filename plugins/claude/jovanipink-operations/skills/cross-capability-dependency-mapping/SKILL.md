@@ -11,7 +11,7 @@ metadata:
   risk_class: "read-only"
 ---
 
-# Cross Capability Dependency Mapping
+# Cross-Capability Dependency Mapping
 
 Use generic terminology and preserve the status of every material statement: observed fact, proposal, ratified decision, rejected decision, unresolved question, measured result, estimate, or causal claim.
 
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Capability map, Dependency register, Critical path, Ownership gaps, Failure paths, Parallel work, and Decisions needed.
-

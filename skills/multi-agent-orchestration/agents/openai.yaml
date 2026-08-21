@@ -1,5 +1,5 @@
 interface:
-  display_name: "Multi Agent Orchestration"
+  display_name: "Multi-Agent Orchestration"
   short_description: "Delegate bounded work and verify integration"
   default_prompt: "Use $multi-agent-orchestration to coordinate these independent tasks safely."
 policy:

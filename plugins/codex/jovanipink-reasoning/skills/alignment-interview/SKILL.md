@@ -27,7 +27,7 @@ Reach decision readiness before implementation starts.
 ## Boundaries
 
 - Do not implement, edit files, publish, or create external records while interviewing unless separately authorized.
-- Do not interrogate the user about facts that can be discovered safely from the authorized workspace.
+- Do not ask the user to repeat facts that can be discovered safely from the authorized workspace.
 - Do not treat persistence or question count as quality. Stop when the decision is ready.
 - Route broad product discovery to problem framing and concrete implementation design to implementation planning.
 

@@ -1,5 +1,5 @@
 interface:
-  display_name: "High Signal Technical Writing"
+  display_name: "High-Signal Technical Writing"
   short_description: "Edit technical prose for clarity and evidence density"
   default_prompt: "Use $high-signal-technical-writing to revise this technical draft without changing its meaning."
 policy:

@@ -1,5 +1,5 @@
 interface:
-  display_name: "Source Grounded Research"
+  display_name: "Source-Grounded Research"
   short_description: "Research with primary-source provenance"
   default_prompt: "Use $jovanipink-skills:source-grounded-research to investigate this question with current primary sources."
 policy:

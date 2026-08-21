@@ -11,7 +11,7 @@ metadata:
   risk_class: "network-read"
 ---
 
-# Source Grounded Research
+# Source-Grounded Research
 
 Build conclusions from evidence that can support the exact claim being made.
 

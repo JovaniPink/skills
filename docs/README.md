@@ -14,7 +14,7 @@ Before installation:
 4. Install only the plugins needed for the current work.
 5. Start a fresh client session after installation or an update.
 
-The catalog contains instructions and reference files. It does not contain hooks, MCP servers, bundled agents, skill level executables, package dependencies, or broad tool permissions. A skill can guide judgment, but it cannot replace host permissions, tests, access controls, or human approval.
+The catalog contains instructions and reference files. It does not contain hooks, MCP servers, bundled agents, skill-level executables, package dependencies, or broad tool permissions. A skill can guide judgment, but it cannot replace host permissions, tests, access controls, or human approval.
 
 Read these files before using the catalog for sensitive work:
 
@@ -30,7 +30,7 @@ Install the smallest plugin that covers the work.
 | Plugin | Use it for |
 | --- | --- |
 | `jovanipink-skills` | Verification, research, diagnosis, authority review, quality gates, launch review, safe publication, public boundary review, and skill security |
-| `jovanipink-engineering` | Problem framing, planning, test driven work, test strategy, worktree assessment, change review, module design, bounded prototypes, conflict reconciliation, branch completion, application quality, and multi agent coordination |
+| `jovanipink-engineering` | Problem framing, planning, test-driven work, test strategy, worktree assessment, change review, module design, bounded prototypes, conflict reconciliation, branch completion, application quality, and multi-agent coordination |
 | `jovanipink-stack-profiles` | Focused Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
 | `jovanipink-operations` | Requirements, decisions, workshops, measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incidents, and data authority decisions |
 | `jovanipink-reasoning` | Alignment, domain vocabulary, code explanation, design rationale, change impact, technical writing, decision traces, portable skill authoring, guided configuration, task handoff, and workflow retrospectives |
@@ -161,7 +161,7 @@ Diagnose why this test fails. Establish the cause, but do not implement a fix.
 Synthesize these notes into traceable requirements. Keep proposals separate from ratified decisions.
 ```
 
-Use direct invocation when you need a specific skill or when the skill is explicit only.
+Use direct invocation when you need a specific skill or when the skill is explicit-only.
 
 Codex example:
 
@@ -177,7 +177,7 @@ Claude Code example:
 
 In ChatGPT, use the `@` skill selector documented by OpenAI. Exact display names and selection behavior can vary by installed plugin and client version.
 
-The explicit only skills are:
+The explicit-only skills are:
 
 - `publish-change-safely`
 - `skill-import-provenance`
@@ -276,7 +276,7 @@ Use this workflow:
 1. Read the [authoring guide](authoring.md).
 2. Create or update the canonical `skills/skill-name/SKILL.md` source.
 3. Add focused references only when they are needed.
-4. Add positive, near miss, safety, and output quality evaluations.
+4. Add positive, near-miss, safety, and output-quality evaluations.
 5. Record public source provenance.
 6. Regenerate the Codex and Claude plugin trees.
 7. Package Claude.ai ZIP files.
@@ -287,6 +287,7 @@ Useful repository documents:
 
 - [Architecture](architecture.md)
 - [Authoring guide](authoring.md)
+- [Editorial style](editorial-style.md)
 - [Testing guide](testing.md)
 - [Provenance policy](provenance.md)
 - [Release process](release-process.md)

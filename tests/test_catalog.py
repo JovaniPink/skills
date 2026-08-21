@@ -230,11 +230,32 @@ class CatalogTests(unittest.TestCase):
     def test_boundary_scan_rejects_non_ascii_and_non_us_english(self) -> None:
         with tempfile.TemporaryDirectory(prefix="language-boundary-") as temporary:
             candidate = Path(temporary) / "candidate.md"
-            non_us_spelling = "behav" + "iour"
-            candidate.write_text(f"plain{chr(0x2014)}text with {non_us_spelling}\n", encoding="utf-8")
+            non_us_spelling = "organi" + "sation"
+            candidate.write_text(
+                f"plain{chr(0x2014)}text with {non_us_spelling}{chr(7)}\n",
+                encoding="utf-8",
+            )
             errors = scan_public_boundary([candidate], include_packages=False)
             self.assertTrue(any("non-ASCII character" in error for error in errors))
             self.assertTrue(any("non-US English spelling" in error for error in errors))
+            self.assertTrue(any("ASCII control character" in error for error in errors))
+
+    def test_compound_skill_titles_follow_editorial_style(self) -> None:
+        expected = {
+            "cross-capability-dependency-mapping": "Cross-Capability Dependency Mapping",
+            "cross-stack-quality-gates": "Cross-Stack Quality Gates",
+            "dependency-supply-chain-review": "Dependency and Supply-Chain Review",
+            "high-signal-technical-writing": "High-Signal Technical Writing",
+            "multi-agent-orchestration": "Multi-Agent Orchestration",
+            "public-private-boundary-review": "Public-Private Boundary Review",
+            "source-grounded-research": "Source-Grounded Research",
+            "test-driven-change": "Test-Driven Change",
+        }
+        for skill, title in expected.items():
+            body = (ROOT / "skills" / skill / "SKILL.md").read_text(encoding="utf-8")
+            interface = (ROOT / "skills" / skill / "agents" / "openai.yaml").read_text(encoding="utf-8")
+            self.assertIn(f"# {title}\n", body)
+            self.assertIn(f'display_name: "{title}"', interface)
 
     def test_claude_archives_are_reproducible(self) -> None:
         with tempfile.TemporaryDirectory(prefix="package-determinism-") as temporary:

@@ -1,5 +1,5 @@
 interface:
-  display_name: "Cross Stack Quality Gates"
+  display_name: "Cross-Stack Quality Gates"
   short_description: "Run repository-defined validation gates"
   default_prompt: "Use $jovanipink-skills:cross-stack-quality-gates to discover and run the relevant checks for these changes."
 policy:

@@ -11,7 +11,7 @@ metadata:
   risk_class: "bounded-execution"
 ---
 
-# Cross Stack Quality Gates
+# Cross-Stack Quality Gates
 
 Discover the project's contract before running validation. Read [gate discovery](references/gate-discovery.md) only for the stacks present in the target scope.
 
