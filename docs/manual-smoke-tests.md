@@ -6,7 +6,33 @@ No surface is presumed equivalent to another. A successful CLI test is not Deskt
 
 ## Current v0.4 summary
 
-The operations and catalog-lifecycle source commit is pinned in client-observations-v0.4.json. All 29 required rows have the terminal result blocked because no fresh client session was authorized or available during the release run. No v0.4 installation, activation, uninstallation, or parity claim is made.
+The operations and catalog-lifecycle source commit is pinned in `client-observations-v0.4.json`. Fresh local observations were recorded on 2026-08-21 without inferring parity between clients.
+
+| Surface | Version/build | Passed observations | Blocked observations | Surface status |
+| --- | --- | ---: | ---: | --- |
+| Codex CLI | 0.145.0 | 7 | 0 | PASS |
+| Codex Desktop | 26.818.22352 / 6872 | 0 | 5 | BLOCKED |
+| ChatGPT Web | Safari 26.6 / 21624.4.5.11.5 | 0 | 6 | BLOCKED |
+| Claude Code CLI | 2.1.220 | 3 | 4 | BLOCKED |
+| Claude Code Desktop | 1.34493.1 | 0 | 5 | BLOCKED |
+| Claude.ai | not freshly tested for v0.4 | 0 | 5 | BLOCKED |
+
+Totals: 10 `pass`, 0 `fail`, 25 `blocked`, 0 `not_supported`, and 0 `not_run`. The v0.4 acceptance status remains `blocked`.
+
+Passed v0.4 evidence:
+
+- Codex CLI installed all four plugins, discovered all 11 operations skills, produced the expected implicit requirements and decision-status behavior, refused unnamed explicit-only activation, activated namespaced `plan-execution`, and passed remove, absence, reinstall, and restored-state verification.
+- Claude Code CLI installed all four plugins, exposed all 46 namespaced skills during initialization, and passed remove, absence, reinstall, and restored-state verification for the operations plugin.
+
+Blocked v0.4 evidence:
+
+- Claude Code CLI model-dependent tests are blocked because the OAuth session expired and could not be refreshed. Plugin initialization is not treated as activation evidence.
+- Codex Desktop requires a fresh task after plugin installation. Automated control of the ChatGPT app was unavailable, so no Desktop result was inferred from CLI behavior.
+- Claude Code Desktop had an enabled user-scope installation, but no fresh message was submitted and observed.
+- ChatGPT Web in Safari reported that the account had no skills. A local Codex marketplace install did not synchronize to the web account, and no workspace or directory publication was authorized.
+- Claude.ai v0.4 upload and invocation were not performed. Earlier v0.1 ZIP observations are not reused as v0.4 evidence.
+
+Codex CLI also emitted a skill-description budget warning when all four catalog plugins and other plugins were enabled. Focused installation or disabling unused plugins is recommended. Other client warnings were recorded but were not attributed to this catalog without causal evidence.
 
 ## Current v0.3 summary
 

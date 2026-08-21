@@ -335,6 +335,8 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             errors.append(f"{observation_path.relative_to(ROOT)}: case IDs must be unique")
         surfaces = {record.get("surface") for record in records if isinstance(record, dict)}
         expected_surfaces = {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"}
+        if observations.get("catalog_version") == "0.4.0":
+            expected_surfaces.add("ChatGPT Web")
         if surfaces != expected_surfaces:
             errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
         source_commit = observations.get("tested_source_commit")
