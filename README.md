@@ -71,9 +71,11 @@ python3 -m unittest discover -s tests -v
 
 ## Installation surfaces
 
-### Codex CLI and desktop
+### Codex CLI and ChatGPT desktop
 
 Add this repository as a marketplace, then install the focused plugins you need. The Codex distribution uses `agents/openai.yaml`; explicit-only skills set `policy.allow_implicit_invocation: false`. Installed plugin skills are namespaced, so direct invocation uses forms such as `$jovanipink-engineering:plan-execution`.
+
+OpenAI documents plugin-bundled skills for Chat and Work on ChatGPT web, desktop, and mobile, plus Codex in the ChatGPT desktop app and Codex CLI. A repository marketplace added through the CLI is the local desktop testing path; it does not by itself install the plugin into a ChatGPT web account. Workspace or directory installation and publication are separate administrative actions. See the [OpenAI skills documentation](https://learn.chatgpt.com/docs/build-skills) and [OpenAI plugin documentation](https://developers.openai.com/plugins/build/plugins).
 
 ### Claude Code and desktop
 
@@ -82,6 +84,8 @@ Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketpl
 ### Claude.ai
 
 Run `python3 scripts/package_claude_ai.py`. Upload an individual ZIP from `dist/claude-ai/`; each archive contains one correctly nested skill directory.
+
+See [client-surface research](docs/client-surface-research.md) for the official distribution distinctions and current observed limitations.
 
 Client behavior can change independently. See [manual smoke tests](docs/manual-smoke-tests.md) for observed-versus-pending evidence instead of assuming parity.
 
