@@ -4,7 +4,7 @@ description: Discover and run the repository's real validation gates across Go, 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.4.0"
+  version: "0.5.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "clean-room"

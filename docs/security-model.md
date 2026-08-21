@@ -19,11 +19,12 @@ The catalog protects user intent, credentials, private data, repository integrit
 ## Catalog controls
 
 - no skill-level executables, hooks, MCP servers, dependencies, or broad tool grants
-- two explicit-only workflows for publication and import/provenance decisions
+- explicit-only controls for workflows whose timing or bounded mutations require direct selection
 - generated native invocation controls checked against canonical metadata
 - standard-library-only repository generation and validation
 - immutable third-party GitHub Action revisions, enforced by repository validation
 - required trigger, provenance, reference, and public-boundary checks
+- pinned public-source disposition records and source-specific originality scanning
 - generated distributions compared byte-for-byte with a clean temporary build
 - individual Claude.ai ZIPs with a bounded, inspectable root
 

@@ -33,6 +33,7 @@ Install the smallest plugin that covers the work.
 | `jovanipink-engineering` | Problem framing, planning, test driven work, test strategy, worktree assessment, code review, branch completion, application quality, and multi agent coordination |
 | `jovanipink-stack-profiles` | Focused Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
 | `jovanipink-operations` | Requirements, decisions, workshops, measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incidents, and data authority decisions |
+| `jovanipink-reasoning` | Alignment, domain vocabulary, code explanation, design rationale, change impact, technical writing, decision traces, and portable skill authoring |
 
 Installing every plugin at once increases the amount of skill description text loaded by a client. It can also increase trigger collisions. Start with one plugin and add another only when the work needs it.
 
@@ -68,6 +69,7 @@ codex plugin add jovanipink-skills@jovanipink-skills
 codex plugin add jovanipink-engineering@jovanipink-skills
 codex plugin add jovanipink-stack-profiles@jovanipink-skills
 codex plugin add jovanipink-operations@jovanipink-skills
+codex plugin add jovanipink-reasoning@jovanipink-skills
 ```
 
 Verify the installed version and enabled state:
@@ -106,6 +108,7 @@ claude plugin install jovanipink-skills@jovanipink-skills --scope user
 claude plugin install jovanipink-engineering@jovanipink-skills --scope user
 claude plugin install jovanipink-stack-profiles@jovanipink-skills --scope user
 claude plugin install jovanipink-operations@jovanipink-skills --scope user
+claude plugin install jovanipink-reasoning@jovanipink-skills --scope user
 ```
 
 Verify the installed version and enabled state:
@@ -182,6 +185,7 @@ The explicit only skills are:
 - `request-code-review`
 - `finish-development-branch`
 - `multi-agent-orchestration`
+- `decision-evidence-trace`
 
 Natural language alone should not activate these workflows implicitly. Direct invocation still does not authorize a push, publication, merge, deletion, deployment, or other external action unless the user separately authorizes that action.
 

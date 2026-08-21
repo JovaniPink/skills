@@ -4,6 +4,20 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-08-21
+
+### Added
+
+- Eight clean-room reasoning, explanation, writing, impact, trace, and portable skill-authoring workflows in the optional `jovanipink-reasoning` plugin.
+- A complete pinned public-source audit covering 80 skill directories and 12 bundle-level components from the two reviewed public repositories.
+- Deterministic originality scanning for canonical, generated, and packaged skill content.
+
+### Security
+
+- No upstream text, structure, implementation, scripts, agents, hooks, templates, dependencies, model rosters, or examples were copied.
+- Transcript mining, broad tool sweeps, source-specific modes, self-modifying skills, and unconditional delegation remain excluded.
+- Decision traces exclude hidden reasoning, raw transcripts, secrets, private data, and unrelated activity.
+
 ## [0.4.0] - 2026-08-21
 
 ### Added

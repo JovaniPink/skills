@@ -1,0 +1,26 @@
+{
+  "name": "jovanipink-reasoning",
+  "version": "0.5.0",
+  "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "JovaniPink Reasoning",
+    "shortDescription": "Reasoning and communication workflows for Codex",
+    "longDescription": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
+    "developerName": "Jovani Pink",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Help me choose and use a JovaniPink Reasoning workflow skill."
+    ]
+  }
+}

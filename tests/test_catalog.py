@@ -16,6 +16,7 @@ from build_distributions import build, marketplace_documents  # noqa: E402
 from cataloglib import EXPLICIT_SKILLS, SKILLS, filter_revoked, read_skill_metadata, skills_by_plugin  # noqa: E402
 from check_upstream_freshness import check as check_upstream_freshness  # noqa: E402
 from check_generated import check as check_generated  # noqa: E402
+from check_originality import check as check_originality  # noqa: E402
 from check_public_boundary import _publishable_paths, scan as scan_public_boundary  # noqa: E402
 from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E402
 from package_claude_ai import package  # noqa: E402
@@ -32,7 +33,40 @@ class CatalogTests(unittest.TestCase):
     def test_catalog_and_generated_distributions_validate(self) -> None:
         self.assertEqual([], validate_all(require_packages=True))
         self.assertEqual([], check_generated())
+        self.assertEqual([], check_originality())
         self.assertEqual([], scan_public_boundary())
+
+    def test_public_source_audit_is_complete_and_clean_room(self) -> None:
+        audit = json.loads((ROOT / "provenance" / "public-source-audit.json").read_text(encoding="utf-8"))
+        self.assertEqual(2, len(audit["sources"]))
+        self.assertEqual(80, audit["summary"]["skill_directories"])
+        self.assertEqual(12, audit["summary"]["bundle_components"])
+        self.assertEqual(92, audit["summary"]["total_components"])
+        components = [component for source in audit["sources"] for component in source["components"]]
+        self.assertEqual(92, len(components))
+        self.assertEqual(80, sum(component["component_class"] == "skill" for component in components))
+        for source in audit["sources"]:
+            self.assertTrue(source["content_reviewed"])
+            self.assertFalse(source["text_copied"])
+            self.assertFalse(source["structure_copied"])
+            self.assertFalse(source["implementation_reused"])
+
+    def test_reasoning_plugin_keeps_discovery_scope_focused(self) -> None:
+        reasoning = skills_by_plugin()["jovanipink-reasoning"]
+        self.assertEqual(8, len(reasoning))
+        descriptions = [read_skill_metadata(ROOT / "skills" / skill)["description"] for skill in reasoning]
+        self.assertLess(sum(len(description) for description in descriptions), 4000)
+        self.assertEqual(len(descriptions), len(set(descriptions)))
+
+    def test_originality_scan_rejects_source_specific_terms(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="originality-regression-") as temporary:
+            candidate = Path(temporary) / "SKILL.md"
+            candidate.write_text("Use " + "pot" + "eto-mode for every task.\n", encoding="utf-8")
+            from check_originality import _scan_text
+
+            errors = _scan_text(candidate.as_posix(), candidate.read_text(encoding="utf-8"))
+            self.assertEqual(1, len(errors))
+            self.assertIn("source-specific mode name", errors[0])
 
     def test_native_invocation_controls_match_canonical_metadata(self) -> None:
         for skill in SKILLS:
@@ -92,8 +126,8 @@ class CatalogTests(unittest.TestCase):
         counts = {entry["disposition"]: entry["count"] for entry in summary["dispositions"]}
         self.assertEqual(
             {
-                "covered": 26,
-                "partial": 1,
+                "covered": 27,
+                "partial": 0,
                 "public_candidate": 2,
                 "private_overlay": 1,
                 "rejected": 22,
@@ -106,7 +140,8 @@ class CatalogTests(unittest.TestCase):
 
         roadmap = json.loads((ROOT / "incubator" / "roadmap.json").read_text(encoding="utf-8"))
         tracks = {track["id"]: track for track in roadmap["tracks"]}
-        self.assertEqual("incubating", tracks["portable-skill-authoring"]["status"])
+        self.assertEqual("released", tracks["portable-skill-authoring"]["status"])
+        self.assertEqual("jovanipink-reasoning", tracks["portable-skill-authoring"]["plugin"])
         self.assertEqual(["portable-skill-authoring"], tracks["portable-skill-authoring"]["skills"])
 
     def test_client_observation_matrix_is_reconciled_and_terminal(self) -> None:
@@ -128,7 +163,7 @@ class CatalogTests(unittest.TestCase):
                 "Claude Code Desktop",
                 "Claude.ai",
             }
-            if matrix["catalog_version"] == "0.4.0":
+            if matrix["catalog_version"] not in {"0.1.0", "0.2.0", "0.3.0"}:
                 expected_surfaces.add("ChatGPT Web")
             self.assertEqual(expected_surfaces, {record["surface"] for record in records})
 
@@ -203,6 +238,19 @@ class CatalogTests(unittest.TestCase):
         errors, report = check_upstream_freshness(online=False)
         self.assertEqual([], errors)
         self.assertEqual("pass", report["result"])
+
+    def test_public_source_audit_revisions_feed_freshness(self) -> None:
+        from check_upstream_freshness import audited_git_sources
+
+        sources = audited_git_sources()
+        self.assertEqual(2, len(sources))
+        self.assertEqual(
+            {
+                "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+                "46125561306434d8a1d7745d540d8932ab0cd2a2",
+            },
+            {source["pinned_revision"] for source in sources},
+        )
 
 
 if __name__ == "__main__":

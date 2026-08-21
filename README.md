@@ -50,6 +50,10 @@ Optional profiles provide focused engineering guidance for Go, Python, Swift and
 
 Eleven generic operating workflows cover requirements, governance records, workshops, outcome measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incident analysis, and data-authority migration ratification. They preserve observed, proposed, ratified, rejected, unresolved, measured, estimated, and causal claim states.
 
+### `jovanipink-reasoning`
+
+Eight focused workflows cover alignment interviews, domain vocabulary, codebase mechanics, design rationale, change impact, high-signal technical writing, privacy-conscious decision traces, and portable skill authoring. The plugin is optional so these broad reasoning descriptions do not crowd every engineering session.
+
 ## Repository model
 
 - `skills/` is the only authoring source.
@@ -57,8 +61,9 @@ Eleven generic operating workflows cover requirements, governance records, works
 - `incubator/` is intentionally undiscoverable unfinished work.
 - `evals/` contains trigger and safety cases.
 - `provenance/catalog.json` records the origin and review policy of every skill.
+- `provenance/public-source-audit.json` records pinned public capability dispositions and clean-room exclusions.
 - `provenance/inventory-summary.json` publishes only reconciled aggregate capability-disposition counts.
-- `scripts/` contains standard-library-only generation, packaging, and validation, including a guard that rejects mutable third-party GitHub Action references.
+- `scripts/` contains standard-library-only generation, packaging, and validation, including guards for mutable third-party GitHub Action references and source-specific skill content.
 - `catalog/` contains strict compatibility, deprecation, revocation, and upstream-pinning records.
 - `releases/` contains exact-source release manifests and artifact checksums.
 
@@ -99,4 +104,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.4 adds operating workflows and catalog lifecycle controls. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+Version 0.5 adds the optional reasoning plugin and a complete pinned public-source disposition audit. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.

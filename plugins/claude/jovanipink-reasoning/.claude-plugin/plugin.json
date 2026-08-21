@@ -1,0 +1,19 @@
+{
+  "name": "jovanipink-reasoning",
+  "version": "0.5.0",
+  "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "reasoning",
+    "writing",
+    "architecture",
+    "evidence"
+  ]
+}

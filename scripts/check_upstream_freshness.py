@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import urllib.request
 from datetime import date
 from pathlib import Path
@@ -21,7 +22,7 @@ def _load(path: Path) -> dict[str, object]:
 
 
 def _fetch_marker(url: str) -> tuple[str, str]:
-    request = urllib.request.Request(url, headers={"User-Agent": "JovaniPink-skills-freshness/0.4"})
+    request = urllib.request.Request(url, headers={"User-Agent": "JovaniPink-skills-freshness/0.5"})
     with urllib.request.urlopen(request, timeout=30) as response:
         etag = response.headers.get("ETag")
         if etag and not etag.startswith("W/"):
@@ -30,6 +31,32 @@ def _fetch_marker(url: str) -> tuple[str, str]:
         if last_modified:
             return "last-modified", last_modified
         return "content-sha256", hashlib.sha256(response.read()).hexdigest()
+
+
+def _fetch_git_head(repository_url: str, branch: str) -> str:
+    match = re.fullmatch(r"https://github\.com/([^/]+)/([^/]+?)(?:\.git)?", repository_url)
+    if match is None:
+        raise ValueError(f"unsupported Git repository URL: {repository_url}")
+    api_url = f"https://api.github.com/repos/{match.group(1)}/{match.group(2)}/commits/{branch}"
+    request = urllib.request.Request(api_url, headers={"User-Agent": "JovaniPink-skills-freshness/0.5"})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        value = json.loads(response.read().decode("utf-8"))
+    revision = value.get("sha") if isinstance(value, dict) else None
+    if not isinstance(revision, str) or re.fullmatch(r"[0-9a-f]{40}", revision) is None:
+        raise ValueError(f"invalid Git revision returned for {repository_url} {branch}")
+    return revision
+
+
+def audited_git_sources() -> list[dict[str, str]]:
+    audit = _load(ROOT / "provenance" / "public-source-audit.json")
+    result: list[dict[str, str]] = []
+    for source in audit.get("sources", []):
+        if not isinstance(source, dict):
+            continue
+        values = {key: source.get(key) for key in ("source_url", "repository_url", "branch", "pinned_revision", "reviewed_on")}
+        if all(isinstance(value, str) for value in values.values()):
+            result.append({key: str(value) for key, value in values.items()})
+    return result
 
 
 def source_urls() -> list[str]:
@@ -79,6 +106,14 @@ def check(online: bool = False, today: date | None = None) -> tuple[list[str], d
     maximum = int(pins["max_review_age_days"])
     if (today - reviewed_on).days > maximum:
         errors.append(f"security re-review is overdue: pins reviewed {reviewed_on.isoformat()}, maximum age {maximum} days")
+    git_sources = audited_git_sources()
+    for source in git_sources:
+        git_reviewed_on = date.fromisoformat(source["reviewed_on"])
+        if (today - git_reviewed_on).days > maximum:
+            errors.append(
+                f"security re-review is overdue for public source audit: {source['source_url']} "
+                f"reviewed {git_reviewed_on.isoformat()}, maximum age {maximum} days"
+            )
     records: list[dict[str, str]] = []
     if online:
         for url in urls:
@@ -95,6 +130,25 @@ def check(online: bool = False, today: date | None = None) -> tuple[list[str], d
                 errors.append(f"upstream check blocked for {url}: {type(error).__name__}: {error}")
             expected_text = "missing" if expected.get(url) is None else f"{expected[url][0]}:{expected[url][1]}"
             records.append({"source_url": url, "expected_marker": expected_text, "observed_marker": observed, "result": result})
+        for source in git_sources:
+            expected_revision = source["pinned_revision"]
+            try:
+                observed_revision = _fetch_git_head(source["repository_url"], source["branch"])
+                result = "pass" if observed_revision == expected_revision else "changed"
+                if result == "changed":
+                    errors.append(f"upstream Git revision changed: {source['source_url']}")
+            except Exception as error:
+                observed_revision = "unavailable"
+                result = "blocked"
+                errors.append(f"upstream Git check blocked for {source['source_url']}: {type(error).__name__}: {error}")
+            records.append(
+                {
+                    "source_url": source["source_url"],
+                    "expected_marker": f"git-commit:{expected_revision}",
+                    "observed_marker": f"git-commit:{observed_revision}" if observed_revision != "unavailable" else observed_revision,
+                    "result": result,
+                }
+            )
     report = {
         "catalog_version": VERSION,
         "checked_on": today.isoformat(),
