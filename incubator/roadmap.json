@@ -106,6 +106,21 @@
         "general quality-gate guidance is insufficient",
         "a primary-source packet and representative fixture exist"
       ]
+    },
+    {
+      "id": "portable-skill-authoring",
+      "target_release": "unassigned",
+      "plugin": "jovanipink-skills",
+      "status": "incubating",
+      "skills": [
+        "portable-skill-authoring"
+      ],
+      "entry_criteria": [
+        "the workflow is independently authored from the open specification and current client documentation",
+        "the workflow does not depend on source-specific bootstrap instructions, hooks, bundled agents, or broad tool permissions",
+        "trigger evaluations distinguish skill authoring from ordinary documentation work",
+        "output evaluation covers metadata, focused references, provenance, security, packaging, and cross-client validation"
+      ]
     }
   ]
 }
