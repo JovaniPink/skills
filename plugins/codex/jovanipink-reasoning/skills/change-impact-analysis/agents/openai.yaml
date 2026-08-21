@@ -1,0 +1,6 @@
+interface:
+  display_name: "Change Impact Analysis"
+  short_description: "Trace downstream change effects and uncertainty"
+  default_prompt: "Use $jovanipink-reasoning:change-impact-analysis to trace the downstream effects of this exact change."
+policy:
+  allow_implicit_invocation: true

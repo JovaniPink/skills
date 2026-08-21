@@ -1,0 +1,6 @@
+interface:
+  display_name: "Design Rationale Investigation"
+  short_description: "Investigate design history without inventing intent"
+  default_prompt: "Use $jovanipink-reasoning:design-rationale-investigation to establish why this design exists and label uncertainty."
+policy:
+  allow_implicit_invocation: true

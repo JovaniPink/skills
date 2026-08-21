@@ -4,7 +4,7 @@ description: Plan and synthesize postlaunch learning from observed behavior, inc
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.4.0"
+  version: "0.5.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

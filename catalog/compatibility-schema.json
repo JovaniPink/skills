@@ -4,7 +4,7 @@
   "required": ["$schema", "catalog_version", "records"],
   "properties": {
     "$schema": {"const": "./compatibility-schema.json"},
-    "catalog_version": {"const": "0.4.0"},
+    "catalog_version": {"const": "0.5.0"},
     "records": {
       "type": "array",
       "minItems": 3,
@@ -12,7 +12,7 @@
         "type": "object",
         "required": ["plugin_version", "evidence_path", "acceptance_status", "claim"],
         "properties": {
-          "plugin_version": {"type": "string", "pattern": "^0\\.[1-4]\\.0$"},
+          "plugin_version": {"type": "string", "pattern": "^0\\.[1-5]\\.0$"},
           "evidence_path": {"type": "string", "minLength": 1},
           "acceptance_status": {"enum": ["accepted", "blocked"]},
           "claim": {"type": "string", "minLength": 1}

@@ -9,7 +9,7 @@ python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
 ```
 
-`scripts/validate.py` checks canonical metadata, Codex policy mapping, Claude explicit-invocation mapping, trigger coverage, provenance coverage, local references, public/private boundary patterns, marketplace structure, ZIP layout, and generated-tree drift.
+`scripts/validate.py` checks canonical metadata, Codex policy mapping, Claude explicit-invocation mapping, trigger coverage, provenance coverage, the public-source audit, clean-room originality, local references, public/private boundary patterns, marketplace structure, ZIP layout, and generated-tree drift.
 
 ## External validators
 

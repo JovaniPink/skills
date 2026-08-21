@@ -1,6 +1,6 @@
 {
   "$schema": "./compatibility-schema.json",
-  "catalog_version": "0.4.0",
+  "catalog_version": "0.5.0",
   "records": [
     {
       "plugin_version": "0.1.0",
@@ -25,6 +25,12 @@
       "evidence_path": "docs/client-observations-v0.4.json",
       "acceptance_status": "blocked",
       "claim": "Codex CLI passed seven v0.4 observations. Claude Code CLI passed installation, discovery, and uninstall observations; its model-dependent rows remain blocked by authentication. Desktop, Claude.ai, and ChatGPT Web acceptance remains blocked."
+    },
+    {
+      "plugin_version": "0.5.0",
+      "evidence_path": "docs/client-observations-v0.5.json",
+      "acceptance_status": "blocked",
+      "claim": "v0.5 automated artifacts are validated separately from client behavior. Manual observations remain surface-specific and blocked until the exact package is tested."
     }
   ]
 }

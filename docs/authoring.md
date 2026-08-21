@@ -15,7 +15,7 @@ description: What the skill does and the concrete situations that should activat
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.1.0"
+  version: "0.5.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "original"
@@ -59,8 +59,10 @@ References must be directly linked from `SKILL.md`, use relative paths, and be n
 - standards-valid skill structure
 - native Codex and Claude invocation mapping
 - provenance record
+- public-source audit entry when an external catalog informed the capability decision
 - three positive, three near-miss, and one conflict/safety trigger case
 - reference and link validation
 - public/private boundary scan
+- clean-room originality scan
 - generated-tree drift check
 - client-specific smoke evidence where release policy requires it

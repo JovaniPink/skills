@@ -8,8 +8,8 @@
   "text_copied": false,
   "implementation_reused": false,
   "dispositions": [
-    {"disposition": "covered", "count": 26},
-    {"disposition": "partial", "count": 1},
+    {"disposition": "covered", "count": 27},
+    {"disposition": "partial", "count": 0},
     {"disposition": "public_candidate", "count": 2},
     {"disposition": "private_overlay", "count": 1},
     {"disposition": "rejected", "count": 22}

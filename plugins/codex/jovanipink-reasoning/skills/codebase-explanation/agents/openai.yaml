@@ -1,0 +1,6 @@
+interface:
+  display_name: "Codebase Explanation"
+  short_description: "Explain current code mechanics from evidence"
+  default_prompt: "Use $jovanipink-reasoning:codebase-explanation to trace how this code path works from current repository evidence."
+policy:
+  allow_implicit_invocation: true

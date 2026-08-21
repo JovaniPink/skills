@@ -1,6 +1,31 @@
 # Validation Evidence
 
-This file records observed outcomes for the v0.1 release candidate. Validators do not rewrite it automatically.
+This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
+
+## v0.5 tested source
+
+- Source commit: `0c53d68a552aa475746a85c228c1e063233f8ed4`
+- Catalog/plugin version: `0.5.0`
+- Date: 2026-08-21
+- Canonical skills: 54 across five optional plugins
+- Manual matrix: 6 terminal suite rows; 0 pass, 6 blocked, 0 fail, 0 not supported, 0 not run
+- Acceptance: BLOCKED until fresh client installation and invocation observations are recorded
+
+## v0.5 automated repository checks
+
+- `python3 scripts/validate.py`: PASS - schemas, links, boundary scan, originality scan, package checksums, trigger coverage, generated drift, fixtures, and catalog records
+- `python3 -m unittest discover -s tests -v`: PASS - 22 regression tests
+- non-mutating `python3 scripts/build_distributions.py --check`: PASS - all five Codex and Claude plugin trees and both marketplace records match canonical sources
+- Codex bundled skill validator: PASS - all 54 canonical skills
+- Codex bundled plugin validator: PASS - all five Codex plugins
+- `claude plugin validate --strict`: PASS - all five generated Claude plugins
+- Claude.ai packages: PASS - 54 deterministic, individually nested ZIPs with SHA-256 checksums
+- `skills-ref`: UNAVAILABLE - the command was not installed in the validation environment, so no passing claim is made
+- clean-room source audit: PASS - two pinned MIT source scopes, 92 reviewed components, and explicit false reuse flags
+
+## v0.5 client evidence boundary
+
+See `client-observations-v0.5.json`. Every supported surface has a terminal `blocked` suite record tied to the exact tested source commit and representative ZIP checksum. Package validation is not treated as installation, discovery, activation, reference loading, upload acceptance, or client parity.
 
 ## Tested source
 

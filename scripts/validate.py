@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from check_generated import check as check_generated
+from check_originality import check as check_originality
 from check_public_boundary import scan as scan_public_boundary
 from cataloglib import ROOT
 from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures
@@ -16,6 +17,7 @@ def run() -> list[str]:
     errors = validate_all(require_packages=True)
     errors.extend(scan_public_boundary())
     errors.extend(check_generated())
+    errors.extend(check_originality())
     errors.extend(evaluate_gate_fixtures())
     freshness_errors, _ = check_upstream_freshness(online=False)
     errors.extend(freshness_errors)

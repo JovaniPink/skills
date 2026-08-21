@@ -263,6 +263,39 @@ def validate_provenance(errors: list[str]) -> None:
 
 
 def validate_auxiliary_records(errors: list[str]) -> None:
+    public_audit = _validate_json_schema(
+        ROOT / "provenance" / "public-source-audit.json",
+        ROOT / "provenance" / "public-source-audit-schema.json",
+        errors,
+    )
+    if isinstance(public_audit, dict) and isinstance(public_audit.get("sources"), list):
+        components = [
+            component
+            for source in public_audit["sources"]
+            if isinstance(source, dict) and isinstance(source.get("components"), list)
+            for component in source["components"]
+            if isinstance(component, dict)
+        ]
+        summary = public_audit.get("summary", {})
+        skill_count = sum(component.get("component_class") == "skill" for component in components)
+        bundle_count = sum(component.get("component_class") == "bundle" for component in components)
+        if isinstance(summary, dict):
+            if summary.get("skill_directories") != skill_count:
+                errors.append("provenance/public-source-audit.json: skill directory count does not reconcile")
+            if summary.get("bundle_components") != bundle_count:
+                errors.append("provenance/public-source-audit.json: bundle component count does not reconcile")
+            if summary.get("total_components") != len(components):
+                errors.append("provenance/public-source-audit.json: total component count does not reconcile")
+        identities = [
+            (source.get("source_url"), component.get("path"))
+            for source in public_audit["sources"]
+            if isinstance(source, dict) and isinstance(source.get("components"), list)
+            for component in source["components"]
+            if isinstance(component, dict)
+        ]
+        if len(identities) != len(set(identities)):
+            errors.append("provenance/public-source-audit.json: component paths must be unique within each source")
+
     inventory = _validate_json_schema(
         ROOT / "provenance" / "inventory-summary.json",
         ROOT / "provenance" / "inventory-summary-schema.json",
@@ -335,7 +368,7 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             errors.append(f"{observation_path.relative_to(ROOT)}: case IDs must be unique")
         surfaces = {record.get("surface") for record in records if isinstance(record, dict)}
         expected_surfaces = {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"}
-        if observations.get("catalog_version") == "0.4.0":
+        if observations.get("catalog_version") not in {"0.1.0", "0.2.0", "0.3.0"}:
             expected_surfaces.add("ChatGPT Web")
         if surfaces != expected_surfaces:
             errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")

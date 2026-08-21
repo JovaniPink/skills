@@ -24,7 +24,9 @@ Proprietary or incompatible sources may be used only to identify a capability ga
 
 The private inventory ledger records one row per capability with a source snapshot, reviewer, review date, capability-name/path-only material consulted, and required false values for `content_opened`, `text_copied`, and `implementation_reused`. The public repository exposes only the reconciled aggregate in `provenance/inventory-summary.json`; it never exposes the private names or paths.
 
-The 2026-08-21 reconciliation against public catalog version 0.4.0 records 26 covered capabilities, two incubating public candidates, one partial capability, one private-overlay capability, and 22 rejected capabilities. The remaining public candidates are optional Java and .NET profiles. The partial capability is represented only as a sanitized portable skill-authoring roadmap entry. No restricted name, path, text, example, command, agent, hook, or implementation was copied into this repository.
+The 2026-08-21 reconciliation against public catalog version 0.5.0 records 27 covered capabilities, two incubating public candidates, no partial capabilities, one private-overlay capability, and 22 rejected capabilities. The remaining public candidates are optional Java and .NET profiles. No restricted name, path, text, example, command, agent, hook, or implementation was copied into this repository.
+
+`provenance/public-source-audit.json` is a separate clean-room audit of the two public repositories reviewed for v0.5. It records exact revisions, license scope, every skill directory, bundle-level components, dispositions, public mappings, and security exclusions. Public source names and paths appear only in that attribution record; canonical and generated skill content is protected by the originality scanner.
 
 ## Placement policy
 
