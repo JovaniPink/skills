@@ -86,15 +86,21 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(any("additional property" in error for error in errors))
 
     def test_client_observation_matrix_is_reconciled_and_terminal(self) -> None:
-        matrix = json.loads((ROOT / "docs" / "client-observations.json").read_text(encoding="utf-8"))
-        records = matrix["records"]
-        self.assertEqual(matrix["summary"]["total"], len(records))
-        self.assertEqual(len(records), len({record["case_id"] for record in records}))
-        self.assertNotIn("not_run", {record["result"] for record in records})
-        self.assertEqual(
-            {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"},
-            {record["surface"] for record in records},
+        paths = sorted(
+            path for path in (ROOT / "docs").glob("client-observations*.json")
+            if path.name != "client-observations-schema.json"
         )
+        self.assertGreaterEqual(len(paths), 2)
+        for path in paths:
+            matrix = json.loads(path.read_text(encoding="utf-8"))
+            records = matrix["records"]
+            self.assertEqual(matrix["summary"]["total"], len(records))
+            self.assertEqual(len(records), len({record["case_id"] for record in records}))
+            self.assertNotIn("not_run", {record["result"] for record in records})
+            self.assertEqual(
+                {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"},
+                {record["surface"] for record in records},
+            )
 
     def test_boundary_scan_covers_publishable_root_and_local_denylist(self) -> None:
         publishable = {path.relative_to(ROOT).as_posix() for path in _publishable_paths(ROOT)}

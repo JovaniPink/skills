@@ -4,6 +4,10 @@ The authoritative row-level evidence is `client-observations.json`, validated by
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
+## Current v0.2 summary
+
+The engineering lifecycle source commit is pinned in `client-observations-v0.2.json`. All 29 required rows have the terminal result `blocked` because no fresh client session was authorized or available during the release run. No v0.2 client activation, resource-loading, installation, uninstallation, or parity claim is made.
+
 ## Current v0.1 summary
 
 | Surface | Version/build | Passed observations | Blocked observations | Surface status |

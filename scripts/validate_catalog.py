@@ -299,32 +299,37 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                     errors.append(f"incubator/roadmap.json: duplicate skill {skill}")
                 seen.add(skill)
 
-    observations = _validate_json_schema(
-        ROOT / "docs" / "client-observations.json",
+    observation_paths = sorted(
+        path for path in (ROOT / "docs").glob("client-observations*.json")
+        if path.name != "client-observations-schema.json"
+    )
+    for observation_path in observation_paths:
+      observations = _validate_json_schema(
+        observation_path,
         ROOT / "docs" / "client-observations-schema.json",
         errors,
-    )
-    if isinstance(observations, dict) and isinstance(observations.get("records"), list):
+      )
+      if isinstance(observations, dict) and isinstance(observations.get("records"), list):
         records = observations["records"]
         ids = [record.get("case_id") for record in records if isinstance(record, dict)]
         if len(ids) != len(set(ids)):
-            errors.append("docs/client-observations.json: case IDs must be unique")
+            errors.append(f"{observation_path.relative_to(ROOT)}: case IDs must be unique")
         surfaces = {record.get("surface") for record in records if isinstance(record, dict)}
         expected_surfaces = {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"}
         if surfaces != expected_surfaces:
-            errors.append(f"docs/client-observations.json: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
+            errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
         source_commit = observations.get("tested_source_commit")
         if any(record.get("source_commit") != source_commit for record in records if isinstance(record, dict)):
-            errors.append("docs/client-observations.json: every row must reference the tested source commit")
+            errors.append(f"{observation_path.relative_to(ROOT)}: every row must reference the tested source commit")
         if any(record.get("result") == "not_run" for record in records if isinstance(record, dict)):
-            errors.append("docs/client-observations.json: every manual row must have an observed terminal state")
+            errors.append(f"{observation_path.relative_to(ROOT)}: every manual row must have an observed terminal state")
         actual_summary = {status: 0 for status in ("pass", "fail", "blocked", "not_supported", "not_run")}
         for record in records:
             if isinstance(record, dict) and record.get("result") in actual_summary:
                 actual_summary[record["result"]] += 1
         actual_summary["total"] = len(records)
         if observations.get("summary") != actual_summary:
-            errors.append("docs/client-observations.json: summary counts do not reconcile with records")
+            errors.append(f"{observation_path.relative_to(ROOT)}: summary counts do not reconcile with records")
 
 
 def validate_generated_adapters(errors: list[str]) -> None:
