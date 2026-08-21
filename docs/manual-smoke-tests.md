@@ -4,6 +4,21 @@ The authoritative row-level evidence is `client-observations.json`, validated by
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
+## Current v0.6 summary
+
+The engineering-depth and continuity source commit is pinned in `client-observations-v0.6.json`. All six surface suites have the terminal result `blocked` because the exact v0.6 plugins have not yet been installed and exercised in fresh client sessions.
+
+| Surface | Version/build | Passed suites | Blocked suites | Surface status |
+| --- | --- | ---: | ---: | --- |
+| Codex CLI | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+| Codex Desktop | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+| ChatGPT Web | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+| Claude Code CLI | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+| Claude Code Desktop | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+| Claude.ai | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+
+The focused-reference prompt asks which statuses are permitted in an implementation decision map and requires material found only in `implementation-planning/references/decision-map.md`. A generated file or package is not evidence that a client loaded that reference.
+
 ## Current v0.5 summary
 
 The reasoning-foundation source commit is pinned in `client-observations-v0.5.json`. All six surface suites have the terminal result `blocked` because the exact v0.5 plugin has not yet been installed and exercised in fresh client sessions.
