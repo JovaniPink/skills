@@ -2,6 +2,31 @@
 
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
+## v0.6 tested source
+
+- Source commit: `759b3bf9bfca9967144b02d18f0678e3b509e2b3`
+- Catalog/plugin version: `0.6.0`
+- Date: 2026-08-21
+- Canonical skills: 61 across five optional plugins
+- Manual matrix: 6 terminal suite rows; 0 pass, 6 blocked, 0 fail, 0 not supported, 0 not run
+- Acceptance: BLOCKED until fresh client installation and invocation observations are recorded
+
+## v0.6 automated repository checks
+
+- `python3 scripts/validate.py`: PASS - schemas, links, boundary scan, originality scan, package checksums, trigger coverage, generated drift, fixtures, and catalog records
+- `python3 -m unittest discover -s tests -v`: PASS - 24 regression tests
+- non-mutating `python3 scripts/build_distributions.py --check`: PASS - all five Codex and Claude plugin trees and both marketplace records match canonical sources
+- Codex bundled skill validator: PASS - all 61 canonical skills
+- Codex bundled plugin validator: PASS - all five Codex plugins
+- `claude plugin validate --strict`: PASS - all five generated Claude plugins
+- Claude.ai packages: PASS - 61 deterministic, individually nested ZIPs with SHA-256 checksums
+- online upstream freshness: PASS - changed official sources were re-reviewed, the GitHub review URL redirect was corrected, and both public Git audit revisions remain pinned
+- `skills-ref`: UNAVAILABLE - the command was not installed in the validation environment, so no passing claim is made
+
+## v0.6 client evidence boundary
+
+See `client-observations-v0.6.json`. Every supported surface has a terminal `blocked` suite record tied to the exact tested source commit and representative ZIP checksum. Package and validator results are not treated as installation, discovery, activation, reference loading, upload acceptance, or client parity.
+
 ## v0.5 tested source
 
 - Source commit: `0c53d68a552aa475746a85c228c1e063233f8ed4`

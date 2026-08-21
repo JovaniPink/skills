@@ -50,13 +50,50 @@ class CatalogTests(unittest.TestCase):
             self.assertFalse(source["text_copied"])
             self.assertFalse(source["structure_copied"])
             self.assertFalse(source["implementation_reused"])
+        v06 = {
+            "code-change-review",
+            "module-interface-design",
+            "prototype-spike",
+            "merge-conflict-reconciliation",
+            "guided-configuration",
+            "task-handoff",
+            "workflow-retrospective",
+        }
+        mapped = [component for component in components if v06.intersection(component["public_mapping"])]
+        self.assertTrue(mapped)
+        self.assertEqual(set(), {component["disposition"] for component in mapped} - {"covered"})
 
     def test_reasoning_plugin_keeps_discovery_scope_focused(self) -> None:
         reasoning = skills_by_plugin()["jovanipink-reasoning"]
-        self.assertEqual(8, len(reasoning))
+        self.assertEqual(11, len(reasoning))
         descriptions = [read_skill_metadata(ROOT / "skills" / skill)["description"] for skill in reasoning]
         self.assertLess(sum(len(description) for description in descriptions), 4000)
         self.assertEqual(len(descriptions), len(set(descriptions)))
+
+    def test_v06_mutating_workflows_are_explicit_and_bounded(self) -> None:
+        expected = {
+            "prototype-spike",
+            "merge-conflict-reconciliation",
+            "guided-configuration",
+            "task-handoff",
+            "workflow-retrospective",
+        }
+        self.assertTrue(expected.issubset(EXPLICIT_SKILLS))
+        conflict = (ROOT / "skills" / "merge-conflict-reconciliation" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in ("abort", "Stage, continue, commit, push", "destructive reset"):
+            self.assertIn(boundary, conflict)
+        prototype = (ROOT / "skills" / "prototype-spike" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("not production readiness", prototype)
+        self.assertIn("Do not commit, merge, deploy, migrate, publish, or promote", prototype)
+
+    def test_v06_focused_references_exist(self) -> None:
+        references = {
+            "implementation-planning": {"specification-synthesis.md", "work-packages.md", "decision-map.md"},
+            "multi-agent-orchestration": {"candidate-comparison.md", "coverage-fanout.md", "client-mapping.md"},
+        }
+        for skill, expected in references.items():
+            actual = {path.name for path in (ROOT / "skills" / skill / "references").glob("*.md")}
+            self.assertTrue(expected.issubset(actual))
 
     def test_originality_scan_rejects_source_specific_terms(self) -> None:
         with tempfile.TemporaryDirectory(prefix="originality-regression-") as temporary:
@@ -143,6 +180,8 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual("released", tracks["portable-skill-authoring"]["status"])
         self.assertEqual("jovanipink-reasoning", tracks["portable-skill-authoring"]["plugin"])
         self.assertEqual(["portable-skill-authoring"], tracks["portable-skill-authoring"]["skills"])
+        self.assertEqual("released", tracks["engineering-depth-and-continuity"]["status"])
+        self.assertEqual("released", tracks["reasoning-continuity"]["status"])
 
     def test_client_observation_matrix_is_reconciled_and_terminal(self) -> None:
         paths = sorted(

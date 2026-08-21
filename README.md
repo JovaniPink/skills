@@ -39,6 +39,10 @@ The catalog is split into focused plugins so clients can discover only the workf
 | `respond-to-code-review` | Verify feedback before accepting, rejecting, or deferring it | Implicit |
 | `finish-development-branch` | Present integration, retention, and cleanup options without implicit actions | Explicit only |
 | `multi-agent-orchestration` | Coordinate authorized independent tasks with ownership and reconciliation | Explicit only |
+| `code-change-review` | Review an exact diff for verified actionable defects | Implicit |
+| `module-interface-design` | Design smaller stable contracts from callers and invariants | Implicit |
+| `prototype-spike` | Test one uncertainty with isolated bounded implementation | Explicit only |
+| `merge-conflict-reconciliation` | Reconcile Git conflicts while preserving abort and action gates | Explicit only |
 
 Engineering quality reviews in the same plugin cover application security, dependency supply chain, observability, performance and scalability, data migration readiness, API compatibility, test quality, accessibility, and operational readiness. These are implicit, read-only reviews and do not claim compliance or authorize production actions.
 
@@ -52,7 +56,7 @@ Eleven generic operating workflows cover requirements, governance records, works
 
 ### `jovanipink-reasoning`
 
-Eight focused workflows cover alignment interviews, domain vocabulary, codebase mechanics, design rationale, change impact, high-signal technical writing, privacy-conscious decision traces, and portable skill authoring. The plugin is optional so these broad reasoning descriptions do not crowd every engineering session.
+Eleven focused workflows cover alignment interviews, domain vocabulary, codebase mechanics, design rationale, change impact, high-signal technical writing, privacy-conscious decision traces, portable skill authoring, guided configuration, task handoffs, and workflow retrospectives. The plugin is optional so these broad reasoning descriptions do not crowd every engineering session.
 
 ## Repository model
 
@@ -104,4 +108,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.5 adds the optional reasoning plugin and a complete pinned public-source disposition audit. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+Version 0.6 adds focused code review, module design, prototype, conflict reconciliation, guided configuration, handoff, retrospective, planning, and multi-agent references. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.

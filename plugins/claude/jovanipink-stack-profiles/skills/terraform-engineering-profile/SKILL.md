@@ -4,7 +4,7 @@ description: Apply focused Terraform engineering judgment after repository gate 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.5.0"
+  version: "0.6.0"
   plugin: "jovanipink-stack-profiles"
   invocation: "implicit"
   provenance: "clean-room"
