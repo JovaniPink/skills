@@ -4,6 +4,21 @@ The authoritative row-level evidence is `client-observations.json`, validated by
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
+## Current v0.5 summary
+
+The reasoning-foundation source commit is pinned in `client-observations-v0.5.json`. All six surface suites have the terminal result `blocked` because the exact v0.5 plugin has not yet been installed and exercised in fresh client sessions.
+
+| Surface | Version/build | Passed suites | Blocked suites | Surface status |
+| --- | --- | ---: | ---: | --- |
+| Codex CLI | not freshly observed for v0.5 | 0 | 1 | BLOCKED |
+| Codex Desktop | not freshly observed for v0.5 | 0 | 1 | BLOCKED |
+| ChatGPT Web | not freshly observed for v0.5 | 0 | 1 | BLOCKED |
+| Claude Code CLI | not freshly observed for v0.5 | 0 | 1 | BLOCKED |
+| Claude Code Desktop | not freshly observed for v0.5 | 0 | 1 | BLOCKED |
+| Claude.ai | not freshly observed for v0.5 | 0 | 1 | BLOCKED |
+
+The focused-reference prompt asks for the native location of `disable-model-invocation` and requires a boundary documented only in the `portable-skill-authoring` client adapter reference. A valid package and generated reference file do not prove that a client loaded it.
+
 ## Current v0.4 summary
 
 The operations and catalog-lifecycle source commit is pinned in `client-observations-v0.4.json`. Fresh local observations were recorded on 2026-08-21 without inferring parity between clients.
