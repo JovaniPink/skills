@@ -6,75 +6,93 @@
   "sources": [
     {
       "source_url": "https://addyosmani.com/blog/agent-skills/",
-      "content_sha256": "edd885a1cd59daedee58f27ea857f33e75a396c7d011314ee8ac99b9ec9f5b3c"
+      "marker_kind": "etag",
+      "marker_value": "\"3f95c4f551ac3517f505ef4f7516c2c3-ssl\""
     },
     {
       "source_url": "https://agentskills.io/specification",
-      "content_sha256": "cfc7947b24a61d5c931476b1295c7eecfb5e2f2c4c84f4d2ed18d99831244940"
+      "marker_kind": "content-sha256",
+      "marker_value": "cfc7947b24a61d5c931476b1295c7eecfb5e2f2c4c84f4d2ed18d99831244940"
     },
     {
       "source_url": "https://developer.hashicorp.com/terraform/language",
-      "content_sha256": "fec4de5c2e75921e3964757299d0d548176ea8ffa9f23c053e5313b3540e4a74"
+      "marker_kind": "etag",
+      "marker_value": "\"aa73e5bfe02bd780cb6df1fe0218a6b2\""
     },
     {
       "source_url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews",
-      "content_sha256": "3353bbce882a9c036a3e68d34328737ff6ca87f62457c9ceec2a16b812d39d6b"
+      "marker_kind": "content-sha256",
+      "marker_value": "3353bbce882a9c036a3e68d34328737ff6ca87f62457c9ceec2a16b812d39d6b"
     },
     {
       "source_url": "https://docs.python.org/3/",
-      "content_sha256": "ea0bf0dd3bf42e4a6d1292bf87d903d29072b810e6133523205a7bb93c9b7e52"
+      "marker_kind": "etag",
+      "marker_value": "\"6a87ae69-4bea\""
     },
     {
       "source_url": "https://docs.python.org/3/library/unittest.html",
-      "content_sha256": "4c75a0c3247b60d9f1c381562d5a7b3c627553c0d54744948428651bdc04bbec"
+      "marker_kind": "etag",
+      "marker_value": "\"6a87ae69-51851\""
     },
     {
       "source_url": "https://git-scm.com/docs/git-worktree",
-      "content_sha256": "e4bb8f0bb5311b1d97a4f8fe3fae3f9233d1909cbd6ab5b869c5088543c2504d"
+      "marker_kind": "last-modified",
+      "marker_value": "Fri, 21 Aug 2026 04:47:14 GMT"
     },
     {
       "source_url": "https://go.dev/doc/",
-      "content_sha256": "97b9515232aa1f34c5e46b758005079356d85fbd41a2900572998c65d63c0de1"
+      "marker_kind": "content-sha256",
+      "marker_value": "97b9515232aa1f34c5e46b758005079356d85fbd41a2900572998c65d63c0de1"
     },
     {
       "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
-      "content_sha256": "edb4bc195b94c8836ac1f3ccda79594538b8db2af1768ef904a10154b1a0e571"
+      "marker_kind": "etag",
+      "marker_value": "\"c4fb8b79042b279bff9620e531e7dada\""
     },
     {
       "source_url": "https://opentelemetry.io/docs/concepts/signals/",
-      "content_sha256": "baf5e1a35db53952e9a03e0583e29f6ba516c1ac046244d846748e25ff5ecbc6"
+      "marker_kind": "etag",
+      "marker_value": "\"f83f4d066e70511b0acb63f12d8ed0dd-ssl\""
     },
     {
       "source_url": "https://owasp.org/www-project-application-security-verification-standard/",
-      "content_sha256": "12da10abec287523bfcee73cfadf06e4ae49f0f7f8621971eed52c30f0fcb255"
+      "marker_kind": "last-modified",
+      "marker_value": "Sun, 19 Jul 2026 06:44:22 GMT"
     },
     {
       "source_url": "https://slsa.dev/spec/v1.2/provenance",
-      "content_sha256": "9a176a8193aff28144dbab80584f0e9dd707a7c24f98c436349674a4a0e51e44"
+      "marker_kind": "etag",
+      "marker_value": "\"e506c218a67518e690e24d17f9517c0e-ssl\""
     },
     {
       "source_url": "https://sre.google/sre-book/monitoring-distributed-systems/",
-      "content_sha256": "ea5268bca492024a399730734132c7513b4412b10098a207f2e3090eeae1a6fe"
+      "marker_kind": "last-modified",
+      "marker_value": "Mon, 12 May 2025 07:08:00 GMT"
     },
     {
       "source_url": "https://www.postgresql.org/docs/current/",
-      "content_sha256": "98787ade3f63879beb49817a2881046b4b0d247ea9e39bd940dd95360435ec99"
+      "marker_kind": "content-sha256",
+      "marker_value": "98787ade3f63879beb49817a2881046b4b0d247ea9e39bd940dd95360435ec99"
     },
     {
       "source_url": "https://www.rfc-editor.org/rfc/rfc9110",
-      "content_sha256": "514377b0f5e37ab8fa0b8d82bb5059ccc8e0f2b06d900d643b0c894e25056a69"
+      "marker_kind": "last-modified",
+      "marker_value": "Fri, 21 Aug 2026 06:01:16 GMT"
     },
     {
       "source_url": "https://www.swift.org/documentation/",
-      "content_sha256": "dcbe522498081555281c9a6aac8bcb812a27390ca7f44304876dd98c224e85c2"
+      "marker_kind": "etag",
+      "marker_value": "\"75e1-65980aff4b5c0\""
     },
     {
       "source_url": "https://www.typescriptlang.org/docs/",
-      "content_sha256": "a8e5281ee1eea57d75e64f92a5b1996566e0e02adb672016cd41924c4dc0cb04"
+      "marker_kind": "etag",
+      "marker_value": "\"6a87ce9c-29a5d\""
     },
     {
       "source_url": "https://www.w3.org/TR/WCAG22/",
-      "content_sha256": "6e3c5fe397257cae509a2fb4752b73062cf8cbeb92c2cec618989b17e4cf7057"
+      "marker_kind": "last-modified",
+      "marker_value": "Thu, 12 Dec 2024 10:36:22 GMT"
     }
   ]
 }

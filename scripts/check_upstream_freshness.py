@@ -20,10 +20,16 @@ def _load(path: Path) -> dict[str, object]:
     return value
 
 
-def _fetch(url: str) -> str:
+def _fetch_marker(url: str) -> tuple[str, str]:
     request = urllib.request.Request(url, headers={"User-Agent": "JovaniPink-skills-freshness/0.4"})
     with urllib.request.urlopen(request, timeout=30) as response:
-        return hashlib.sha256(response.read()).hexdigest()
+        etag = response.headers.get("ETag")
+        if etag and not etag.startswith("W/"):
+            return "etag", etag
+        last_modified = response.headers.get("Last-Modified")
+        if last_modified:
+            return "last-modified", last_modified
+        return "content-sha256", hashlib.sha256(response.read()).hexdigest()
 
 
 def source_urls() -> list[str]:
@@ -36,10 +42,10 @@ def refresh_pins(output: Path | None = None) -> Path:
     sources: list[dict[str, str]] = []
     for url in source_urls():
         try:
-            digest = _fetch(url)
+            marker_kind, marker_value = _fetch_marker(url)
         except Exception as error:
             raise RuntimeError(f"cannot pin {url}: {type(error).__name__}: {error}") from error
-        sources.append({"source_url": url, "content_sha256": digest})
+        sources.append({"source_url": url, "marker_kind": marker_kind, "marker_value": marker_value})
     value = {
         "$schema": "./upstream-pins-schema.json",
         "catalog_version": VERSION,
@@ -57,7 +63,7 @@ def check(online: bool = False, today: date | None = None) -> tuple[list[str], d
     today = today or date.today()
     pins = _load(ROOT / "catalog" / "upstream-pins.json")
     expected = {
-        item["source_url"]: item["content_sha256"]
+        item["source_url"]: (item["marker_kind"], item["marker_value"])
         for item in pins.get("sources", [])
         if isinstance(item, dict) and isinstance(item.get("source_url"), str)
     }
@@ -77,15 +83,18 @@ def check(online: bool = False, today: date | None = None) -> tuple[list[str], d
     if online:
         for url in urls:
             try:
-                observed = _fetch(url)
-                result = "pass" if observed == expected.get(url) else "changed"
+                observed_kind, observed_value = _fetch_marker(url)
+                observed = f"{observed_kind}:{observed_value}"
+                expected_marker = expected.get(url)
+                result = "pass" if expected_marker == (observed_kind, observed_value) else "changed"
                 if result == "changed":
                     errors.append(f"upstream content changed: {url}")
             except Exception as error:
                 observed = "unavailable"
                 result = "blocked"
                 errors.append(f"upstream check blocked for {url}: {type(error).__name__}: {error}")
-            records.append({"source_url": url, "expected_sha256": expected.get(url, "missing"), "observed_sha256": observed, "result": result})
+            expected_text = "missing" if expected.get(url) is None else f"{expected[url][0]}:{expected[url][1]}"
+            records.append({"source_url": url, "expected_marker": expected_text, "observed_marker": observed, "result": result})
     report = {
         "catalog_version": VERSION,
         "checked_on": today.isoformat(),

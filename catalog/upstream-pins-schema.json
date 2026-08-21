@@ -12,10 +12,11 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["source_url", "content_sha256"],
+        "required": ["source_url", "marker_kind", "marker_value"],
         "properties": {
           "source_url": {"type": "string", "format": "uri"},
-          "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          "marker_kind": {"enum": ["etag", "last-modified", "content-sha256"]},
+          "marker_value": {"type": "string", "minLength": 1}
         },
         "additionalProperties": false
       }
