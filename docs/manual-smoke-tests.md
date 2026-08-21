@@ -6,18 +6,32 @@ No surface is presumed equivalent to another. A successful CLI test is not Deskt
 
 ## Current v0.6 summary
 
-The engineering-depth and continuity source commit is pinned in `client-observations-v0.6.json`. All six surface suites have the terminal result `blocked` because the exact v0.6 plugins have not yet been installed and exercised in fresh client sessions.
+The engineering-depth and continuity source commit is pinned in `client-observations-v0.6.json`. Fresh command-line observations were recorded on 2026-08-21 without inferring behavior on another surface.
 
-| Surface | Version/build | Passed suites | Blocked suites | Surface status |
+| Surface | Version/build | Passed observations | Blocked observations | Surface status |
 | --- | --- | ---: | ---: | --- |
-| Codex CLI | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
-| Codex Desktop | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+| Codex CLI | 0.145.0 | 7 | 1 | BLOCKED |
+| Codex Desktop | fresh task not created | 0 | 1 | BLOCKED |
 | ChatGPT Web | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
-| Claude Code CLI | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
+| Claude Code CLI | 2.1.220 | 3 | 2 | BLOCKED |
 | Claude Code Desktop | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
 | Claude.ai | not freshly observed for v0.6 | 0 | 1 | BLOCKED |
 
-The focused-reference prompt asks which statuses are permitted in an implementation decision map and requires material found only in `implementation-planning/references/decision-map.md`. A generated file or package is not evidence that a client loaded that reference.
+Totals: 10 `pass`, 0 `fail`, 7 `blocked`, 0 `not_supported`, and 0 `not_run`. The v0.6 acceptance status remains `blocked`.
+
+Passed v0.6 evidence:
+
+- Codex CLI updated or installed all five plugins, discovered their installed state, implicitly activated `code-change-review`, kept `prototype-spike` inactive without a name, activated it when named, loaded the installed focused decision-map reference, and passed remove, absence, reinstall, and restored-state checks.
+- Claude Code CLI updated or installed all five plugins, reported the reasoning plugin's 11 skills with no agents, hooks, MCP servers, or language servers, and passed remove, absence, reinstall, and restored-state checks.
+
+Blocked v0.6 evidence:
+
+- Downgrade testing is blocked on both command-line clients because the local directory marketplace exposes the current checkout rather than immutable accepted versions, and no release tag was authorized.
+- Claude Code activation and focused-reference loading are blocked because its OAuth session expired and could not be refreshed. Package installation and component discovery are not treated as invocation evidence.
+- Codex Desktop requires a fresh task created after v0.6 installation. This task predates that installation.
+- ChatGPT Web does not receive local Codex marketplace installations. Claude Code Desktop and Claude.ai still require fresh authenticated observations.
+
+Codex CLI warned that enabled skill descriptions exceeded its discovery-context budget after all five JovaniPink plugins and unrelated plugins were enabled. This is an observed reason to enable only the plugins needed for a task; it is not evidence that a particular skill failed. Other client warnings were not attributed to this catalog without causal evidence.
 
 ## Current v0.5 summary
 
