@@ -1,0 +1,7 @@
+interface:
+  display_name: "Swift and SwiftUI Engineering Profile"
+  short_description: "Apply focused Swift and SwiftUI guidance"
+  default_prompt: "Use $jovanipink-stack-profiles:swift-swiftui-engineering-profile to apply focused stack guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true
+

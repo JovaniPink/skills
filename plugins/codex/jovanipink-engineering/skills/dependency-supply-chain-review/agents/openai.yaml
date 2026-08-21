@@ -1,0 +1,7 @@
+interface:
+  display_name: "Dependency Supply Chain Review"
+  short_description: "Review dependency and build supply-chain evidence"
+  default_prompt: "Use $jovanipink-engineering:dependency-supply-chain-review to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

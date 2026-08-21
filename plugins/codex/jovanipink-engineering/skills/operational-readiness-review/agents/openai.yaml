@@ -1,0 +1,7 @@
+interface:
+  display_name: "Operational Readiness Review"
+  short_description: "Review reliability and incident-response readiness"
+  default_prompt: "Use $jovanipink-engineering:operational-readiness-review to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

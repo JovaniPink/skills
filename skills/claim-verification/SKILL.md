@@ -4,7 +4,7 @@ description: Verify claims that work is complete, broken, missing, merged, deplo
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.2.0"
+  version: "0.3.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "adapted"

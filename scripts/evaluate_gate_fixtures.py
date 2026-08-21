@@ -35,6 +35,12 @@ def evaluate() -> list[str]:
             errors.append(f"{fixture['stack']}: no candidates must produce INCOMPLETE")
         if not fixture.get("forbidden"):
             errors.append(f"{fixture['stack']}: fixture must name at least one unsafe near miss")
+        if not fixture.get("judgment_failure"):
+            errors.append(f"{fixture['stack']}: fixture must name a stack-specific judgment failure")
+        if fixture.get("stack") == "Swift":
+            observation = fixture.get("observed_macos")
+            if not isinstance(observation, dict) or observation.get("result") not in {"pass", "fail", "blocked"}:
+                errors.append("Swift: fixture must record a terminal observed macOS result")
     if len(command_sets) != len(fixtures):
         errors.append("fixtures must not collapse stacks into one universal command set")
     return errors

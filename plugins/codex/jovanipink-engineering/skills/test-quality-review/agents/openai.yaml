@@ -1,0 +1,7 @@
+interface:
+  display_name: "Test Quality Review"
+  short_description: "Review whether tests provide credible defect evidence"
+  default_prompt: "Use $jovanipink-engineering:test-quality-review to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

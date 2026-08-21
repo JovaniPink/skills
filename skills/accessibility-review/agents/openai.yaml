@@ -1,0 +1,7 @@
+interface:
+  display_name: "Accessibility Review"
+  short_description: "Review accessibility against WCAG 2.2 evidence"
+  default_prompt: "Use $accessibility-review to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

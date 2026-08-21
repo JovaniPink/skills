@@ -1,0 +1,7 @@
+interface:
+  display_name: "TypeScript and JavaScript Engineering Profile"
+  short_description: "Apply focused TypeScript and JavaScript guidance"
+  default_prompt: "Use $jovanipink-stack-profiles:typescript-javascript-engineering-profile to apply focused stack guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true
+

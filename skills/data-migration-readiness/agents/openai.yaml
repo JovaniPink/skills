@@ -1,0 +1,7 @@
+interface:
+  display_name: "Data Migration Readiness"
+  short_description: "Review migration, reconciliation, and rollback readiness"
+  default_prompt: "Use $data-migration-readiness to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

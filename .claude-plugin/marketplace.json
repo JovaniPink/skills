@@ -10,13 +10,19 @@
       "name": "jovanipink-engineering",
       "source": "./plugins/claude/jovanipink-engineering",
       "description": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
-      "version": "0.2.0"
+      "version": "0.3.0"
     },
     {
       "name": "jovanipink-skills",
       "source": "./plugins/claude/jovanipink-skills",
       "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
-      "version": "0.2.0"
+      "version": "0.3.0"
+    },
+    {
+      "name": "jovanipink-stack-profiles",
+      "source": "./plugins/claude/jovanipink-stack-profiles",
+      "description": "Optional language and infrastructure engineering profiles.",
+      "version": "0.3.0"
     }
   ]
 }

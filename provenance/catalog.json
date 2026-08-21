@@ -342,6 +342,306 @@
         "new executable or external-write behavior"
       ],
       "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "application-security-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://owasp.org/www-project-application-security-verification-standard/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "dependency-supply-chain-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "observability-design",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://opentelemetry.io/docs/concepts/signals/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "performance-scalability-diagnosis",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "data-migration-readiness",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "api-contract-compatibility-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc9110",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "test-quality-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://docs.python.org/3/library/unittest.html",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "accessibility-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://www.w3.org/TR/WCAG22/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "operational-readiness-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "go-engineering-profile",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://go.dev/doc/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "python-engineering-profile",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://docs.python.org/3/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "swift-swiftui-engineering-profile",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://www.swift.org/documentation/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "typescript-javascript-engineering-profile",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://www.typescriptlang.org/docs/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "postgresql-sql-engineering-profile",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://www.postgresql.org/docs/current/",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "terraform-engineering-profile",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://developer.hashicorp.com/terraform/language",
+      "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "official primary documentation linked by the skill"
+      ],
+      "local_changes": "Independently authored review or stack workflow with evidence, compatibility, safety, and claim boundaries.",
+      "security_review": "APPROVE: instruction-and-reference-only workflow with no hooks, executables, broad tool grants, dependency installation, external writes, or state application.",
+      "rereview_triggers": [
+        "upstream standard or toolchain revision changes",
+        "invocation or permission changes",
+        "new execution, dependency, network, or compliance claims"
+      ],
+      "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
     }
   ]
 }

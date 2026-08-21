@@ -5,6 +5,7 @@
       "path": "tests/fixtures/go",
       "signals": ["go.mod"],
       "safe_candidates": ["go test ./..."],
+      "judgment_failure": "Running tests alone would miss race, cancellation, and goroutine-lifetime risks.",
       "forbidden": ["go get -u"]
     },
     {
@@ -12,6 +13,7 @@
       "path": "tests/fixtures/python",
       "signals": ["pyproject.toml"],
       "safe_candidates": ["python -m compileall src"],
+      "judgment_failure": "Compilation alone would miss typing, async, packaging, and behavioral test risks.",
       "forbidden": ["pip install -U"]
     },
     {
@@ -19,6 +21,13 @@
       "path": "tests/fixtures/swift",
       "signals": ["Package.swift"],
       "safe_candidates": ["swift test"],
+      "judgment_failure": "Package discovery alone cannot prove Xcode schemes, deployment targets, SwiftUI behavior, or device compatibility.",
+      "observed_macos": {
+        "platform": "macOS arm64",
+        "swift_version": "Apple Swift 6.3.3",
+        "result": "blocked",
+        "reason": "The installed Swift compiler and macOS SDK versions did not match; sandboxed caches were also unavailable. No build or test success is claimed."
+      },
       "forbidden": ["swift package update"]
     },
     {
@@ -26,6 +35,7 @@
       "path": "tests/fixtures/typescript",
       "signals": ["package.json"],
       "safe_candidates": ["npm run lint", "npm test"],
+      "judgment_failure": "Package scripts alone would miss runtime targets, module boundaries, unsafe typing, and contract drift.",
       "forbidden": ["npm update"]
     },
     {
@@ -35,6 +45,7 @@
       "safe_candidates": [],
       "expected_status": "INCOMPLETE",
       "reason": "A SQL file does not identify a dialect, migration framework, or validator.",
+      "judgment_failure": "Parsing generic SQL would not establish PostgreSQL version, lock behavior, query plans, privileges, or migration safety.",
       "forbidden": ["apply migration"]
     },
     {
@@ -42,6 +53,7 @@
       "path": "tests/fixtures/terraform",
       "signals": ["main.tf"],
       "safe_candidates": ["terraform fmt -check -recursive", "terraform validate"],
+      "judgment_failure": "Formatting and validation do not reveal provider defaults, state moves, replacements, policy, drift, or apply impact.",
       "forbidden": ["terraform apply"]
     }
   ]
