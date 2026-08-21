@@ -27,7 +27,7 @@ This repository is an independent MIT-licensed work. It does not redistribute pr
 - `evals/` contains trigger and safety cases.
 - `provenance/catalog.json` records the origin and review policy of every skill.
 - `provenance/inventory-summary.json` publishes only reconciled aggregate capability-disposition counts.
-- `scripts/` contains standard-library-only generation, packaging, and validation.
+- `scripts/` contains standard-library-only generation, packaging, and validation, including a guard that rejects mutable third-party GitHub Action references.
 
 Do not hand-edit generated plugin trees. Change the canonical skill, then run:
 
@@ -58,7 +58,7 @@ Private product or organization facts use the repo-local overlay model described
 
 ## Security and contribution policy
 
-Version 0.1 ships no skill-level executables, hooks, MCP servers, or broad tool grants. Skills coordinate judgment; scripts and host permissions enforce deterministic requirements. Read [SECURITY.md](SECURITY.md), [the security model](docs/security-model.md), and [the authoring guide](docs/authoring.md) before contributing.
+Version 0.1 ships no skill-level executables, hooks, MCP servers, or broad tool grants. Skills coordinate judgment; scripts and host permissions enforce deterministic requirements. CI uses immutable commit pins for third-party Actions and validation rejects mutable replacements. Read [SECURITY.md](SECURITY.md), [the security model](docs/security-model.md), and [the authoring guide](docs/authoring.md) before contributing.
 
 ## Status
 

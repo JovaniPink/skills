@@ -19,7 +19,11 @@ from check_public_boundary import _publishable_paths, scan as scan_public_bounda
 from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E402
 from package_claude_ai import package  # noqa: E402
 from schema_validation import validate_instance  # noqa: E402
-from validate_catalog import validate_all, validate_packages  # noqa: E402
+from validate_catalog import (  # noqa: E402
+    immutable_action_reference_errors,
+    validate_all,
+    validate_packages,
+)
 
 
 class CatalogTests(unittest.TestCase):
@@ -120,6 +124,15 @@ class CatalogTests(unittest.TestCase):
         errors: list[str] = []
         validate_packages(errors)
         self.assertEqual([], errors)
+
+    def test_workflow_actions_require_immutable_revisions(self) -> None:
+        mutable = "steps:\n  - uses: actions/checkout@v7\n"
+        local = "steps:\n  - uses: ./local-action\n"
+        self.assertEqual(
+            ["fixture.yml: action reference must use a 40-character commit SHA: actions/checkout@v7"],
+            immutable_action_reference_errors(mutable, "fixture.yml"),
+        )
+        self.assertEqual([], immutable_action_reference_errors(local, "fixture.yml"))
 
 
 if __name__ == "__main__":

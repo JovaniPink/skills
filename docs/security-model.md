@@ -22,6 +22,7 @@ The catalog protects user intent, credentials, private data, repository integrit
 - two explicit-only workflows for publication and import/provenance decisions
 - generated native invocation controls checked against canonical metadata
 - standard-library-only repository generation and validation
+- immutable third-party GitHub Action revisions, enforced by repository validation
 - required trigger, provenance, reference, and public-boundary checks
 - generated distributions compared byte-for-byte with a clean temporary build
 - individual Claude.ai ZIPs with a bounded, inspectable root

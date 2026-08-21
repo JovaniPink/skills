@@ -16,6 +16,8 @@ from schema_validation import validate_instance
 REFERENCE_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 ALLOWED_CANONICAL_TOP_KEYS = {"name", "description", "license", "metadata"}
 ALLOWED_RISK_CLASSES = {"read-only", "bounded-execution", "network-read", "external-write", "trust-decision"}
+ACTION_USE = re.compile(r"(?m)^\s*-\s*uses:\s*([^#\s]+)")
+IMMUTABLE_REVISION = re.compile(r"[0-9a-fA-F]{40}")
 
 
 def _load_json(path: Path, errors: list[str]) -> object | None:
@@ -69,6 +71,37 @@ def _validate_links(path: Path, text: str, errors: list[str]) -> None:
             continue
         if not resolved.exists():
             errors.append(f"{path.relative_to(ROOT)}: broken local link: {target}")
+
+
+def immutable_action_reference_errors(text: str, label: str) -> list[str]:
+    """Reject mutable third-party GitHub Action references without parsing YAML."""
+
+    errors: list[str] = []
+    for reference in ACTION_USE.findall(text):
+        if reference.startswith(("./", "docker://")):
+            continue
+        if "@" not in reference:
+            errors.append(f"{label}: action reference has no revision: {reference}")
+            continue
+        _, revision = reference.rsplit("@", 1)
+        if IMMUTABLE_REVISION.fullmatch(revision) is None:
+            errors.append(f"{label}: action reference must use a 40-character commit SHA: {reference}")
+    return errors
+
+
+def validate_workflows(errors: list[str]) -> None:
+    workflows_root = ROOT / ".github" / "workflows"
+    if not workflows_root.is_dir():
+        return
+    for path in sorted(workflows_root.iterdir()):
+        if path.suffix.lower() not in {".yaml", ".yml"} or not path.is_file():
+            continue
+        errors.extend(
+            immutable_action_reference_errors(
+                path.read_text(encoding="utf-8"),
+                path.relative_to(ROOT).as_posix(),
+            )
+        )
 
 
 def validate_canonical(errors: list[str]) -> None:
@@ -388,6 +421,7 @@ def validate_packages(errors: list[str]) -> None:
 
 def validate_all(require_packages: bool = True) -> list[str]:
     errors: list[str] = []
+    validate_workflows(errors)
     validate_canonical(errors)
     validate_evals(errors)
     validate_provenance(errors)
