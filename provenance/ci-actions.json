@@ -1,0 +1,30 @@
+{
+  "$schema": "./ci-actions-schema.json",
+  "reviewed_on": "2026-08-21",
+  "actions": [
+    {
+      "name": "actions/checkout",
+      "source_url": "https://github.com/actions/checkout",
+      "license": "MIT",
+      "pinned_revision": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "reviewed_on": "2026-08-21",
+      "use": "Read-only repository checkout in validation and freshness workflows."
+    },
+    {
+      "name": "actions/setup-python",
+      "source_url": "https://github.com/actions/setup-python",
+      "license": "MIT",
+      "pinned_revision": "5fda3b95a4ea91299a34e894583c3862153e4b97",
+      "reviewed_on": "2026-08-21",
+      "use": "Pinned Python 3.12 toolchain setup for standard-library validation."
+    },
+    {
+      "name": "actions/upload-artifact",
+      "source_url": "https://github.com/actions/upload-artifact",
+      "license": "MIT",
+      "pinned_revision": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "reviewed_on": "2026-08-21",
+      "use": "Upload the read-only upstream freshness report even when the comparison fails."
+    }
+  ]
+}

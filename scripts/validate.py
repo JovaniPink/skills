@@ -5,7 +5,10 @@ from __future__ import annotations
 
 from check_generated import check as check_generated
 from check_public_boundary import scan as scan_public_boundary
+from cataloglib import ROOT
 from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures
+from check_upstream_freshness import check as check_upstream_freshness
+from sync_private_overlay import sync as check_private_overlay
 from validate_catalog import validate_all
 
 
@@ -14,6 +17,9 @@ def run() -> list[str]:
     errors.extend(scan_public_boundary())
     errors.extend(check_generated())
     errors.extend(evaluate_gate_fixtures())
+    freshness_errors, _ = check_upstream_freshness(online=False)
+    errors.extend(freshness_errors)
+    errors.extend(check_private_overlay(ROOT / "examples" / "private-overlay", check_only=True))
     return errors
 
 

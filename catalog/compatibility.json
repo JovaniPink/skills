@@ -1,0 +1,30 @@
+{
+  "$schema": "./compatibility-schema.json",
+  "catalog_version": "0.4.0",
+  "records": [
+    {
+      "plugin_version": "0.1.0",
+      "evidence_path": "docs/client-observations.json",
+      "acceptance_status": "blocked",
+      "claim": "Observed v0.1 rows are surface-specific; the release did not establish full cross-client acceptance."
+    },
+    {
+      "plugin_version": "0.2.0",
+      "evidence_path": "docs/client-observations-v0.2.json",
+      "acceptance_status": "blocked",
+      "claim": "All v0.2 manual rows are terminal blocked observations; no client behavior is claimed."
+    },
+    {
+      "plugin_version": "0.3.0",
+      "evidence_path": "docs/client-observations-v0.3.json",
+      "acceptance_status": "blocked",
+      "claim": "All v0.3 manual rows are terminal blocked observations; no client behavior is claimed."
+    },
+    {
+      "plugin_version": "0.4.0",
+      "evidence_path": "docs/client-observations-v0.4.json",
+      "acceptance_status": "blocked",
+      "claim": "All v0.4 manual rows are terminal blocked observations; no client behavior is claimed."
+    }
+  ]
+}

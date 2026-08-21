@@ -13,12 +13,14 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_distributions import build, marketplace_documents  # noqa: E402
-from cataloglib import EXPLICIT_SKILLS, SKILLS, read_skill_metadata, skills_by_plugin  # noqa: E402
+from cataloglib import EXPLICIT_SKILLS, SKILLS, filter_revoked, read_skill_metadata, skills_by_plugin  # noqa: E402
+from check_upstream_freshness import check as check_upstream_freshness  # noqa: E402
 from check_generated import check as check_generated  # noqa: E402
 from check_public_boundary import _publishable_paths, scan as scan_public_boundary  # noqa: E402
 from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E402
 from package_claude_ai import package  # noqa: E402
 from schema_validation import validate_instance  # noqa: E402
+from sync_private_overlay import sync as sync_private_overlay  # noqa: E402
 from validate_catalog import (  # noqa: E402
     immutable_action_reference_errors,
     validate_all,
@@ -155,6 +157,17 @@ class CatalogTests(unittest.TestCase):
             immutable_action_reference_errors(mutable, "fixture.yml"),
         )
         self.assertEqual([], immutable_action_reference_errors(local, "fixture.yml"))
+
+    def test_revocation_filter_withdraws_catalog_advertisement(self) -> None:
+        self.assertEqual(("kept-skill",), filter_revoked(("kept-skill", "revoked-skill"), frozenset({"revoked-skill"})))
+
+    def test_private_overlay_example_is_drift_free(self) -> None:
+        self.assertEqual([], sync_private_overlay(ROOT / "examples" / "private-overlay", check_only=True))
+
+    def test_upstream_review_freshness_is_current_offline(self) -> None:
+        errors, report = check_upstream_freshness(online=False)
+        self.assertEqual([], errors)
+        self.assertEqual("pass", report["result"])
 
 
 if __name__ == "__main__":

@@ -72,7 +72,7 @@
       "id": "operating-workflows",
       "target_release": "v0.4",
       "plugin": "jovanipink-operations",
-      "status": "planned",
+      "status": "released",
       "skills": [
         "requirements-synthesis",
         "decision-governance-records",

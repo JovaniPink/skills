@@ -44,6 +44,10 @@ Engineering quality reviews in the same plugin cover application security, depen
 
 Optional profiles provide focused engineering guidance for Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform. `cross-stack-quality-gates` remains the command-discovery orchestrator and uses a profile only when installed and applicable.
 
+### `jovanipink-operations`
+
+Eleven generic operating workflows cover requirements, governance records, workshops, outcome measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incident analysis, and data-authority migration ratification. They preserve observed, proposed, ratified, rejected, unresolved, measured, estimated, and causal claim states.
+
 ## Repository model
 
 - `skills/` is the only authoring source.
@@ -53,6 +57,8 @@ Optional profiles provide focused engineering guidance for Go, Python, Swift and
 - `provenance/catalog.json` records the origin and review policy of every skill.
 - `provenance/inventory-summary.json` publishes only reconciled aggregate capability-disposition counts.
 - `scripts/` contains standard-library-only generation, packaging, and validation, including a guard that rejects mutable third-party GitHub Action references.
+- `catalog/` contains strict compatibility, deprecation, revocation, and upstream-pinning records.
+- `releases/` contains exact-source release manifests and artifact checksums.
 
 Do not hand-edit generated plugin trees. Change the canonical skill, then run:
 
@@ -87,4 +93,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.3 adds engineering-quality reviews and six optional stack profiles. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+Version 0.4 adds operating workflows and catalog lifecycle controls. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.

@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.3.0"
+VERSION = "0.4.0"
 CATALOG_NAME = "jovanipink-skills"
 PLUGIN_CATEGORY = "Developer Tools"
 PLUGIN_SPECS = {
@@ -96,15 +97,32 @@ def skill_names() -> tuple[str, ...]:
     return tuple(sorted(path.name for path in root.iterdir() if path.is_dir()))
 
 
+def revoked_skill_names(path: Path | None = None) -> frozenset[str]:
+    registry = path or ROOT / "catalog" / "revocations.json"
+    if not registry.is_file():
+        return frozenset()
+    value = json.loads(registry.read_text(encoding="utf-8"))
+    entries = value.get("entries", []) if isinstance(value, dict) else []
+    return frozenset(
+        entry["skill"] for entry in entries
+        if isinstance(entry, dict) and isinstance(entry.get("skill"), str)
+    )
+
+
+def filter_revoked(skills: tuple[str, ...], revoked: frozenset[str]) -> tuple[str, ...]:
+    return tuple(skill for skill in skills if skill not in revoked)
+
+
 def skills_by_plugin() -> dict[str, tuple[str, ...]]:
     grouped: dict[str, list[str]] = {}
-    for skill in skill_names():
+    for skill in SKILLS:
         plugin = read_skill_metadata(ROOT / "skills" / skill)["plugin"]
         grouped.setdefault(plugin, []).append(skill)
     return {plugin: tuple(skills) for plugin, skills in sorted(grouped.items())}
 
 
-SKILLS = skill_names()
+ALL_SKILLS = skill_names()
+SKILLS = filter_revoked(ALL_SKILLS, revoked_skill_names())
 EXPLICIT_SKILLS = frozenset(
     skill for skill in SKILLS if read_skill_metadata(ROOT / "skills" / skill)["invocation"] == "explicit"
 )

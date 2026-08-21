@@ -1,0 +1,7 @@
+interface:
+  display_name: "Production Incident Analysis"
+  short_description: "Analyze incidents without blame or invented causality"
+  default_prompt: "Use $production-incident-analysis to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+

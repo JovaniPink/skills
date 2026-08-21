@@ -4,7 +4,7 @@ description: Review web or application accessibility using WCAG 2.2 success crit
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.3.0"
+  version: "0.4.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"

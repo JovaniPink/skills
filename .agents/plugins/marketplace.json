@@ -17,6 +17,18 @@
       "category": "Developer Tools"
     },
     {
+      "name": "jovanipink-operations",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex/jovanipink-operations"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
       "name": "jovanipink-skills",
       "source": {
         "source": "local",

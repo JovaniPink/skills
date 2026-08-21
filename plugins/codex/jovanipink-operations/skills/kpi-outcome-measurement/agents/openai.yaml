@@ -1,0 +1,7 @@
+interface:
+  display_name: "KPI and Outcome Measurement"
+  short_description: "Design traceable outcome and KPI measurement"
+  default_prompt: "Use $jovanipink-operations:kpi-outcome-measurement to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+

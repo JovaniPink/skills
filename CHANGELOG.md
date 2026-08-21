@@ -4,6 +4,21 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-21
+
+### Added
+
+- Eleven generic operating workflows in the independently installable `jovanipink-operations` plugin.
+- Catalog-wide SemVer release manifests, checksums, compatibility records, deprecation and revocation registries, and rollback guidance.
+- Weekly read-only upstream source pin and security re-review freshness validation.
+- A fictional private-overlay example and standard-library synchronizer.
+
+### Security
+
+- Revoked skills are omitted from generation, packaging, and marketplace advertisement without claiming installed-copy deletion.
+- All CI actions are immutable revision pins with public provenance records.
+- Public provenance contains only unauthenticated public sources; private inventory relationships remain private.
+
 ## [0.3.0] - 2026-08-21
 
 ### Added

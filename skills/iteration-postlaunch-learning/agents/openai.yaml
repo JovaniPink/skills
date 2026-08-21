@@ -1,0 +1,7 @@
+interface:
+  display_name: "Iteration and Postlaunch Learning"
+  short_description: "Plan postlaunch learning and iteration"
+  default_prompt: "Use $iteration-postlaunch-learning to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Decision and Governance Records"
+  short_description: "Create traceable decision and governance records"
+  default_prompt: "Use $jovanipink-operations:decision-governance-records to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+
