@@ -1,0 +1,26 @@
+{
+  "name": "jovanipink-skills",
+  "version": "0.1.0",
+  "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "JovaniPink Skills",
+    "shortDescription": "Evidence-oriented workflows for Codex",
+    "longDescription": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
+    "developerName": "Jovani Pink",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Help me choose and use a JovaniPink workflow skill."
+    ]
+  }
+}

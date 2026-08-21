@@ -1,0 +1,20 @@
+{
+  "name": "jovanipink-skills",
+  "interface": {
+    "displayName": "JovaniPink Skills"
+  },
+  "plugins": [
+    {
+      "name": "jovanipink-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex/jovanipink-skills"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

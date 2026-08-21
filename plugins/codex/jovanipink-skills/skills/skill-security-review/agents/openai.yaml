@@ -1,0 +1,6 @@
+interface:
+  display_name: "Skill Security Review"
+  short_description: "Audit skills and plugins before trust"
+  default_prompt: "Use $jovanipink-skills:skill-security-review to audit this exact skill or plugin revision."
+policy:
+  allow_implicit_invocation: true

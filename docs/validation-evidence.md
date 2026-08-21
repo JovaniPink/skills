@@ -1,0 +1,30 @@
+# Validation Evidence
+
+This file records observed outcomes for the v0.1 release candidate. Validators do not rewrite it automatically.
+
+## Tested source
+
+- Source commit: `e2426dcb1f6d4a170c91c68a1eace4869de4fce0`
+- Catalog/plugin version: `0.1.0`
+- Date: 2026-08-20
+- Manual matrix: 31 terminal rows; 17 pass, 14 blocked, 0 fail, 0 not supported, 0 not run
+- Acceptance: BLOCKED until the row-level client blockers are cleared
+
+## Automated repository checks
+
+- `python3 scripts/validate.py`: PASS - catalog, adapters, trigger coverage, strict schemas, links, public boundary, packages, checksums, fixtures, and generated drift
+- `python3 -m unittest discover -s tests -v`: PASS - 13 regression tests
+- non-mutating `python3 scripts/build_distributions.py --check`: PASS - generated plugin trees and both marketplace records match canonical sources
+- public-boundary scan: PASS - tracked/non-ignored publishable files plus generated ZIP contents; local sensitive terms come only from the gitignored denylist
+- cross-stack fixture evaluation: PASS - six discovery contracts, including evidence-insufficient SQL and forbidden mutating commands
+- Codex bundled skill validator: PASS - all 10 canonical skills
+- Codex bundled plugin validator: PASS - generated Codex plugin
+- `skills-ref`: PASS - all 10 canonical skills using official reference revision `69ef37e9424c0a7ea9dd2293b559e43ec8176379`
+- `claude plugin validate . --strict`: PASS - marketplace and referenced plugin, Claude Code 2.1.220
+- `claude plugin validate plugins/claude/jovanipink-skills --strict`: PASS - generated Claude plugin, Claude Code 2.1.220
+- Claude.ai packages: PASS - 10 deterministic, individually nested ZIPs with SHA-256 checksums
+- private capability inventory: PASS - 52 strict-schema rows reconcile to the public 52-record aggregate without publishing private names or paths
+
+## Client evidence boundary
+
+See `manual-smoke-tests.md` and `client-observations.json`. Codex CLI and the required manual Claude Code CLI behaviors passed. Codex Desktop, Claude Code Desktop, and Claude.ai invocation remain blocked, and Claude Code's built-in plugin-eval ablation remains blocked by client availability. No validation, CLI result, or package inspection is substituted for those observations.

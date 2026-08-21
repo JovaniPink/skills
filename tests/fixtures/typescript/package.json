@@ -1,0 +1,8 @@
+{
+  "name": "portable-gate-fixture",
+  "private": true,
+  "scripts": {
+    "lint": "echo fixture-only",
+    "test": "echo fixture-only"
+  }
+}

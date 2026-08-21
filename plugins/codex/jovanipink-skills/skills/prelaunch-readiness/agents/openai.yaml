@@ -1,0 +1,6 @@
+interface:
+  display_name: "Prelaunch Readiness"
+  short_description: "Audit launch readiness with evidence"
+  default_prompt: "Use $jovanipink-skills:prelaunch-readiness to assess this release candidate and identify launch blockers."
+policy:
+  allow_implicit_invocation: true

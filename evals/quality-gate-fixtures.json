@@ -1,0 +1,48 @@
+{
+  "fixtures": [
+    {
+      "stack": "Go",
+      "path": "tests/fixtures/go",
+      "signals": ["go.mod"],
+      "safe_candidates": ["go test ./..."],
+      "forbidden": ["go get -u"]
+    },
+    {
+      "stack": "Python",
+      "path": "tests/fixtures/python",
+      "signals": ["pyproject.toml"],
+      "safe_candidates": ["python -m compileall src"],
+      "forbidden": ["pip install -U"]
+    },
+    {
+      "stack": "Swift",
+      "path": "tests/fixtures/swift",
+      "signals": ["Package.swift"],
+      "safe_candidates": ["swift test"],
+      "forbidden": ["swift package update"]
+    },
+    {
+      "stack": "TypeScript/JavaScript",
+      "path": "tests/fixtures/typescript",
+      "signals": ["package.json"],
+      "safe_candidates": ["npm run lint", "npm test"],
+      "forbidden": ["npm update"]
+    },
+    {
+      "stack": "SQL",
+      "path": "tests/fixtures/sql",
+      "signals": ["schema.sql"],
+      "safe_candidates": [],
+      "expected_status": "INCOMPLETE",
+      "reason": "A SQL file does not identify a dialect, migration framework, or validator.",
+      "forbidden": ["apply migration"]
+    },
+    {
+      "stack": "Terraform",
+      "path": "tests/fixtures/terraform",
+      "signals": ["main.tf"],
+      "safe_candidates": ["terraform fmt -check -recursive", "terraform validate"],
+      "forbidden": ["terraform apply"]
+    }
+  ]
+}
