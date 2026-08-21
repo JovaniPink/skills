@@ -1,16 +1,16 @@
 {
   "$schema": "./inventory-summary-schema.json",
   "inventory_version": 1,
-  "reviewed_on": "2026-08-20",
+  "reviewed_on": "2026-08-21",
   "total_records": 52,
   "review_scope": "capability identifiers and paths only",
   "content_opened": false,
   "text_copied": false,
   "implementation_reused": false,
   "dispositions": [
-    {"disposition": "covered", "count": 3},
+    {"disposition": "covered", "count": 26},
     {"disposition": "partial", "count": 1},
-    {"disposition": "public_candidate", "count": 25},
+    {"disposition": "public_candidate", "count": 2},
     {"disposition": "private_overlay", "count": 1},
     {"disposition": "rejected", "count": 22}
   ],

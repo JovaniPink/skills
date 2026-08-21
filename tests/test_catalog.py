@@ -87,6 +87,28 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(any("expected array" in error for error in errors))
         self.assertTrue(any("additional property" in error for error in errors))
 
+    def test_private_inventory_reconciliation_is_sanitized_and_current(self) -> None:
+        summary = json.loads((ROOT / "provenance" / "inventory-summary.json").read_text(encoding="utf-8"))
+        counts = {entry["disposition"]: entry["count"] for entry in summary["dispositions"]}
+        self.assertEqual(
+            {
+                "covered": 26,
+                "partial": 1,
+                "public_candidate": 2,
+                "private_overlay": 1,
+                "rejected": 22,
+            },
+            counts,
+        )
+        self.assertFalse(summary["content_opened"])
+        self.assertFalse(summary["text_copied"])
+        self.assertFalse(summary["implementation_reused"])
+
+        roadmap = json.loads((ROOT / "incubator" / "roadmap.json").read_text(encoding="utf-8"))
+        tracks = {track["id"]: track for track in roadmap["tracks"]}
+        self.assertEqual("incubating", tracks["portable-skill-authoring"]["status"])
+        self.assertEqual(["portable-skill-authoring"], tracks["portable-skill-authoring"]["skills"])
+
     def test_client_observation_matrix_is_reconciled_and_terminal(self) -> None:
         paths = sorted(
             path for path in (ROOT / "docs").glob("client-observations*.json")

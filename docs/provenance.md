@@ -24,6 +24,8 @@ Proprietary or incompatible sources may be used only to identify a capability ga
 
 The private inventory ledger records one row per capability with a source snapshot, reviewer, review date, capability-name/path-only material consulted, and required false values for `content_opened`, `text_copied`, and `implementation_reused`. The public repository exposes only the reconciled aggregate in `provenance/inventory-summary.json`; it never exposes the private names or paths.
 
+The 2026-08-21 reconciliation against public catalog version 0.4.0 records 26 covered capabilities, two incubating public candidates, one partial capability, one private-overlay capability, and 22 rejected capabilities. The remaining public candidates are optional Java and .NET profiles. The partial capability is represented only as a sanitized portable skill-authoring roadmap entry. No restricted name, path, text, example, command, agent, hook, or implementation was copied into this repository.
+
 ## Placement policy
 
 A capability belongs in the public core only when it is reusable across independent contexts, independently sourceable, safe to expose, and testable without private facts. It belongs in a private overlay when correct use depends on a private authority, identity, topology, contract, dataset, customer, or product. It belongs in neither when it is proprietary, unsafe, obsolete, duplicative, unsupported, or lacks demonstrated use.
