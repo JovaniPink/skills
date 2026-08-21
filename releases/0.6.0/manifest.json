@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.6.0",
-  "source_commit": "759b3bf9bfca9967144b02d18f0678e3b509e2b3",
+  "source_commit": "2b6375243fdb1bb246cbcd1eef3a9e0132920563",
   "created_on": "2026-08-21",
   "artifacts": [
     {
@@ -42,7 +42,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/alignment-interview-0.6.0.zip",
-      "sha256": "cd6be8698971fc0b3fbda8c13d33e2e5a83e4145cdf6173f3a927176fb2044b9"
+      "sha256": "2ea27e647996135b872c2b18dedec80d835c3fed44fefbb4f45c41dda16df6a0"
     },
     {
       "kind": "zip",
@@ -87,12 +87,12 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/cross-capability-dependency-mapping-0.6.0.zip",
-      "sha256": "15457d6f2874a87b61f1a090a4bb91558dc130b2a234bb56c9bfdf3644de775a"
+      "sha256": "d946c027036b59380a1ebbc0931b4997bf0a518047877bfe02e7180e4279621c"
     },
     {
       "kind": "zip",
       "path": "dist/claude-ai/cross-stack-quality-gates-0.6.0.zip",
-      "sha256": "0a1f3247e32eafed21078498e341ced95650a01bf13c4a01c8d8103e1d92f602"
+      "sha256": "f0476bd826c381219d23b919a3b980012eee0d5476fbe5256d965b6f6005721e"
     },
     {
       "kind": "zip",
@@ -117,7 +117,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/dependency-supply-chain-review-0.6.0.zip",
-      "sha256": "d500edc9bbfafa26d97c70fc645090bb5e21aacfcb2b2f39ab689363c2d6ccac"
+      "sha256": "3080daac35f0578d00b8d6ff35386e8b6ecea0ec5e3e08d340f4c28da91b7f1f"
     },
     {
       "kind": "zip",
@@ -147,7 +147,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/high-signal-technical-writing-0.6.0.zip",
-      "sha256": "bd7007d06679f7f5ec5356f1b6199a1333eafbb5973456c5732169dcabbe9030"
+      "sha256": "3b9b1c2489687b1dccb6061627367e80ab21c709bbc25ee5fcd355c86a5a4ba6"
     },
     {
       "kind": "zip",
@@ -177,7 +177,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/multi-agent-orchestration-0.6.0.zip",
-      "sha256": "925d443a7f0a58f1f2fe903d364b98c21a238d1092be87439a8a646c8ad0249c"
+      "sha256": "1df81feb60baf3001e2fde4d704241cfb6c6869e073a2fe5c64d1ff5b1ef716c"
     },
     {
       "kind": "zip",
@@ -232,7 +232,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/public-private-boundary-review-0.6.0.zip",
-      "sha256": "c9cb5575f0cdf61cf28d7f132884a92986707b211d376aa64df7c04c18a39023"
+      "sha256": "8dd465dfcb3e1fca51eb5bf8f47e2b500a4e329d800508716c76f415d3892fda"
     },
     {
       "kind": "zip",
@@ -272,7 +272,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/source-grounded-research-0.6.0.zip",
-      "sha256": "6804d272ccdcbfcd42edd046e754c5d2865ad79c3c2692a600c8ff1055b7f201"
+      "sha256": "7a9a6d1a6fcd5e688666b7ddd25c51984516e0807ff91db9a2ea51b46767f00d"
     },
     {
       "kind": "zip",
@@ -302,7 +302,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/test-driven-change-0.6.0.zip",
-      "sha256": "9fe43aa7100a732169d4a92dfd41b0899074b087d23d4aee9e2a749a35c1b3f4"
+      "sha256": "afebf4872f6b27b87d97dac0d3a316391f35aeed7bcd8ac1d4078766f359ab4c"
     },
     {
       "kind": "zip",
@@ -342,22 +342,22 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-engineering",
-      "sha256": "609297ac02e2c4fd4bc61e5c771bae44b8ac03a525beaf6e00dcc0a0f560897c"
+      "sha256": "97999f4208f4792c93a6b9fded2d95cd91d7d8d2cb18a57ac0a962a82e49bc96"
     },
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-operations",
-      "sha256": "f1b2f686753948e3e0bab2535a661028b485619779036a86345af5941b5a35c4"
+      "sha256": "ae30105f31a33359a9dd9ac3369524d742ead40d41f5cd52ab967ec5a1153b08"
     },
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-reasoning",
-      "sha256": "44358296ac9f2169985e3f6c550bf3e8feed27ca2e3601b8589d24c2f41a8f74"
+      "sha256": "c26f8321d1ab217fac0d7c7a24510d90adf69770e117ee5d846b0bdc5a70c93f"
     },
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-skills",
-      "sha256": "25bf61bef1edbda990f915a12bd165c68f62a07e82e998eade0f4f249cbb948f"
+      "sha256": "a08bf10e6d61f87c61971e8a19a60f8c8298d6edcbcfdbd1ed8aa61885fe8bd2"
     },
     {
       "kind": "tree",
@@ -367,22 +367,22 @@
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-engineering",
-      "sha256": "9000c9a77198e96792b94ef74d054ce27b0d59fa5725484baa9893802e30ebcc"
+      "sha256": "47a92e3ed6fa3b5cb3ab5859c914e7652697c775bdd5cca002ecd5d4da5d3220"
     },
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-operations",
-      "sha256": "9ed485f1b961f3d23c0fac954ac40c6da8736a369e0c5f1ab67f8fda2588a2cb"
+      "sha256": "f000c846690ad1b637e46a022cb21d9d8e96ece96e9c334d9f76c5dfbabbff52"
     },
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-reasoning",
-      "sha256": "bf80b479e1bcc7271bb35de73f263e0359e857ab9b16b86041e5d5516a103fb9"
+      "sha256": "b1c0eade3df891ba136fce1fdad186ab945cf75703536852ca539412798a5a7e"
     },
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-skills",
-      "sha256": "6a8acf8992ddec117a44ba5313e45127d027aef7852332cd84a8cf6b0c93f428"
+      "sha256": "7b172d7809b66cfcb020823337a7ea522308b78c0f3cec58fc80bfa36f77e3a9"
     },
     {
       "kind": "tree",
