@@ -1,0 +1,7 @@
+interface:
+  display_name: "Data Authority and Migration Ratification"
+  short_description: "Prepare authority and migration decisions for ratification"
+  default_prompt: "Use $data-authority-migration-ratification to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+

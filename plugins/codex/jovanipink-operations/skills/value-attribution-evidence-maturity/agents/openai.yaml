@@ -1,0 +1,7 @@
+interface:
+  display_name: "Value Attribution and Evidence Maturity"
+  short_description: "Assess value claims and evidence maturity"
+  default_prompt: "Use $jovanipink-operations:value-attribution-evidence-maturity to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+

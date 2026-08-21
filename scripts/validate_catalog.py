@@ -10,6 +10,7 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 from cataloglib import (
+    ALL_SKILLS,
     CATALOG_NAME,
     PLUGIN_SPECS,
     ROOT,
@@ -116,9 +117,9 @@ def validate_workflows(errors: list[str]) -> None:
 def validate_canonical(errors: list[str]) -> None:
     skills_root = ROOT / "skills"
     actual = sorted(path.name for path in skills_root.iterdir() if path.is_dir()) if skills_root.is_dir() else []
-    if actual != list(SKILLS):
-        errors.append(f"skills/: expected {list(SKILLS)}, found {actual}")
-    for skill in SKILLS:
+    if actual != list(ALL_SKILLS):
+        errors.append(f"skills/: expected {list(ALL_SKILLS)}, found {actual}")
+    for skill in ALL_SKILLS:
         skill_dir = skills_root / skill
         skill_file = skill_dir / "SKILL.md"
         if not skill_file.is_file():
@@ -189,7 +190,7 @@ def validate_evals(errors: list[str]) -> None:
         return
     records = document["skills"]
     names = [record.get("skill") for record in records if isinstance(record, dict)]
-    if sorted(names) != list(SKILLS):
+    if sorted(names) != list(ALL_SKILLS):
         errors.append(f"evals/cases.json: expected one record for every skill, found {sorted(names)}")
     ids: set[str] = set()
     for record in records:
@@ -239,7 +240,7 @@ def validate_provenance(errors: list[str]) -> None:
         return
     entries = document["entries"]
     names = [entry.get("skill") for entry in entries if isinstance(entry, dict)]
-    if sorted(names) != list(SKILLS):
+    if sorted(names) != list(ALL_SKILLS):
         errors.append(f"provenance/catalog.json: expected one entry for every skill, found {sorted(names)}")
     for entry in entries:
         if not isinstance(entry, dict):
@@ -250,7 +251,7 @@ def validate_provenance(errors: list[str]) -> None:
             if not re.fullmatch(r"[0-9a-f]{40}", revision):
                 errors.append(f"provenance/catalog.json: {entry.get('skill')} requires a 40-character pinned revision")
         skill = entry.get("skill")
-        if skill in SKILLS:
+        if skill in ALL_SKILLS:
             metadata = read_skill_metadata(ROOT / "skills" / skill)
             if entry.get("disposition") != "covered":
                 errors.append(f"provenance/catalog.json: shipped skill {skill} disposition must be 'covered'")
@@ -298,6 +299,24 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                 if skill in seen:
                     errors.append(f"incubator/roadmap.json: duplicate skill {skill}")
                 seen.add(skill)
+
+    for document_name, schema_name in (
+        ("catalog/deprecations.json", "catalog/deprecations-schema.json"),
+        ("catalog/revocations.json", "catalog/revocations-schema.json"),
+        ("catalog/compatibility.json", "catalog/compatibility-schema.json"),
+        ("catalog/upstream-pins.json", "catalog/upstream-pins-schema.json"),
+        ("provenance/ci-actions.json", "provenance/ci-actions-schema.json"),
+    ):
+        _validate_json_schema(ROOT / document_name, ROOT / schema_name, errors)
+
+    compatibility = _load_json(ROOT / "catalog" / "compatibility.json", errors)
+    if isinstance(compatibility, dict):
+        for record in compatibility.get("records", []):
+            if not isinstance(record, dict):
+                continue
+            evidence = ROOT / str(record.get("evidence_path", ""))
+            if not evidence.is_file():
+                errors.append(f"catalog/compatibility.json: missing evidence path {record.get('evidence_path')}")
 
     observation_paths = sorted(
         path for path in (ROOT / "docs").glob("client-observations*.json")
@@ -450,6 +469,33 @@ def validate_packages(errors: list[str]) -> None:
                     errors.append(f"{archive_path.name}: Claude.ai package contains Codex interface {name}")
 
 
+def validate_release_manifest(errors: list[str]) -> None:
+    manifest = ROOT / "releases" / VERSION / "manifest.json"
+    if not manifest.is_file():
+        errors.append(f"releases/{VERSION}/manifest.json: missing current release manifest")
+        return
+    document = _validate_json_schema(manifest, ROOT / "releases" / "manifest-schema.json", errors)
+    if not isinstance(document, dict):
+        return
+    for artifact in document.get("artifacts", []):
+        if not isinstance(artifact, dict):
+            continue
+        path = ROOT / str(artifact.get("path", ""))
+        kind = artifact.get("kind")
+        if kind == "tree":
+            from cataloglib import directory_hashes
+
+            rendered = json.dumps(directory_hashes(path), sort_keys=True, separators=(",", ":"))
+            digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+        elif path.is_file():
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        else:
+            errors.append(f"{manifest.relative_to(ROOT)}: missing artifact {artifact.get('path')}")
+            continue
+        if artifact.get("sha256") != digest:
+            errors.append(f"{manifest.relative_to(ROOT)}: checksum drift for {artifact.get('path')}")
+
+
 def validate_all(require_packages: bool = True) -> list[str]:
     errors: list[str] = []
     validate_workflows(errors)
@@ -461,6 +507,7 @@ def validate_all(require_packages: bool = True) -> list[str]:
     validate_marketplaces(errors)
     if require_packages:
         validate_packages(errors)
+        validate_release_manifest(errors)
     return errors
 
 

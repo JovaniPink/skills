@@ -1,0 +1,7 @@
+interface:
+  display_name: "Change and Adoption Planning"
+  short_description: "Plan evidence-based change and adoption"
+  default_prompt: "Use $jovanipink-operations:change-adoption-planning to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+

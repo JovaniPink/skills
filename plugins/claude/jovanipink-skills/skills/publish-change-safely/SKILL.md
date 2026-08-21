@@ -4,10 +4,10 @@ description: Publish an authorized repository change by verifying identity, remo
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.3.0"
+  version: "0.4.0"
   plugin: "jovanipink-skills"
   invocation: "explicit"
-  provenance: "adapted"
+  provenance: "clean-room"
   risk_class: "external-write"
 disable-model-invocation: true
 ---

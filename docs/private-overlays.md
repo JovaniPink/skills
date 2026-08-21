@@ -10,6 +10,15 @@ Private facts stay with the repository that owns their authority. The portable p
 
 The canonical private source is authoritative. The two client directories are projections and must be regenerated rather than hand-edited. A repository may keep these paths private even when its application code is public.
 
+Synchronize an overlay with:
+
+```sh
+python3 scripts/sync_private_overlay.py --repo path/to/private-repository
+python3 scripts/sync_private_overlay.py --repo path/to/private-repository --check
+```
+
+The synchronizer writes only `.agents/skills/` and `.claude/skills/` inside the named repository. It does not publish, install, push, or grant tool permissions.
+
 ## Fictional example
 
 Assume a fictional warehouse service named Northwind Relay. Its public workflow can use `authority-boundary-review` to ask which system owns an order and which systems are projections. Its private overlay may identify `Order Ledger A` as the current authority, name an internal reconciliation report, and state who may ratify a writer change. Those private names and contracts remain in Northwind Relay's repository; the public skill contains none of them.

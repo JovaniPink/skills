@@ -4,7 +4,7 @@ description: Review application or service security against current threat evide
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.3.0"
+  version: "0.4.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"

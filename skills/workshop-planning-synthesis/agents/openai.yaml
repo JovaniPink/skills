@@ -1,0 +1,7 @@
+interface:
+  display_name: "Workshop Planning and Synthesis"
+  short_description: "Plan and synthesize evidence-oriented workshops"
+  default_prompt: "Use $workshop-planning-synthesis to prepare this operating workflow with evidence and decision boundaries."
+policy:
+  allow_implicit_invocation: true
+

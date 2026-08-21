@@ -6,16 +6,16 @@
     {
       "skill": "claim-verification",
       "disposition": "covered",
-      "implementation_method": "adapted",
-      "source_url": "https://github.com/JovaniPink/jovanipinkv2/tree/3f8b032c7b08995c0475439a364a27c7d156e7cf/.agents/skills/verify-feature-complete",
-      "upstream_license": "MIT",
-      "pinned_revision": "3f8b032c7b08995c0475439a364a27c7d156e7cf",
+      "implementation_method": "clean-room",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public specification used as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
       "reviewed_on": "2026-08-20",
-      "reviewed_material": ["SKILL.md", "repository LICENSE"],
-      "local_changes": "Rewritten as a client-neutral claim and authority workflow; removed site, framework, identity, branch, deployment, and workspace assumptions.",
+      "reviewed_material": ["Agent Skills specification"],
+      "local_changes": "Independently authored client-neutral claim and authority workflow.",
       "security_review": "APPROVE: read-only verification workflow with no bundled execution.",
-      "rereview_triggers": ["license change", "source history rewrite", "invocation or permission change"],
-      "revocation": "Remove from distributions if ownership or MIT licensing cannot be supported."
+      "rereview_triggers": ["specification change", "invocation or permission change", "new execution behavior"],
+      "revocation": "Remove or revise if authorship, safety, or provenance becomes unsupported."
     },
     {
       "skill": "source-grounded-research",
@@ -62,43 +62,43 @@
     {
       "skill": "cross-stack-quality-gates",
       "disposition": "covered",
-      "implementation_method": "adapted",
-      "source_url": "https://github.com/JovaniPink/jovanipinkv2/tree/3f8b032c7b08995c0475439a364a27c7d156e7cf/.agents/skills/source-command-gates",
-      "upstream_license": "MIT",
-      "pinned_revision": "3f8b032c7b08995c0475439a364a27c7d156e7cf",
+      "implementation_method": "clean-room",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public specification used as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
       "reviewed_on": "2026-08-20",
-      "reviewed_material": ["SKILL.md", "repository LICENSE"],
-      "local_changes": "Rewritten and generalized across Go, Python, Swift, TypeScript/JavaScript, SQL, and Terraform; removed fixed commands and project assumptions.",
+      "reviewed_material": ["Agent Skills specification"],
+      "local_changes": "Independently authored cross-stack gate-discovery workflow without fixed commands or project assumptions.",
       "security_review": "APPROVE: gate discovery is conservative and excludes mutation by default.",
-      "rereview_triggers": ["supported stack change", "command-execution policy change", "source license change"],
-      "revocation": "Remove from distributions if ownership or MIT licensing cannot be supported."
+      "rereview_triggers": ["supported stack change", "command-execution policy change", "specification change"],
+      "revocation": "Remove or revise if authorship, safety, or provenance becomes unsupported."
     },
     {
       "skill": "prelaunch-readiness",
       "disposition": "covered",
-      "implementation_method": "adapted",
-      "source_url": "https://github.com/JovaniPink/jovanipinkv2/tree/3f8b032c7b08995c0475439a364a27c7d156e7cf/.agents/skills/pre-launch-verify",
-      "upstream_license": "MIT",
-      "pinned_revision": "3f8b032c7b08995c0475439a364a27c7d156e7cf",
+      "implementation_method": "clean-room",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public specification used as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
       "reviewed_on": "2026-08-20",
-      "reviewed_material": ["SKILL.md", "repository LICENSE"],
-      "local_changes": "Rewritten for web, service, and app surfaces; removed framework, provider, route, and deployment assumptions.",
+      "reviewed_material": ["Agent Skills specification"],
+      "local_changes": "Independently authored readiness workflow for web, service, and application surfaces.",
       "security_review": "APPROVE: audit does not authorize deployment or configuration mutation.",
-      "rereview_triggers": ["surface scope change", "deployment authority change", "source license change"],
-      "revocation": "Remove from distributions if ownership or MIT licensing cannot be supported."
+      "rereview_triggers": ["surface scope change", "deployment authority change", "specification change"],
+      "revocation": "Remove or revise if authorship, safety, or provenance becomes unsupported."
     },
     {
       "skill": "publish-change-safely",
       "disposition": "covered",
-      "implementation_method": "adapted",
-      "source_url": "https://github.com/JovaniPink/jovanipinkv2/tree/3f8b032c7b08995c0475439a364a27c7d156e7cf/.agents/skills/source-command-push-private",
-      "upstream_license": "MIT",
-      "pinned_revision": "3f8b032c7b08995c0475439a364a27c7d156e7cf",
+      "implementation_method": "clean-room",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public specification used as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
       "reviewed_on": "2026-08-20",
-      "reviewed_material": ["SKILL.md", "repository LICENSE"],
-      "local_changes": "Rewritten for arbitrary repositories and visibility; removed hardcoded identity, remote, branch, coauthor, and fixed-main behavior.",
+      "reviewed_material": ["Agent Skills specification"],
+      "local_changes": "Independently authored publication workflow for arbitrary repositories and visibility boundaries.",
       "security_review": "APPROVE: explicit-only workflow stops at the user's publication boundary.",
-      "rereview_triggers": ["write scope change", "credential behavior change", "source license change"],
+      "rereview_triggers": ["write scope change", "credential behavior change", "specification change"],
       "revocation": "Disable distribution immediately if implicit invocation or unbounded publication is introduced."
     },
     {
@@ -642,6 +642,226 @@
         "new execution, dependency, network, or compliance claims"
       ],
       "revocation": "Remove or revise if authority becomes stale, security boundaries weaken, or the workflow makes unsupported compliance or execution claims."
+    },
+    {
+      "skill": "requirements-synthesis",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "decision-governance-records",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "workshop-planning-synthesis",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "kpi-outcome-measurement",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "value-attribution-evidence-maturity",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "change-adoption-planning",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "cross-capability-dependency-mapping",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "stakeholder-technical-communication",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "iteration-postlaunch-learning",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "production-incident-analysis",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
+    },
+    {
+      "skill": "data-authority-migration-ratification",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No workflow text imported; the public specification was used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification and generic public-domain operating concepts"
+      ],
+      "local_changes": "Original generic operating workflow with explicit evidence, claim-status, ownership, authority, and public-private boundaries.",
+      "security_review": "APPROVE: read-only instruction workflow with no proprietary terminology, hooks, executables, bundled agents, broad tool grants, external writes, or production actions.",
+      "rereview_triggers": [
+        "workflow or invocation changes",
+        "new private terminology or operational facts",
+        "new execution, external-write, or causal claims"
+      ],
+      "revocation": "Remove or revise if the workflow exposes private facts, overstates evidence, or gains unauthorized execution behavior."
     }
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "name": "jovanipink-operations",
+  "version": "0.4.0",
+  "description": "Portable requirements, decision, measurement, adoption, and incident workflows.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "JovaniPink Operations",
+    "shortDescription": "Operating and decision workflows for Codex",
+    "longDescription": "Portable requirements, decision, measurement, adoption, and incident workflows.",
+    "developerName": "Jovani Pink",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Help me choose and use a JovaniPink Operations workflow skill."
+    ]
+  }
+}

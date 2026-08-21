@@ -1,0 +1,6 @@
+interface:
+  display_name: "Example Authority Policy"
+  short_description: "Apply a fictional local authority boundary"
+  default_prompt: "Use $example-authority-policy to review this fictional authority proposal."
+policy:
+  allow_implicit_invocation: true
