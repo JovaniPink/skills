@@ -8,7 +8,7 @@ import tempfile
 from pathlib import Path
 
 from build_distributions import build, marketplace_documents
-from cataloglib import PLUGIN_NAME, ROOT, directory_hashes
+from cataloglib import ROOT, directory_hashes, skills_by_plugin
 
 
 def check() -> list[str]:
@@ -17,17 +17,18 @@ def check() -> list[str]:
         output_root = Path(temporary) / "plugins"
         build(output_root, write_marketplaces=False)
         for client in ("codex", "claude"):
-            expected = directory_hashes(output_root / client / PLUGIN_NAME)
-            actual = directory_hashes(ROOT / "plugins" / client / PLUGIN_NAME)
+          for plugin in skills_by_plugin():
+            expected = directory_hashes(output_root / client / plugin)
+            actual = directory_hashes(ROOT / "plugins" / client / plugin)
             missing = sorted(set(expected) - set(actual))
             extra = sorted(set(actual) - set(expected))
             changed = sorted(path for path in set(expected) & set(actual) if expected[path] != actual[path])
             for path in missing:
-                errors.append(f"{client} generated file missing: {path}")
+                errors.append(f"{client}/{plugin} generated file missing: {path}")
             for path in extra:
-                errors.append(f"{client} generated file unexpected: {path}")
+                errors.append(f"{client}/{plugin} generated file unexpected: {path}")
             for path in changed:
-                errors.append(f"{client} generated file drifted: {path}")
+                errors.append(f"{client}/{plugin} generated file drifted: {path}")
 
         codex_marketplace, claude_marketplace = marketplace_documents()
         expected_marketplaces = (

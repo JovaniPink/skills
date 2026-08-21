@@ -1,0 +1,6 @@
+interface:
+  display_name: "Implementation Planning"
+  short_description: "Create decision-complete implementation plans"
+  default_prompt: "Use $jovanipink-engineering:implementation-planning to produce an evidence-grounded implementation plan."
+policy:
+  allow_implicit_invocation: true

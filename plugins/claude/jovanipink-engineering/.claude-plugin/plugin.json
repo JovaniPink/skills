@@ -1,0 +1,19 @@
+{
+  "name": "jovanipink-engineering",
+  "version": "0.2.0",
+  "description": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "engineering",
+    "testing",
+    "review",
+    "git"
+  ]
+}

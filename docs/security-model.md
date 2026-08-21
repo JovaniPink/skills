@@ -16,7 +16,7 @@ The catalog protects user intent, credentials, private data, repository integrit
 - generated adapters drifting from reviewed canonical sources
 - claims of successful validation, deployment, or parity without observed evidence
 
-## v0.1 controls
+## Catalog controls
 
 - no skill-level executables, hooks, MCP servers, dependencies, or broad tool grants
 - two explicit-only workflows for publication and import/provenance decisions

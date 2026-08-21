@@ -8,22 +8,35 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.1.0"
-PLUGIN_NAME = "jovanipink-skills"
+VERSION = "0.2.0"
+CATALOG_NAME = "jovanipink-skills"
 PLUGIN_CATEGORY = "Developer Tools"
-SKILLS = (
-    "authority-boundary-review",
-    "claim-verification",
-    "cross-stack-quality-gates",
-    "prelaunch-readiness",
-    "public-private-boundary-review",
-    "publish-change-safely",
-    "skill-import-provenance",
-    "skill-security-review",
-    "source-grounded-research",
-    "systematic-diagnosis",
-)
-EXPLICIT_SKILLS = frozenset({"publish-change-safely", "skill-import-provenance"})
+PLUGIN_SPECS = {
+    "jovanipink-skills": {
+        "display_name": "JovaniPink Skills",
+        "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
+        "short_description": "Evidence-oriented workflows for Codex",
+        "keywords": ["skills", "research", "diagnosis", "quality", "security"],
+    },
+    "jovanipink-engineering": {
+        "display_name": "JovaniPink Engineering",
+        "description": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
+        "short_description": "Engineering lifecycle workflows for Codex",
+        "keywords": ["skills", "engineering", "testing", "review", "git"],
+    },
+    "jovanipink-stack-profiles": {
+        "display_name": "JovaniPink Stack Profiles",
+        "description": "Optional language and infrastructure engineering profiles.",
+        "short_description": "Stack-specific engineering guidance for Codex",
+        "keywords": ["skills", "engineering", "languages", "infrastructure"],
+    },
+    "jovanipink-operations": {
+        "display_name": "JovaniPink Operations",
+        "description": "Portable requirements, decision, measurement, adoption, and incident workflows.",
+        "short_description": "Operating and decision workflows for Codex",
+        "keywords": ["skills", "operations", "decisions", "measurement"],
+    },
+}
 
 
 def split_frontmatter(text: str) -> tuple[str, str]:
@@ -74,6 +87,28 @@ def read_skill_metadata(skill_dir: Path) -> dict[str, str]:
         r"(?m)^disable-model-invocation:\s*true\s*$", frontmatter
     ) else "false"
     return result
+
+
+def skill_names() -> tuple[str, ...]:
+    root = ROOT / "skills"
+    if not root.is_dir():
+        return ()
+    return tuple(sorted(path.name for path in root.iterdir() if path.is_dir()))
+
+
+def skills_by_plugin() -> dict[str, tuple[str, ...]]:
+    grouped: dict[str, list[str]] = {}
+    for skill in skill_names():
+        plugin = read_skill_metadata(ROOT / "skills" / skill)["plugin"]
+        grouped.setdefault(plugin, []).append(skill)
+    return {plugin: tuple(skills) for plugin, skills in sorted(grouped.items())}
+
+
+SKILLS = skill_names()
+EXPLICIT_SKILLS = frozenset(
+    skill for skill in SKILLS if read_skill_metadata(ROOT / "skills" / skill)["invocation"] == "explicit"
+)
+PLUGIN_NAME = CATALOG_NAME
 
 
 def add_claude_explicit_control(text: str) -> str:

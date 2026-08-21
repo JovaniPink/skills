@@ -4,7 +4,7 @@ description: Audit whether a web property, service, application, or major relaun
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.1.0"
+  version: "0.2.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "adapted"

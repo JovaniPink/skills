@@ -1,0 +1,6 @@
+interface:
+  display_name: "Plan Execution"
+  short_description: "Execute an approved plan with stopping boundaries"
+  default_prompt: "Use $plan-execution to execute the identified approved plan and track deviations."
+policy:
+  allow_implicit_invocation: false

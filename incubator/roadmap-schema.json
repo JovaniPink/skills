@@ -18,7 +18,7 @@
           "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
           "target_release": {"type": "string", "minLength": 1},
           "plugin": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-          "status": {"enum": ["planned", "incubating", "deferred", "rejected"]},
+          "status": {"enum": ["planned", "incubating", "deferred", "released", "rejected"]},
           "skills": {
             "type": "array",
             "minItems": 1,

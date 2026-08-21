@@ -1,0 +1,6 @@
+interface:
+  display_name: "Request Code Review"
+  short_description: "Prepare evidence-bounded review requests"
+  default_prompt: "Use $jovanipink-engineering:request-code-review to prepare this change for focused review."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Problem Framing"
+  short_description: "Frame outcomes, evidence, constraints, and unknowns"
+  default_prompt: "Use $jovanipink-engineering:problem-framing to make this request decision-ready before implementation."
+policy:
+  allow_implicit_invocation: true

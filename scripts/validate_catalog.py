@@ -9,7 +9,16 @@ import re
 import zipfile
 from pathlib import Path, PurePosixPath
 
-from cataloglib import EXPLICIT_SKILLS, PLUGIN_NAME, ROOT, SKILLS, VERSION, read_skill_metadata, split_frontmatter
+from cataloglib import (
+    CATALOG_NAME,
+    PLUGIN_SPECS,
+    ROOT,
+    SKILLS,
+    VERSION,
+    read_skill_metadata,
+    skills_by_plugin,
+    split_frontmatter,
+)
 from schema_validation import validate_instance
 
 
@@ -126,18 +135,21 @@ def validate_canonical(errors: list[str]) -> None:
         unexpected = sorted(top_keys - ALLOWED_CANONICAL_TOP_KEYS)
         if unexpected:
             errors.append(f"skills/{skill}/SKILL.md: nonportable canonical keys: {unexpected}")
-        expected_invocation = "explicit" if skill in EXPLICIT_SKILLS else "implicit"
+        expected_invocation = metadata["invocation"]
         expected = {
             "name": skill,
             "license": "MIT",
             "author": "Jovani Pink",
             "version": VERSION,
-            "plugin": PLUGIN_NAME,
             "invocation": expected_invocation,
         }
         for key, value in expected.items():
             if metadata[key] != value:
                 errors.append(f"skills/{skill}/SKILL.md: {key} must be {value!r}, found {metadata[key]!r}")
+        if metadata["plugin"] not in PLUGIN_SPECS:
+            errors.append(f"skills/{skill}/SKILL.md: unsupported plugin {metadata['plugin']!r}")
+        if metadata["invocation"] not in {"implicit", "explicit"}:
+            errors.append(f"skills/{skill}/SKILL.md: invocation must be implicit or explicit")
         if not 1 <= len(metadata["description"]) <= 1024:
             errors.append(f"skills/{skill}/SKILL.md: description must be 1 to 1024 characters")
         if metadata["claude_explicit"] != "false":
@@ -152,19 +164,19 @@ def validate_canonical(errors: list[str]) -> None:
         if not body.lstrip().startswith("# "):
             errors.append(f"skills/{skill}/SKILL.md: body must start with an H1")
         _validate_links(skill_file, text, errors)
-        _validate_openai_yaml(skill_dir / "agents" / "openai.yaml", skill in EXPLICIT_SKILLS, skill, errors)
+        _validate_openai_yaml(skill_dir / "agents" / "openai.yaml", expected_invocation == "explicit", skill, errors)
 
         for item in skill_dir.rglob("*"):
             if item.is_dir() or item == skill_file or item == skill_dir / "agents" / "openai.yaml":
                 continue
             if "references" not in item.parts or item.suffix.lower() not in {".md", ".json", ".txt"}:
-                errors.append(f"{item.relative_to(ROOT)}: v0.1 permits only focused reference resources")
+                errors.append(f"{item.relative_to(ROOT)}: catalog permits only focused reference resources")
             elif item.is_file():
                 _validate_links(item, item.read_text(encoding="utf-8"), errors)
         forbidden_dirs = {"scripts", "hooks", "mcp", "servers", "commands"}
         found_forbidden = sorted({part for item in skill_dir.rglob("*") for part in item.parts if part in forbidden_dirs})
         if found_forbidden:
-            errors.append(f"skills/{skill}: forbidden v0.1 directories: {found_forbidden}")
+            errors.append(f"skills/{skill}: forbidden skill directories: {found_forbidden}")
 
 
 def validate_evals(errors: list[str]) -> None:
@@ -185,9 +197,16 @@ def validate_evals(errors: list[str]) -> None:
             errors.append("evals/cases.json: malformed skill record")
             continue
         skill = record["skill"]
-        expected_invocation = "explicit" if skill in EXPLICIT_SKILLS else "implicit"
+        expected_invocation = read_skill_metadata(ROOT / "skills" / skill)["invocation"]
         if record.get("invocation") != expected_invocation:
             errors.append(f"evals/cases.json: {skill} invocation must be {expected_invocation}")
+        if read_skill_metadata(ROOT / "skills" / skill)["plugin"] != "jovanipink-skills":
+            rubric = record.get("output_rubric")
+            baseline = record.get("baseline_comparison")
+            if not isinstance(rubric, list) or len(rubric) < 3:
+                errors.append(f"evals/cases.json: {skill} requires an output-quality rubric")
+            if not isinstance(baseline, dict) or baseline.get("status") == "not_run":
+                errors.append(f"evals/cases.json: {skill} requires a terminal baseline comparison")
         for category, minimum in (("positive", 3), ("near_miss", 3), ("safety", 1)):
             cases = record.get(category)
             if not isinstance(cases, list) or len(cases) < minimum:
@@ -203,7 +222,7 @@ def validate_evals(errors: list[str]) -> None:
                 ids.add(case_id)
                 if category == "safety" and not case.get("expected"):
                     errors.append(f"evals/cases.json: {case_id} requires an expected safety boundary")
-        if skill in EXPLICIT_SKILLS:
+        if expected_invocation == "explicit":
             for case in record.get("positive", []):
                 prompt = case.get("prompt", "").lower()
                 if f"${skill}" not in prompt and f"invoke {skill}" not in prompt and f"with ${skill}" not in prompt:
@@ -280,38 +299,46 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                     errors.append(f"incubator/roadmap.json: duplicate skill {skill}")
                 seen.add(skill)
 
-    observations = _validate_json_schema(
-        ROOT / "docs" / "client-observations.json",
+    observation_paths = sorted(
+        path for path in (ROOT / "docs").glob("client-observations*.json")
+        if path.name != "client-observations-schema.json"
+    )
+    for observation_path in observation_paths:
+      observations = _validate_json_schema(
+        observation_path,
         ROOT / "docs" / "client-observations-schema.json",
         errors,
-    )
-    if isinstance(observations, dict) and isinstance(observations.get("records"), list):
+      )
+      if isinstance(observations, dict) and isinstance(observations.get("records"), list):
         records = observations["records"]
         ids = [record.get("case_id") for record in records if isinstance(record, dict)]
         if len(ids) != len(set(ids)):
-            errors.append("docs/client-observations.json: case IDs must be unique")
+            errors.append(f"{observation_path.relative_to(ROOT)}: case IDs must be unique")
         surfaces = {record.get("surface") for record in records if isinstance(record, dict)}
         expected_surfaces = {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"}
         if surfaces != expected_surfaces:
-            errors.append(f"docs/client-observations.json: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
+            errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
         source_commit = observations.get("tested_source_commit")
         if any(record.get("source_commit") != source_commit for record in records if isinstance(record, dict)):
-            errors.append("docs/client-observations.json: every row must reference the tested source commit")
+            errors.append(f"{observation_path.relative_to(ROOT)}: every row must reference the tested source commit")
         if any(record.get("result") == "not_run" for record in records if isinstance(record, dict)):
-            errors.append("docs/client-observations.json: every manual row must have an observed terminal state")
+            errors.append(f"{observation_path.relative_to(ROOT)}: every manual row must have an observed terminal state")
         actual_summary = {status: 0 for status in ("pass", "fail", "blocked", "not_supported", "not_run")}
         for record in records:
             if isinstance(record, dict) and record.get("result") in actual_summary:
                 actual_summary[record["result"]] += 1
         actual_summary["total"] = len(records)
         if observations.get("summary") != actual_summary:
-            errors.append("docs/client-observations.json: summary counts do not reconcile with records")
+            errors.append(f"{observation_path.relative_to(ROOT)}: summary counts do not reconcile with records")
 
 
 def validate_generated_adapters(errors: list[str]) -> None:
     for skill in SKILLS:
-        codex_dir = ROOT / "plugins" / "codex" / PLUGIN_NAME / "skills" / skill
-        claude_dir = ROOT / "plugins" / "claude" / PLUGIN_NAME / "skills" / skill
+        metadata = read_skill_metadata(ROOT / "skills" / skill)
+        plugin = metadata["plugin"]
+        explicit = metadata["invocation"] == "explicit"
+        codex_dir = ROOT / "plugins" / "codex" / plugin / "skills" / skill
+        claude_dir = ROOT / "plugins" / "claude" / plugin / "skills" / skill
         for client, path in (("Codex", codex_dir), ("Claude", claude_dir)):
             if not (path / "SKILL.md").is_file():
                 errors.append(f"{client} distribution missing {skill}")
@@ -319,31 +346,33 @@ def validate_generated_adapters(errors: list[str]) -> None:
             errors.append(f"Codex distribution missing interface for {skill}")
         else:
             codex_interface = (codex_dir / "agents" / "openai.yaml").read_text(encoding="utf-8")
-            if f"${PLUGIN_NAME}:{skill}" not in codex_interface:
+            if f"${plugin}:{skill}" not in codex_interface:
                 errors.append(f"Codex distribution prompt must use plugin namespace for {skill}")
         if (claude_dir / "agents").exists():
             errors.append(f"Claude distribution must omit Codex agents directory for {skill}")
         if (claude_dir / "SKILL.md").is_file():
             metadata = read_skill_metadata(claude_dir)
-            expected = "true" if skill in EXPLICIT_SKILLS else "false"
+            expected = "true" if explicit else "false"
             if metadata["claude_explicit"] != expected:
                 errors.append(f"Claude distribution explicit control for {skill} must be {expected}")
 
-    manifests = (
-        ROOT / "plugins" / "codex" / PLUGIN_NAME / ".codex-plugin" / "plugin.json",
-        ROOT / "plugins" / "claude" / PLUGIN_NAME / ".claude-plugin" / "plugin.json",
-    )
-    for manifest in manifests:
-        value = _load_json(manifest, errors)
-        if isinstance(value, dict):
-            for key, expected in (("name", PLUGIN_NAME), ("version", VERSION), ("license", "MIT")):
-                if value.get(key) != expected:
-                    errors.append(f"{manifest.relative_to(ROOT)}: {key} must be {expected!r}")
-    codex_manifest = _load_json(manifests[0], errors)
-    if isinstance(codex_manifest, dict):
-        prompts = codex_manifest.get("interface", {}).get("defaultPrompt") if isinstance(codex_manifest.get("interface"), dict) else None
-        if not isinstance(prompts, list) or not 1 <= len(prompts) <= 3 or not all(isinstance(item, str) for item in prompts):
-            errors.append(f"{manifests[0].relative_to(ROOT)}: interface.defaultPrompt must contain one to three strings")
+    for plugin in skills_by_plugin():
+        manifests = (
+            ROOT / "plugins" / "codex" / plugin / ".codex-plugin" / "plugin.json",
+            ROOT / "plugins" / "claude" / plugin / ".claude-plugin" / "plugin.json",
+        )
+        for manifest in manifests:
+            value = _load_json(manifest, errors)
+            if isinstance(value, dict):
+                for key, expected in (("name", plugin), ("version", VERSION), ("license", "MIT")):
+                    if value.get(key) != expected:
+                        errors.append(f"{manifest.relative_to(ROOT)}: {key} must be {expected!r}")
+        codex_manifest = _load_json(manifests[0], errors)
+        if isinstance(codex_manifest, dict):
+            interface = codex_manifest.get("interface")
+            prompts = interface.get("defaultPrompt") if isinstance(interface, dict) else None
+            if not isinstance(prompts, list) or not 1 <= len(prompts) <= 3 or not all(isinstance(item, str) for item in prompts):
+                errors.append(f"{manifests[0].relative_to(ROOT)}: interface.defaultPrompt must contain one to three strings")
 
 
 def validate_marketplaces(errors: list[str]) -> None:
@@ -352,37 +381,39 @@ def validate_marketplaces(errors: list[str]) -> None:
     if isinstance(codex, dict):
         plugins = codex.get("plugins")
         interface = codex.get("interface")
-        if codex.get("name") != PLUGIN_NAME or not isinstance(interface, dict) or not interface.get("displayName"):
+        if codex.get("name") != CATALOG_NAME or not isinstance(interface, dict) or not interface.get("displayName"):
             errors.append(f"{codex_path.relative_to(ROOT)}: missing marketplace identity or interface")
-        if not isinstance(plugins, list) or len(plugins) != 1 or not isinstance(plugins[0], dict):
-            errors.append(f"{codex_path.relative_to(ROOT)}: malformed single-plugin marketplace")
+        if not isinstance(plugins, list) or len(plugins) != len(skills_by_plugin()):
+            errors.append(f"{codex_path.relative_to(ROOT)}: malformed plugin marketplace")
         else:
-            plugin = plugins[0]
-            expected_source = {"source": "local", "path": "./plugins/codex/jovanipink-skills"}
-            expected_policy = {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}
-            if set(plugin) != {"name", "source", "policy", "category"}:
-                errors.append(f"{codex_path.relative_to(ROOT)}: Codex plugin entry has unsupported or missing fields")
-            if plugin.get("name") != PLUGIN_NAME or plugin.get("source") != expected_source:
-                errors.append(f"{codex_path.relative_to(ROOT)}: Codex plugin name or object source is incorrect")
-            if plugin.get("policy") != expected_policy or not isinstance(plugin.get("category"), str):
-                errors.append(f"{codex_path.relative_to(ROOT)}: Codex plugin policy or category is incorrect")
+            for entry in plugins:
+                if not isinstance(entry, dict):
+                    errors.append(f"{codex_path.relative_to(ROOT)}: malformed Codex plugin entry")
+                    continue
+                plugin = entry.get("name")
+                expected_source = {"source": "local", "path": f"./plugins/codex/{plugin}"}
+                expected_policy = {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}
+                if set(entry) != {"name", "source", "policy", "category"}:
+                    errors.append(f"{codex_path.relative_to(ROOT)}: Codex plugin entry has unsupported or missing fields")
+                if plugin not in skills_by_plugin() or entry.get("source") != expected_source:
+                    errors.append(f"{codex_path.relative_to(ROOT)}: Codex plugin name or object source is incorrect")
+                if entry.get("policy") != expected_policy or not isinstance(entry.get("category"), str):
+                    errors.append(f"{codex_path.relative_to(ROOT)}: Codex plugin policy or category is incorrect")
 
     claude_path = ROOT / ".claude-plugin" / "marketplace.json"
     claude = _load_json(claude_path, errors)
     if isinstance(claude, dict):
         plugins = claude.get("plugins")
-        if claude.get("name") != PLUGIN_NAME or not isinstance(plugins, list) or len(plugins) != 1:
-            errors.append(f"{claude_path.relative_to(ROOT)}: malformed single-plugin marketplace")
-        elif not isinstance(plugins[0], dict):
-            errors.append(f"{claude_path.relative_to(ROOT)}: malformed Claude plugin entry")
+        if claude.get("name") != CATALOG_NAME or not isinstance(plugins, list) or len(plugins) != len(skills_by_plugin()):
+            errors.append(f"{claude_path.relative_to(ROOT)}: malformed plugin marketplace")
         else:
-            plugin = plugins[0]
-            if (
-                plugin.get("name") != PLUGIN_NAME
-                or plugin.get("version") != VERSION
-                or plugin.get("source") != "./plugins/claude/jovanipink-skills"
-            ):
-                errors.append(f"{claude_path.relative_to(ROOT)}: Claude plugin name, version, or source is incorrect")
+            for entry in plugins:
+                if not isinstance(entry, dict):
+                    errors.append(f"{claude_path.relative_to(ROOT)}: malformed Claude plugin entry")
+                    continue
+                plugin = entry.get("name")
+                if plugin not in skills_by_plugin() or entry.get("version") != VERSION or entry.get("source") != f"./plugins/claude/{plugin}":
+                    errors.append(f"{claude_path.relative_to(ROOT)}: Claude plugin name, version, or source is incorrect")
 
 
 def validate_packages(errors: list[str]) -> None:
