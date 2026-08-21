@@ -4,6 +4,19 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-21
+
+### Added
+
+- Nine read-only engineering-quality reviews for application security, supply chain, observability, performance, migrations, compatibility, test quality, accessibility, and operational readiness.
+- Six optional stack profiles for Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform.
+- Stack-specific judgment failures in every representative fixture and an observed terminal macOS Swift result.
+
+### Security
+
+- Application security remains separate from agent skill security.
+- Reviews prohibit unsupported compliance, SLSA-level, conformance, deployment, apply, and production-readiness claims.
+
 ## [0.2.0] - 2026-08-21
 
 ### Added

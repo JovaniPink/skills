@@ -1,0 +1,18 @@
+{
+  "name": "jovanipink-stack-profiles",
+  "version": "0.3.0",
+  "description": "Optional language and infrastructure engineering profiles.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "engineering",
+    "languages",
+    "infrastructure"
+  ]
+}

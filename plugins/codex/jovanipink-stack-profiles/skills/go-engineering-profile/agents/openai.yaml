@@ -1,0 +1,7 @@
+interface:
+  display_name: "Go Engineering Profile"
+  short_description: "Apply focused Go engineering guidance"
+  default_prompt: "Use $jovanipink-stack-profiles:go-engineering-profile to apply focused stack guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true
+

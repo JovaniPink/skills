@@ -1,0 +1,7 @@
+interface:
+  display_name: "Application Security Review"
+  short_description: "Review application security controls and evidence"
+  default_prompt: "Use $jovanipink-engineering:application-security-review to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

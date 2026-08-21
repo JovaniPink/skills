@@ -1,0 +1,7 @@
+interface:
+  display_name: "Performance and Scalability Diagnosis"
+  short_description: "Diagnose performance limits with measured evidence"
+  default_prompt: "Use $jovanipink-engineering:performance-scalability-diagnosis to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

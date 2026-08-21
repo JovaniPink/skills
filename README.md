@@ -38,6 +38,12 @@ The catalog is split into focused plugins so clients can discover only the workf
 | `finish-development-branch` | Present integration, retention, and cleanup options without implicit actions | Explicit only |
 | `multi-agent-orchestration` | Coordinate authorized independent tasks with ownership and reconciliation | Explicit only |
 
+Engineering quality reviews in the same plugin cover application security, dependency supply chain, observability, performance and scalability, data migration readiness, API compatibility, test quality, accessibility, and operational readiness. These are implicit, read-only reviews and do not claim compliance or authorize production actions.
+
+### `jovanipink-stack-profiles`
+
+Optional profiles provide focused engineering guidance for Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform. `cross-stack-quality-gates` remains the command-discovery orchestrator and uses a profile only when installed and applicable.
+
 ## Repository model
 
 - `skills/` is the only authoring source.
@@ -81,4 +87,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.2 adds the engineering lifecycle plugin. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+Version 0.3 adds engineering-quality reviews and six optional stack profiles. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.

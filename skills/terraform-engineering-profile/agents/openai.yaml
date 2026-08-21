@@ -1,0 +1,7 @@
+interface:
+  display_name: "Terraform Engineering Profile"
+  short_description: "Apply focused Terraform engineering guidance"
+  default_prompt: "Use $terraform-engineering-profile to apply focused stack guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true
+

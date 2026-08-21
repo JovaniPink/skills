@@ -1,0 +1,7 @@
+interface:
+  display_name: "API Contract Compatibility Review"
+  short_description: "Review API and event contract compatibility"
+  default_prompt: "Use $api-contract-compatibility-review to review this work with focused evidence."
+policy:
+  allow_implicit_invocation: true
+

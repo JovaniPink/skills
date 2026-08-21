@@ -4,7 +4,7 @@ description: Frame a proposed feature, defect, workflow, or system change before
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.2.0"
+  version: "0.3.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "original"
