@@ -4,7 +4,7 @@ description: Produce a decision-complete implementation plan grounded in reposit
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.5.0"
+  version: "0.6.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "original"
@@ -14,6 +14,8 @@ metadata:
 # Implementation Planning
 
 Create an executable plan that another engineer can follow without reopening material design decisions.
+
+Read [specification synthesis](references/specification-synthesis.md) when multiple evidence sources must become one behavioral contract. Read [work packages](references/work-packages.md) when the plan needs independently reviewable units. Read [decision map](references/decision-map.md) when unresolved choices or multiple sessions control sequencing.
 
 ## Workflow
 

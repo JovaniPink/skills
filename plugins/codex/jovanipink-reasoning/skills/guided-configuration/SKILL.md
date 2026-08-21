@@ -1,0 +1,37 @@
+---
+name: guided-configuration
+description: "Guide a person through configuration steps that require their account, device, approval, credential, or external interface while verifying each observable result. Invoke explicitly when the agent cannot or should not perform the protected step itself."
+license: MIT
+metadata:
+  author: "Jovani Pink"
+  version: "0.6.0"
+  plugin: "jovanipink-reasoning"
+  invocation: "explicit"
+  provenance: "clean-room"
+  risk_class: "bounded-execution"
+---
+
+# Guided Configuration
+
+Help a person complete protected configuration without pretending the agent performed or verified inaccessible work.
+
+## Workflow
+
+1. Confirm the desired outcome, authoritative product documentation, current state, target account or environment, and actions the user permits.
+2. Separate steps the agent can verify from steps only the user can perform or observe.
+3. Present one material step at a time with its purpose, expected visible result, and safe recovery path.
+4. Ask the user to perform protected authentication, approval, credential, billing, device, or administrative actions themselves.
+5. After each step, verify the result through authorized readback or ask for the smallest non-sensitive observation needed.
+6. Stop on an unexpected account, environment, permission request, destructive effect, cost, or security warning.
+7. Summarize completed, unverified, failed, and reversed steps without claiming inaccessible success.
+
+## Boundaries
+
+- Never ask the user to paste secrets, recovery codes, private keys, or full tokens into chat.
+- Do not generate commands that broaden privileges beyond the stated need.
+- Do not bypass security prompts or describe a warning as harmless without evidence.
+- Configuration does not authorize publication, deployment, billing, or data migration unless those actions were separately approved.
+
+## Output
+
+Return `Goal`, `Authoritative source`, `Current step`, `Expected result`, `Observed result`, `Security boundary`, `Recovery`, and `Remaining steps`.

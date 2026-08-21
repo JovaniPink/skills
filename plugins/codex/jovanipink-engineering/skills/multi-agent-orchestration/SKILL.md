@@ -4,7 +4,7 @@ description: Coordinate authorized parallel agents on independent bounded tasks 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.5.0"
+  version: "0.6.0"
   plugin: "jovanipink-engineering"
   invocation: "explicit"
   provenance: "clean-room"
@@ -15,7 +15,7 @@ metadata:
 
 Use parallel workers only when their tasks are genuinely independent and the host and user permit delegation.
 
-Read [client mapping](references/client-mapping.md) only when selecting a client-specific coordination mechanism.
+Read [client mapping](references/client-mapping.md) only when selecting a client-specific coordination mechanism. Read [candidate comparison](references/candidate-comparison.md) only when several independent implementations can be tested against one rubric. Read [coverage fanout](references/coverage-fanout.md) only when independent review lenses can inspect the same pinned artifact without overlapping writes.
 
 ## Workflow
 

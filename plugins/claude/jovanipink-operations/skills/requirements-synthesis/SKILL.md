@@ -4,7 +4,7 @@ description: Synthesize interviews, documents, issues, observations, and constra
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.5.0"
+  version: "0.6.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

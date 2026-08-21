@@ -126,12 +126,26 @@
       "id": "engineering-depth-and-continuity",
       "target_release": "v0.6",
       "plugin": "jovanipink-engineering",
-      "status": "incubating",
+      "status": "released",
       "skills": [
         "code-change-review",
         "module-interface-design",
         "prototype-spike",
-        "merge-conflict-reconciliation",
+        "merge-conflict-reconciliation"
+      ],
+      "entry_criteria": [
+        "v0.5 deterministic validation and exact-head CI pass",
+        "every workflow is independently authored from primary sources and the pinned public capability audit",
+        "Git mutation and prototype workflows remain explicit-only with separate authority gates",
+        "trigger, conflict, output, package, and client observation records are complete"
+      ]
+    },
+    {
+      "id": "reasoning-continuity",
+      "target_release": "v0.6",
+      "plugin": "jovanipink-reasoning",
+      "status": "released",
+      "skills": [
         "guided-configuration",
         "task-handoff",
         "workflow-retrospective"
@@ -139,7 +153,7 @@
       "entry_criteria": [
         "v0.5 deterministic validation and exact-head CI pass",
         "every workflow is independently authored from primary sources and the pinned public capability audit",
-        "Git mutation and configuration workflows remain explicit-only with separate authority gates",
+        "configuration and continuity workflows remain explicit-only with separate authority gates",
         "trigger, conflict, output, package, and client observation records are complete"
       ]
     }

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Merge Conflict Reconciliation"
+  short_description: "Resolve Git conflicts without advancing state silently"
+  default_prompt: "Use $jovanipink-engineering:merge-conflict-reconciliation to reconcile this exact conflict while preserving the abort path."
+policy:
+  allow_implicit_invocation: false

@@ -4,6 +4,20 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-08-21
+
+### Added
+
+- Read-only change review and module interface design in `jovanipink-engineering`.
+- Explicit-only prototype, merge conflict, guided configuration, handoff, and retrospective workflows with bounded authority.
+- Focused specification, work-package, decision-map, candidate-comparison, and coverage-fanout references.
+
+### Security
+
+- Conflict reconciliation keeps abort available and gates stage, continue, commit, push, and pull request actions separately.
+- Prototypes do not imply production credentials, sensitive data, commit, merge, deploy, migration, or publication.
+- Retrospectives and handoffs exclude hidden reasoning, raw transcripts, secrets, unrelated history, and automatic policy mutation.
+
 ## [0.5.0] - 2026-08-21
 
 ### Added

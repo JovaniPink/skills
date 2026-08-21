@@ -1,6 +1,6 @@
 {
   "$schema": "./upstream-pins-schema.json",
-  "catalog_version": "0.5.0",
+  "catalog_version": "0.6.0",
   "reviewed_on": "2026-08-21",
   "max_review_age_days": 90,
   "sources": [
@@ -17,22 +17,27 @@
     {
       "source_url": "https://developer.hashicorp.com/terraform/language",
       "marker_kind": "etag",
-      "marker_value": "\"aa73e5bfe02bd780cb6df1fe0218a6b2\""
+      "marker_value": "\"161e94f8a569e6ad0b9e1f132bbc5bb9\""
     },
     {
-      "source_url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews",
+      "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
       "marker_kind": "content-sha256",
-      "marker_value": "3353bbce882a9c036a3e68d34328737ff6ca87f62457c9ceec2a16b812d39d6b"
+      "marker_value": "3ed08230bf544e02e3769df331d3333afffe9c81617be80bb990d8946e80488d"
     },
     {
       "source_url": "https://docs.python.org/3/",
       "marker_kind": "etag",
-      "marker_value": "\"6a87ae69-4bea\""
+      "marker_value": "\"6a88185b-4bea\""
     },
     {
       "source_url": "https://docs.python.org/3/library/unittest.html",
       "marker_kind": "etag",
-      "marker_value": "\"6a87ae69-51851\""
+      "marker_value": "\"6a884537-51851\""
+    },
+    {
+      "source_url": "https://git-scm.com/docs/git-merge",
+      "marker_kind": "last-modified",
+      "marker_value": "Fri, 21 Aug 2026 04:47:14 GMT"
     },
     {
       "source_url": "https://git-scm.com/docs/git-worktree",
@@ -52,7 +57,7 @@
     {
       "source_url": "https://opentelemetry.io/docs/concepts/signals/",
       "marker_kind": "etag",
-      "marker_value": "\"f83f4d066e70511b0acb63f12d8ed0dd-ssl\""
+      "marker_value": "\"517634c8adbb77d3bae9a4688ed9cf4e-ssl\""
     },
     {
       "source_url": "https://owasp.org/www-project-application-security-verification-standard/",
@@ -70,6 +75,11 @@
       "marker_value": "Mon, 12 May 2025 07:08:00 GMT"
     },
     {
+      "source_url": "https://sre.google/sre-book/postmortem-culture/",
+      "marker_kind": "last-modified",
+      "marker_value": "Mon, 01 Sep 2025 09:58:00 GMT"
+    },
+    {
       "source_url": "https://www.postgresql.org/docs/current/",
       "marker_kind": "content-sha256",
       "marker_value": "98787ade3f63879beb49817a2881046b4b0d247ea9e39bd940dd95360435ec99"
@@ -77,7 +87,7 @@
     {
       "source_url": "https://www.rfc-editor.org/rfc/rfc9110",
       "marker_kind": "last-modified",
-      "marker_value": "Fri, 21 Aug 2026 06:01:16 GMT"
+      "marker_value": "Fri, 21 Aug 2026 12:34:52 GMT"
     },
     {
       "source_url": "https://www.swift.org/documentation/",

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Prototype Spike"
+  short_description: "Test one uncertainty with bounded implementation"
+  default_prompt: "Use $prototype-spike to run this authorized, isolated learning experiment."
+policy:
+  allow_implicit_invocation: false

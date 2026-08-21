@@ -26,7 +26,7 @@ The private inventory ledger records one row per capability with a source snapsh
 
 The 2026-08-21 reconciliation against public catalog version 0.5.0 records 27 covered capabilities, two incubating public candidates, no partial capabilities, one private-overlay capability, and 22 rejected capabilities. The remaining public candidates are optional Java and .NET profiles. No restricted name, path, text, example, command, agent, hook, or implementation was copied into this repository.
 
-`provenance/public-source-audit.json` is a separate clean-room audit of the two public repositories reviewed for v0.5. It records exact revisions, license scope, every skill directory, bundle-level components, dispositions, public mappings, and security exclusions. Public source names and paths appear only in that attribution record; canonical and generated skill content is protected by the originality scanner.
+`provenance/public-source-audit.json` is a separate clean-room audit of the two public repositories reviewed for v0.5 and reconciled again for v0.6. It records exact revisions, license scope, every skill directory, bundle-level components, dispositions, public mappings, and security exclusions. Public source names and paths appear only in that attribution record; canonical and generated skill content is protected by the originality scanner.
 
 ## Placement policy
 
