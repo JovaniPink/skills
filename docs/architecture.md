@@ -13,8 +13,8 @@
 `scripts/build_distributions.py` creates two tracked adapters:
 
 ```text
-skills/ ──> plugins/codex/jovanipink-skills/skills/
-        └─> plugins/claude/jovanipink-skills/skills/
+skills/ --> plugins/codex/jovanipink-skills/skills/
+        --> plugins/claude/jovanipink-skills/skills/
 ```
 
 The Codex copy retains `agents/openai.yaml` and rewrites its direct-invocation prompt to the installed plugin namespace. The Claude copy omits that client-specific directory and adds `disable-model-invocation: true` to explicit-only skill frontmatter. No client adapter changes the workflow body.
@@ -25,7 +25,7 @@ Implicit skills are read-only or diagnostic by default. They may activate when t
 
 Invocation metadata is portable repository metadata, not a replacement for host enforcement:
 
-- canonical: `metadata.jovanipink.invocation`
+- canonical: `metadata.invocation`
 - Codex: `policy.allow_implicit_invocation`
 - Claude: `disable-model-invocation`
 

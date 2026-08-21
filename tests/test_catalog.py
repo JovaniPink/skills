@@ -103,6 +103,15 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(1, len(errors))
             self.assertIn("local denylist", errors[0])
 
+    def test_boundary_scan_rejects_non_ascii_and_non_us_english(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="language-boundary-") as temporary:
+            candidate = Path(temporary) / "candidate.md"
+            non_us_spelling = "behav" + "iour"
+            candidate.write_text(f"plain{chr(0x2014)}text with {non_us_spelling}\n", encoding="utf-8")
+            errors = scan_public_boundary([candidate], include_packages=False)
+            self.assertTrue(any("non-ASCII character" in error for error in errors))
+            self.assertTrue(any("non-US English spelling" in error for error in errors))
+
     def test_claude_archives_are_reproducible(self) -> None:
         with tempfile.TemporaryDirectory(prefix="package-determinism-") as temporary:
             temporary_root = Path(temporary)

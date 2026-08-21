@@ -24,6 +24,38 @@ def _patterns(denylist_path: Path | None = None) -> list[tuple[str, re.Pattern[s
         ("AWS access key", re.compile("AK" + r"IA[0-9A-Z]{16}")),
         ("private key block", re.compile("BEGIN " + r"(?:RSA |EC |OPENSSH )?PRIVATE KEY")),
         ("unsupported universal validation claim", re.compile(r"all (?:clients|validators|surfaces) (?:pass|passed|are supported)", re.IGNORECASE)),
+        ("non-ASCII character", re.compile(r"[^\x00-\x7F]")),
+        (
+            "non-US English spelling",
+            re.compile(
+                r"\b(?:"
+                + "|".join(
+                    (
+                        "author" + "ised",
+                        "author" + "isation",
+                        "behav" + "iour",
+                        "col" + "our",
+                        "optim" + "ise",
+                        "optim" + "ised",
+                        "organi" + "sation",
+                        "lic" + "ence",
+                        "cen" + "tre",
+                        "cata" + "logue",
+                        "ana" + "lyse",
+                        "def" + "ence",
+                        "arte" + "fact",
+                        "ful" + "fil",
+                        "model" + "ling",
+                        "pro" + "gramme",
+                        "serial" + "ise",
+                        "initial" + "ise",
+                        "recog" + "nise",
+                    )
+                )
+                + r")\b",
+                re.IGNORECASE,
+            ),
+        ),
     ]
     selected_denylist = denylist_path or ROOT / ".local-boundary-denylist"
     if selected_denylist.is_file():
