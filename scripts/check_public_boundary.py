@@ -12,6 +12,16 @@ from typing import Iterable
 from cataloglib import ROOT
 
 
+EXACT_TOKEN_PATTERNS = (
+    re.compile(r"```.*?```", re.DOTALL),
+    re.compile(r"`[^`\n]+`"),
+    re.compile(r"\[[^\]\n]+\]\(https?://[^)\s]+\)"),
+    re.compile(r"https?://[^\s<>]+"),
+    re.compile(r"(?<![A-Za-z0-9])(?:[A-Za-z0-9._-]+/)+[A-Za-z0-9._-]+"),
+    re.compile(r"(?<![A-Za-z0-9])--[A-Za-z0-9][A-Za-z0-9-]*"),
+)
+
+
 def _patterns(denylist_path: Path | None = None) -> list[tuple[str, re.Pattern[str]]]:
     # Split sensitive-looking literals so the scanner can inspect its own source.
     patterns = [
@@ -166,10 +176,20 @@ def _scan_text(
 ) -> list[str]:
     errors: list[str] = []
     for finding, pattern in patterns:
-        for match in pattern.finditer(text):
+        selected_text = _mask_exact_tokens(text) if finding == "non-US English spelling" else text
+        for match in pattern.finditer(selected_text):
             line = text.count("\n", 0, match.start()) + 1
             errors.append(f"{label}:{line}: {finding}")
     return errors
+
+
+def _mask_exact_tokens(text: str) -> str:
+    """Blank exact-token contexts while preserving offsets and line numbers."""
+
+    masked = text
+    for pattern in EXACT_TOKEN_PATTERNS:
+        masked = pattern.sub(lambda match: re.sub(r"[^\n]", " ", match.group(0)), masked)
+    return masked
 
 
 def _scan_file(path: Path, label: str, patterns: list[tuple[str, re.Pattern[str]]]) -> list[str]:

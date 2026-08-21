@@ -240,6 +240,26 @@ class CatalogTests(unittest.TestCase):
             self.assertTrue(any("non-US English spelling" in error for error in errors))
             self.assertTrue(any("ASCII control character" in error for error in errors))
 
+    def test_boundary_scan_preserves_exact_external_tokens(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="language-token-boundary-") as temporary:
+            candidate = Path(temporary) / "candidate.md"
+            candidate.write_text(
+                "External references:\n"
+                "- https://example.com/catalogue/reference\n"
+                "- [Acme Colour API](https://example.com/api)\n"
+                "- `assets/catalogue/reference.json`\n",
+                encoding="utf-8",
+            )
+            self.assertEqual([], scan_public_boundary([candidate], include_packages=False))
+
+    def test_boundary_scan_still_rejects_reader_authored_spelling(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="language-prose-boundary-") as temporary:
+            candidate = Path(temporary) / "candidate.md"
+            candidate.write_text("The cata" + "logue describes the API.\n", encoding="utf-8")
+            errors = scan_public_boundary([candidate], include_packages=False)
+            self.assertEqual(1, len(errors))
+            self.assertIn("non-US English spelling", errors[0])
+
     def test_compound_skill_titles_follow_editorial_style(self) -> None:
         expected = {
             "cross-capability-dependency-mapping": "Cross-Capability Dependency Mapping",
