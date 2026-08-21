@@ -1,6 +1,6 @@
 # JovaniPink Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 61 portable agent skills organized into five focused plugins. The catalog is designed for Codex and Claude, with one canonical skill source and generated client-specific distributions.
+The JovaniPink Skills catalog contains 61 portable agent skills organized into five focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
@@ -14,23 +14,31 @@ The five plugins separate broad workflow categories so you can install only what
 4. `jovanipink-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
 5. `jovanipink-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
 
+The counts, groupings, and invocation policies below are reconciled against the [canonical skill sources](../skills/) and the catalog's [metadata parser](../scripts/cataloglib.py). Generated plugin trees are projections, not the inventory authority.
+
+| Plugin | Skill count | Explicit-only skills |
+| --- | ---: | --- |
+| `jovanipink-skills` | 10 | `publish-change-safely`, `skill-import-provenance` |
+| `jovanipink-engineering` | 23 | `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
+| `jovanipink-stack-profiles` | 6 | None |
+| `jovanipink-operations` | 11 | None |
+| `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
+| **Total** | **61** | **12 skills** |
+
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
 
 ## What explicit-only means
 
-An explicit-only skill does not activate automatically from ordinary conversation. You must select it or name it directly.
+An explicit-only skill does not activate automatically from ordinary conversation. You must select it or name it directly on a surface that supports direct selection.
 
-For Codex, direct invocation can look like this:
+| Client surface | Verified selection form |
+| --- | --- |
+| ChatGPT web, desktop, and mobile | Type `@` and select the installed skill. The displayed selector entry can vary by installation and client version. |
+| Codex CLI and IDE extension | `$jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
+| Claude Code CLI and the Code area in Claude Desktop | `/jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
+| Claude.ai | No direct command is claimed. Anthropic documents enabling an uploaded custom skill and automatic selection from a matching request; current catalog evidence does not establish explicit-only behavior on this surface. |
 
-```text
-$jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.
-```
-
-For Claude Code, direct invocation can look like this:
-
-```text
-/jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.
-```
+OpenAI documents `@` selection in ChatGPT and `$` skill mentions in Codex. Anthropic documents `/plugin-name:skill-name` for Claude Code plugin skills. The exact catalog namespaces above are also present in the generated Codex and Claude distributions. See [OpenAI Build skills](https://learn.chatgpt.com/docs/build-skills), [Anthropic Extend Claude with skills](https://code.claude.com/docs/en/slash-commands), and [Anthropic Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
 
 Explicit-only skills coordinate work that may become consequential, such as executing a plan, publishing a repository change, creating a review request, resolving conflicts, guiding protected configuration, or delegating work to other agents.
 
@@ -194,7 +202,7 @@ Determines whether dirty or concurrent repository work should be isolated in a G
 
 ## Stack profiles: jovanipink-stack-profiles
 
-The stack-profiles plugin contains six optional skills. These profiles add language-specific engineering judgment after the repository's real commands and toolchain have been discovered.
+The stack-profiles plugin contains 6 optional skills. These profiles add language-specific engineering judgment after the repository's real commands and toolchain have been discovered.
 
 ### go-engineering-profile
 
