@@ -4,7 +4,9 @@
 
 One skill should express one reusable capability. Put activation context in the frontmatter description and procedural content in the body. Keep `SKILL.md` concise; move substantial lookup material into focused `references/` files.
 
-Use lowercase hyphenated names no longer than 64 characters. The directory name and frontmatter `name` must match.
+Use lowercase, hyphenated names that are no longer than 64 characters. The directory name and frontmatter `name` must match.
+
+Use ASCII, US English, and approachable language in canonical skills, references, comments, evaluations, and documentation. Follow the [editorial style guide](editorial-style.md). Edit canonical sources and regenerate client distributions instead of hand-editing generated files.
 
 ## Required frontmatter
 
@@ -56,13 +58,13 @@ References must be directly linked from `SKILL.md`, use relative paths, and be n
 
 ## Completion checklist
 
-- standards-valid skill structure
-- native Codex and Claude invocation mapping
-- provenance record
-- public-source audit entry when an external catalog informed the capability decision
-- three positive, three near-miss, and one conflict/safety trigger case
-- reference and link validation
-- public/private boundary scan
-- clean-room originality scan
-- generated-tree drift check
-- client-specific smoke evidence where release policy requires it
+- Confirm that the skill structure is valid under the supported standards.
+- Confirm the native Codex and Claude invocation mappings.
+- Add a provenance record.
+- Add a public-source audit entry when an external catalog informed the capability decision.
+- Add three positive, three near-miss, and one conflict or safety trigger case.
+- Run reference and link validation.
+- Run the public and private boundary scan.
+- Run the clean-room originality scan.
+- Confirm that generated trees match the canonical sources.
+- Record client-specific smoke evidence when the release policy requires it.

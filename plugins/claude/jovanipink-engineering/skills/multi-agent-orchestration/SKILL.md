@@ -12,7 +12,7 @@ metadata:
 disable-model-invocation: true
 ---
 
-# Multi Agent Orchestration
+# Multi-Agent Orchestration
 
 Use parallel workers only when their tasks are genuinely independent and the host and user permit delegation.
 

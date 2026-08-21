@@ -6,3 +6,4 @@
 - Keep diagnosis, review, publication, merge, deployment, and provider acceptance as separately authorized actions.
 - Run `python3 scripts/validate.py` and the unit tests before describing the catalog as valid.
 - Record manual client behavior as observed evidence; never infer parity across clients.
+- Use ASCII, US English, and approachable language. Follow `docs/editorial-style.md`.

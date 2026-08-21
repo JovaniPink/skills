@@ -12,6 +12,16 @@ from typing import Iterable
 from cataloglib import ROOT
 
 
+EXACT_TOKEN_PATTERNS = (
+    re.compile(r"```.*?```", re.DOTALL),
+    re.compile(r"`[^`\n]+`"),
+    re.compile(r"\[[^\]\n]+\]\(https?://[^)\s]+\)"),
+    re.compile(r"https?://[^\s<>]+"),
+    re.compile(r"(?<![A-Za-z0-9])(?:[A-Za-z0-9._-]+/)+[A-Za-z0-9._-]+"),
+    re.compile(r"(?<![A-Za-z0-9])--[A-Za-z0-9][A-Za-z0-9-]*"),
+)
+
+
 def _patterns(denylist_path: Path | None = None) -> list[tuple[str, re.Pattern[str]]]:
     # Split sensitive-looking literals so the scanner can inspect its own source.
     patterns = [
@@ -24,6 +34,7 @@ def _patterns(denylist_path: Path | None = None) -> list[tuple[str, re.Pattern[s
         ("AWS access key", re.compile("AK" + r"IA[0-9A-Z]{16}")),
         ("private key block", re.compile("BEGIN " + r"(?:RSA |EC |OPENSSH )?PRIVATE KEY")),
         ("unsupported universal validation claim", re.compile(r"all (?:clients|validators|surfaces) (?:pass|passed|are supported)", re.IGNORECASE)),
+        ("ASCII control character", re.compile(r"[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]")),
         ("non-ASCII character", re.compile(r"[^\x00-\x7F]")),
         (
             "non-US English spelling",
@@ -32,24 +43,97 @@ def _patterns(denylist_path: Path | None = None) -> list[tuple[str, re.Pattern[s
                 + "|".join(
                     (
                         "author" + "ised",
+                        "author" + "ise",
+                        "author" + "ising",
                         "author" + "isation",
+                        "unauthor" + "ised",
                         "behav" + "iour",
+                        "behav" + "iours",
+                        "behav" + "ioural",
                         "col" + "our",
+                        "col" + "ours",
+                        "col" + "oured",
+                        "col" + "ouring",
                         "optim" + "ise",
                         "optim" + "ised",
+                        "optim" + "ising",
+                        "optim" + "isation",
                         "organi" + "sation",
+                        "organi" + "sations",
+                        "organi" + "se",
+                        "organi" + "sed",
+                        "organi" + "sing",
                         "lic" + "ence",
+                        "lic" + "ences",
+                        "lic" + "enced",
+                        "unlic" + "enced",
                         "cen" + "tre",
+                        "cen" + "tres",
+                        "cen" + "tred",
+                        "cen" + "tring",
                         "cata" + "logue",
+                        "cata" + "logues",
                         "ana" + "lyse",
+                        "ana" + "lysed",
+                        "ana" + "lysing",
                         "def" + "ence",
                         "arte" + "fact",
+                        "arte" + "facts",
                         "ful" + "fil",
+                        "ful" + "filled",
+                        "ful" + "filling",
                         "model" + "ling",
+                        "model" + "led",
+                        "model" + "ler",
                         "pro" + "gramme",
+                        "pro" + "grammes",
                         "serial" + "ise",
+                        "serial" + "ised",
+                        "serial" + "ising",
                         "initial" + "ise",
+                        "initial" + "ised",
+                        "initial" + "ising",
                         "recog" + "nise",
+                        "recog" + "nised",
+                        "recog" + "nising",
+                        "travel" + "ling",
+                        "travel" + "led",
+                        "travel" + "ler",
+                        "cancel" + "led",
+                        "cancel" + "ling",
+                        "la" + "bour",
+                        "fa" + "vour",
+                        "fa" + "vours",
+                        "fa" + "voured",
+                        "fa" + "vouring",
+                        "fa" + "vourite",
+                        "fa" + "vourites",
+                        "gr" + "ey",
+                        "among" + "st",
+                        "whil" + "st",
+                        "priorit" + "ise",
+                        "priorit" + "ised",
+                        "priorit" + "ising",
+                        "special" + "ise",
+                        "special" + "ised",
+                        "special" + "ising",
+                        "summar" + "ise",
+                        "summar" + "ised",
+                        "summar" + "ising",
+                        "custom" + "ise",
+                        "custom" + "ised",
+                        "custom" + "ising",
+                        "judge" + "ment",
+                        "label" + "led",
+                        "label" + "ling",
+                        "focus" + "sed",
+                        "focus" + "sing",
+                        "pract" + "ise",
+                        "pract" + "ised",
+                        "pract" + "ising",
+                        "ma" + "ths",
+                        "che" + "que",
+                        "acknowledge" + "ment",
                     )
                 )
                 + r")\b",
@@ -92,10 +176,20 @@ def _scan_text(
 ) -> list[str]:
     errors: list[str] = []
     for finding, pattern in patterns:
-        for match in pattern.finditer(text):
+        selected_text = _mask_exact_tokens(text) if finding == "non-US English spelling" else text
+        for match in pattern.finditer(selected_text):
             line = text.count("\n", 0, match.start()) + 1
             errors.append(f"{label}:{line}: {finding}")
     return errors
+
+
+def _mask_exact_tokens(text: str) -> str:
+    """Blank exact-token contexts while preserving offsets and line numbers."""
+
+    masked = text
+    for pattern in EXACT_TOKEN_PATTERNS:
+        masked = pattern.sub(lambda match: re.sub(r"[^\n]", " ", match.group(0)), masked)
+    return masked
 
 
 def _scan_file(path: Path, label: str, patterns: list[tuple[str, re.Pattern[str]]]) -> list[str]:

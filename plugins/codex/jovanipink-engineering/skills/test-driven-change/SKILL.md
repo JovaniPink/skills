@@ -11,7 +11,7 @@ metadata:
   risk_class: "bounded-execution"
 ---
 
-# Test Driven Change
+# Test-Driven Change
 
 Use executable evidence to prove that a change addresses the intended behavior.
 

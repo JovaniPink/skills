@@ -11,7 +11,7 @@ metadata:
   risk_class: "read-only"
 ---
 
-# Dependency Supply Chain Review
+# Dependency and Supply-Chain Review
 
 Use current primary guidance as a review baseline, then report only what the available evidence supports. Primary authority: [official reference](https://slsa.dev/spec/v1.2/provenance).
 
@@ -34,4 +34,3 @@ Use current primary guidance as a review baseline, then report only what the ava
 ## Output
 
 Return Inventory, Provenance evidence, Findings, Reachability, Build risks, Recommended controls, and Claim limits.
-

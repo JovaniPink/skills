@@ -11,7 +11,7 @@ metadata:
   risk_class: "read-only"
 ---
 
-# Public Private Boundary Review
+# Public-Private Boundary Review
 
 Review both content and provenance. Renaming an internal identifier does not make proprietary logic, data, or operational knowledge public.
 

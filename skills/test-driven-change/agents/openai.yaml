@@ -1,5 +1,5 @@
 interface:
-  display_name: "Test Driven Change"
+  display_name: "Test-Driven Change"
   short_description: "Capture red, green, and refactor evidence"
   default_prompt: "Use $test-driven-change to implement this behavior with test-first evidence."
 policy:

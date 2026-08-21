@@ -11,7 +11,7 @@ metadata:
   risk_class: "read-only"
 ---
 
-# High Signal Technical Writing
+# High-Signal Technical Writing
 
 Make technical writing direct, specific, and trustworthy without flattening its voice.
 
