@@ -1,0 +1,368 @@
+# JovaniPink Skills Catalog: A Reader Guide
+
+The JovaniPink Skills catalog contains 61 portable agent skills organized into five focused plugins. The catalog is designed for Codex and Claude, with one canonical skill source and generated client-specific distributions.
+
+This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
+
+## How the catalog is organized
+
+The five plugins separate broad workflow categories so you can install only what you need:
+
+1. `jovanipink-skills` contains the core verification, research, diagnosis, security, and publication workflows.
+2. `jovanipink-engineering` contains software planning, implementation, review, testing, architecture, and operational-quality workflows.
+3. `jovanipink-stack-profiles` adds focused guidance for specific programming languages and infrastructure tools.
+4. `jovanipink-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
+5. `jovanipink-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
+
+Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
+
+## What explicit-only means
+
+An explicit-only skill does not activate automatically from ordinary conversation. You must select it or name it directly.
+
+For Codex, direct invocation can look like this:
+
+```text
+$jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.
+```
+
+For Claude Code, direct invocation can look like this:
+
+```text
+/jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.
+```
+
+Explicit-only skills coordinate work that may become consequential, such as executing a plan, publishing a repository change, creating a review request, resolving conflicts, guiding protected configuration, or delegating work to other agents.
+
+Direct invocation selects the workflow. It does not authorize every action mentioned by that workflow. Push, merge, deletion, publication, deployment, external communication, credential use, and other protected actions still require separate authority.
+
+## Core skills: jovanipink-skills
+
+The core plugin contains 10 skills for evidence, diagnosis, security, authority, and safe publication.
+
+### authority-boundary-review
+
+Maps authoritative data stores, exact-byte custody, projections, writers, readers, and reconciliation paths. Use it when a system or migration has unclear source-of-truth boundaries or when proposed contracts must be separated from ratified ones.
+
+### claim-verification
+
+Checks whether claims such as complete, fixed, merged, deployed, or live are supported by current evidence. It keeps local checks, commits, pull requests, deployments, and public behavior as separate states.
+
+### cross-stack-quality-gates
+
+Discovers and runs the validation commands that the repository actually defines. It supports Go, Python, Swift, TypeScript and JavaScript, SQL, and Terraform without assuming that every project uses the same commands.
+
+### prelaunch-readiness
+
+Reviews whether a website, service, application, or major relaunch is ready for public use. It separates repository validation from provider configuration, deployment evidence, and observed live behavior.
+
+### public-private-boundary-review
+
+Examines code, documentation, examples, articles, and release artifacts for secrets, internal identifiers, private operational details, proprietary material, and unsupported public claims. Use it before open-sourcing or publishing work that may combine public and private context.
+
+### publish-change-safely
+
+Invocation: `explicit-only`.
+
+Verifies GitHub identity, repository, visibility, remote, branch, diff scope, checks, commit, push, and pull request state before publishing a change. Selecting the skill does not automatically authorize a push, PR, merge, or release.
+
+### skill-import-provenance
+
+Invocation: `explicit-only`.
+
+Reviews a skill's source, license, revision, authorship, security posture, local changes, and re-review policy before adaptation. Use it when importing, vendoring, mirroring, or independently adapting a capability from another catalog.
+
+### skill-security-review
+
+Audits an agent skill or plugin for prompt manipulation, unsafe commands, excessive file or network access, dependencies, hooks, permissions, data exposure, and deceptive behavior. This skill reviews agent packages, not application security.
+
+### source-grounded-research
+
+Researches a question using current primary sources while preserving URLs, dates, units, provenance, and uncertainty. Use it for web investigations, comparisons, recommendations, and fact checks where current evidence matters.
+
+### systematic-diagnosis
+
+Reproduces and narrows a defect, regression, failure, or confusing behavior to establish a causal boundary. It reports evidence and does not silently turn diagnosis into implementation.
+
+## Engineering skills: jovanipink-engineering
+
+The engineering plugin contains 23 skills covering the software lifecycle, engineering quality, architecture, review, and controlled execution.
+
+### accessibility-review
+
+Reviews web or application accessibility using WCAG 2.2 success criteria, semantic structure, keyboard behavior, assistive-technology needs, visual presentation, and user impact. It reports evidence without claiming full conformance from incomplete testing.
+
+### api-contract-compatibility-review
+
+Reviews API, event, schema, and client changes for backward, forward, and rollout compatibility. Use it when producers and consumers may update independently or when a change can alter data shape, timing, errors, or meaning.
+
+### application-security-review
+
+Reviews application and service security using current threat evidence and verifiable controls. It covers authentication, authorization, input handling, data protection, sessions, errors, configuration, and abuse risks.
+
+### code-change-review
+
+Reviews an exact diff for correctness, regressions, security, compatibility, test quality, and maintainability. It produces evidence-backed findings rather than silently changing the code under review.
+
+### data-migration-readiness
+
+Reviews a proposed data or schema migration for authority, compatibility, sequencing, reconciliation, rollback, and operational evidence. It can assess a migration but cannot execute or ratify it without separate authority.
+
+### dependency-supply-chain-review
+
+Reviews software dependencies and build inputs for provenance, integrity, maintenance, vulnerability, and compromise risk. It covers manifests, lockfiles, registries, CI actions, artifacts, and update policy.
+
+### finish-development-branch
+
+Invocation: `explicit-only`.
+
+Reconciles a development branch and presents evidence-based choices for creating a PR, merging, retaining the branch, or cleaning it up. It does not assume authority to push, merge, delete, or abandon work.
+
+### implementation-planning
+
+Produces a decision-complete implementation plan grounded in repository and platform evidence. A plan includes interfaces, ordered steps, tests, rollout controls, checkpoints, stopping conditions, and unresolved decisions.
+
+### merge-conflict-reconciliation
+
+Invocation: `explicit-only`.
+
+Reconciles an active Git merge, rebase, or cherry-pick conflict by preserving both sides' intent and validating the combined behavior. Staging, continuing, committing, and pushing remain separately authorized actions.
+
+### module-interface-design
+
+Designs or reviews module boundaries, vocabulary, interfaces, and hidden implementation details. Use it when callers face unstable contracts, responsibilities are unclear, or concepts leak across layers.
+
+### multi-agent-orchestration
+
+Invocation: `explicit-only`.
+
+Coordinates authorized agents on independent, bounded tasks with explicit ownership, evidence contracts, cost awareness, and final reconciliation. It avoids overlapping file ownership, tightly sequential delegation, and irreversible worker decisions.
+
+### observability-design
+
+Reviews or designs logs, metrics, traces, alerts, and user-impact signals. The goal is to help operators detect, explain, and respond to failures instead of collecting telemetry without a clear operational purpose.
+
+### operational-readiness-review
+
+Reviews whether a service or application is ready for release and sustained ownership. It examines objectives, dependencies, monitoring, alerts, capacity, failure handling, incidents, runbooks, recovery, and support boundaries.
+
+### performance-scalability-diagnosis
+
+Diagnoses latency, throughput, resource use, contention, and capacity problems using measurements and competing hypotheses. It does not silently optimize code before the cause is established.
+
+### plan-execution
+
+Invocation: `explicit-only`.
+
+Executes a named and approved implementation plan with checkpoints, validation, deviation tracking, and strict stopping conditions. It stops when a deviation changes scope, interfaces, authority, security, cost, publication, deployment, or destructive behavior.
+
+### problem-framing
+
+Defines users, desired outcomes, evidence, constraints, unknowns, options, and measurable success before implementation. Use it when a request matters but the actual problem is not yet decision-ready.
+
+### prototype-spike
+
+Invocation: `explicit-only`.
+
+Builds a bounded and disposable experiment to answer one named uncertainty. A successful prototype provides learning; it does not prove production readiness or authorize adoption.
+
+### request-code-review
+
+Invocation: `explicit-only`.
+
+Prepares an evidence-bounded review packet containing the exact scope, validation, risks, and unresolved decisions. It sends or publishes the request only when that external action is separately authorized.
+
+### respond-to-code-review
+
+Evaluates review feedback against current code, tests, contracts, and authority before accepting, rejecting, or deferring it. It treats review comments as claims to verify rather than commands to follow automatically.
+
+### test-driven-change
+
+Guides feature and defect work through red, green, and refactor evidence. It also provides a clear exception path when a test-first approach is unsuitable or cannot represent the behavior responsibly.
+
+### test-quality-review
+
+Reviews whether tests contain meaningful assertions, detect relevant defects, remain isolated and deterministic, cover important risks, and have reasonable maintenance cost. Passing tests alone do not prove that the tests are strong.
+
+### test-strategy
+
+Designs risk-proportionate coverage across unit, integration, contract, end-to-end, property, migration, and manual testing. It explains why each layer is or is not needed.
+
+### worktree-isolation
+
+Determines whether dirty or concurrent repository work should be isolated in a Git worktree. It can recommend an isolation approach, but creating, moving, repairing, locking, or removing a worktree requires explicit authority.
+
+## Stack profiles: jovanipink-stack-profiles
+
+The stack-profiles plugin contains six optional skills. These profiles add language-specific engineering judgment after the repository's real commands and toolchain have been discovered.
+
+### go-engineering-profile
+
+Provides focused Go guidance for modules, packages, concurrency, APIs, tests, dependencies, compatibility, and builds. It defers exact commands to repository evidence.
+
+### postgresql-sql-engineering-profile
+
+Provides PostgreSQL and SQL guidance for schemas, queries, transactions, indexing, migrations, compatibility, and database testing. It does not mutate shared data merely to validate a claim.
+
+### python-engineering-profile
+
+Provides Python guidance for packaging, typing, asynchronous behavior, tests, dependencies, compatibility, and builds. It respects the repository's selected tools and configuration.
+
+### swift-swiftui-engineering-profile
+
+Provides Swift and SwiftUI guidance for packages, applications, concurrency, UI state, tests, compatibility, and builds. Claims about the Apple toolchain require observed macOS evidence.
+
+### terraform-engineering-profile
+
+Provides Terraform guidance for modules, providers, state, plans, upgrades, compatibility, and infrastructure review. Successful validation or planning does not authorize an apply.
+
+### typescript-javascript-engineering-profile
+
+Provides TypeScript and JavaScript guidance for Node and browser packages, type safety, asynchronous behavior, tests, dependencies, compatibility, and builds. It follows the repository's package manager and scripts.
+
+## Operations skills: jovanipink-operations
+
+The operations plugin contains 11 skills for requirements, decisions, measurement, adoption, incidents, stakeholder communication, and operating-model work.
+
+### change-adoption-planning
+
+Plans change around affected people, desired behavior, capability, incentives, support, measurement, and feedback. Use it when technical delivery alone will not create the intended outcome.
+
+### cross-capability-dependency-mapping
+
+Maps dependencies across products, teams, data, platforms, decisions, and operating capabilities. It makes hidden sequencing, ownership, authority, and failure paths visible.
+
+### data-authority-migration-ratification
+
+Prepares a proposed data-authority and migration decision record covering owners, writers, readers, cutover, reconciliation, rollback, and acceptance. It supports a decision owner but cannot declare the proposal ratified.
+
+### decision-governance-records
+
+Creates or reviews decision records containing context, options, evidence, ownership, status, consequences, and review triggers. It distinguishes proposed, ratified, rejected, superseded, and unresolved decisions.
+
+### iteration-postlaunch-learning
+
+Plans and synthesizes learning from observed postlaunch behavior, incidents, feedback, experiments, and outcome measures. It helps decide what to retain, change, investigate, or stop.
+
+### kpi-outcome-measurement
+
+Defines outcome measures with precise units, populations, baselines, targets, data authority, and decision use. It distinguishes activity, output, outcome, and impact.
+
+### production-incident-analysis
+
+Reconstructs a production incident from timestamped evidence, system behavior, contributing conditions, response actions, and recovery. It identifies justified learning and remediation without manufacturing certainty or blame.
+
+### requirements-synthesis
+
+Converts interviews, documents, issues, observations, and constraints into traceable requirements. It keeps proposals and preferences separate from ratified scope.
+
+### stakeholder-technical-communication
+
+Translates technical evidence for a named stakeholder and decision. It preserves uncertainty, risk, and appropriate detail while avoiding unnecessary implementation depth or unsupported confidence.
+
+### value-attribution-evidence-maturity
+
+Evaluates claims about value, savings, benefits, risk reduction, and outcomes against an evidence-maturity model. It separates observations, estimates, contribution, attribution, and causal claims.
+
+### workshop-planning-synthesis
+
+Plans a workshop around a concrete decision or learning objective and records its evidence afterward. It supports agendas, prework, facilitation, participation, decisions, actions, and follow-up without inventing consensus.
+
+## Reasoning skills: jovanipink-reasoning
+
+The reasoning plugin contains 11 skills for shared understanding, code explanation, impact analysis, decision evidence, writing, configuration, and continuity.
+
+### alignment-interview
+
+Establishes a shared, decision-ready understanding by inspecting available evidence and asking one material question at a time. It stops when the remaining unknowns no longer prevent a responsible next decision.
+
+### change-impact-analysis
+
+Traces the blast radius of a proposed or completed change across callers, contracts, storage, jobs, clients, security, rollout, and operations. It uses traced dependencies rather than unsupported speculation.
+
+### codebase-explanation
+
+Explains how existing code works through entry points, ownership, control flow, data flow, state, interfaces, failures, and concrete files. It explains current mechanics, not unverified historical intent.
+
+### decision-evidence-trace
+
+Invocation: `explicit-only`.
+
+Maintains a bounded decision and evidence trail for long-running work. It records decisions, public reasons, evidence, results, owners, and review triggers without storing hidden reasoning, secrets, raw transcripts, or unrelated activity.
+
+### design-rationale-investigation
+
+Investigates why code, architecture, or an operational design exists by comparing historical evidence, current behavior, constraints, and competing hypotheses. It does not infer original intent from code shape alone.
+
+### domain-vocabulary-modeling
+
+Builds a proposed shared vocabulary from code, documents, and stakeholder language. It records concepts, definitions, relationships, invariants, authorities, examples, and contradictions without pretending the vocabulary is ratified.
+
+### guided-configuration
+
+Invocation: `explicit-only`.
+
+Guides a person through configuration that requires their account, device, approval, credential, or external interface. It verifies each observable result while leaving protected steps with the authorized person.
+
+### high-signal-technical-writing
+
+Edits technical prose for clarity, evidence density, specificity, rhythm, and audience fit while preserving meaning and repository voice. It removes vague, repetitive, promotional, or machine-generic wording without pretending that style proves authorship.
+
+### portable-skill-authoring
+
+Designs or revises a portable Agent Skill with precise routing, invocation policy, focused references, provenance, security boundaries, evaluations, and generated client adapters. It is for cross-client skill work rather than ordinary documentation.
+
+### task-handoff
+
+Invocation: `explicit-only`.
+
+Creates a precise continuation record for another session, client, person, or agent. It includes exact revisions, current state, evidence, decisions, blockers, and authority boundaries so the recipient does not have to rediscover or overstate progress.
+
+### workflow-retrospective
+
+Invocation: `explicit-only`.
+
+Reviews completed or paused work to identify what helped, what failed, why it happened, and which bounded improvement to test next. It does not mine private history or automatically rewrite policies and skills.
+
+## Choosing a skill
+
+Start by describing the actual outcome you need. The client can use an implicitly invocable skill when the request matches its routing description.
+
+Use direct invocation when:
+
+- the skill is marked `explicit-only`;
+- you want to guarantee that a specific workflow is selected;
+- several skills have overlapping descriptions; or
+- the work requires an especially clear stopping boundary.
+
+Installing every plugin is not required. A focused installation reduces discovery overhead and lowers the chance of routing collisions.
+
+## Important authority boundaries
+
+The catalog coordinates judgment and workflow. It does not replace permissions, tests, repository protections, access controls, or human decisions.
+
+Keep these states separate:
+
+- A local change is not necessarily committed.
+- A commit is not necessarily pushed.
+- A pushed branch is not necessarily represented by a pull request.
+- A pull request is not necessarily reviewed or merged.
+- A merge is not necessarily deployed.
+- A deployment is not necessarily healthy or publicly reachable.
+- A prototype is not production evidence.
+- A proposal is not a ratified decision.
+- A worker report is not verified integration evidence.
+
+## Further reading
+
+- [JovaniPink Skills repository](https://github.com/JovaniPink/skills)
+- [How to use the catalog](README.md)
+- [Architecture](architecture.md)
+- [Authoring guide](authoring.md)
+- [Editorial style](editorial-style.md)
+- [Security model](security-model.md)
+- [Observed client evidence](manual-smoke-tests.md)
+- [Agent Skills specification](https://agentskills.io/specification)
+- [OpenAI skill-building documentation](https://learn.chatgpt.com/docs/build-skills)
+- [OpenAI plugin documentation](https://developers.openai.com/plugins/build/plugins)
+- [Claude Code skills documentation](https://code.claude.com/docs/en/slash-commands)
