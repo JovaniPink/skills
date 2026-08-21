@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.4.0",
-  "source_commit": "f6199c3e1317d252dafb7132c794bf1a6dcc24ed",
+  "source_commit": "540042bff39971b7f849e725d608e85ab163b985",
   "created_on": "2026-08-21",
   "artifacts": [
     {
@@ -17,7 +17,7 @@
     {
       "kind": "file",
       "path": "catalog/compatibility.json",
-      "sha256": "051cfde3a225fea49715ae97e4c081dc7765fea316d18a04547db2093734e787"
+      "sha256": "b65e57dad66fbbd9fbb176b22133d12272a5f71eb9fcf5d290f8ef09630c8833"
     },
     {
       "kind": "file",

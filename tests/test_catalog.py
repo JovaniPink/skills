@@ -99,10 +99,23 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(matrix["summary"]["total"], len(records))
             self.assertEqual(len(records), len({record["case_id"] for record in records}))
             self.assertNotIn("not_run", {record["result"] for record in records})
-            self.assertEqual(
-                {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"},
-                {record["surface"] for record in records},
-            )
+            expected_surfaces = {
+                "Codex CLI",
+                "Codex Desktop",
+                "Claude Code CLI",
+                "Claude Code Desktop",
+                "Claude.ai",
+            }
+            if matrix["catalog_version"] == "0.4.0":
+                expected_surfaces.add("ChatGPT Web")
+            self.assertEqual(expected_surfaces, {record["surface"] for record in records})
+
+    def test_v04_records_chatgpt_web_as_a_distinct_surface(self) -> None:
+        matrix = json.loads((ROOT / "docs" / "client-observations-v0.4.json").read_text(encoding="utf-8"))
+        web_records = [record for record in matrix["records"] if record["surface"] == "ChatGPT Web"]
+        self.assertEqual(6, len(web_records))
+        self.assertEqual({"blocked"}, {record["result"] for record in web_records})
+        self.assertTrue(any("no skills" in record["invocation_behavior"] for record in web_records))
 
     def test_boundary_scan_covers_publishable_root_and_local_denylist(self) -> None:
         publishable = {path.relative_to(ROOT).as_posix() for path in _publishable_paths(ROOT)}
