@@ -9,17 +9,16 @@ import shutil
 from pathlib import Path
 
 from cataloglib import (
-    EXPLICIT_SKILLS,
+    CATALOG_NAME,
     PLUGIN_CATEGORY,
-    PLUGIN_NAME,
+    PLUGIN_SPECS,
     ROOT,
     SKILLS,
     VERSION,
     add_claude_explicit_control,
+    read_skill_metadata,
+    skills_by_plugin,
 )
-
-
-DESCRIPTION = "Portable evidence, diagnosis, quality, publication, and skill-security workflows."
 
 
 def _write_json(path: Path, value: object) -> None:
@@ -31,14 +30,14 @@ def marketplace_documents() -> tuple[dict[str, object], dict[str, object]]:
     """Return the client-native marketplace documents for tracked output."""
 
     codex = {
-        "name": PLUGIN_NAME,
-        "interface": {"displayName": "JovaniPink Skills"},
+        "name": CATALOG_NAME,
+        "interface": {"displayName": "JovaniPink Skills Catalog"},
         "plugins": [
             {
-                "name": PLUGIN_NAME,
+                "name": plugin,
                 "source": {
                     "source": "local",
-                    "path": "./plugins/codex/jovanipink-skills",
+                    "path": f"./plugins/codex/{plugin}",
                 },
                 "policy": {
                     "installation": "AVAILABLE",
@@ -46,40 +45,42 @@ def marketplace_documents() -> tuple[dict[str, object], dict[str, object]]:
                 },
                 "category": PLUGIN_CATEGORY,
             }
+            for plugin in skills_by_plugin()
         ],
     }
     claude = {
-        "name": PLUGIN_NAME,
-        "description": "Portable evidence-oriented workflow skills for software, research, and operations.",
+        "name": CATALOG_NAME,
+        "description": "Portable workflow skills for software, research, and operations.",
         "owner": {"name": "Jovani Pink", "url": "https://jovanipink.com"},
         "plugins": [
             {
-                "name": PLUGIN_NAME,
-                "source": "./plugins/claude/jovanipink-skills",
-                "description": DESCRIPTION,
+                "name": plugin,
+                "source": f"./plugins/claude/{plugin}",
+                "description": PLUGIN_SPECS[plugin]["description"],
                 "version": VERSION,
             }
+            for plugin in skills_by_plugin()
         ],
     }
     return codex, claude
 
 
-def _reset_directory(path: Path, allowed_parent: Path) -> None:
+def _reset_directory(path: Path, allowed_parent: Path, allowed_names: set[str]) -> None:
     path = path.resolve()
     allowed_parent = allowed_parent.resolve()
-    if path.parent != allowed_parent or path.name != PLUGIN_NAME:
+    if path.parent != allowed_parent or path.name not in allowed_names:
         raise ValueError(f"refusing to reset unexpected distribution path: {path}")
     if path.exists():
         shutil.rmtree(path)
     path.mkdir(parents=True)
 
 
-def _copy_codex_skill(source: Path, target: Path, skill: str) -> None:
+def _copy_codex_skill(source: Path, target: Path, skill: str, plugin: str) -> None:
     shutil.copytree(source, target)
     interface_path = target / "agents" / "openai.yaml"
     interface = interface_path.read_text(encoding="utf-8")
     interface_path.write_text(
-        interface.replace(f"${skill}", f"${PLUGIN_NAME}:{skill}"),
+        interface.replace(f"${skill}", f"${plugin}:{skill}"),
         encoding="utf-8",
     )
 
@@ -101,67 +102,74 @@ def _copy_claude_skill(source: Path, target: Path, explicit: bool) -> None:
             shutil.copy2(item, destination)
 
 
-def build(output_root: Path, write_marketplaces: bool = False) -> tuple[Path, Path]:
+def build(output_root: Path, write_marketplaces: bool = False) -> tuple[dict[str, Path], dict[str, Path]]:
     output_root = output_root.resolve()
     codex_parent = output_root / "codex"
     claude_parent = output_root / "claude"
-    codex_plugin = codex_parent / PLUGIN_NAME
-    claude_plugin = claude_parent / PLUGIN_NAME
     codex_parent.mkdir(parents=True, exist_ok=True)
     claude_parent.mkdir(parents=True, exist_ok=True)
-    _reset_directory(codex_plugin, codex_parent)
-    _reset_directory(claude_plugin, claude_parent)
+    grouped = skills_by_plugin()
+    allowed_names = set(grouped)
+    codex_plugins = {plugin: codex_parent / plugin for plugin in grouped}
+    claude_plugins = {plugin: claude_parent / plugin for plugin in grouped}
+    for path in codex_plugins.values():
+        _reset_directory(path, codex_parent, allowed_names)
+    for path in claude_plugins.values():
+        _reset_directory(path, claude_parent, allowed_names)
 
-    for skill in SKILLS:
-        source = ROOT / "skills" / skill
-        if not source.is_dir():
-            raise FileNotFoundError(f"missing canonical skill: {source}")
-        _copy_codex_skill(source, codex_plugin / "skills" / skill, skill)
-        _copy_claude_skill(source, claude_plugin / "skills" / skill, skill in EXPLICIT_SKILLS)
+    for plugin, skills in grouped.items():
+        codex_plugin = codex_plugins[plugin]
+        claude_plugin = claude_plugins[plugin]
+        for skill in skills:
+            source = ROOT / "skills" / skill
+            metadata = read_skill_metadata(source)
+            _copy_codex_skill(source, codex_plugin / "skills" / skill, skill, plugin)
+            _copy_claude_skill(source, claude_plugin / "skills" / skill, metadata["invocation"] == "explicit")
 
-    _write_json(
-        codex_plugin / ".codex-plugin" / "plugin.json",
+        spec = PLUGIN_SPECS[plugin]
+        _write_json(
+            codex_plugin / ".codex-plugin" / "plugin.json",
         {
-            "name": PLUGIN_NAME,
+            "name": plugin,
             "version": VERSION,
-            "description": DESCRIPTION,
+            "description": spec["description"],
             "author": {"name": "Jovani Pink", "url": "https://jovanipink.com"},
             "homepage": "https://github.com/JovaniPink/skills",
             "repository": "https://github.com/JovaniPink/skills",
             "license": "MIT",
             "skills": "./skills/",
             "interface": {
-                "displayName": "JovaniPink Skills",
-                "shortDescription": "Evidence-oriented workflows for Codex",
-                "longDescription": DESCRIPTION,
+                "displayName": spec["display_name"],
+                "shortDescription": spec["short_description"],
+                "longDescription": spec["description"],
                 "developerName": "Jovani Pink",
                 "category": PLUGIN_CATEGORY,
                 "capabilities": ["Skills"],
                 "defaultPrompt": [
-                    "Help me choose and use a JovaniPink workflow skill."
+                    f"Help me choose and use a {spec['display_name']} workflow skill."
                 ],
             },
         },
-    )
-    _write_json(
-        claude_plugin / ".claude-plugin" / "plugin.json",
+        )
+        _write_json(
+            claude_plugin / ".claude-plugin" / "plugin.json",
         {
-            "name": PLUGIN_NAME,
+            "name": plugin,
             "version": VERSION,
-            "description": DESCRIPTION,
+            "description": spec["description"],
             "author": {"name": "Jovani Pink", "url": "https://jovanipink.com"},
             "homepage": "https://github.com/JovaniPink/skills",
             "repository": "https://github.com/JovaniPink/skills",
             "license": "MIT",
-            "keywords": ["skills", "research", "diagnosis", "quality", "security"],
+            "keywords": spec["keywords"],
         },
-    )
+        )
 
     if write_marketplaces:
         codex_marketplace, claude_marketplace = marketplace_documents()
         _write_json(ROOT / ".agents" / "plugins" / "marketplace.json", codex_marketplace)
         _write_json(ROOT / ".claude-plugin" / "marketplace.json", claude_marketplace)
-    return codex_plugin, claude_plugin
+    return codex_plugins, claude_plugins
 
 
 def main() -> int:

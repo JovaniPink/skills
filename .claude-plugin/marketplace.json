@@ -1,16 +1,22 @@
 {
   "name": "jovanipink-skills",
-  "description": "Portable evidence-oriented workflow skills for software, research, and operations.",
+  "description": "Portable workflow skills for software, research, and operations.",
   "owner": {
     "name": "Jovani Pink",
     "url": "https://jovanipink.com"
   },
   "plugins": [
     {
+      "name": "jovanipink-engineering",
+      "source": "./plugins/claude/jovanipink-engineering",
+      "description": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
+      "version": "0.2.0"
+    },
+    {
       "name": "jovanipink-skills",
       "source": "./plugins/claude/jovanipink-skills",
       "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

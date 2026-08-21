@@ -1,7 +1,7 @@
 {
   "$schema": "./schema.json",
   "catalog_version": 1,
-  "reviewed_on": "2026-08-20",
+  "reviewed_on": "2026-08-21",
   "entries": [
     {
       "skill": "claim-verification",
@@ -142,6 +142,206 @@
       "security_review": "APPROVE: explicit-only trust decision; does not install or execute reviewed material.",
       "rereview_triggers": ["import behavior change", "license-policy change", "execution or permission change"],
       "revocation": "Disable distribution if it imports material without a supported license and pinned review record."
+    },
+    {
+      "skill": "problem-framing",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "implementation-planning",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "plan-execution",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "test-driven-change",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "test-strategy",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Agent Skills specification"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "worktree-isolation",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://git-scm.com/docs/git-worktree",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Git worktree documentation"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "request-code-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "GitHub pull request review documentation"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "respond-to-code-review",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "GitHub pull request review documentation"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "finish-development-branch",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://git-scm.com/docs/git-worktree",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "Git worktree documentation"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
+    },
+    {
+      "skill": "multi-agent-orchestration",
+      "disposition": "covered",
+      "implementation_method": "clean-room",
+      "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+      "upstream_license": "No source text imported; public documentation was used as an authority for independently authored workflow boundaries.",
+      "pinned_revision": "retrieved-2026-08-21",
+      "reviewed_on": "2026-08-21",
+      "reviewed_material": [
+        "OpenAI subagent documentation"
+      ],
+      "local_changes": "Independently authored portable workflow with explicit authority, evidence, and stopping boundaries.",
+      "security_review": "APPROVE: instruction-only workflow with no hooks, bundled agents, executables, tool grants, or automatic external actions.",
+      "rereview_triggers": [
+        "source revision changes",
+        "invocation or permission changes",
+        "new executable or external-write behavior"
+      ],
+      "revocation": "Remove or revise if the workflow gains unsupported authority, unsafe execution, or unverifiable client claims."
     }
   ]
 }

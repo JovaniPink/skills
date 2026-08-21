@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_distributions import build, marketplace_documents  # noqa: E402
-from cataloglib import EXPLICIT_SKILLS, PLUGIN_NAME, SKILLS, read_skill_metadata  # noqa: E402
+from cataloglib import EXPLICIT_SKILLS, SKILLS, read_skill_metadata, skills_by_plugin  # noqa: E402
 from check_generated import check as check_generated  # noqa: E402
 from check_public_boundary import _publishable_paths, scan as scan_public_boundary  # noqa: E402
 from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E402
@@ -35,15 +35,21 @@ class CatalogTests(unittest.TestCase):
     def test_native_invocation_controls_match_canonical_metadata(self) -> None:
         for skill in SKILLS:
             canonical = read_skill_metadata(ROOT / "skills" / skill)
-            claude = read_skill_metadata(ROOT / "plugins" / "claude" / PLUGIN_NAME / "skills" / skill)
+            plugin = canonical["plugin"]
+            claude = read_skill_metadata(ROOT / "plugins" / "claude" / plugin / "skills" / skill)
             self.assertEqual("explicit" if skill in EXPLICIT_SKILLS else "implicit", canonical["invocation"])
             self.assertEqual("true" if skill in EXPLICIT_SKILLS else "false", claude["claude_explicit"])
 
     def test_clean_generation_and_packaging_in_temporary_directory(self) -> None:
         with tempfile.TemporaryDirectory(prefix="skill-catalog-test-") as temporary:
             temporary_root = Path(temporary)
-            _, claude_plugin = build(temporary_root / "plugins", write_marketplaces=False)
-            self.assertEqual(set(SKILLS), {path.name for path in (claude_plugin / "skills").iterdir()})
+            _, claude_plugins = build(temporary_root / "plugins", write_marketplaces=False)
+            generated = {
+                path.name
+                for plugin in claude_plugins.values()
+                for path in (plugin / "skills").iterdir()
+            }
+            self.assertEqual(set(SKILLS), generated)
             archives = package(temporary_root / "archives")
             self.assertEqual(len(SKILLS), len(archives))
 
@@ -57,12 +63,13 @@ class CatalogTests(unittest.TestCase):
         ).stdout
         self.assertEqual(before, after)
         codex, _ = marketplace_documents()
-        entry = codex["plugins"][0]
-        self.assertEqual(
-            {"source": "local", "path": "./plugins/codex/jovanipink-skills"},
-            entry["source"],
-        )
-        self.assertEqual({"installation": "AVAILABLE", "authentication": "ON_INSTALL"}, entry["policy"])
+        self.assertEqual(set(skills_by_plugin()), {entry["name"] for entry in codex["plugins"]})
+        for entry in codex["plugins"]:
+            self.assertEqual(
+                {"source": "local", "path": f"./plugins/codex/{entry['name']}"},
+                entry["source"],
+            )
+            self.assertEqual({"installation": "AVAILABLE", "authentication": "ON_INSTALL"}, entry["policy"])
 
     def test_schema_validation_enforces_types_enums_dates_and_unknown_fields(self) -> None:
         schema = json.loads((ROOT / "provenance" / "schema.json").read_text(encoding="utf-8"))

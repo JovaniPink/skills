@@ -7,7 +7,7 @@ import hashlib
 import zipfile
 from pathlib import Path
 
-from cataloglib import PLUGIN_NAME, ROOT, SKILLS, VERSION
+from cataloglib import ROOT, SKILLS, VERSION, read_skill_metadata
 
 
 ARCHIVE_TIME = (2026, 1, 1, 0, 0, 0)
@@ -21,7 +21,6 @@ def _write_file(archive: zipfile.ZipFile, source: Path, name: str) -> None:
 
 
 def package(output_dir: Path | None = None) -> list[Path]:
-    source_root = ROOT / "plugins" / "claude" / PLUGIN_NAME / "skills"
     output_dir = (output_dir or ROOT / "dist" / "claude-ai").resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
     for existing in output_dir.glob("*.zip"):
@@ -32,6 +31,8 @@ def package(output_dir: Path | None = None) -> list[Path]:
 
     archives: list[Path] = []
     for skill in SKILLS:
+        plugin = read_skill_metadata(ROOT / "skills" / skill)["plugin"]
+        source_root = ROOT / "plugins" / "claude" / plugin / "skills"
         source = source_root / skill
         if not (source / "SKILL.md").is_file():
             raise FileNotFoundError(f"generate the Claude distribution first: {source}")

@@ -1,0 +1,26 @@
+{
+  "name": "jovanipink-engineering",
+  "version": "0.2.0",
+  "description": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "JovaniPink Engineering",
+    "shortDescription": "Engineering lifecycle workflows for Codex",
+    "longDescription": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
+    "developerName": "Jovani Pink",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Help me choose and use a JovaniPink Engineering workflow skill."
+    ]
+  }
+}

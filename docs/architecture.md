@@ -13,8 +13,8 @@
 `scripts/build_distributions.py` creates two tracked adapters:
 
 ```text
-skills/ --> plugins/codex/jovanipink-skills/skills/
-        --> plugins/claude/jovanipink-skills/skills/
+skills/ --> plugins/codex/<metadata.plugin>/skills/
+        --> plugins/claude/<metadata.plugin>/skills/
 ```
 
 The Codex copy retains `agents/openai.yaml` and rewrites its direct-invocation prompt to the installed plugin namespace. The Claude copy omits that client-specific directory and adds `disable-model-invocation: true` to explicit-only skill frontmatter. No client adapter changes the workflow body.

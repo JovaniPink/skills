@@ -4,7 +4,7 @@ description: Review a system or migration to identify authoritative stores, exac
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.1.0"
+  version: "0.2.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "original"

@@ -54,6 +54,21 @@
               },
               "additionalProperties": false
             }
+          },
+          "output_rubric": {
+            "type": "array",
+            "minItems": 3,
+            "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "baseline_comparison": {
+            "type": "object",
+            "required": ["status", "note"],
+            "properties": {
+              "status": {"enum": ["pass", "fail", "blocked", "not_supported", "not_run"]},
+              "note": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false

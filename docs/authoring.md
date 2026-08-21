@@ -52,7 +52,7 @@ The canonical default prompt must mention the skill with `$skill-name`. Set the 
 
 ## References and scripts
 
-References must be directly linked from `SKILL.md`, use relative paths, and be necessary to execute the workflow. Version 0.1 does not permit skill-level scripts, hooks, MCP servers, dependencies, or executable payloads.
+References must be directly linked from `SKILL.md`, use relative paths, and be necessary to execute the workflow. The catalog does not permit skill-level scripts, hooks, MCP servers, dependencies, bundled agents, or executable payloads.
 
 ## Completion checklist
 

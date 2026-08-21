@@ -1,13 +1,13 @@
 {
   "$schema": "./roadmap-schema.json",
   "roadmap_version": 1,
-  "updated_on": "2026-08-20",
+  "updated_on": "2026-08-21",
   "tracks": [
     {
       "id": "engineering-lifecycle",
       "target_release": "v0.2",
       "plugin": "jovanipink-engineering",
-      "status": "planned",
+      "status": "released",
       "skills": [
         "problem-framing",
         "implementation-planning",
