@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -434,6 +435,26 @@ class CatalogTests(unittest.TestCase):
         errors, report = check_upstream_freshness(online=False)
         self.assertEqual([], errors)
         self.assertEqual("pass", report["result"])
+
+    def test_freshness_comparison_preserves_the_pinned_marker_kind(self) -> None:
+        from check_upstream_freshness import _fetch_marker
+
+        class Response:
+            headers = {"ETag": '"transient"', "Last-Modified": "Sun, 23 Aug 2026 18:16:51 GMT"}
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self) -> bytes:
+                return b"stable authority content"
+
+        with patch("check_upstream_freshness.urllib.request.urlopen", return_value=Response()):
+            kind, value = _fetch_marker("https://example.com/specification", preferred_kind="content-sha256")
+        self.assertEqual("content-sha256", kind)
+        self.assertEqual(hashlib.sha256(b"stable authority content").hexdigest(), value)
 
     def test_upstream_freshness_uses_primary_authority_urls_only(self) -> None:
         errors, report = check_upstream_freshness(online=False)

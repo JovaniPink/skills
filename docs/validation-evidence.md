@@ -2,6 +2,34 @@
 
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
+## v0.7 tested source
+
+- Source commit: `ad6bf563715290e337fdc41837abfece7f13dcbc`
+- Catalog/plugin version: `0.7.0`
+- Date: 2026-08-23
+- Canonical skills: 62 across five optional plugins; 24 engineering skills and 13 explicit-only skills
+- Manual matrix: 6 terminal suite rows; 0 pass, 6 blocked, 0 fail, 0 not supported, 0 not run
+- Acceptance: BLOCKED until fresh installed-client discovery, activation, reference-loading, and refusal observations are separately authorized and recorded
+
+## v0.7 automated repository checks
+
+- `python3 scripts/build_distributions.py`: PASS - 62 Codex and 62 Claude skill projections generated
+- `python3 scripts/package_claude_ai.py`: PASS - 62 deterministic, individually nested Claude.ai ZIPs generated with SHA-256 checksums
+- `python3 scripts/check_public_boundary.py`: PASS - canonical, documentation, generated, and packaged surfaces passed the public/private boundary scan
+- `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed generic originality checks
+- `python3 scripts/check_repository_independence.py`: PASS - only Jovani-owned repository links and pinned CI Action provenance remain as repository-link exceptions
+- `python3 scripts/validate.py`: PASS - schemas, links, invocation mappings, provenance, packages, release-candidate manifest, generated drift, fixtures, and policy records
+- `python3 -m unittest discover -s tests -v`: PASS - 35 regression tests
+- `python3 scripts/check_upstream_freshness.py --online`: PASS - all pinned primary-authority markers matched current observed content
+- `git diff --check`: PASS
+- Codex bundled skill validator: PASS - `acceptance-evidence-ledger`
+- `claude plugin validate plugins/claude/jovanipink-engineering --strict`: PASS
+- `skills-ref`: UNAVAILABLE - the command was not installed in the validation environment, so no passing claim is made
+
+## v0.7 client evidence boundary
+
+See `client-observations-v0.7.json`. Every supported surface has a terminal `blocked` suite record tied to the exact source commit and representative ZIP checksum. No client installation, upload, discovery, activation, reference loading, or lifecycle action was performed, and no parity is inferred from generated artifacts.
+
 ## v0.6 tested source
 
 - Source commit: `759b3bf9bfca9967144b02d18f0678e3b509e2b3`

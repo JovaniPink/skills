@@ -39,8 +39,8 @@ Use this plugin for the software lifecycle, application quality, architecture, r
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
-| `accessibility-review` | Reviews semantics, keyboard use, assistive technology needs, and visual presentation against WCAG 2.2. | Implicit |
 | `acceptance-evidence-ledger` | Tracks substantial work against current evidence, freshness, blockers, and visible abandonments. | Explicit-only |
+| `accessibility-review` | Reviews semantics, keyboard use, assistive technology needs, and visual presentation against WCAG 2.2. | Implicit |
 | `api-contract-compatibility-review` | Checks API, event, schema, and client changes for backward, forward, and rollout compatibility. | Implicit |
 | `application-security-review` | Reviews authentication, authorization, input handling, data protection, sessions, configuration, and abuse risks. | Implicit |
 | `code-change-review` | Reviews an exact diff for correctness, regressions, security, compatibility, test quality, and maintainability. | Implicit |

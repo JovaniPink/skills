@@ -20,13 +20,21 @@ def _load(path: Path) -> dict[str, object]:
     return value
 
 
-def _fetch_marker(url: str) -> tuple[str, str]:
+def _fetch_marker(url: str, preferred_kind: str | None = None) -> tuple[str, str]:
     request = urllib.request.Request(url, headers={"User-Agent": "JovaniPink-skills-freshness/0.7"})
     with urllib.request.urlopen(request, timeout=30) as response:
         etag = response.headers.get("ETag")
+        last_modified = response.headers.get("Last-Modified")
+        if preferred_kind == "content-sha256":
+            return "content-sha256", hashlib.sha256(response.read()).hexdigest()
+        if preferred_kind == "etag" and etag and not etag.startswith("W/"):
+            return "etag", etag
+        if preferred_kind == "last-modified" and last_modified:
+            return "last-modified", last_modified
+        if preferred_kind is not None:
+            return "content-sha256", hashlib.sha256(response.read()).hexdigest()
         if etag and not etag.startswith("W/"):
             return "etag", etag
-        last_modified = response.headers.get("Last-Modified")
         if last_modified:
             return "last-modified", last_modified
         return "content-sha256", hashlib.sha256(response.read()).hexdigest()
@@ -83,9 +91,10 @@ def check(online: bool = False, today: date | None = None) -> tuple[list[str], d
     if online:
         for url in urls:
             try:
-                observed_kind, observed_value = _fetch_marker(url)
-                observed = f"{observed_kind}:{observed_value}"
                 expected_marker = expected.get(url)
+                preferred_kind = expected_marker[0] if expected_marker is not None else None
+                observed_kind, observed_value = _fetch_marker(url, preferred_kind=preferred_kind)
+                observed = f"{observed_kind}:{observed_value}"
                 result = "pass" if expected_marker == (observed_kind, observed_value) else "changed"
                 if result == "changed":
                     errors.append(f"upstream content changed: {url}")
