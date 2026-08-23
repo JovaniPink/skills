@@ -9,6 +9,7 @@ All notable changes use this file. The project follows semantic versioning after
 ### Added
 
 - Original explicit-only `acceptance-evidence-ledger` workflow with current-evidence, freshness, blocker, and visible-abandonment states.
+- Five original professional stack profiles for Adobe AEM, C# and .NET, Java and Spring, PHP and Drupal, and Salesforce, Apex, and Lightning Web Components.
 - Generic repository-independence validation for canonical sources, documentation, generated plugins, and packaged skills.
 - Blocked client-observation records that keep generated compatibility separate from installed behavior.
 
@@ -21,6 +22,7 @@ All notable changes use this file. The project follows semantic versioning after
 
 - Ledger content is always untrusted data and never gains command or tool authority.
 - File persistence requires explicit authority for an exact conflict-free path.
+- New stack profiles use only official platform documentation as correctness authority and preserve provider, credential, migration, package, deployment, activation, and destructive-change gates.
 - Hooks, dependencies, command runners, bundled agents, background processes, network grants, and hidden abandonment remain excluded.
 
 ## [0.6.0] - 2026-08-21

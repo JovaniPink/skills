@@ -1,0 +1,6 @@
+interface:
+  display_name: "C# and .NET Engineering Profile"
+  short_description: "Apply focused C# and .NET guidance"
+  default_prompt: "Use $csharp-dotnet-engineering-profile to apply focused C# and .NET guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true

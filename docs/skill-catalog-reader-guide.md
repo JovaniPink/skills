@@ -1,6 +1,6 @@
 # JovaniPink Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 62 portable agent skills organized into five focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The JovaniPink Skills catalog contains 67 portable agent skills organized into five focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
@@ -20,10 +20,10 @@ The counts, groupings, and invocation policies below are reconciled against the 
 | --- | ---: | --- |
 | `jovanipink-skills` | 10 | `publish-change-safely`, `skill-import-provenance` |
 | `jovanipink-engineering` | 24 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
-| `jovanipink-stack-profiles` | 6 | None |
+| `jovanipink-stack-profiles` | 11 | None |
 | `jovanipink-operations` | 11 | None |
 | `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
-| **Total** | **62** | **13 skills** |
+| **Total** | **67** | **13 skills** |
 
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
 
@@ -58,7 +58,7 @@ Checks whether claims such as complete, fixed, merged, deployed, or live are sup
 
 ### cross-stack-quality-gates
 
-Discovers and runs the validation commands that the repository actually defines. It supports Go, Python, Swift, TypeScript and JavaScript, SQL, and Terraform without assuming that every project uses the same commands.
+Discovers and runs the validation commands that the repository actually defines across supported application, language, data, and infrastructure stacks without assuming that every project uses the same commands.
 
 ### prelaunch-readiness
 
@@ -208,11 +208,27 @@ Determines whether dirty or concurrent repository work should be isolated in a G
 
 ## Stack profiles: jovanipink-stack-profiles
 
-The stack-profiles plugin contains 6 optional skills. These profiles add language-specific engineering judgment after the repository's real commands and toolchain have been discovered.
+The stack-profiles plugin contains 11 optional skills. These profiles add platform- and language-specific engineering judgment after the repository's real commands and toolchain have been discovered.
+
+### adobe-aem-engineering-profile
+
+Provides Adobe Experience Manager guidance for product-generation discovery, Sling and OSGi, content packages, Dispatcher, caching, compatibility, and builds. Local validation remains separate from Cloud Manager, deployment, activation, and live-delivery evidence.
+
+### csharp-dotnet-engineering-profile
+
+Provides C# and .NET guidance for solutions and projects, asynchronous behavior, dependency injection, Entity Framework Core, packages, compatibility, and builds. It does not install tools, change dependencies, or apply migrations merely to validate a claim.
 
 ### go-engineering-profile
 
 Provides focused Go guidance for modules, packages, concurrency, APIs, tests, dependencies, compatibility, and builds. It defers exact commands to repository evidence.
+
+### java-spring-engineering-profile
+
+Provides Java and Spring guidance for JVM toolchains, concurrency, dependency injection, configuration, transactions, tests, dependencies, compatibility, and builds. It preserves repository wrappers and keeps service startup and deployment separate.
+
+### php-drupal-engineering-profile
+
+Provides PHP and Drupal guidance for Composer projects, custom extensions, access and entity APIs, configuration, caching, tests, compatibility, and builds. Configuration import, database updates, content writes, and deployment retain separate authority.
 
 ### postgresql-sql-engineering-profile
 
@@ -221,6 +237,10 @@ Provides PostgreSQL and SQL guidance for schemas, queries, transactions, indexin
 ### python-engineering-profile
 
 Provides Python guidance for packaging, typing, asynchronous behavior, tests, dependencies, compatibility, and builds. It respects the repository's selected tools and configuration.
+
+### salesforce-apex-engineering-profile
+
+Provides Salesforce guidance for metadata projects, Apex, Lightning Web Components, permissions, governor limits, tests, package compatibility, and deployment readiness. Credentials, org-backed validation, deployment, permission assignment, and destructive changes retain separate authority.
 
 ### swift-swiftui-engineering-profile
 

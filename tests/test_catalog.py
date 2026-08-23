@@ -261,10 +261,29 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual("released", tracks["reasoning-continuity"]["status"])
 
     def test_v07_acceptance_ledger_contract_and_catalog_counts(self) -> None:
-        self.assertEqual(62, len(SKILLS))
+        self.assertEqual(67, len(SKILLS))
         self.assertEqual(24, len(skills_by_plugin()["jovanipink-engineering"]))
+        self.assertEqual(11, len(skills_by_plugin()["jovanipink-stack-profiles"]))
         self.assertEqual(13, len(EXPLICIT_SKILLS))
         self.assertIn("acceptance-evidence-ledger", EXPLICIT_SKILLS)
+
+        expanded_profiles = {
+            "adobe-aem-engineering-profile",
+            "csharp-dotnet-engineering-profile",
+            "java-spring-engineering-profile",
+            "php-drupal-engineering-profile",
+            "salesforce-apex-engineering-profile",
+        }
+        self.assertTrue(expanded_profiles.issubset(SKILLS))
+        for profile in expanded_profiles:
+            root = ROOT / "skills" / profile
+            files = {
+                path.relative_to(root).as_posix()
+                for path in root.rglob("*")
+                if path.is_file()
+            }
+            self.assertEqual({"SKILL.md", "agents/openai.yaml", "references/checks.md"}, files)
+            self.assertEqual("original", read_skill_metadata(root)["provenance"])
 
         skill_root = ROOT / "skills" / "acceptance-evidence-ledger"
         files = {

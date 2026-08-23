@@ -1,6 +1,6 @@
 # JovaniPink Skills Cheatsheet
 
-Use this page to find a skill quickly. The catalog contains 62 skills across five plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+Use this page to find a skill quickly. The catalog contains 67 skills across five plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
 ## Invocation legend
 
@@ -70,9 +70,14 @@ Use these optional profiles after repository commands and toolchains have been d
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
+| `adobe-aem-engineering-profile` | Adds focused guidance for AEM product generations, Sling and OSGi, content packages, Dispatcher, caching, compatibility, and builds. | Implicit |
+| `csharp-dotnet-engineering-profile` | Adds focused guidance for .NET projects, async behavior, dependency injection, Entity Framework, packages, compatibility, and builds. | Implicit |
 | `go-engineering-profile` | Adds focused guidance for Go modules, packages, concurrency, APIs, tests, dependencies, and builds. | Implicit |
+| `java-spring-engineering-profile` | Adds focused guidance for JVM toolchains, concurrency, Spring configuration and transactions, tests, dependencies, and builds. | Implicit |
+| `php-drupal-engineering-profile` | Adds focused guidance for PHP, Composer, Drupal extensions, entities, configuration, caching, tests, and builds. | Implicit |
 | `postgresql-sql-engineering-profile` | Adds focused guidance for schemas, queries, transactions, indexes, migrations, and database testing. | Implicit |
 | `python-engineering-profile` | Adds focused guidance for packaging, typing, asynchronous behavior, tests, dependencies, and builds. | Implicit |
+| `salesforce-apex-engineering-profile` | Adds focused guidance for Salesforce metadata, Apex, LWC, permissions, governor limits, tests, and org evidence boundaries. | Implicit |
 | `swift-swiftui-engineering-profile` | Adds focused guidance for Swift concurrency, SwiftUI state, tests, compatibility, and Apple builds. | Implicit |
 | `terraform-engineering-profile` | Adds focused guidance for modules, providers, state, plans, upgrades, and infrastructure review. | Implicit |
 | `typescript-javascript-engineering-profile` | Adds focused guidance for type safety, asynchronous behavior, tests, dependencies, and browser or Node builds. | Implicit |

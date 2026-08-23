@@ -1,6 +1,6 @@
 ---
 name: cross-stack-quality-gates
-description: Discover and run the repository's real validation gates across Go, Python, Swift, TypeScript or JavaScript, SQL, and Terraform without assuming a universal command. Use after changes, before review, or when asked whether a codebase passes its checks.
+description: Discover and run the repository's real validation gates across supported application, language, data, and infrastructure stacks without assuming a universal command. Use after changes, before review, or when asked whether a codebase passes its checks.
 license: MIT
 metadata:
   author: "Jovani Pink"

@@ -4,7 +4,7 @@ JovaniPink Skills is a public catalog of reusable workflows for Codex, ChatGPT, 
 
 This guide explains how to choose, install, invoke, verify, update, and remove the skills safely.
 
-Use the [skill cheatsheet](skill-cheatsheet.md) for quick selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 62-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
+Use the [skill cheatsheet](skill-cheatsheet.md) for quick selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 67-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
 
 ## Start with the security boundary
 
@@ -33,7 +33,7 @@ Install the smallest plugin that covers the work.
 | --- | --- |
 | `jovanipink-skills` | Verification, research, diagnosis, authority review, quality gates, launch review, safe publication, public boundary review, and skill security |
 | `jovanipink-engineering` | Problem framing, planning, test-driven work, test strategy, worktree assessment, change review, module design, bounded prototypes, conflict reconciliation, branch completion, application quality, and multi-agent coordination |
-| `jovanipink-stack-profiles` | Focused Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
+| `jovanipink-stack-profiles` | Focused Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
 | `jovanipink-operations` | Requirements, decisions, workshops, measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incidents, and data authority decisions |
 | `jovanipink-reasoning` | Alignment, domain vocabulary, code explanation, design rationale, change impact, technical writing, decision traces, portable skill authoring, guided configuration, task handoff, and workflow retrospectives |
 

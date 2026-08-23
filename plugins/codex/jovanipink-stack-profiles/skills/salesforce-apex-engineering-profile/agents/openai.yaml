@@ -1,0 +1,6 @@
+interface:
+  display_name: "Salesforce and Apex Engineering Profile"
+  short_description: "Apply focused Salesforce engineering guidance"
+  default_prompt: "Use $jovanipink-stack-profiles:salesforce-apex-engineering-profile to apply focused Salesforce, Apex, and LWC guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true

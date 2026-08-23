@@ -18,7 +18,7 @@ The catalog is split into focused plugins so clients can discover only the workf
 | `source-grounded-research` | Research with primary sources, dates, provenance, and uncertainty | Implicit |
 | `systematic-diagnosis` | Establish a causal diagnosis without silently fixing the system | Implicit |
 | `authority-boundary-review` | Map authoritative stores, projections, writers, readers, and contracts | Implicit |
-| `cross-stack-quality-gates` | Discover and run safe gates for Go, Python, Swift, TypeScript/JavaScript, SQL, and Terraform | Implicit |
+| `cross-stack-quality-gates` | Discover and run safe repository-defined gates across supported application, language, data, and infrastructure stacks | Implicit |
 | `prelaunch-readiness` | Audit web, service, and application launch readiness | Implicit |
 | `publish-change-safely` | Verify identity, scope, checks, push, and PR state | Explicit-only |
 | `public-private-boundary-review` | Detect private data, internal identifiers, secrets, and unsupported public claims | Implicit |
@@ -49,7 +49,7 @@ Engineering quality reviews in the same plugin cover application security, depen
 
 ### `jovanipink-stack-profiles`
 
-Optional profiles provide focused engineering guidance for Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform. `cross-stack-quality-gates` remains the command-discovery orchestrator and uses a profile only when installed and applicable.
+Optional profiles provide focused engineering guidance for Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform. `cross-stack-quality-gates` remains the command-discovery orchestrator and uses a profile only when installed and applicable.
 
 ### `jovanipink-operations`
 
@@ -107,4 +107,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.6 adds focused code review, module design, prototype, conflict reconciliation, guided configuration, handoff, retrospective, planning, and multi-agent references. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+Version 0.7 adds an acceptance evidence ledger, five independently authored professional stack profiles, and repository-independence controls. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.

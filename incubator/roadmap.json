@@ -69,6 +69,26 @@
       ]
     },
     {
+      "id": "professional-stack-expansion",
+      "target_release": "v0.7",
+      "plugin": "jovanipink-stack-profiles",
+      "status": "released",
+      "skills": [
+        "adobe-aem-engineering-profile",
+        "csharp-dotnet-engineering-profile",
+        "java-spring-engineering-profile",
+        "php-drupal-engineering-profile",
+        "salesforce-apex-engineering-profile"
+      ],
+      "entry_criteria": [
+        "the catalog owner has requested broader professional stack coverage",
+        "each profile is independently authored and cites only current official platform documentation",
+        "each trigger is distinct from generic language teaching, deployment, and cross-stack command orchestration",
+        "each profile has positive, near-miss, safety, output-quality, provenance, and client-limit records",
+        "no profile adds hooks, scripts, dependencies, agents, credentials, automatic provider actions, or universal commands"
+      ]
+    },
+    {
       "id": "operating-workflows",
       "target_release": "v0.4",
       "plugin": "jovanipink-operations",
