@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.7.0",
-  "source_commit": "ad6bf563715290e337fdc41837abfece7f13dcbc",
+  "source_commit": "2c8615be03163c5c0cee25c952b5b713280194ab",
   "created_on": "2026-08-23",
   "artifacts": [
     {
@@ -32,7 +32,7 @@
     {
       "kind": "file",
       "path": "catalog/upstream-pins.json",
-      "sha256": "c18bb9b7f0572dac9fcd113bec9da36f71d13ea3b8ebea771c6be3d5474642e2"
+      "sha256": "1b8eeaa2190de1acb587f40a194c36a5aa237c6f7dbb49b8319498d28be5db17"
     },
     {
       "kind": "zip",
@@ -46,13 +46,18 @@
     },
     {
       "kind": "zip",
+      "path": "dist/claude-ai/adobe-aem-engineering-profile-0.7.0.zip",
+      "sha256": "693d96cd40ccf8e2483bfe4738f734694b2b539ab7daf5c177ed376e8455c20f"
+    },
+    {
+      "kind": "zip",
       "path": "dist/claude-ai/alignment-interview-0.7.0.zip",
       "sha256": "ad4c74476eb83ad79211a190464bc0492089517ed66891f5d60e945f49b9cb5e"
     },
     {
       "kind": "zip",
       "path": "dist/claude-ai/api-contract-compatibility-review-0.7.0.zip",
-      "sha256": "1cfcd498189a98132bff8c35b6f0183d7d41bff61c5ea12c95f0e7d4409287b8"
+      "sha256": "fbf944303dcaee58375fb85e738f1bf714602f5eaa029159552f4e5c9294aa4c"
     },
     {
       "kind": "zip",
@@ -97,7 +102,12 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/cross-stack-quality-gates-0.7.0.zip",
-      "sha256": "ec4f92df5f9d07c9a673c153176eacf3a4882f544bfe354a5aebc03c8cf188fa"
+      "sha256": "b7fed7cc4341b2079a103be25714c61d33e14d37981e0909553746073aa22dd1"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/csharp-dotnet-engineering-profile-0.7.0.zip",
+      "sha256": "e6df158430f9259d19e65bbc317339f834219c3e46f51793452f8ae49305229a"
     },
     {
       "kind": "zip",
@@ -166,6 +176,11 @@
     },
     {
       "kind": "zip",
+      "path": "dist/claude-ai/java-spring-engineering-profile-0.7.0.zip",
+      "sha256": "0a04993425c6a272429f7120b21d187cd2b839bfce27dad9e629cd0e91224cd0"
+    },
+    {
+      "kind": "zip",
       "path": "dist/claude-ai/kpi-outcome-measurement-0.7.0.zip",
       "sha256": "0198e49224b7df3131d68cc0b96f1cf4d606db491d5afccbb31405da7aef9661"
     },
@@ -198,6 +213,11 @@
       "kind": "zip",
       "path": "dist/claude-ai/performance-scalability-diagnosis-0.7.0.zip",
       "sha256": "b2f1f6cadda7d1a60b847e534db0bb6bf1ef4ca7c2d14355a8a149cd76e37e7c"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/php-drupal-engineering-profile-0.7.0.zip",
+      "sha256": "f648e4340e58a5cba84bff06028b483faee3b951a65ac0f119d1b64dec5bd9cc"
     },
     {
       "kind": "zip",
@@ -263,6 +283,11 @@
       "kind": "zip",
       "path": "dist/claude-ai/respond-to-code-review-0.7.0.zip",
       "sha256": "5ba32de8c8d53d2db1274bf681550db7a143edecd05de910f050f43f18f9afee"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/salesforce-apex-engineering-profile-0.7.0.zip",
+      "sha256": "0495428192a147834be2780452e96a30739770b814911efe4f21bd0bcb070555"
     },
     {
       "kind": "zip",
@@ -347,7 +372,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-engineering",
-      "sha256": "4fd7c3b8331e94316404492d63c9abe5769f0d8fa249140dfb0395aff1ec01fd"
+      "sha256": "acdbe9a16b0729e9991e83ff808e656019eec07f4a4ed2809579d2956b814607"
     },
     {
       "kind": "tree",
@@ -362,17 +387,17 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-skills",
-      "sha256": "8d77e94f91d4499558505dbe7c39e4ee37e7eaded6f45001846da6d4fb8d7aee"
+      "sha256": "7a0aa62fd8b170058a9e0c90c56f02437d7196830ddd675e970c2f1351138b40"
     },
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-stack-profiles",
-      "sha256": "fab426079b95f7510b26c5a03d8dc9c0ced8c4a7ec17cc484210f7a5229570e1"
+      "sha256": "599133ff260fcdba0c9741cd6ac0df292d6088e5ff79ea9f860b4787eb2a54ef"
     },
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-engineering",
-      "sha256": "c43497790e64e031ce3249a69d7ca1789e24bb722f837dc3681ed1aec9017587"
+      "sha256": "47fefc851bd0bd092774dae3ecb5bb10d0cef5046416c9d42c49cac5e75ed8e1"
     },
     {
       "kind": "tree",
@@ -387,12 +412,12 @@
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-skills",
-      "sha256": "442340e2638dbd499917ddd900cee3f60e98ac77d3722b755961390e5a23c67c"
+      "sha256": "2d28ddd3526e49afd932f76e6756c8e4fcc74d861b3dc958dea0d67f73a760f5"
     },
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-stack-profiles",
-      "sha256": "87c268684fbdc675dafd1c998b0f38780051f89c1089e15205dd6a347a1c111f"
+      "sha256": "da1e1421aab7f2eb2e6f7724d823deeaae2801aa05fd3ad7b77b1d0102d75996"
     }
   ]
 }
