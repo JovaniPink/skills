@@ -70,6 +70,85 @@ class CatalogTests(unittest.TestCase):
         self.assertLess(sum(len(description) for description in descriptions), 4000)
         self.assertEqual(len(descriptions), len(set(descriptions)))
 
+    def test_reader_guide_matches_canonical_catalog(self) -> None:
+        guide = (ROOT / "docs" / "skill-catalog-reader-guide.md").read_text(encoding="utf-8")
+        canonical = skills_by_plugin()
+        section_plugins = {
+            "## Core skills: jovanipink-skills": "jovanipink-skills",
+            "## Engineering skills: jovanipink-engineering": "jovanipink-engineering",
+            "## Stack profiles: jovanipink-stack-profiles": "jovanipink-stack-profiles",
+            "## Operations skills: jovanipink-operations": "jovanipink-operations",
+            "## Reasoning skills: jovanipink-reasoning": "jovanipink-reasoning",
+        }
+        documented = {plugin: [] for plugin in canonical}
+        documented_explicit: set[str] = set()
+        current_plugin: str | None = None
+        current_skill: str | None = None
+
+        for line in guide.splitlines():
+            if line in section_plugins:
+                current_plugin = section_plugins[line]
+                current_skill = None
+            elif line.startswith("## "):
+                current_plugin = None
+                current_skill = None
+            elif current_plugin and line.startswith("### "):
+                current_skill = line.removeprefix("### ")
+                documented[current_plugin].append(current_skill)
+            elif current_skill and line == "Invocation: `explicit-only`.":
+                documented_explicit.add(current_skill)
+
+        self.assertEqual(
+            {plugin: list(skills) for plugin, skills in canonical.items()},
+            documented,
+        )
+        self.assertEqual(set(EXPLICIT_SKILLS), documented_explicit)
+        self.assertIn(f"contains {len(SKILLS)} portable agent skills", guide)
+
+        for plugin, skills in canonical.items():
+            explicit = [skill for skill in skills if skill in EXPLICIT_SKILLS]
+            explicit_cell = ", ".join(f"`{skill}`" for skill in explicit) or "None"
+            self.assertIn(f"| `{plugin}` | {len(skills)} | {explicit_cell} |", guide)
+        self.assertIn(
+            f"| **Total** | **{len(SKILLS)}** | **{len(EXPLICIT_SKILLS)} skills** |",
+            guide,
+        )
+
+    def test_skill_cheatsheet_matches_canonical_catalog(self) -> None:
+        cheatsheet = (ROOT / "docs" / "skill-cheatsheet.md").read_text(encoding="utf-8")
+        canonical = skills_by_plugin()
+        section_plugins = {
+            "## Core: jovanipink-skills": "jovanipink-skills",
+            "## Engineering: jovanipink-engineering": "jovanipink-engineering",
+            "## Stack profiles: jovanipink-stack-profiles": "jovanipink-stack-profiles",
+            "## Operations: jovanipink-operations": "jovanipink-operations",
+            "## Reasoning: jovanipink-reasoning": "jovanipink-reasoning",
+        }
+        documented = {plugin: [] for plugin in canonical}
+        documented_invocation: dict[str, str] = {}
+        current_plugin: str | None = None
+
+        for line in cheatsheet.splitlines():
+            if line in section_plugins:
+                current_plugin = section_plugins[line]
+            elif line.startswith("## "):
+                current_plugin = None
+            elif current_plugin and line.startswith("| `"):
+                cells = [cell.strip() for cell in line.strip("|").split("|")]
+                skill = cells[0].strip("`")
+                documented[current_plugin].append(skill)
+                documented_invocation[skill] = cells[2]
+
+        self.assertEqual(
+            {plugin: list(skills) for plugin, skills in canonical.items()},
+            documented,
+        )
+        self.assertEqual(set(SKILLS), set(documented_invocation))
+        for skill, invocation in documented_invocation.items():
+            expected = "Explicit-only" if skill in EXPLICIT_SKILLS else "Implicit"
+            self.assertEqual(expected, invocation, skill)
+        self.assertIn(f"catalog contains {len(SKILLS)} skills", cheatsheet)
+
     def test_v06_mutating_workflows_are_explicit_and_bounded(self) -> None:
         expected = {
             "prototype-spike",
