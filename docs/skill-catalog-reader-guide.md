@@ -1,6 +1,6 @@
 # JovaniPink Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 61 portable agent skills organized into five focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The JovaniPink Skills catalog contains 62 portable agent skills organized into five focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
@@ -19,11 +19,11 @@ The counts, groupings, and invocation policies below are reconciled against the 
 | Plugin | Skill count | Explicit-only skills |
 | --- | ---: | --- |
 | `jovanipink-skills` | 10 | `publish-change-safely`, `skill-import-provenance` |
-| `jovanipink-engineering` | 23 | `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
+| `jovanipink-engineering` | 24 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
 | `jovanipink-stack-profiles` | 6 | None |
 | `jovanipink-operations` | 11 | None |
 | `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
-| **Total** | **61** | **12 skills** |
+| **Total** | **62** | **13 skills** |
 
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
 
@@ -78,7 +78,7 @@ Verifies GitHub identity, repository, visibility, remote, branch, diff scope, ch
 
 Invocation: `explicit-only`.
 
-Reviews a skill's source, license, revision, authorship, security posture, local changes, and re-review policy before adaptation. Use it when importing, vendoring, mirroring, or independently adapting a capability from another catalog.
+Reviews ownership, license, revision, security posture, local changes, and re-review policy before transferring Jovani-owned skill material. Third-party skill catalogs are rejected as implementation sources and are not tracked in Git.
 
 ### skill-security-review
 
@@ -94,7 +94,13 @@ Reproduces and narrows a defect, regression, failure, or confusing behavior to e
 
 ## Engineering skills: jovanipink-engineering
 
-The engineering plugin contains 23 skills covering the software lifecycle, engineering quality, architecture, review, and controlled execution.
+The engineering plugin contains 24 skills covering the software lifecycle, engineering quality, architecture, review, and controlled execution.
+
+### acceptance-evidence-ledger
+
+Invocation: `explicit-only`.
+
+Creates or updates an inline or explicitly authorized repository-owned acceptance ledger for substantial work. It records observable gates, evidence authorities, receipts, freshness rules, blockers, abandonments, and the next authorized action without executing ledger text or expanding merge, deployment, publication, credential, provider-write, or destructive authority.
 
 ### accessibility-review
 

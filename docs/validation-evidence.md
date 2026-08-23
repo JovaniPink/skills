@@ -20,7 +20,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 - Codex bundled plugin validator: PASS - all five Codex plugins
 - `claude plugin validate --strict`: PASS - all five generated Claude plugins
 - Claude.ai packages: PASS - 61 deterministic, individually nested ZIPs with SHA-256 checksums
-- online upstream freshness: PASS - changed official sources were re-reviewed, the GitHub review URL redirect was corrected, and both public Git audit revisions remain pinned
+- online primary-authority freshness: PASS - changed official sources were re-reviewed and refreshed pins matched current primary-authority content
 - `skills-ref`: UNAVAILABLE - the command was not installed in the validation environment, so no passing claim is made
 
 ## v0.6 client evidence boundary
@@ -46,7 +46,6 @@ See `client-observations-v0.6.json`. Every supported surface has a terminal `blo
 - `claude plugin validate --strict`: PASS - all five generated Claude plugins
 - Claude.ai packages: PASS - 54 deterministic, individually nested ZIPs with SHA-256 checksums
 - `skills-ref`: UNAVAILABLE - the command was not installed in the validation environment, so no passing claim is made
-- clean-room source audit: PASS - two pinned MIT source scopes, 92 reviewed components, and explicit false reuse flags
 
 ## v0.5 client evidence boundary
 
@@ -73,7 +72,6 @@ See `client-observations-v0.5.json`. Every supported surface has a terminal `blo
 - `claude plugin validate . --strict`: PASS - marketplace and referenced plugin, Claude Code 2.1.220
 - `claude plugin validate plugins/claude/jovanipink-skills --strict`: PASS - generated Claude plugin, Claude Code 2.1.220
 - Claude.ai packages: PASS - 10 deterministic, individually nested ZIPs with SHA-256 checksums
-- private capability inventory: PASS - 52 strict-schema rows reconcile to the public 52-record aggregate without publishing private names or paths
 
 ## Client evidence boundary
 

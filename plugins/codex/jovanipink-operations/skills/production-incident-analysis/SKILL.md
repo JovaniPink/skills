@@ -4,7 +4,7 @@ description: Analyze a production incident using timestamped evidence, system be
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.6.0"
+  version: "0.7.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

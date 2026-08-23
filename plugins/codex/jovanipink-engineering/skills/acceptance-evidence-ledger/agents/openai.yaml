@@ -1,0 +1,6 @@
+interface:
+  display_name: "Acceptance Evidence Ledger"
+  short_description: "Track substantial work against current evidence"
+  default_prompt: "Use $jovanipink-engineering:acceptance-evidence-ledger to create or update an acceptance ledger for this task."
+policy:
+  allow_implicit_invocation: false

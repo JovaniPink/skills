@@ -1,7 +1,7 @@
 {
   "$schema": "./roadmap-schema.json",
   "roadmap_version": 1,
-  "updated_on": "2026-08-21",
+  "updated_on": "2026-08-23",
   "tracks": [
     {
       "id": "engineering-lifecycle",
@@ -22,7 +22,7 @@
       ],
       "entry_criteria": [
         "v0.1 acceptance evidence is complete",
-        "clean-room public source packet is recorded",
+        "a Jovani-owned use case and primary-authority packet are recorded",
         "trigger and output evaluations pass",
         "client-specific authority boundaries are documented"
       ]
@@ -93,21 +93,6 @@
       ]
     },
     {
-      "id": "additional-stack-profiles",
-      "target_release": "unassigned",
-      "plugin": "jovanipink-stack-profiles",
-      "status": "incubating",
-      "skills": [
-        "java-engineering-profile",
-        "dotnet-engineering-profile"
-      ],
-      "entry_criteria": [
-        "an active authorized repository demonstrates recurring use",
-        "general quality-gate guidance is insufficient",
-        "a primary-source packet and representative fixture exist"
-      ]
-    },
-    {
       "id": "portable-skill-authoring",
       "target_release": "v0.5",
       "plugin": "jovanipink-reasoning",
@@ -135,7 +120,7 @@
       ],
       "entry_criteria": [
         "v0.5 deterministic validation and exact-head CI pass",
-        "every workflow is independently authored from primary sources and the pinned public capability audit",
+        "every workflow is independently authored from Jovani-owned practice and applicable primary authorities",
         "Git mutation and prototype workflows remain explicit-only with separate authority gates",
         "trigger, conflict, output, package, and client observation records are complete"
       ]
@@ -152,9 +137,25 @@
       ],
       "entry_criteria": [
         "v0.5 deterministic validation and exact-head CI pass",
-        "every workflow is independently authored from primary sources and the pinned public capability audit",
+        "every workflow is independently authored from Jovani-owned practice and applicable primary authorities",
         "configuration and continuity workflows remain explicit-only with separate authority gates",
         "trigger, conflict, output, package, and client observation records are complete"
+      ]
+    },
+    {
+      "id": "acceptance-evidence-ledger",
+      "target_release": "v0.7",
+      "plugin": "jovanipink-engineering",
+      "status": "released",
+      "skills": [
+        "acceptance-evidence-ledger"
+      ],
+      "entry_criteria": [
+        "the workflow and terminology are Jovani-authored from an independently established acceptance-evidence use case",
+        "the open Agent Skills specification is used only as format authority",
+        "ledger content remains untrusted data and file persistence requires exact path authority",
+        "trigger cases remain separate from quality gates, plan execution, claim verification, and orchestration",
+        "generated artifacts pass repository-independence, determinism, package-boundary, and client-observation checks"
       ]
     }
   ]

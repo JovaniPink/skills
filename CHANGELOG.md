@@ -4,6 +4,25 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-08-23
+
+### Added
+
+- Original explicit-only `acceptance-evidence-ledger` workflow with current-evidence, freshness, blocker, and visible-abandonment states.
+- Generic repository-independence validation for canonical sources, documentation, generated plugins, and packaged skills.
+- Blocked client-observation records that keep generated compatibility separate from installed behavior.
+
+### Changed
+
+- Skill provenance now uses Jovani-owned work and only primary authorities needed for format, interoperability, or correctness.
+- Item-level external capability audits and restricted inventory summaries were retired from maintained trees without rewriting Git history.
+
+### Security
+
+- Ledger content is always untrusted data and never gains command or tool authority.
+- File persistence requires explicit authority for an exact conflict-free path.
+- Hooks, dependencies, command runners, bundled agents, background processes, network grants, and hidden abandonment remain excluded.
+
 ## [0.6.0] - 2026-08-21
 
 ### Added
@@ -22,14 +41,14 @@ All notable changes use this file. The project follows semantic versioning after
 
 ### Added
 
-- Eight clean-room reasoning, explanation, writing, impact, trace, and portable skill-authoring workflows in the optional `jovanipink-reasoning` plugin.
-- A complete pinned public-source audit covering 80 skill directories and 12 bundle-level components from the two reviewed public repositories.
+- Eight independently authored reasoning, explanation, writing, impact, trace, and portable skill-authoring workflows in the optional `jovanipink-reasoning` plugin.
+- Primary-authority provenance for format, interoperability, and correctness boundaries.
 - Deterministic originality scanning for canonical, generated, and packaged skill content.
 
 ### Security
 
-- No upstream text, structure, implementation, scripts, agents, hooks, templates, dependencies, model rosters, or examples were copied.
-- Transcript mining, broad tool sweeps, source-specific modes, self-modifying skills, and unconditional delegation remain excluded.
+- No external text, structure, implementation, scripts, agents, hooks, templates, dependencies, model rosters, or examples were copied.
+- Transcript mining, broad tool sweeps, self-modifying skills, and unconditional delegation remain excluded.
 - Decision traces exclude hidden reasoning, raw transcripts, secrets, private data, and unrelated activity.
 
 ## [0.4.0] - 2026-08-21
@@ -38,14 +57,14 @@ All notable changes use this file. The project follows semantic versioning after
 
 - Eleven generic operating workflows in the independently installable `jovanipink-operations` plugin.
 - Catalog-wide SemVer release manifests, checksums, compatibility records, deprecation and revocation registries, and rollback guidance.
-- Weekly read-only upstream source pin and security re-review freshness validation.
+- Weekly read-only primary-authority pin and security re-review freshness validation.
 - A fictional private-overlay example and standard-library synchronizer.
 
 ### Security
 
 - Revoked skills are omitted from generation, packaging, and marketplace advertisement without claiming installed-copy deletion.
 - All CI actions are immutable revision pins with public provenance records.
-- Public provenance contains only unauthenticated public sources; private inventory relationships remain private.
+- Public provenance contains only unauthenticated primary authorities; private facts remain private.
 
 ## [0.3.0] - 2026-08-21
 

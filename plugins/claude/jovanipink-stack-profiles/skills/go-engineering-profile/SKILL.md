@@ -4,7 +4,7 @@ description: Apply focused Go engineering judgment after repository gate discove
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.6.0"
+  version: "0.7.0"
   plugin: "jovanipink-stack-profiles"
   invocation: "implicit"
   provenance: "clean-room"

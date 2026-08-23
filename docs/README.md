@@ -4,7 +4,7 @@ JovaniPink Skills is a public catalog of reusable workflows for Codex, ChatGPT, 
 
 This guide explains how to choose, install, invoke, verify, update, and remove the skills safely.
 
-Use the [skill cheatsheet](skill-cheatsheet.md) for quick selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 61-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
+Use the [skill cheatsheet](skill-cheatsheet.md) for quick selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 62-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
 
 ## Start with the security boundary
 
@@ -279,7 +279,7 @@ Use this workflow:
 2. Create or update the canonical `skills/skill-name/SKILL.md` source.
 3. Add focused references only when they are needed.
 4. Add positive, near-miss, safety, and output-quality evaluations.
-5. Record public source provenance.
+5. Record Jovani-authored provenance with only the applicable primary authority.
 6. Regenerate the Codex and Claude plugin trees.
 7. Package Claude.ai ZIP files.
 8. Run all validation and unit tests.

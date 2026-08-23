@@ -23,12 +23,13 @@ The catalog is split into focused plugins so clients can discover only the workf
 | `publish-change-safely` | Verify identity, scope, checks, push, and PR state | Explicit-only |
 | `public-private-boundary-review` | Detect private data, internal identifiers, secrets, and unsupported public claims | Implicit |
 | `skill-security-review` | Audit skill instructions, dependencies, permissions, and network behavior | Implicit |
-| `skill-import-provenance` | Review licensing, revisions, provenance, and revocation triggers | Explicit-only |
+| `skill-import-provenance` | Gate Jovani-owned skill transfers and reject third-party catalog imports | Explicit-only |
 
 ### `jovanipink-engineering`
 
 | Skill | Purpose | Invocation |
 | --- | --- | --- |
+| `acceptance-evidence-ledger` | Track substantial work against current evidence, freshness, blockers, and visible abandonments | Explicit-only |
 | `problem-framing` | Establish outcomes, evidence, constraints, unknowns, and success before implementation | Implicit |
 | `implementation-planning` | Produce decision-complete plans with interfaces, tests, rollout, and stopping conditions | Implicit |
 | `plan-execution` | Execute an approved plan with checkpoints and deviation controls | Explicit-only |
@@ -64,10 +65,8 @@ Eleven focused workflows cover alignment interviews, domain vocabulary, codebase
 - `plugins/codex/<plugin>/` and `plugins/claude/<plugin>/` are generated and committed.
 - `incubator/` is intentionally undiscoverable unfinished work.
 - `evals/` contains trigger and safety cases.
-- `provenance/catalog.json` records the origin and review policy of every skill.
-- `provenance/public-source-audit.json` records pinned public capability dispositions and clean-room exclusions.
-- `provenance/inventory-summary.json` publishes only reconciled aggregate capability-disposition counts.
-- `scripts/` contains standard-library-only generation, packaging, and validation, including guards for mutable third-party GitHub Action references and source-specific skill content.
+- `provenance/catalog.json` records primary format or correctness authorities and the Jovani-authored implementation boundary for every skill.
+- `scripts/` contains standard-library-only generation, packaging, and validation, including guards for mutable third-party GitHub Action references and external repository coupling.
 - `catalog/` contains strict compatibility, deprecation, revocation, and upstream-pinning records.
 - `releases/` contains exact-source release manifests and artifact checksums.
 
