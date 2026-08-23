@@ -15,11 +15,11 @@ from urllib.parse import urlparse
 from cataloglib import ROOT, VERSION
 
 
-NORMALIZED_HTML_HOSTS = frozenset({"trailhead.salesforce.com", "www.drupal.org"})
+NORMALIZED_HTML_HOSTS = frozenset({"airc.nist.gov", "trailhead.salesforce.com", "www.drupal.org"})
 
 
-def _normalized_content_sha256(payload: bytes) -> str:
-    """Hash authority content after removing known per-request HTML values."""
+def _normalized_content(payload: bytes) -> str:
+    """Remove known per-request HTML values while preserving authority content."""
 
     text = payload.decode("utf-8")
     substitutions = (
@@ -47,10 +47,24 @@ def _normalized_content_sha256(payload: bytes) -> str:
             r'("theme_token":")[^"]+(")',
             r'\1[volatile]\2',
         ),
+        (
+            r'(nonce=")[^"]+(")',
+            r'\1[volatile]\2',
+        ),
+        (
+            r'<script nonce="\[volatile\]">\(function\(\)\{.*?/cdn-cgi/challenge-platform/.*?</script>',
+            '<script nonce="[volatile]">[cloudflare-challenge]</script>',
+        ),
     )
     for pattern, replacement in substitutions:
         text = re.sub(pattern, replacement, text)
-    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+    return text
+
+
+def _normalized_content_sha256(payload: bytes) -> str:
+    """Hash authority content after removing known per-request HTML values."""
+
+    return hashlib.sha256(_normalized_content(payload).encode("utf-8")).hexdigest()
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -61,7 +75,7 @@ def _load(path: Path) -> dict[str, object]:
 
 
 def _fetch_marker(url: str, preferred_kind: str | None = None) -> tuple[str, str]:
-    request = urllib.request.Request(url, headers={"User-Agent": "JovaniPink-skills-freshness/0.7"})
+    request = urllib.request.Request(url, headers={"User-Agent": "JovaniPink-skills-freshness/0.8"})
     with urllib.request.urlopen(request, timeout=30) as response:
         etag = response.headers.get("ETag")
         last_modified = response.headers.get("Last-Modified")

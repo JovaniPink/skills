@@ -315,6 +315,9 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         expected_surfaces = {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"}
         if observations.get("catalog_version") not in {"0.1.0", "0.2.0", "0.3.0"}:
             expected_surfaces.add("ChatGPT Web")
+        if observations.get("catalog_version") == "0.8.0":
+            expected_surfaces.remove("Codex Desktop")
+            expected_surfaces.add("ChatGPT Desktop")
         if surfaces != expected_surfaces:
             errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
         source_commit = observations.get("tested_source_commit")

@@ -427,6 +427,9 @@ class CatalogTests(unittest.TestCase):
             }
             if matrix["catalog_version"] not in {"0.1.0", "0.2.0", "0.3.0"}:
                 expected_surfaces.add("ChatGPT Web")
+            if matrix["catalog_version"] == "0.8.0":
+                expected_surfaces.remove("Codex Desktop")
+                expected_surfaces.add("ChatGPT Desktop")
             self.assertEqual(expected_surfaces, {record["surface"] for record in records})
 
     def test_v04_records_chatgpt_web_as_a_distinct_surface(self) -> None:
@@ -435,6 +438,16 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(6, len(web_records))
         self.assertEqual({"blocked"}, {record["result"] for record in web_records})
         self.assertTrue(any("no skills" in record["invocation_behavior"] for record in web_records))
+
+    def test_v08_records_each_client_lifecycle_observation_separately(self) -> None:
+        matrix = json.loads((ROOT / "docs" / "client-observations-v0.8.json").read_text(encoding="utf-8"))
+        expected_phases = {"INSTALL", "DISCOVERY", "IMPLICIT", "REFERENCE", "REFUSAL", "UPDATE", "REMOVAL"}
+        by_surface: dict[str, set[str]] = {}
+        for record in matrix["records"]:
+            by_surface.setdefault(record["surface"], set()).add(record["case_id"].rsplit("-", 1)[-1])
+        self.assertEqual(6, len(by_surface))
+        self.assertEqual({surface: expected_phases for surface in by_surface}, by_surface)
+        self.assertEqual({"blocked"}, {record["result"] for record in matrix["records"]})
 
     def test_boundary_scan_covers_publishable_root_and_local_denylist(self) -> None:
         publishable = {path.relative_to(ROOT).as_posix() for path in _publishable_paths(ROOT)}
@@ -569,6 +582,8 @@ class CatalogTests(unittest.TestCase):
 <input type="hidden" name="form_build_id" value="form-first" />
 <div class="view-dom-id-0123456789abcdef0123456789abcdef"></div>
 <script>{"theme_token":"theme-first"}</script>
+<script nonce="nonce-first">stable()</script>
+<script nonce="nonce-first">(function(){var a='/cdn-cgi/challenge-platform/one';})();</script>
 <main>Official authority content</main>'''
         second = b'''<meta name="csrf-token" content="second" />
 <script>NREUM.info={"queueTime":9,"applicationTime":157}</script>
@@ -576,6 +591,8 @@ class CatalogTests(unittest.TestCase):
 <input type="hidden" name="form_build_id" value="form-second" />
 <div class="view-dom-id-fedcba9876543210fedcba9876543210"></div>
 <script>{"theme_token":"theme-second"}</script>
+<script nonce="nonce-second">stable()</script>
+<script nonce="nonce-second">(function(){var a='/cdn-cgi/challenge-platform/two';})();</script>
 <main>Official authority content</main>'''
         changed = second.replace(b"Official authority content", b"Changed authority content")
         self.assertEqual(_normalized_content_sha256(first), _normalized_content_sha256(second))

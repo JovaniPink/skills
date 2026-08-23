@@ -61,7 +61,7 @@
         ],
         "properties": {
           "case_id": {"type": "string", "pattern": "^[A-Z0-9-]+$"},
-          "surface": {"enum": ["Codex CLI", "Codex Desktop", "ChatGPT Web", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"]},
+          "surface": {"enum": ["Codex CLI", "Codex Desktop", "ChatGPT Desktop", "ChatGPT Web", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"]},
           "client_version": {"type": "string", "minLength": 1},
           "client_build": {"type": "string", "minLength": 1},
           "catalog_version": {"type": "string", "pattern": "^0\\.[1-9][0-9]*\\.0$"},

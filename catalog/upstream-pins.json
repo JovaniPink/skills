@@ -11,13 +11,8 @@
     },
     {
       "source_url": "https://airc.nist.gov/",
-      "marker_kind": "content-sha256",
-      "marker_value": "858ff4dba95d4d01839c01666b62250c35555975c8cc9f93e4b5848170afdc1c"
-    },
-    {
-      "source_url": "https://code.claude.com/docs/en/skills",
-      "marker_kind": "content-sha256",
-      "marker_value": "4a26c7763d42f7362eb8250a8b347981b50bd781466a1721f97015612d47a9ec"
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "cb1d9431331e105df419d3579c90f3adb0a6a4091bd4443a9bf339d71be6db41"
     },
     {
       "source_url": "https://developer.hashicorp.com/terraform/language",
@@ -28,11 +23,6 @@
       "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
       "marker_kind": "content-sha256",
       "marker_value": "1b2e7e26cdb84508781f591e095cb6ab1fe3830517ccb7f55a5c3ade171612a3"
-    },
-    {
-      "source_url": "https://developers.openai.com/plugins/build/plugins",
-      "marker_kind": "content-sha256",
-      "marker_value": "ef404245ab808ce8503cded2dcf86c4dced3d504d2c0c26c2848d2020c8295ca"
     },
     {
       "source_url": "https://docs.python.org/3/",
@@ -73,11 +63,6 @@
       "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
       "marker_kind": "etag",
       "marker_value": "\"fd8bc5f3bef45fa18bb8786b35c200c6\""
-    },
-    {
-      "source_url": "https://learn.chatgpt.com/docs/build-skills",
-      "marker_kind": "content-sha256",
-      "marker_value": "0d005cd91b5d7b8052e45e91031686fa10f78c10969676f2052b46915c7df35e"
     },
     {
       "source_url": "https://learn.microsoft.com/en-us/dotnet/",
