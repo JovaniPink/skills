@@ -4,6 +4,21 @@ The authoritative row-level evidence is `client-observations.json`, validated by
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
+## Current v0.8 summary
+
+The v0.8 source and representative archive are pinned in `client-observations-v0.8.json`. Each surface has separate installation, discovery, implicit-activation, focused-reference, refusal, update, and removal rows. No receiving-client operation was authorized, so every observation is terminal `blocked` rather than `not_run`.
+
+| Surface | Version/build | Passed observations | Blocked observations | Surface status |
+| --- | --- | ---: | ---: | --- |
+| Codex CLI | not observed | 0 | 7 | BLOCKED |
+| ChatGPT Desktop | not observed | 0 | 7 | BLOCKED |
+| ChatGPT Web | not observed | 0 | 7 | BLOCKED |
+| Claude Code CLI | not observed | 0 | 7 | BLOCKED |
+| Claude Code Desktop | not observed | 0 | 7 | BLOCKED |
+| Claude.ai | not observed | 0 | 7 | BLOCKED |
+
+Totals: 0 `pass`, 0 `fail`, 42 `blocked`, 0 `not_supported`, and 0 `not_run`. Strict generated-plugin and archive validation does not establish receiving-client behavior.
+
 ## Current v0.6 summary
 
 The engineering-depth and continuity source commit is pinned in `client-observations-v0.6.json`. Fresh command-line observations were recorded on 2026-08-21 without inferring behavior on another surface.
