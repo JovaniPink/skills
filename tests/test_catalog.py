@@ -15,7 +15,10 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_distributions import build, marketplace_documents  # noqa: E402
 from cataloglib import EXPLICIT_SKILLS, SKILLS, filter_revoked, read_skill_metadata, skills_by_plugin  # noqa: E402
-from check_upstream_freshness import check as check_upstream_freshness  # noqa: E402
+from check_upstream_freshness import (  # noqa: E402
+    _normalized_content_sha256,
+    check as check_upstream_freshness,
+)
 from check_generated import check as check_generated  # noqa: E402
 from check_originality import check as check_originality  # noqa: E402
 from check_public_boundary import _publishable_paths, scan as scan_public_boundary  # noqa: E402
@@ -474,6 +477,19 @@ class CatalogTests(unittest.TestCase):
             kind, value = _fetch_marker("https://example.com/specification", preferred_kind="content-sha256")
         self.assertEqual("content-sha256", kind)
         self.assertEqual(hashlib.sha256(b"stable authority content").hexdigest(), value)
+
+    def test_freshness_normalization_ignores_only_per_request_html_values(self) -> None:
+        first = b'''<meta name="csrf-token" content="first" />
+<script>NREUM.info={"queueTime":1,"applicationTime":131}</script>
+<meta content='visitor-one' name='ua:temp_visitor_id'>
+<main>Official authority content</main>'''
+        second = b'''<meta name="csrf-token" content="second" />
+<script>NREUM.info={"queueTime":9,"applicationTime":157}</script>
+<meta content='visitor-two' name='ua:temp_visitor_id'>
+<main>Official authority content</main>'''
+        changed = second.replace(b"Official authority content", b"Changed authority content")
+        self.assertEqual(_normalized_content_sha256(first), _normalized_content_sha256(second))
+        self.assertNotEqual(_normalized_content_sha256(first), _normalized_content_sha256(changed))
 
     def test_upstream_freshness_uses_primary_authority_urls_only(self) -> None:
         errors, report = check_upstream_freshness(online=False)

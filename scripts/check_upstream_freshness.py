@@ -6,11 +6,39 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import urllib.request
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlparse
 
 from cataloglib import ROOT, VERSION
+
+
+NORMALIZED_HTML_HOSTS = frozenset({"trailhead.salesforce.com"})
+
+
+def _normalized_content_sha256(payload: bytes) -> str:
+    """Hash authority content after removing known per-request HTML values."""
+
+    text = payload.decode("utf-8")
+    substitutions = (
+        (
+            r'(<meta name="csrf-token" content=")[^"]*(" />)',
+            r'\1[volatile]\2',
+        ),
+        (
+            r'"queueTime":\d+,"applicationTime":\d+',
+            '"queueTime":0,"applicationTime":0',
+        ),
+        (
+            r"(<meta content=')[^']+(' name='ua:temp_visitor_id'>)",
+            r"\1[volatile]\2",
+        ),
+    )
+    for pattern, replacement in substitutions:
+        text = re.sub(pattern, replacement, text)
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -25,6 +53,9 @@ def _fetch_marker(url: str, preferred_kind: str | None = None) -> tuple[str, str
     with urllib.request.urlopen(request, timeout=30) as response:
         etag = response.headers.get("ETag")
         last_modified = response.headers.get("Last-Modified")
+        host = (urlparse(url).hostname or "").casefold()
+        if preferred_kind == "normalized-content-sha256":
+            return "normalized-content-sha256", _normalized_content_sha256(response.read())
         if preferred_kind == "content-sha256":
             return "content-sha256", hashlib.sha256(response.read()).hexdigest()
         if preferred_kind == "etag" and etag and not etag.startswith("W/"):
@@ -33,6 +64,8 @@ def _fetch_marker(url: str, preferred_kind: str | None = None) -> tuple[str, str
             return "last-modified", last_modified
         if preferred_kind is not None:
             return "content-sha256", hashlib.sha256(response.read()).hexdigest()
+        if host in NORMALIZED_HTML_HOSTS:
+            return "normalized-content-sha256", _normalized_content_sha256(response.read())
         if etag and not etag.startswith("W/"):
             return "etag", etag
         if last_modified:

@@ -531,7 +531,7 @@
       "skill": "api-contract-compatibility-review",
       "disposition": "covered",
       "implementation_method": "clean-room",
-      "source_url": "https://www.rfc-editor.org/rfc/rfc9110",
+      "source_url": "https://www.rfc-editor.org/rfc/rfc9110.txt",
       "upstream_license": "No source text imported; public primary documentation was used as authority for independently authored guidance.",
       "pinned_revision": "retrieved-2026-08-21",
       "reviewed_on": "2026-08-21",

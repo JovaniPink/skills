@@ -13,7 +13,7 @@ metadata:
 
 # API Contract Compatibility Review
 
-Use current primary guidance as a review baseline, then report only what the available evidence supports. Primary authority: [official reference](https://www.rfc-editor.org/rfc/rfc9110).
+Use current primary guidance as a review baseline, then report only what the available evidence supports. Primary authority: [official reference](https://www.rfc-editor.org/rfc/rfc9110.txt).
 
 ## Workflow
 
@@ -34,4 +34,3 @@ Use current primary guidance as a review baseline, then report only what the ava
 ## Output
 
 Return Contract inventory, Compatibility findings, Consumer risk, Test matrix, Rollout, Deprecation, and Unresolved authority.
-

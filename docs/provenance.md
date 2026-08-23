@@ -16,6 +16,8 @@ Capability disposition is separate from implementation method. An implementation
 
 Each public entry records source URL, license, pinned revision or an explicit non-applicable value, review date, material reviewed, local changes, capability disposition, implementation method, security disposition, re-review triggers, and revocation conditions. `provenance/schema.json` is authoritative and rejects unknown fields, wrong types, invalid dates or URLs, unsupported enum values, and missing required evidence.
 
+Online freshness pins use a strong ETag, a meaningful last-modified value, a byte-level content hash, or a reviewed normalized-content hash. Normalization is limited to named per-request HTML values such as session tokens and telemetry timing; regression tests require substantive authority-content changes to alter the marker.
+
 Use only Jovani-owned work and primary authorities needed for format, interoperability, or correctness: laws, specifications, standards bodies, and official platform documentation. Discovery links, community discussions, and third-party skill catalogs are not implementation authorities.
 
 ## Clean-room boundary

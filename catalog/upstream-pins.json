@@ -91,8 +91,8 @@
     },
     {
       "source_url": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_intro",
-      "marker_kind": "content-sha256",
-      "marker_value": "31501bcadff3faf2cefa482d10a8602a7ace1311d6a34be36a07c8d9acfd72cf"
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "33e51ff7d32792bc7fdc1898ed8f8a4e0239bc6d8a713b93af46ecb625de37c9"
     },
     {
       "source_url": "https://www.drupal.org/docs/develop",
@@ -105,9 +105,9 @@
       "marker_value": "98787ade3f63879beb49817a2881046b4b0d247ea9e39bd940dd95360435ec99"
     },
     {
-      "source_url": "https://www.rfc-editor.org/rfc/rfc9110",
-      "marker_kind": "last-modified",
-      "marker_value": "Sun, 23 Aug 2026 18:16:51 GMT"
+      "source_url": "https://www.rfc-editor.org/rfc/rfc9110.txt",
+      "marker_kind": "content-sha256",
+      "marker_value": "21c1cdce6ab0e5509b04d84a28000836c7a087cf786efe6f04877ebfff47232a"
     },
     {
       "source_url": "https://www.swift.org/documentation/",
