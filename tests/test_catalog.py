@@ -482,10 +482,16 @@ class CatalogTests(unittest.TestCase):
         first = b'''<meta name="csrf-token" content="first" />
 <script>NREUM.info={"queueTime":1,"applicationTime":131}</script>
 <meta content='visitor-one' name='ua:temp_visitor_id'>
+<input type="hidden" name="form_build_id" value="form-first" />
+<div class="view-dom-id-0123456789abcdef0123456789abcdef"></div>
+<script>{"theme_token":"theme-first"}</script>
 <main>Official authority content</main>'''
         second = b'''<meta name="csrf-token" content="second" />
 <script>NREUM.info={"queueTime":9,"applicationTime":157}</script>
 <meta content='visitor-two' name='ua:temp_visitor_id'>
+<input type="hidden" name="form_build_id" value="form-second" />
+<div class="view-dom-id-fedcba9876543210fedcba9876543210"></div>
+<script>{"theme_token":"theme-second"}</script>
 <main>Official authority content</main>'''
         changed = second.replace(b"Official authority content", b"Changed authority content")
         self.assertEqual(_normalized_content_sha256(first), _normalized_content_sha256(second))

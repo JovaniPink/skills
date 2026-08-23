@@ -96,8 +96,8 @@
     },
     {
       "source_url": "https://www.drupal.org/docs/develop",
-      "marker_kind": "etag",
-      "marker_value": "\"1787510564-1\""
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "2e3378abe4833464ffc6c0a4e7e8e2fd83554da45de1e001c0cd77389c842ff4"
     },
     {
       "source_url": "https://www.postgresql.org/docs/current/",

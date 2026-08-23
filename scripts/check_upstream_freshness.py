@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 from cataloglib import ROOT, VERSION
 
 
-NORMALIZED_HTML_HOSTS = frozenset({"trailhead.salesforce.com"})
+NORMALIZED_HTML_HOSTS = frozenset({"trailhead.salesforce.com", "www.drupal.org"})
 
 
 def _normalized_content_sha256(payload: bytes) -> str:
@@ -34,6 +34,18 @@ def _normalized_content_sha256(payload: bytes) -> str:
         (
             r"(<meta content=')[^']+(' name='ua:temp_visitor_id'>)",
             r"\1[volatile]\2",
+        ),
+        (
+            r'(name="form_build_id" value=")[^"]+(")',
+            r'\1[volatile]\2',
+        ),
+        (
+            r'(view-dom-id-)[A-Fa-f0-9]{32}',
+            r'\1[volatile]',
+        ),
+        (
+            r'("theme_token":")[^"]+(")',
+            r'\1[volatile]\2',
         ),
     )
     for pattern, replacement in substitutions:
