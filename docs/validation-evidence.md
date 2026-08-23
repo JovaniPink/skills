@@ -4,7 +4,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 
 ## v0.7 tested source
 
-- Source commit: `2c8615be03163c5c0cee25c952b5b713280194ab`
+- Source commit: `782ef2b9992710bb0c2770be82bd969c4d3949f0`
 - Catalog/plugin version: `0.7.0`
 - Date: 2026-08-23
 - Canonical skills: 67 across five optional plugins; 24 engineering skills, 11 stack profiles, and 13 explicit-only skills
