@@ -1,0 +1,6 @@
+interface:
+  display_name: "Source-Output Conformance Audit"
+  short_description: "Audit source-to-readback fidelity"
+  default_prompt: "Use $jovanipink-ai-systems:source-output-conformance-audit to audit exact source identity through persisted readback."
+policy:
+  allow_implicit_invocation: true

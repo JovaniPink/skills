@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.7.0"
+VERSION = "0.8.0"
 CATALOG_NAME = "jovanipink-skills"
 PLUGIN_CATEGORY = "Developer Tools"
 PLUGIN_SPECS = {
@@ -42,6 +42,12 @@ PLUGIN_SPECS = {
         "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
         "short_description": "Reasoning and communication workflows for Codex",
         "keywords": ["skills", "reasoning", "writing", "architecture", "evidence"],
+    },
+    "jovanipink-ai-systems": {
+        "display_name": "JovaniPink AI Systems",
+        "description": "Optional AI evaluation, context reliability, and source-to-output conformance workflows.",
+        "short_description": "AI reliability workflows for Codex",
+        "keywords": ["skills", "ai", "evaluation", "context", "conformance"],
     },
 }
 

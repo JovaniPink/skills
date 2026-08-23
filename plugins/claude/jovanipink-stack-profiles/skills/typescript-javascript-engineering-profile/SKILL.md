@@ -4,7 +4,7 @@ description: Apply focused TypeScript and JavaScript engineering judgment after 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.7.0"
+  version: "0.8.0"
   plugin: "jovanipink-stack-profiles"
   invocation: "implicit"
   provenance: "clean-room"

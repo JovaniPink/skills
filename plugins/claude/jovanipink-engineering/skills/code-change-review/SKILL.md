@@ -4,7 +4,7 @@ description: "Review an exact code change for correctness, regressions, security
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.7.0"
+  version: "0.8.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"

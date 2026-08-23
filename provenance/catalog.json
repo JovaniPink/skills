@@ -1144,6 +1144,48 @@
       "revocation": "Remove or revise if it transfers secrets, private context, unsupported completion claims, or authority not held by the recipient."
     },
     {
+      "skill": "agent-evaluation-design",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://airc.nist.gov/",
+      "upstream_license": "No external evaluation workflow, prompt, rubric, case set, grader, threshold, script, or implementation imported; NIST resources were used only as primary correctness guidance for evaluation discipline.",
+      "pinned_revision": "retrieved-2026-08-23",
+      "reviewed_on": "2026-08-23",
+      "reviewed_material": ["NIST AI Resource Center test, evaluation, verification, and validation resources", "Open Agent Skills specification", "Jovani-owned AI evaluation practice"],
+      "local_changes": "Wholly Jovani-authored evaluation-contract workflow covering populations, cases, baselines, configurations, oracles, graders, error classes, thresholds, cost, latency, human review, authority, and limitations.",
+      "security_review": "APPROVE: instruction-and-reference-only read-only design workflow with no scripts, hooks, dependencies, agents, tool grants, private data transfer, model calls, provider use, billing, or external execution.",
+      "rereview_triggers": ["NIST evaluation guidance changes", "invocation or grader authority changes", "new executable, provider, private-data, credential, billing, or external-evaluation behavior"],
+      "revocation": "Remove or revise if it launches evaluations by implication, hides severe failures in aggregate metrics, or presents sampled results beyond their stated population and limitations."
+    },
+    {
+      "skill": "context-reliability-review",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://www.w3.org/TR/prov-n/",
+      "upstream_license": "No external context workflow, assertion model, status vocabulary, matrix, example, or implementation imported; W3C PROV was used only as a primary provenance authority.",
+      "pinned_revision": "retrieved-2026-08-23",
+      "reviewed_on": "2026-08-23",
+      "reviewed_material": ["W3C PROV-N recommendation", "Open Agent Skills specification", "Jovani-owned context reliability practice"],
+      "local_changes": "Wholly Jovani-authored assertion-level context review covering source, authority, effective and recorded time, observation, freshness, permissions, conflict, supersession, revocation, impact, and correction.",
+      "security_review": "APPROVE: instruction-and-reference-only read-only review with no scripts, hooks, dependencies, agents, tool grants, private-fact embedding, context mutation, connector access, credentials, or external writes.",
+      "rereview_triggers": ["W3C provenance recommendation changes", "context status or invocation policy changes", "new connector, private-data, context-mutation, credential, or external-write behavior"],
+      "revocation": "Remove or revise if it exposes private facts, treats recency as authority without a ratified rule, or keeps revoked context active for convenience."
+    },
+    {
+      "skill": "source-output-conformance-audit",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://airc.nist.gov/",
+      "upstream_license": "No external extraction workflow, corpus mapping, oracle, fixture, script, test, report, or implementation imported; NIST resources were used only as primary correctness guidance for conformance evidence.",
+      "pinned_revision": "retrieved-2026-08-23",
+      "reviewed_on": "2026-08-23",
+      "reviewed_material": ["NIST AI Resource Center test, evaluation, verification, and validation resources", "Open Agent Skills specification", "Jovani-owned source-conformance practice"],
+      "local_changes": "Wholly Jovani-authored source-to-readback audit covering byte identity, source-cited expected values, stage evidence, mutation sensitivity, isolated fixtures, and separate correctness, completeness, storage, reproducibility, and unresolved-evidence results.",
+      "security_review": "APPROVE WITH CONDITIONS: repository-defined local checks may run against authorized disposable fixtures; no skill scripts, hooks, dependencies, agents, broad tool grants, customer data, provider calls, credentials, uploads, production writes, migrations, deployments, or external actions are included.",
+      "rereview_triggers": ["NIST conformance guidance changes", "bounded-execution or persistence scope changes", "new script, dependency, private-data, provider, credential, production, migration, deployment, or external-write behavior"],
+      "revocation": "Disable if source custody is bypassed, system output becomes its own oracle, or bounded fixture execution expands into external or production mutation without separate authority."
+    },
+    {
       "skill": "workflow-retrospective",
       "disposition": "covered",
       "implementation_method": "clean-room",

@@ -71,6 +71,7 @@ class CatalogTests(unittest.TestCase):
             "## Stack profiles: jovanipink-stack-profiles": "jovanipink-stack-profiles",
             "## Operations skills: jovanipink-operations": "jovanipink-operations",
             "## Reasoning skills: jovanipink-reasoning": "jovanipink-reasoning",
+            "## AI systems skills: jovanipink-ai-systems": "jovanipink-ai-systems",
         }
         documented = {plugin: [] for plugin in canonical}
         documented_explicit: set[str] = set()
@@ -115,6 +116,7 @@ class CatalogTests(unittest.TestCase):
             "## Stack profiles: jovanipink-stack-profiles": "jovanipink-stack-profiles",
             "## Operations: jovanipink-operations": "jovanipink-operations",
             "## Reasoning: jovanipink-reasoning": "jovanipink-reasoning",
+            "## AI systems: jovanipink-ai-systems": "jovanipink-ai-systems",
         }
         documented = {plugin: [] for plugin in canonical}
         documented_invocation: dict[str, str] = {}
@@ -262,12 +264,12 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(["portable-skill-authoring"], tracks["portable-skill-authoring"]["skills"])
         self.assertEqual("released", tracks["engineering-depth-and-continuity"]["status"])
         self.assertEqual("released", tracks["reasoning-continuity"]["status"])
+        self.assertEqual("released", tracks["ai-reliability-foundations"]["status"])
+        self.assertEqual("v0.8", tracks["ai-reliability-foundations"]["target_release"])
+        self.assertEqual("jovanipink-ai-systems", tracks["ai-reliability-foundations"]["plugin"])
 
-    def test_v07_acceptance_ledger_contract_and_catalog_counts(self) -> None:
-        self.assertEqual(67, len(SKILLS))
+    def test_v07_acceptance_ledger_contract(self) -> None:
         self.assertEqual(24, len(skills_by_plugin()["jovanipink-engineering"]))
-        self.assertEqual(11, len(skills_by_plugin()["jovanipink-stack-profiles"]))
-        self.assertEqual(13, len(EXPLICIT_SKILLS))
         self.assertIn("acceptance-evidence-ledger", EXPLICIT_SKILLS)
 
         expanded_profiles = {
@@ -321,6 +323,88 @@ class CatalogTests(unittest.TestCase):
         prompts = "\n".join(item["prompt"] for item in record["near_miss"])
         for routed_skill in ("cross-stack-quality-gates", "plan-execution", "claim-verification"):
             self.assertIn(routed_skill, prompts)
+
+    def test_v08_ai_reliability_contract_and_catalog_counts(self) -> None:
+        new_skills = {
+            "agent-evaluation-design": "read-only",
+            "context-reliability-review": "read-only",
+            "source-output-conformance-audit": "bounded-execution",
+        }
+        self.assertEqual(70, len(SKILLS))
+        self.assertEqual(6, len(skills_by_plugin()))
+        self.assertEqual(set(new_skills), set(skills_by_plugin()["jovanipink-ai-systems"]))
+        self.assertEqual(13, len(EXPLICIT_SKILLS))
+
+        references = {
+            "agent-evaluation-design": "evaluation-contract.md",
+            "context-reliability-review": "assertion-matrix.md",
+            "source-output-conformance-audit": "conformance-matrix.md",
+        }
+        for skill, risk_class in new_skills.items():
+            root = ROOT / "skills" / skill
+            files = {
+                path.relative_to(root).as_posix()
+                for path in root.rglob("*")
+                if path.is_file()
+            }
+            self.assertEqual(
+                {"SKILL.md", "agents/openai.yaml", f"references/{references[skill]}"},
+                files,
+            )
+            metadata = read_skill_metadata(root)
+            self.assertEqual("jovanipink-ai-systems", metadata["plugin"])
+            self.assertEqual("implicit", metadata["invocation"])
+            self.assertEqual("original", metadata["provenance"])
+            self.assertEqual(risk_class, metadata["risk_class"])
+
+    def test_v08_ai_reliability_routing_and_safety_separation(self) -> None:
+        cases = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))
+        records = {
+            item["skill"]: item
+            for item in cases["skills"]
+            if item["skill"] in {
+                "agent-evaluation-design",
+                "context-reliability-review",
+                "source-output-conformance-audit",
+            }
+        }
+        self.assertEqual(3, len(records))
+        for record in records.values():
+            self.assertGreaterEqual(len(record["positive"]), 3)
+            self.assertGreaterEqual(len(record["near_miss"]), 3)
+            self.assertGreaterEqual(len(record["safety"]), 1)
+            self.assertGreaterEqual(len(record["output_rubric"]), 3)
+            self.assertNotEqual("not_run", record["baseline_comparison"]["status"])
+
+        near_misses = "\n".join(
+            case["prompt"]
+            for record in records.values()
+            for case in record["near_miss"]
+        )
+        for collision in (
+            "test-strategy",
+            "test-quality-review",
+            "acceptance-evidence-ledger",
+            "authority-boundary-review",
+            "ConvergeQL-style model review",
+        ):
+            self.assertIn(collision, near_misses)
+
+        evaluation = (ROOT / "skills" / "agent-evaluation-design" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("evaluation contract", evaluation)
+        self.assertIn("paid or external evaluation", evaluation)
+        context = (ROOT / "skills" / "context-reliability-review" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in ("effective time", "recorded time", "supersession", "revocation"):
+            self.assertIn(boundary, context)
+        conformance = (ROOT / "skills" / "source-output-conformance-audit" / "SKILL.md").read_text(encoding="utf-8")
+        for dimension in (
+            "correctness",
+            "completeness",
+            "storage correctness",
+            "reproducibility",
+            "unresolved evidence",
+        ):
+            self.assertIn(dimension, conformance)
 
     def test_client_observation_matrix_is_reconciled_and_terminal(self) -> None:
         paths = sorted(

@@ -5,6 +5,18 @@
   },
   "plugins": [
     {
+      "name": "jovanipink-ai-systems",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex/jovanipink-ai-systems"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
       "name": "jovanipink-engineering",
       "source": {
         "source": "local",

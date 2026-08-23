@@ -4,7 +4,7 @@ description: "Run a bounded prototype or technical spike to answer a named uncer
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.7.0"
+  version: "0.8.0"
   plugin: "jovanipink-engineering"
   invocation: "explicit"
   provenance: "clean-room"

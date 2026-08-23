@@ -177,6 +177,25 @@
         "trigger cases remain separate from quality gates, plan execution, claim verification, and orchestration",
         "generated artifacts pass repository-independence, determinism, package-boundary, and client-observation checks"
       ]
+    },
+    {
+      "id": "ai-reliability-foundations",
+      "target_release": "v0.8",
+      "plugin": "jovanipink-ai-systems",
+      "status": "released",
+      "skills": [
+        "agent-evaluation-design",
+        "context-reliability-review",
+        "source-output-conformance-audit"
+      ],
+      "entry_criteria": [
+        "each workflow is independently authored from Jovani-owned reliability practice and primary format or correctness authorities",
+        "evaluation design remains read-only and launches no paid or external evaluation without separate provider, data, budget, and network authority",
+        "context review uses assertion-level provenance and lifecycle without embedding private facts",
+        "conformance execution is limited to repository-defined checks and authorized disposable fixtures or test stores",
+        "routing cases distinguish generic testing, evidence ledgers, authority architecture, and product-specific model reviews",
+        "generated artifacts pass originality, repository-independence, security, determinism, package-boundary, and client-observation checks"
+      ]
     }
   ]
 }

@@ -4,7 +4,7 @@ description: "Establish a shared, decision-ready understanding before implementa
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.7.0"
+  version: "0.8.0"
   plugin: "jovanipink-reasoning"
   invocation: "implicit"
   provenance: "clean-room"

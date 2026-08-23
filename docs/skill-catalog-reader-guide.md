@@ -1,18 +1,19 @@
 # JovaniPink Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 67 portable agent skills organized into five focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The JovaniPink Skills catalog contains 70 portable agent skills organized into six focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
 ## How the catalog is organized
 
-The five plugins separate broad workflow categories so you can install only what you need:
+The six plugins separate broad workflow categories so you can install only what you need:
 
 1. `jovanipink-skills` contains the core verification, research, diagnosis, security, and publication workflows.
 2. `jovanipink-engineering` contains software planning, implementation, review, testing, architecture, and operational-quality workflows.
 3. `jovanipink-stack-profiles` adds focused guidance for specific programming languages and infrastructure tools.
 4. `jovanipink-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
 5. `jovanipink-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
+6. `jovanipink-ai-systems` contains optional AI evaluation, context reliability, and source-to-output conformance workflows.
 
 The counts, groupings, and invocation policies below are reconciled against the [canonical skill sources](../skills/) and the catalog's [metadata parser](../scripts/cataloglib.py). Generated plugin trees are projections, not the inventory authority.
 
@@ -23,7 +24,8 @@ The counts, groupings, and invocation policies below are reconciled against the 
 | `jovanipink-stack-profiles` | 11 | None |
 | `jovanipink-operations` | 11 | None |
 | `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
-| **Total** | **67** | **13 skills** |
+| `jovanipink-ai-systems` | 3 | None |
+| **Total** | **70** | **13 skills** |
 
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
 
@@ -357,6 +359,22 @@ Creates a precise continuation record for another session, client, person, or ag
 Invocation: `explicit-only`.
 
 Reviews completed or paused work to identify what helped, what failed, why it happened, and which bounded improvement to test next. It does not mine private history or automatically rewrite policies and skills.
+
+## AI systems skills: jovanipink-ai-systems
+
+The optional AI-systems plugin contains three reliability workflows. Install it when work concerns measured AI behavior, the reliability of context assertions, or evidence from exact source bytes through persisted readback.
+
+### agent-evaluation-design
+
+Designs a decision-ready evaluation contract for an agent, model-assisted workflow, or prompt-driven system. It defines representative cases, baselines, configurations, oracles, graders, error classes, thresholds, cost, latency, human review, execution authority, and limitations without launching paid or external evaluations.
+
+### context-reliability-review
+
+Reviews context as atomic assertions with provenance, authority, effective and recorded time, freshness, permissions, conflicts, supersession, revocation, status, and behavioral impact. It uses synthetic or redacted public output rather than embedding private facts.
+
+### source-output-conformance-audit
+
+Audits exact source identity through decoding, parsing or extraction, normalization, validation, write preparation, isolated persistence, and readback. It uses source-cited expected values and mutation-sensitive tests while reporting correctness, completeness, storage correctness, reproducibility, and unresolved evidence separately.
 
 ## Choosing a skill
 

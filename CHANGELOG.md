@@ -4,6 +4,20 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-08-23
+
+### Added
+
+- Optional `jovanipink-ai-systems` plugin with original agent-evaluation, context-reliability, and source-to-output conformance workflows.
+- Focused NIST TEVV and W3C PROV references used as correctness authorities without importing third-party skill implementations.
+- Trigger, conflict, safety, output-quality, provenance, upstream-pin, package, and client-observation records for all three workflows.
+
+### Security
+
+- Evaluation design launches no paid or external run without separate provider, data, budget, and network authority.
+- Context review embeds no private facts and keeps authority, time, permissions, supersession, and revocation distinct.
+- Conformance execution is limited to repository-defined checks and authorized disposable fixtures or test stores; customer data, credentials, provider calls, production writes, migrations, and deployments remain excluded.
+
 ## [0.7.0] - 2026-08-23
 
 ### Added
