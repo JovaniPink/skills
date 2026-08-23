@@ -4,7 +4,7 @@ Portable, evidence-oriented agent skills for software delivery, research, operat
 
 This repository is an independent MIT-licensed work. It does not redistribute proprietary skill text. Public skills remain separate from private, repository-local overlays.
 
-Start with [How to use JovaniPink Skills](docs/README.md) for secure installation, invocation, validation, updating, removal, troubleshooting, and client resource links. Use the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for the complete inventory, plugin grouping, and explicit-only map.
+Start with [How to use JovaniPink Skills](docs/README.md) for secure installation, invocation, validation, updating, removal, troubleshooting, and client resource links. Use the [skill cheatsheet](docs/skill-cheatsheet.md) for quick selection or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for the full inventory and explicit-only boundaries.
 
 ## Catalog
 

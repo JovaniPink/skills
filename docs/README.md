@@ -4,7 +4,7 @@ JovaniPink Skills is a public catalog of reusable workflows for Codex, ChatGPT, 
 
 This guide explains how to choose, install, invoke, verify, update, and remove the skills safely.
 
-Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 61-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
+Use the [skill cheatsheet](skill-cheatsheet.md) for quick selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 61-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
 
 ## Start with the security boundary
 
