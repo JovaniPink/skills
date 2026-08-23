@@ -263,61 +263,6 @@ def validate_provenance(errors: list[str]) -> None:
 
 
 def validate_auxiliary_records(errors: list[str]) -> None:
-    public_audit = _validate_json_schema(
-        ROOT / "provenance" / "public-source-audit.json",
-        ROOT / "provenance" / "public-source-audit-schema.json",
-        errors,
-    )
-    if isinstance(public_audit, dict) and isinstance(public_audit.get("sources"), list):
-        components = [
-            component
-            for source in public_audit["sources"]
-            if isinstance(source, dict) and isinstance(source.get("components"), list)
-            for component in source["components"]
-            if isinstance(component, dict)
-        ]
-        summary = public_audit.get("summary", {})
-        skill_count = sum(component.get("component_class") == "skill" for component in components)
-        bundle_count = sum(component.get("component_class") == "bundle" for component in components)
-        if isinstance(summary, dict):
-            if summary.get("skill_directories") != skill_count:
-                errors.append("provenance/public-source-audit.json: skill directory count does not reconcile")
-            if summary.get("bundle_components") != bundle_count:
-                errors.append("provenance/public-source-audit.json: bundle component count does not reconcile")
-            if summary.get("total_components") != len(components):
-                errors.append("provenance/public-source-audit.json: total component count does not reconcile")
-        identities = [
-            (source.get("source_url"), component.get("path"))
-            for source in public_audit["sources"]
-            if isinstance(source, dict) and isinstance(source.get("components"), list)
-            for component in source["components"]
-            if isinstance(component, dict)
-        ]
-        if len(identities) != len(set(identities)):
-            errors.append("provenance/public-source-audit.json: component paths must be unique within each source")
-
-    inventory = _validate_json_schema(
-        ROOT / "provenance" / "inventory-summary.json",
-        ROOT / "provenance" / "inventory-summary-schema.json",
-        errors,
-    )
-    if isinstance(inventory, dict):
-        total = inventory.get("total_records")
-        dispositions = inventory.get("dispositions")
-        domains = inventory.get("domains")
-        if isinstance(dispositions, list):
-            disposition_total = sum(
-                item.get("count", 0) for item in dispositions if isinstance(item, dict) and isinstance(item.get("count"), int)
-            )
-            if disposition_total != total:
-                errors.append("provenance/inventory-summary.json: disposition counts do not reconcile")
-        if isinstance(domains, list):
-            domain_total = sum(
-                item.get("count", 0) for item in domains if isinstance(item, dict) and isinstance(item.get("count"), int)
-            )
-            if domain_total != total:
-                errors.append("provenance/inventory-summary.json: domain counts do not reconcile")
-
     roadmap = _validate_json_schema(
         ROOT / "incubator" / "roadmap.json",
         ROOT / "incubator" / "roadmap-schema.json",

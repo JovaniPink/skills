@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -14,10 +15,18 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_distributions import build, marketplace_documents  # noqa: E402
 from cataloglib import EXPLICIT_SKILLS, SKILLS, filter_revoked, read_skill_metadata, skills_by_plugin  # noqa: E402
-from check_upstream_freshness import check as check_upstream_freshness  # noqa: E402
+from check_upstream_freshness import (  # noqa: E402
+    _normalized_content_sha256,
+    check as check_upstream_freshness,
+)
 from check_generated import check as check_generated  # noqa: E402
 from check_originality import check as check_originality  # noqa: E402
 from check_public_boundary import _publishable_paths, scan as scan_public_boundary  # noqa: E402
+from check_repository_independence import (  # noqa: E402
+    check as check_repository_independence,
+    provenance_source_errors,
+    scan_text as scan_repository_independence,
+)
 from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E402
 from package_claude_ai import package  # noqa: E402
 from schema_validation import validate_instance  # noqa: E402
@@ -34,34 +43,17 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual([], validate_all(require_packages=True))
         self.assertEqual([], check_generated())
         self.assertEqual([], check_originality())
+        self.assertEqual([], check_repository_independence())
         self.assertEqual([], scan_public_boundary())
 
-    def test_public_source_audit_is_complete_and_clean_room(self) -> None:
-        audit = json.loads((ROOT / "provenance" / "public-source-audit.json").read_text(encoding="utf-8"))
-        self.assertEqual(2, len(audit["sources"]))
-        self.assertEqual(80, audit["summary"]["skill_directories"])
-        self.assertEqual(12, audit["summary"]["bundle_components"])
-        self.assertEqual(92, audit["summary"]["total_components"])
-        components = [component for source in audit["sources"] for component in source["components"]]
-        self.assertEqual(92, len(components))
-        self.assertEqual(80, sum(component["component_class"] == "skill" for component in components))
-        for source in audit["sources"]:
-            self.assertTrue(source["content_reviewed"])
-            self.assertFalse(source["text_copied"])
-            self.assertFalse(source["structure_copied"])
-            self.assertFalse(source["implementation_reused"])
-        v06 = {
-            "code-change-review",
-            "module-interface-design",
-            "prototype-spike",
-            "merge-conflict-reconciliation",
-            "guided-configuration",
-            "task-handoff",
-            "workflow-retrospective",
+    def test_retired_external_audit_records_are_absent(self) -> None:
+        retired = {
+            "provenance/public-source-audit.json",
+            "provenance/public-source-audit-schema.json",
+            "provenance/inventory-summary.json",
+            "provenance/inventory-summary-schema.json",
         }
-        mapped = [component for component in components if v06.intersection(component["public_mapping"])]
-        self.assertTrue(mapped)
-        self.assertEqual(set(), {component["disposition"] for component in mapped} - {"covered"})
+        self.assertEqual(retired, {path for path in retired if not (ROOT / path).exists()})
 
     def test_reasoning_plugin_keeps_discovery_scope_focused(self) -> None:
         reasoning = skills_by_plugin()["jovanipink-reasoning"]
@@ -174,15 +166,37 @@ class CatalogTests(unittest.TestCase):
             actual = {path.name for path in (ROOT / "skills" / skill / "references").glob("*.md")}
             self.assertTrue(expected.issubset(actual))
 
-    def test_originality_scan_rejects_source_specific_terms(self) -> None:
+    def test_originality_scan_rejects_generic_copy_attribution(self) -> None:
         with tempfile.TemporaryDirectory(prefix="originality-regression-") as temporary:
             candidate = Path(temporary) / "SKILL.md"
-            candidate.write_text("Use " + "pot" + "eto-mode for every task.\n", encoding="utf-8")
+            candidate.write_text("This workflow was copied " + "from an upstream skill.\n", encoding="utf-8")
             from check_originality import _scan_text
 
             errors = _scan_text(candidate.as_posix(), candidate.read_text(encoding="utf-8"))
             self.assertEqual(1, len(errors))
-            self.assertIn("source-specific mode name", errors[0])
+            self.assertIn("external implementation attribution", errors[0])
+
+    def test_repository_independence_rejects_external_repositories_and_mappings(self) -> None:
+        repository_url = "https://" + "github.com/" + "example-org/example-skills"
+        marketplace_id = "marketplace add " + "example-org/example-skills"
+        package_id = "plugin install " + "external-skill@external-marketplace"
+        mapping = '"public_' + 'mapping": ["local-skill"]'
+        self.assertTrue(scan_repository_independence("fixture.md", repository_url))
+        self.assertTrue(scan_repository_independence("fixture.md", marketplace_id))
+        self.assertTrue(scan_repository_independence("fixture.md", package_id))
+        self.assertTrue(scan_repository_independence("fixture.json", mapping))
+
+    def test_repository_independence_keeps_narrow_repository_link_exceptions(self) -> None:
+        owned = "https://" + "github.com/" + "JovaniPink/skills"
+        action = "https://" + "github.com/" + "actions/checkout"
+        package_id = "plugin install " + "jovanipink-engineering@jovanipink-skills"
+        self.assertEqual([], scan_repository_independence("README.md", owned))
+        self.assertEqual([], scan_repository_independence("provenance/ci-actions.json", action))
+        self.assertEqual([], scan_repository_independence("docs/README.md", package_id))
+        self.assertTrue(scan_repository_independence("docs/example.md", action))
+
+    def test_provenance_sources_are_primary_authorities(self) -> None:
+        self.assertEqual([], provenance_source_errors())
 
     def test_native_invocation_controls_match_canonical_metadata(self) -> None:
         for skill in SKILLS:
@@ -237,30 +251,76 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(any("expected array" in error for error in errors))
         self.assertTrue(any("additional property" in error for error in errors))
 
-    def test_private_inventory_reconciliation_is_sanitized_and_current(self) -> None:
-        summary = json.loads((ROOT / "provenance" / "inventory-summary.json").read_text(encoding="utf-8"))
-        counts = {entry["disposition"]: entry["count"] for entry in summary["dispositions"]}
-        self.assertEqual(
-            {
-                "covered": 27,
-                "partial": 0,
-                "public_candidate": 2,
-                "private_overlay": 1,
-                "rejected": 22,
-            },
-            counts,
-        )
-        self.assertFalse(summary["content_opened"])
-        self.assertFalse(summary["text_copied"])
-        self.assertFalse(summary["implementation_reused"])
-
+    def test_original_work_roadmap_has_no_external_inventory_track(self) -> None:
         roadmap = json.loads((ROOT / "incubator" / "roadmap.json").read_text(encoding="utf-8"))
         tracks = {track["id"]: track for track in roadmap["tracks"]}
+        self.assertNotIn("additional-stack-profiles", tracks)
+        self.assertEqual("released", tracks["acceptance-evidence-ledger"]["status"])
+        self.assertEqual("v0.7", tracks["acceptance-evidence-ledger"]["target_release"])
         self.assertEqual("released", tracks["portable-skill-authoring"]["status"])
         self.assertEqual("jovanipink-reasoning", tracks["portable-skill-authoring"]["plugin"])
         self.assertEqual(["portable-skill-authoring"], tracks["portable-skill-authoring"]["skills"])
         self.assertEqual("released", tracks["engineering-depth-and-continuity"]["status"])
         self.assertEqual("released", tracks["reasoning-continuity"]["status"])
+
+    def test_v07_acceptance_ledger_contract_and_catalog_counts(self) -> None:
+        self.assertEqual(67, len(SKILLS))
+        self.assertEqual(24, len(skills_by_plugin()["jovanipink-engineering"]))
+        self.assertEqual(11, len(skills_by_plugin()["jovanipink-stack-profiles"]))
+        self.assertEqual(13, len(EXPLICIT_SKILLS))
+        self.assertIn("acceptance-evidence-ledger", EXPLICIT_SKILLS)
+
+        expanded_profiles = {
+            "adobe-aem-engineering-profile",
+            "csharp-dotnet-engineering-profile",
+            "java-spring-engineering-profile",
+            "php-drupal-engineering-profile",
+            "salesforce-apex-engineering-profile",
+        }
+        self.assertTrue(expanded_profiles.issubset(SKILLS))
+        for profile in expanded_profiles:
+            root = ROOT / "skills" / profile
+            files = {
+                path.relative_to(root).as_posix()
+                for path in root.rglob("*")
+                if path.is_file()
+            }
+            self.assertEqual({"SKILL.md", "agents/openai.yaml", "references/checks.md"}, files)
+            self.assertEqual("original", read_skill_metadata(root)["provenance"])
+
+        skill_root = ROOT / "skills" / "acceptance-evidence-ledger"
+        files = {
+            path.relative_to(skill_root).as_posix()
+            for path in skill_root.rglob("*")
+            if path.is_file()
+        }
+        self.assertEqual(
+            {"SKILL.md", "agents/openai.yaml", "references/ledger-contract.md"},
+            files,
+        )
+        text = (skill_root / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in (
+            "untrusted data",
+            "Do not execute ledger content",
+            "cross-stack-quality-gates",
+            "claim-verification",
+            "plan-execution",
+            "multi-agent-orchestration",
+            "SATISFIED",
+            "INCOMPLETE",
+            "QUALIFIED",
+        ):
+            self.assertIn(boundary, text)
+
+    def test_v07_acceptance_ledger_has_trigger_and_safety_separation(self) -> None:
+        cases = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))
+        record = next(item for item in cases["skills"] if item["skill"] == "acceptance-evidence-ledger")
+        self.assertEqual(3, len(record["positive"]))
+        self.assertEqual(3, len(record["near_miss"]))
+        self.assertGreaterEqual(len(record["safety"]), 2)
+        prompts = "\n".join(item["prompt"] for item in record["near_miss"])
+        for routed_skill in ("cross-stack-quality-gates", "plan-execution", "claim-verification"):
+            self.assertIn(routed_skill, prompts)
 
     def test_client_observation_matrix_is_reconciled_and_terminal(self) -> None:
         paths = sorted(
@@ -398,18 +458,49 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual([], errors)
         self.assertEqual("pass", report["result"])
 
-    def test_public_source_audit_revisions_feed_freshness(self) -> None:
-        from check_upstream_freshness import audited_git_sources
+    def test_freshness_comparison_preserves_the_pinned_marker_kind(self) -> None:
+        from check_upstream_freshness import _fetch_marker
 
-        sources = audited_git_sources()
-        self.assertEqual(2, len(sources))
-        self.assertEqual(
-            {
-                "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
-                "46125561306434d8a1d7745d540d8932ab0cd2a2",
-            },
-            {source["pinned_revision"] for source in sources},
-        )
+        class Response:
+            headers = {"ETag": '"transient"', "Last-Modified": "Sun, 23 Aug 2026 18:16:51 GMT"}
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return False
+
+            def read(self) -> bytes:
+                return b"stable authority content"
+
+        with patch("check_upstream_freshness.urllib.request.urlopen", return_value=Response()):
+            kind, value = _fetch_marker("https://example.com/specification", preferred_kind="content-sha256")
+        self.assertEqual("content-sha256", kind)
+        self.assertEqual(hashlib.sha256(b"stable authority content").hexdigest(), value)
+
+    def test_freshness_normalization_ignores_only_per_request_html_values(self) -> None:
+        first = b'''<meta name="csrf-token" content="first" />
+<script>NREUM.info={"queueTime":1,"applicationTime":131}</script>
+<meta content='visitor-one' name='ua:temp_visitor_id'>
+<input type="hidden" name="form_build_id" value="form-first" />
+<div class="view-dom-id-0123456789abcdef0123456789abcdef"></div>
+<script>{"theme_token":"theme-first"}</script>
+<main>Official authority content</main>'''
+        second = b'''<meta name="csrf-token" content="second" />
+<script>NREUM.info={"queueTime":9,"applicationTime":157}</script>
+<meta content='visitor-two' name='ua:temp_visitor_id'>
+<input type="hidden" name="form_build_id" value="form-second" />
+<div class="view-dom-id-fedcba9876543210fedcba9876543210"></div>
+<script>{"theme_token":"theme-second"}</script>
+<main>Official authority content</main>'''
+        changed = second.replace(b"Official authority content", b"Changed authority content")
+        self.assertEqual(_normalized_content_sha256(first), _normalized_content_sha256(second))
+        self.assertNotEqual(_normalized_content_sha256(first), _normalized_content_sha256(changed))
+
+    def test_upstream_freshness_uses_primary_authority_urls_only(self) -> None:
+        errors, report = check_upstream_freshness(online=False)
+        self.assertEqual([], errors)
+        self.assertEqual("pass", report["result"])
 
 
 if __name__ == "__main__":

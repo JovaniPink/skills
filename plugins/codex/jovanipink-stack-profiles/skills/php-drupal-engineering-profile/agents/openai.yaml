@@ -1,0 +1,6 @@
+interface:
+  display_name: "PHP and Drupal Engineering Profile"
+  short_description: "Apply focused PHP and Drupal guidance"
+  default_prompt: "Use $jovanipink-stack-profiles:php-drupal-engineering-profile to apply focused PHP and Drupal guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true

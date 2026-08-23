@@ -4,7 +4,7 @@ description: Assess whether dirty or concurrent repository work needs Git worktr
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.6.0"
+  version: "0.7.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"

@@ -18,17 +18,18 @@ The catalog is split into focused plugins so clients can discover only the workf
 | `source-grounded-research` | Research with primary sources, dates, provenance, and uncertainty | Implicit |
 | `systematic-diagnosis` | Establish a causal diagnosis without silently fixing the system | Implicit |
 | `authority-boundary-review` | Map authoritative stores, projections, writers, readers, and contracts | Implicit |
-| `cross-stack-quality-gates` | Discover and run safe gates for Go, Python, Swift, TypeScript/JavaScript, SQL, and Terraform | Implicit |
+| `cross-stack-quality-gates` | Discover and run safe repository-defined gates across supported application, language, data, and infrastructure stacks | Implicit |
 | `prelaunch-readiness` | Audit web, service, and application launch readiness | Implicit |
 | `publish-change-safely` | Verify identity, scope, checks, push, and PR state | Explicit-only |
 | `public-private-boundary-review` | Detect private data, internal identifiers, secrets, and unsupported public claims | Implicit |
 | `skill-security-review` | Audit skill instructions, dependencies, permissions, and network behavior | Implicit |
-| `skill-import-provenance` | Review licensing, revisions, provenance, and revocation triggers | Explicit-only |
+| `skill-import-provenance` | Gate Jovani-owned skill transfers and reject third-party catalog imports | Explicit-only |
 
 ### `jovanipink-engineering`
 
 | Skill | Purpose | Invocation |
 | --- | --- | --- |
+| `acceptance-evidence-ledger` | Track substantial work against current evidence, freshness, blockers, and visible abandonments | Explicit-only |
 | `problem-framing` | Establish outcomes, evidence, constraints, unknowns, and success before implementation | Implicit |
 | `implementation-planning` | Produce decision-complete plans with interfaces, tests, rollout, and stopping conditions | Implicit |
 | `plan-execution` | Execute an approved plan with checkpoints and deviation controls | Explicit-only |
@@ -48,7 +49,7 @@ Engineering quality reviews in the same plugin cover application security, depen
 
 ### `jovanipink-stack-profiles`
 
-Optional profiles provide focused engineering guidance for Go, Python, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform. `cross-stack-quality-gates` remains the command-discovery orchestrator and uses a profile only when installed and applicable.
+Optional profiles provide focused engineering guidance for Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform. `cross-stack-quality-gates` remains the command-discovery orchestrator and uses a profile only when installed and applicable.
 
 ### `jovanipink-operations`
 
@@ -64,10 +65,8 @@ Eleven focused workflows cover alignment interviews, domain vocabulary, codebase
 - `plugins/codex/<plugin>/` and `plugins/claude/<plugin>/` are generated and committed.
 - `incubator/` is intentionally undiscoverable unfinished work.
 - `evals/` contains trigger and safety cases.
-- `provenance/catalog.json` records the origin and review policy of every skill.
-- `provenance/public-source-audit.json` records pinned public capability dispositions and clean-room exclusions.
-- `provenance/inventory-summary.json` publishes only reconciled aggregate capability-disposition counts.
-- `scripts/` contains standard-library-only generation, packaging, and validation, including guards for mutable third-party GitHub Action references and source-specific skill content.
+- `provenance/catalog.json` records primary format or correctness authorities and the Jovani-authored implementation boundary for every skill.
+- `scripts/` contains standard-library-only generation, packaging, and validation, including guards for mutable third-party GitHub Action references and external repository coupling.
 - `catalog/` contains strict compatibility, deprecation, revocation, and upstream-pinning records.
 - `releases/` contains exact-source release manifests and artifact checksums.
 
@@ -108,4 +107,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.6 adds focused code review, module design, prototype, conflict reconciliation, guided configuration, handoff, retrospective, planning, and multi-agent references. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+Version 0.7 adds an acceptance evidence ledger, five independently authored professional stack profiles, and repository-independence controls. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.

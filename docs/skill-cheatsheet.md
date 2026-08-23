@@ -1,6 +1,6 @@
 # JovaniPink Skills Cheatsheet
 
-Use this page to find a skill quickly. The catalog contains 61 skills across five plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+Use this page to find a skill quickly. The catalog contains 67 skills across five plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
 ## Invocation legend
 
@@ -28,7 +28,7 @@ Use this plugin for verification, research, diagnosis, authority boundaries, pub
 | `prelaunch-readiness` | Reviews repository, provider, deployment, and live evidence before a public launch. | Implicit |
 | `public-private-boundary-review` | Finds secrets, private details, proprietary material, and unsupported public claims before publication. | Implicit |
 | `publish-change-safely` | Verifies identity, repository, remote, branch, diff, checks, push, and pull request state. | Explicit-only |
-| `skill-import-provenance` | Reviews a skill's license, source revision, provenance, security, and re-review policy before adaptation. | Explicit-only |
+| `skill-import-provenance` | Gates Jovani-owned skill transfers and rejects third-party catalog material as an implementation source. | Explicit-only |
 | `skill-security-review` | Audits skills and plugins for unsafe instructions, permissions, dependencies, hooks, and data exposure. | Implicit |
 | `source-grounded-research` | Researches current questions with primary sources, URLs, dates, provenance, and uncertainty. | Implicit |
 | `systematic-diagnosis` | Reproduces and narrows a defect to establish a causal boundary without silently implementing a fix. | Implicit |
@@ -39,6 +39,7 @@ Use this plugin for the software lifecycle, application quality, architecture, r
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
+| `acceptance-evidence-ledger` | Tracks substantial work against current evidence, freshness, blockers, and visible abandonments. | Explicit-only |
 | `accessibility-review` | Reviews semantics, keyboard use, assistive technology needs, and visual presentation against WCAG 2.2. | Implicit |
 | `api-contract-compatibility-review` | Checks API, event, schema, and client changes for backward, forward, and rollout compatibility. | Implicit |
 | `application-security-review` | Reviews authentication, authorization, input handling, data protection, sessions, configuration, and abuse risks. | Implicit |
@@ -69,9 +70,14 @@ Use these optional profiles after repository commands and toolchains have been d
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
+| `adobe-aem-engineering-profile` | Adds focused guidance for AEM product generations, Sling and OSGi, content packages, Dispatcher, caching, compatibility, and builds. | Implicit |
+| `csharp-dotnet-engineering-profile` | Adds focused guidance for .NET projects, async behavior, dependency injection, Entity Framework, packages, compatibility, and builds. | Implicit |
 | `go-engineering-profile` | Adds focused guidance for Go modules, packages, concurrency, APIs, tests, dependencies, and builds. | Implicit |
+| `java-spring-engineering-profile` | Adds focused guidance for JVM toolchains, concurrency, Spring configuration and transactions, tests, dependencies, and builds. | Implicit |
+| `php-drupal-engineering-profile` | Adds focused guidance for PHP, Composer, Drupal extensions, entities, configuration, caching, tests, and builds. | Implicit |
 | `postgresql-sql-engineering-profile` | Adds focused guidance for schemas, queries, transactions, indexes, migrations, and database testing. | Implicit |
 | `python-engineering-profile` | Adds focused guidance for packaging, typing, asynchronous behavior, tests, dependencies, and builds. | Implicit |
+| `salesforce-apex-engineering-profile` | Adds focused guidance for Salesforce metadata, Apex, LWC, permissions, governor limits, tests, and org evidence boundaries. | Implicit |
 | `swift-swiftui-engineering-profile` | Adds focused guidance for Swift concurrency, SwiftUI state, tests, compatibility, and Apple builds. | Implicit |
 | `terraform-engineering-profile` | Adds focused guidance for modules, providers, state, plans, upgrades, and infrastructure review. | Implicit |
 | `typescript-javascript-engineering-profile` | Adds focused guidance for type safety, asynchronous behavior, tests, dependencies, and browser or Node builds. | Implicit |
@@ -122,6 +128,7 @@ Use this plugin for alignment, explanation, impact analysis, technical writing, 
 | Clarify a vague request | `problem-framing` or `alignment-interview` |
 | Turn an approved direction into executable steps | `implementation-planning` |
 | Execute an approved plan | `plan-execution` |
+| Track a substantial implementation against current acceptance evidence | `acceptance-evidence-ledger` |
 | Review a diff | `code-change-review` |
 | Decide what tests are needed | `test-strategy` |
 | Review whether existing tests are meaningful | `test-quality-review` |

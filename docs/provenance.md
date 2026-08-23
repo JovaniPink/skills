@@ -16,17 +16,15 @@ Capability disposition is separate from implementation method. An implementation
 
 Each public entry records source URL, license, pinned revision or an explicit non-applicable value, review date, material reviewed, local changes, capability disposition, implementation method, security disposition, re-review triggers, and revocation conditions. `provenance/schema.json` is authoritative and rejects unknown fields, wrong types, invalid dates or URLs, unsupported enum values, and missing required evidence.
 
-Discovery links and community discussions may explain why a capability matters but do not establish a technical fact or a reuse license. Prefer specifications, official product documentation, original publisher material, and repository license files.
+Online freshness pins use a strong ETag, a meaningful last-modified value, a byte-level content hash, or a reviewed normalized-content hash. Normalization is limited to named per-request HTML values such as session tokens and telemetry timing; regression tests require substantive authority-content changes to alter the marker.
+
+Use only Jovani-owned work and primary authorities needed for format, interoperability, or correctness: laws, specifications, standards bodies, and official platform documentation. Discovery links, community discussions, and third-party skill catalogs are not implementation authorities.
 
 ## Clean-room boundary
 
-Proprietary or incompatible sources may be used only to identify a capability gap. Do not copy their text, examples, names, structure, scripts, or distinctive expression. Author from public primary sources and Jovani-owned compatible work, and record the resulting disposition.
+Do not copy external text, examples, names, structure, scripts, or distinctive expression. Third-party skill catalogs are not tracked, cited, mirrored, compared, installed, or used as implementation sources. Any external investigation occurs outside Git and may influence rejection or safety boundaries only. Current skills must remain independently authored from Jovani-owned work and the applicable primary authority.
 
-The private inventory ledger records one row per capability with a source snapshot, reviewer, review date, capability-name/path-only material consulted, and required false values for `content_opened`, `text_copied`, and `implementation_reused`. The public repository exposes only the reconciled aggregate in `provenance/inventory-summary.json`; it never exposes the private names or paths.
-
-The 2026-08-21 reconciliation against public catalog version 0.5.0 records 27 covered capabilities, two incubating public candidates, no partial capabilities, one private-overlay capability, and 22 rejected capabilities. The remaining public candidates are optional Java and .NET profiles. No restricted name, path, text, example, command, agent, hook, or implementation was copied into this repository.
-
-`provenance/public-source-audit.json` is a separate clean-room audit of the two public repositories reviewed for v0.5 and reconciled again for v0.6. It records exact revisions, license scope, every skill directory, bundle-level components, dispositions, public mappings, and security exclusions. Public source names and paths appear only in that attribution record; canonical and generated skill content is protected by the originality scanner.
+Repository-independence validation rejects external skill-repository links and install identifiers, repository-to-repository capability mappings, source-specific attribution, and non-primary behavior provenance. Jovani-owned repository links and pinned CI Action dependency provenance are narrow operational exceptions; CI dependencies do not authorize skill behavior.
 
 ## Placement policy
 
@@ -34,4 +32,4 @@ A capability belongs in the public core only when it is reusable across independ
 
 ## Revocation
 
-Remove an item from generated distributions and marketplaces when its license, authorship, security behavior, or provenance cannot be supported. Preserve a migration notice in `deprecated/` when users need a safe replacement path.
+Remove an item from generated distributions and marketplaces through ordinary reviewed commits when its license, authorship, security behavior, or provenance cannot be supported. Preserve Git history and a migration notice in `deprecated/` when users need a safe replacement path.

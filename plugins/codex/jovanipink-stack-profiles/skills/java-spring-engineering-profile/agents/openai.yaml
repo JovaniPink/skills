@@ -1,0 +1,6 @@
+interface:
+  display_name: "Java and Spring Engineering Profile"
+  short_description: "Apply focused Java and Spring guidance"
+  default_prompt: "Use $jovanipink-stack-profiles:java-spring-engineering-profile to apply focused Java and Spring guidance after repository discovery."
+policy:
+  allow_implicit_invocation: true

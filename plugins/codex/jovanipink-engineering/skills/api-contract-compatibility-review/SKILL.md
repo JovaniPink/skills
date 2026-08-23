@@ -4,7 +4,7 @@ description: Review API, event, schema, and client changes for backward, forward
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.6.0"
+  version: "0.7.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -13,7 +13,7 @@ metadata:
 
 # API Contract Compatibility Review
 
-Use current primary guidance as a review baseline, then report only what the available evidence supports. Primary authority: [official reference](https://www.rfc-editor.org/rfc/rfc9110).
+Use current primary guidance as a review baseline, then report only what the available evidence supports. Primary authority: [official reference](https://www.rfc-editor.org/rfc/rfc9110.txt).
 
 ## Workflow
 
@@ -34,4 +34,3 @@ Use current primary guidance as a review baseline, then report only what the ava
 ## Output
 
 Return Contract inventory, Compatibility findings, Consumer risk, Test matrix, Rollout, Deprecation, and Unresolved authority.
-

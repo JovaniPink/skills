@@ -4,7 +4,7 @@
   "required": ["$schema", "catalog_version", "reviewed_on", "max_review_age_days", "sources"],
   "properties": {
     "$schema": {"const": "./upstream-pins-schema.json"},
-    "catalog_version": {"const": "0.6.0"},
+    "catalog_version": {"const": "0.7.0"},
     "reviewed_on": {"type": "string", "format": "date"},
     "max_review_age_days": {"type": "integer", "minimum": 1},
     "sources": {
@@ -15,7 +15,7 @@
         "required": ["source_url", "marker_kind", "marker_value"],
         "properties": {
           "source_url": {"type": "string", "format": "uri"},
-          "marker_kind": {"enum": ["etag", "last-modified", "content-sha256"]},
+          "marker_kind": {"enum": ["etag", "last-modified", "content-sha256", "normalized-content-sha256"]},
           "marker_value": {"type": "string", "minLength": 1}
         },
         "additionalProperties": false

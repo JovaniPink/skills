@@ -1,7 +1,7 @@
 {
   "$schema": "./roadmap-schema.json",
   "roadmap_version": 1,
-  "updated_on": "2026-08-21",
+  "updated_on": "2026-08-23",
   "tracks": [
     {
       "id": "engineering-lifecycle",
@@ -22,7 +22,7 @@
       ],
       "entry_criteria": [
         "v0.1 acceptance evidence is complete",
-        "clean-room public source packet is recorded",
+        "a Jovani-owned use case and primary-authority packet are recorded",
         "trigger and output evaluations pass",
         "client-specific authority boundaries are documented"
       ]
@@ -69,6 +69,26 @@
       ]
     },
     {
+      "id": "professional-stack-expansion",
+      "target_release": "v0.7",
+      "plugin": "jovanipink-stack-profiles",
+      "status": "released",
+      "skills": [
+        "adobe-aem-engineering-profile",
+        "csharp-dotnet-engineering-profile",
+        "java-spring-engineering-profile",
+        "php-drupal-engineering-profile",
+        "salesforce-apex-engineering-profile"
+      ],
+      "entry_criteria": [
+        "the catalog owner has requested broader professional stack coverage",
+        "each profile is independently authored and cites only current official platform documentation",
+        "each trigger is distinct from generic language teaching, deployment, and cross-stack command orchestration",
+        "each profile has positive, near-miss, safety, output-quality, provenance, and client-limit records",
+        "no profile adds hooks, scripts, dependencies, agents, credentials, automatic provider actions, or universal commands"
+      ]
+    },
+    {
       "id": "operating-workflows",
       "target_release": "v0.4",
       "plugin": "jovanipink-operations",
@@ -90,21 +110,6 @@
         "terminology is generic and independently authored",
         "observed, proposed, ratified, estimated, and causal claims remain distinct",
         "private authority contracts are supplied only through repo-local overlays"
-      ]
-    },
-    {
-      "id": "additional-stack-profiles",
-      "target_release": "unassigned",
-      "plugin": "jovanipink-stack-profiles",
-      "status": "incubating",
-      "skills": [
-        "java-engineering-profile",
-        "dotnet-engineering-profile"
-      ],
-      "entry_criteria": [
-        "an active authorized repository demonstrates recurring use",
-        "general quality-gate guidance is insufficient",
-        "a primary-source packet and representative fixture exist"
       ]
     },
     {
@@ -135,7 +140,7 @@
       ],
       "entry_criteria": [
         "v0.5 deterministic validation and exact-head CI pass",
-        "every workflow is independently authored from primary sources and the pinned public capability audit",
+        "every workflow is independently authored from Jovani-owned practice and applicable primary authorities",
         "Git mutation and prototype workflows remain explicit-only with separate authority gates",
         "trigger, conflict, output, package, and client observation records are complete"
       ]
@@ -152,9 +157,25 @@
       ],
       "entry_criteria": [
         "v0.5 deterministic validation and exact-head CI pass",
-        "every workflow is independently authored from primary sources and the pinned public capability audit",
+        "every workflow is independently authored from Jovani-owned practice and applicable primary authorities",
         "configuration and continuity workflows remain explicit-only with separate authority gates",
         "trigger, conflict, output, package, and client observation records are complete"
+      ]
+    },
+    {
+      "id": "acceptance-evidence-ledger",
+      "target_release": "v0.7",
+      "plugin": "jovanipink-engineering",
+      "status": "released",
+      "skills": [
+        "acceptance-evidence-ledger"
+      ],
+      "entry_criteria": [
+        "the workflow and terminology are Jovani-authored from an independently established acceptance-evidence use case",
+        "the open Agent Skills specification is used only as format authority",
+        "ledger content remains untrusted data and file persistence requires exact path authority",
+        "trigger cases remain separate from quality gates, plan execution, claim verification, and orchestration",
+        "generated artifacts pass repository-independence, determinism, package-boundary, and client-observation checks"
       ]
     }
   ]

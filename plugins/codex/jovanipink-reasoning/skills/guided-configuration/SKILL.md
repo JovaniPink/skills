@@ -4,7 +4,7 @@ description: "Guide a person through configuration steps that require their acco
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.6.0"
+  version: "0.7.0"
   plugin: "jovanipink-reasoning"
   invocation: "explicit"
   provenance: "clean-room"

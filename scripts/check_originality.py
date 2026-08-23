@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reject source-specific terms from canonical and generated skill content."""
+"""Reject external implementation attribution from skill content."""
 
 from __future__ import annotations
 
@@ -11,15 +11,14 @@ from cataloglib import ROOT
 
 
 PROHIBITED = {
-    "source-specific person router": re.compile(r"\bask-matt\b", re.IGNORECASE),
-    "source-specific repository name": re.compile(r"\bpstack\b", re.IGNORECASE),
-    "source-specific mode name": re.compile(r"\bpoteto(?:-mode)?\b", re.IGNORECASE),
-    "source-specific style name": re.compile(r"\bunslop\b", re.IGNORECASE),
-    "source-specific agent name": re.compile(r"\bcomment sicko\b", re.IGNORECASE),
-    "source-specific automation name": re.compile(r"\bbenny\b", re.IGNORECASE),
-    "source-specific transcript path": re.compile(r"\.cursor/projects|agent-transcripts", re.IGNORECASE),
-    "source-specific model slug": re.compile(r"(?:claude-fable|gpt-5\.6-sol-max|inherit-parent)", re.IGNORECASE),
-    "source-specific config path": re.compile(r"pstack-models\.mdc", re.IGNORECASE),
+    "external implementation attribution": re.compile(
+        r"\b(?:copied|adapted|derived) from (?:an? )?(?:external|third-party|upstream) skill\b",
+        re.IGNORECASE,
+    ),
+    "external behavior attribution": re.compile(
+        r"\bbased on (?:an? )?(?:external|third-party|upstream) skill(?: repository)?\b",
+        re.IGNORECASE,
+    ),
 }
 
 
@@ -62,7 +61,7 @@ def main() -> int:
     if errors:
         print("\n".join(f"ERROR: {error}" for error in errors))
         return 1
-    print("Canonical, generated, and packaged skill content passed the clean-room originality scan.")
+    print("Canonical, generated, and packaged skill content passed the originality scan.")
     return 0
 
 

@@ -24,7 +24,7 @@ The catalog protects user intent, credentials, private data, repository integrit
 - standard-library-only repository generation and validation
 - immutable third-party GitHub Action revisions, enforced by repository validation
 - required trigger, provenance, reference, and public-boundary checks
-- pinned public-source disposition records and source-specific originality scanning
+- primary-authority provenance plus generic originality and repository-independence scanning
 - explicit abort and state-advance gates for Git conflict reconciliation
 - secret-free guided configuration and privacy-bounded handoff and retrospective workflows
 - generated distributions compared byte-for-byte with a clean temporary build
