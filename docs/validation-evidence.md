@@ -4,9 +4,9 @@ This file records observed outcomes for catalog release candidates. Validators d
 
 ## v0.8 tested source
 
-- Source commit: `35e688ed096212d9952dcaf43eaee7265668774c`
+- Source commit: `0340f99347674ffd631b3c3be766eaa5b1667ef0`
 - Catalog/plugin version: `0.8.0`
-- Date: 2026-08-23
+- Date: 2026-08-24
 - Canonical skills: 70 across six optional plugins; 3 AI-systems skills and 13 explicit-only skills
 - Generated artifacts: 70 Codex projections, 70 Claude projections, and 70 deterministic Claude.ai archives
 - Manual matrix: 42 terminal rows across six surfaces; 0 pass, 42 blocked, 0 fail, 0 not supported, 0 not run
@@ -21,7 +21,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 - `python3 scripts/check_repository_independence.py`: PASS - no external skill repository, marketplace, source mapping, or implementation attribution is present
 - `python3 scripts/validate.py`: PASS - schemas, links, invocation mappings, provenance, packages, release manifest, generated drift, fixtures, and policy records
 - `python3 -m unittest discover -s tests -v`: PASS - 39 regression tests
-- `python3 scripts/check_upstream_freshness.py --online`: PASS - every pinned primary-authority marker matched current observed content after narrow per-request normalization
+- `python3 scripts/check_upstream_freshness.py --online`: PASS - every reviewed primary-authority marker matched current observed content after narrow per-request instrumentation normalization
 - `git diff --check`: PASS
 - Built-in skill validator: PASS - all three new canonical skills
 - Built-in Codex plugin validator: PASS - generated `jovanipink-ai-systems` plugin; the installed Codex CLI exposes no separate `plugin validate` command

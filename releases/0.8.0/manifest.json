@@ -1,8 +1,8 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.8.0",
-  "source_commit": "35e688ed096212d9952dcaf43eaee7265668774c",
-  "created_on": "2026-08-23",
+  "source_commit": "0340f99347674ffd631b3c3be766eaa5b1667ef0",
+  "created_on": "2026-08-24",
   "artifacts": [
     {
       "kind": "file",
@@ -32,7 +32,7 @@
     {
       "kind": "file",
       "path": "catalog/upstream-pins.json",
-      "sha256": "28edaad2d004524e17717f46a1f9e63618a63bec778e14840ba490421d4bb9ce"
+      "sha256": "501ee91bab0af804347a8c37ded46eb4b61973b7778783fa95de2e1474b3756a"
     },
     {
       "kind": "zip",
