@@ -583,6 +583,7 @@ class CatalogTests(unittest.TestCase):
 <div class="view-dom-id-0123456789abcdef0123456789abcdef"></div>
 <script>{"theme_token":"theme-first"}</script>
 <script nonce="nonce-first">stable()</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/one" data-cf-beacon='{"token":"one"}'></script>
 <script nonce="nonce-first">(function(){var a='/cdn-cgi/challenge-platform/one';})();</script>
 <main>Official authority content</main>'''
         second = b'''<meta name="csrf-token" content="second" />
@@ -593,6 +594,7 @@ class CatalogTests(unittest.TestCase):
 <script>{"theme_token":"theme-second"}</script>
 <script nonce="nonce-second">stable()</script>
 <script nonce="nonce-second">(function(){var a='/cdn-cgi/challenge-platform/two';})();</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/two" data-cf-beacon='{"token":"two"}'></script>
 <main>Official authority content</main>'''
         changed = second.replace(b"Official authority content", b"Changed authority content")
         self.assertEqual(_normalized_content_sha256(first), _normalized_content_sha256(second))

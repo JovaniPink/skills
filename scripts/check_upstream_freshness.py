@@ -53,7 +53,11 @@ def _normalized_content(payload: bytes) -> str:
         ),
         (
             r'<script nonce="\[volatile\]">\(function\(\)\{.*?/cdn-cgi/challenge-platform/.*?</script>',
-            '<script nonce="[volatile]">[cloudflare-challenge]</script>',
+            "",
+        ),
+        (
+            r'<script[^>]*src="https://static\.cloudflareinsights\.com/beacon\.min\.js/[^"]+"[^>]*></script>',
+            "",
         ),
     )
     for pattern, replacement in substitutions:
