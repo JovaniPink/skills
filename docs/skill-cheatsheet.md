@@ -1,6 +1,6 @@
 # JovaniPink Skills Cheatsheet
 
-Use this page to find a skill quickly. The catalog contains 67 skills across five plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+Use this page to find a skill quickly. The catalog contains 70 skills across six plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
 ## Invocation legend
 
@@ -118,6 +118,16 @@ Use this plugin for alignment, explanation, impact analysis, technical writing, 
 | `task-handoff` | Creates a continuation record with revisions, evidence, decisions, blockers, and authority boundaries. | Explicit-only |
 | `workflow-retrospective` | Reviews completed work to identify what helped, what failed, and which bounded improvement to test next. | Explicit-only |
 
+## AI systems: jovanipink-ai-systems
+
+Use this optional plugin for AI evaluation contracts, assertion-level context reliability, and exact source-to-readback conformance.
+
+| Skill | What it does | Invocation |
+| --- | --- | --- |
+| `agent-evaluation-design` | Defines representative cases, baselines, configurations, graders, errors, thresholds, cost, latency, human review, and limits for an AI evaluation. | Implicit |
+| `context-reliability-review` | Reviews context assertions for provenance, authority, time, freshness, permissions, conflict, supersession, and revocation. | Implicit |
+| `source-output-conformance-audit` | Audits exact source identity through extraction, validation, isolated persistence, and readback with mutation-sensitive evidence. | Implicit |
+
 ## Quick selection by need
 
 | If you need to... | Start with... |
@@ -132,6 +142,9 @@ Use this plugin for alignment, explanation, impact analysis, technical writing, 
 | Review a diff | `code-change-review` |
 | Decide what tests are needed | `test-strategy` |
 | Review whether existing tests are meaningful | `test-quality-review` |
+| Design a comparative AI-agent evaluation | `agent-evaluation-design` |
+| Review whether AI context is current and authorized | `context-reliability-review` |
+| Prove source-to-readback field fidelity | `source-output-conformance-audit` |
 | Check a change's downstream effects | `change-impact-analysis` |
 | Explain an unfamiliar codebase | `codebase-explanation` |
 | Check application security | `application-security-review` |

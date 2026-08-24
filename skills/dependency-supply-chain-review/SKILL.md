@@ -4,7 +4,7 @@ description: Review software dependencies and build supply-chain evidence for pr
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.7.0"
+  version: "0.8.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"

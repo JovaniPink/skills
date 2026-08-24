@@ -59,6 +59,10 @@ Eleven generic operating workflows cover requirements, governance records, works
 
 Eleven focused workflows cover alignment interviews, domain vocabulary, codebase mechanics, design rationale, change impact, high-signal technical writing, privacy-conscious decision traces, portable skill authoring, guided configuration, task handoffs, and workflow retrospectives. The plugin is optional so these broad reasoning descriptions do not crowd every engineering session.
 
+### `jovanipink-ai-systems`
+
+Three optional AI-reliability workflows cover agent evaluation design, assertion-level context reliability, and exact source-to-output conformance. They are independently authored from Jovani-owned practice with NIST TEVV resources and W3C PROV used only as primary correctness authorities. The plugin launches no external evaluation and contains no private context, hooks, scripts, dependencies, bundled agents, or broad tool grants.
+
 ## Repository model
 
 - `skills/` is the only authoring source.
@@ -107,4 +111,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.7 adds an acceptance evidence ledger, five independently authored professional stack profiles, and repository-independence controls. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+Version 0.8 adds the optional `jovanipink-ai-systems` plugin with three independently authored AI-reliability workflows. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.

@@ -1,7 +1,7 @@
 {
   "$schema": "./upstream-pins-schema.json",
-  "catalog_version": "0.7.0",
-  "reviewed_on": "2026-08-23",
+  "catalog_version": "0.8.0",
+  "reviewed_on": "2026-08-24",
   "max_review_age_days": 90,
   "sources": [
     {
@@ -10,24 +10,29 @@
       "marker_value": "4ea27080f349336383054e201d07dbdf9d88421eeecc8bd0a357f5dc2554d0b3"
     },
     {
+      "source_url": "https://airc.nist.gov/",
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "cc26fbfa00000addcf05e4940df00ac82d7998b855af9143e9fc460915d5cea1"
+    },
+    {
       "source_url": "https://developer.hashicorp.com/terraform/language",
       "marker_kind": "etag",
-      "marker_value": "\"giiuggdqrd4g1x\""
+      "marker_value": "\"d75d544547e0b86ba46b94558dfc2940\""
     },
     {
       "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
       "marker_kind": "content-sha256",
-      "marker_value": "1b2e7e26cdb84508781f591e095cb6ab1fe3830517ccb7f55a5c3ade171612a3"
+      "marker_value": "6023d4d5565c6d6e95c4ba808de8069a12d1a1945f0eb4d4e684e70a30f1acc0"
     },
     {
       "source_url": "https://docs.python.org/3/",
       "marker_kind": "etag",
-      "marker_value": "\"6a8af228-4bea\""
+      "marker_value": "\"6a8c058b-4bea\""
     },
     {
       "source_url": "https://docs.python.org/3/library/unittest.html",
       "marker_kind": "etag",
-      "marker_value": "\"6a8af228-51851\""
+      "marker_value": "\"6a8c058b-51851\""
     },
     {
       "source_url": "https://docs.spring.io/spring-boot/",
@@ -42,12 +47,12 @@
     {
       "source_url": "https://git-scm.com/docs/git-merge",
       "marker_kind": "last-modified",
-      "marker_value": "Fri, 21 Aug 2026 13:51:11 GMT"
+      "marker_value": "Fri, 21 Aug 2026 13:51:12 GMT"
     },
     {
       "source_url": "https://git-scm.com/docs/git-worktree",
       "marker_kind": "last-modified",
-      "marker_value": "Fri, 21 Aug 2026 13:51:13 GMT"
+      "marker_value": "Fri, 21 Aug 2026 13:51:12 GMT"
     },
     {
       "source_url": "https://go.dev/doc/",
@@ -57,7 +62,7 @@
     {
       "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
       "marker_kind": "etag",
-      "marker_value": "\"fd8bc5f3bef45fa18bb8786b35c200c6\""
+      "marker_value": "\"17f3b1613f1345a8efae302ede9a08f4\""
     },
     {
       "source_url": "https://learn.microsoft.com/en-us/dotnet/",
@@ -67,7 +72,7 @@
     {
       "source_url": "https://opentelemetry.io/docs/concepts/signals/",
       "marker_kind": "etag",
-      "marker_value": "\"7e77b0690c5cf136c10b78893d69d026-ssl\""
+      "marker_value": "\"7a3caeb825850efe95bbdee2df61bb58-ssl\""
     },
     {
       "source_url": "https://owasp.org/www-project-application-security-verification-standard/",
@@ -102,7 +107,7 @@
     {
       "source_url": "https://www.postgresql.org/docs/current/",
       "marker_kind": "content-sha256",
-      "marker_value": "98787ade3f63879beb49817a2881046b4b0d247ea9e39bd940dd95360435ec99"
+      "marker_value": "435d54e4f53fb0d1c8afd308d9082e228e81f157a61cc3945d0d99ede56988de"
     },
     {
       "source_url": "https://www.rfc-editor.org/rfc/rfc9110.txt",
@@ -117,12 +122,17 @@
     {
       "source_url": "https://www.typescriptlang.org/docs/",
       "marker_kind": "etag",
-      "marker_value": "\"6a87ce9c-29a5d\""
+      "marker_value": "\"6a8c382c-29a5d\""
     },
     {
       "source_url": "https://www.w3.org/TR/WCAG22/",
       "marker_kind": "last-modified",
       "marker_value": "Thu, 12 Dec 2024 10:36:22 GMT"
+    },
+    {
+      "source_url": "https://www.w3.org/TR/prov-n/",
+      "marker_kind": "content-sha256",
+      "marker_value": "c7320ed45cc643eca0819b0616835529dfb35dc819eaf50deaf209ee1e974e49"
     }
   ]
 }

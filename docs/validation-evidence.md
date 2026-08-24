@@ -2,6 +2,35 @@
 
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
+## v0.8 tested source
+
+- Source commit: `0340f99347674ffd631b3c3be766eaa5b1667ef0`
+- Catalog/plugin version: `0.8.0`
+- Date: 2026-08-24
+- Canonical skills: 70 across six optional plugins; 3 AI-systems skills and 13 explicit-only skills
+- Generated artifacts: 70 Codex projections, 70 Claude projections, and 70 deterministic Claude.ai archives
+- Manual matrix: 42 terminal rows across six surfaces; 0 pass, 42 blocked, 0 fail, 0 not supported, 0 not run
+- Acceptance: BLOCKED until receiving-client installation, discovery, implicit activation, focused-reference loading, refusal, update, and removal are separately authorized and observed
+
+## v0.8 automated repository checks
+
+- `python3 scripts/build_distributions.py --check`: PASS - all six Codex and Claude plugin trees and both marketplace records match canonical sources
+- `python3 scripts/package_claude_ai.py`: PASS - 70 deterministic, individually nested Claude.ai ZIPs generated with SHA-256 checksums
+- `python3 scripts/check_public_boundary.py`: PASS - canonical, documentation, generated, and packaged surfaces passed the public/private boundary scan
+- `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed generic originality checks
+- `python3 scripts/check_repository_independence.py`: PASS - no external skill repository, marketplace, source mapping, or implementation attribution is present
+- `python3 scripts/validate.py`: PASS - schemas, links, invocation mappings, provenance, packages, release manifest, generated drift, fixtures, and policy records
+- `python3 -m unittest discover -s tests -v`: PASS - 39 regression tests
+- `python3 scripts/check_upstream_freshness.py --online`: PASS - every reviewed primary-authority marker matched current observed content after narrow per-request instrumentation normalization
+- `git diff --check`: PASS
+- Built-in skill validator: PASS - all three new canonical skills
+- Built-in Codex plugin validator: PASS - generated `jovanipink-ai-systems` plugin; the installed Codex CLI exposes no separate `plugin validate` command
+- `claude plugin validate --strict`: PASS - all six generated Claude plugins
+
+## v0.8 client evidence boundary
+
+See `client-observations-v0.8.json`. Installation, discovery, implicit activation, focused-reference loading, refusal, update, and removal are separate rows for each surface. Every row is terminal `blocked` because no receiving-client mutation or invocation was authorized. Generated compatibility and strict manifest validation are not treated as installation, activation, resource loading, lifecycle behavior, or cross-client parity.
+
 ## v0.7 tested source
 
 - Source commit: `782ef2b9992710bb0c2770be82bd969c4d3949f0`

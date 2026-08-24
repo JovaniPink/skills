@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Evaluation Design"
+  short_description: "Design decision-ready AI evaluation contracts"
+  default_prompt: "Use $jovanipink-ai-systems:agent-evaluation-design to design a bounded evaluation contract for this AI system."
+policy:
+  allow_implicit_invocation: true

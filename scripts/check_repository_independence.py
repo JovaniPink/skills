@@ -41,6 +41,7 @@ CAPABILITY_MAPPING_KEY = "public_" + "mapping"
 PRIMARY_AUTHORITY_HOSTS = frozenset(
     {
         "agentskills.io",
+        "airc.nist.gov",
         "developer.hashicorp.com",
         "developer.salesforce.com",
         "docs.oracle.com",
