@@ -41,6 +41,8 @@ CAPABILITY_MAPPING_KEY = "public_" + "mapping"
 PRIMARY_AUTHORITY_HOSTS = frozenset(
     {
         "agentskills.io",
+        "a2a-protocol.org",
+        "adk-labs.github.io",
         "airc.nist.gov",
         "developer.hashicorp.com",
         "developer.salesforce.com",
@@ -52,8 +54,11 @@ PRIMARY_AUTHORITY_HOSTS = frozenset(
         "experienceleague.adobe.com",
         "git-scm.com",
         "go.dev",
+        "genai.owasp.org",
         "learn.chatgpt.com",
         "learn.microsoft.com",
+        "modelcontextprotocol.io",
+        "nist.gov",
         "opentelemetry.io",
         "owasp.org",
         "postgresql.org",

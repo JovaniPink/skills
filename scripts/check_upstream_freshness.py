@@ -16,6 +16,9 @@ from cataloglib import ROOT, VERSION
 
 
 NORMALIZED_HTML_HOSTS = frozenset({"airc.nist.gov", "trailhead.salesforce.com", "www.drupal.org"})
+TRAILING_WHITESPACE_NORMALIZED_URLS = frozenset(
+    {"https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"}
+)
 
 
 def _normalized_content(payload: bytes) -> str:
@@ -65,10 +68,13 @@ def _normalized_content(payload: bytes) -> str:
     return text
 
 
-def _normalized_content_sha256(payload: bytes) -> str:
+def _normalized_content_sha256(payload: bytes, strip_trailing: bool = False) -> str:
     """Hash authority content after removing known per-request HTML values."""
 
-    return hashlib.sha256(_normalized_content(payload).encode("utf-8")).hexdigest()
+    content = _normalized_content(payload)
+    if strip_trailing:
+        content = content.rstrip()
+    return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
 
 def _load(path: Path) -> dict[str, object]:
@@ -85,7 +91,9 @@ def _fetch_marker(url: str, preferred_kind: str | None = None) -> tuple[str, str
         last_modified = response.headers.get("Last-Modified")
         host = (urlparse(url).hostname or "").casefold()
         if preferred_kind == "normalized-content-sha256":
-            return "normalized-content-sha256", _normalized_content_sha256(response.read())
+            return "normalized-content-sha256", _normalized_content_sha256(
+                response.read(), strip_trailing=url in TRAILING_WHITESPACE_NORMALIZED_URLS
+            )
         if preferred_kind == "content-sha256":
             return "content-sha256", hashlib.sha256(response.read()).hexdigest()
         if preferred_kind == "etag" and etag and not etag.startswith("W/"):

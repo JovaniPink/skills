@@ -5,6 +5,20 @@
   "budget_limit_characters": 8000,
   "plugin_packs": [
     {
+      "plugin": "jovanipink-agent-platforms",
+      "purpose": "Human-facing agent architecture, security, tools, context, protocols, retrieval, and Google ADK review.",
+      "skills": [
+        "agent-context-state-memory-design",
+        "agent-protocol-interoperability-review",
+        "agent-tool-action-boundary-review",
+        "agentic-system-security-review",
+        "google-adk-engineering-profile",
+        "retrieval-grounding-quality-review"
+      ],
+      "description_characters": 2309,
+      "budget_status": "within-budget"
+    },
+    {
       "plugin": "jovanipink-ai-systems",
       "purpose": "AI evaluation, context reliability, and source-to-output conformance.",
       "skills": [
@@ -124,6 +138,30 @@
     }
   ],
   "recipes": [
+    {
+      "id": "secure-an-agent-system",
+      "purpose": "Review agent context, tools, and system-wide security boundaries.",
+      "skills": [
+        "agent-context-state-memory-design",
+        "agent-tool-action-boundary-review",
+        "agentic-system-security-review"
+      ],
+      "description_characters": 1126,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "review-a-google-adk-system",
+      "purpose": "Review an exact-version Google ADK design, its evaluation contract, and its agentic security boundaries.",
+      "skills": [
+        "google-adk-engineering-profile",
+        "agent-evaluation-design",
+        "agentic-system-security-review"
+      ],
+      "description_characters": 1168,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
     {
       "id": "verify-a-completion-claim",
       "purpose": "Verify a material completion claim and preserve acceptance evidence.",

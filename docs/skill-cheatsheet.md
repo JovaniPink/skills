@@ -1,6 +1,6 @@
 # JovaniPink Skills Cheatsheet
 
-Use this page to find a skill quickly. The catalog contains 70 skills across six plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+Use this page to find a skill quickly. The catalog contains 76 skills across seven plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
 ## Invocation legend
 
@@ -128,6 +128,19 @@ Use this optional plugin for AI evaluation contracts, assertion-level context re
 | `context-reliability-review` | Reviews context assertions for provenance, authority, time, freshness, permissions, conflict, supersession, and revocation. | Implicit |
 | `source-output-conformance-audit` | Audits exact source identity through extraction, validation, isolated persistence, and readback with mutation-sensitive evidence. | Implicit |
 
+## Agent platforms: jovanipink-agent-platforms
+
+Use this optional plugin when people are designing or reviewing agent systems. It is not a runtime skill bundle and does not grant tools or deployment authority.
+
+| Skill | What it does | Invocation |
+| --- | --- | --- |
+| `agent-context-state-memory-design` | Designs context, session, state, memory, artifact, identity, retention, isolation, and poisoning boundaries. | Implicit |
+| `agent-protocol-interoperability-review` | Reviews exact-version A2A, MCP, and agent protocol compatibility, identity, delegation, lifecycle, and failure semantics. | Implicit |
+| `agent-tool-action-boundary-review` | Reviews registered tools, identity, permissions, arguments, network reach, effects, approval, replay, and recovery. | Implicit |
+| `agentic-system-security-review` | Reviews agent identity, tools, memory, retrieval, delegation, protocols, supply chain, outputs, resources, and stopping controls. | Implicit |
+| `google-adk-engineering-profile` | Reviews an exact-version Google ADK design and routes focused security, evaluation, context, retrieval, and operations questions. | Implicit |
+| `retrieval-grounding-quality-review` | Reviews corpus authority, access isolation, retrieval metrics, claim support, citations, abstention, poisoning, and injection. | Implicit |
+
 ## Quick selection by need
 
 | If you need to... | Start with... |
@@ -149,6 +162,10 @@ Use this optional plugin for AI evaluation contracts, assertion-level context re
 | Explain an unfamiliar codebase | `codebase-explanation` |
 | Check application security | `application-security-review` |
 | Check an agent skill or plugin for security risks | `skill-security-review` |
+| Review the security of a complete agentic system | `agentic-system-security-review` |
+| Review an agent tool that can read sensitive data or cause an effect | `agent-tool-action-boundary-review` |
+| Review a Google ADK architecture | `google-adk-engineering-profile` |
+| Review retrieval and grounding quality | `retrieval-grounding-quality-review` |
 | Prepare a safe repository publication | `publish-change-safely` |
 | Prevent private details from entering public work | `public-private-boundary-review` |
 | Prepare requirements from several sources | `requirements-synthesis` |

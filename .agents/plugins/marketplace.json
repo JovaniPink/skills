@@ -5,6 +5,18 @@
   },
   "plugins": [
     {
+      "name": "jovanipink-agent-platforms",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex/jovanipink-agent-platforms"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
       "name": "jovanipink-ai-systems",
       "source": {
         "source": "local",

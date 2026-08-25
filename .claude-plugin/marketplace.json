@@ -7,6 +7,12 @@
   },
   "plugins": [
     {
+      "name": "jovanipink-agent-platforms",
+      "source": "./plugins/claude/jovanipink-agent-platforms",
+      "description": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
+      "version": "0.9.0"
+    },
+    {
       "name": "jovanipink-ai-systems",
       "source": "./plugins/claude/jovanipink-ai-systems",
       "description": "Optional AI evaluation, context reliability, and source-to-output conformance workflows.",

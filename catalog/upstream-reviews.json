@@ -121,7 +121,7 @@
       "affected_skills": [
         "multi-agent-orchestration"
       ],
-      "finding": "The current page distinguishes ChatGPT Work from local Codex clients; documents local delegation after a direct request or applicable project or skill instruction; describes surface-specific thread inspection; allows eligible Ultra sessions to delegate suitable work proactively; documents inherited or configured model and reasoning settings; and continues to emphasize independent work, higher token cost, and caution with parallel writes.",
+      "finding": "The current page distinguishes ChatGPT Work from local Codex clients; documents local delegation after a direct request or applicable project or skill instruction; describes surface-specific thread inspection; allows eligible Ultra sessions to delegate suitable work proactively; documents inherited or configured model and reasoning settings; carries the parent sandbox and surface-specific permission behavior into child work; and continues to emphasize independent work, higher token cost, and caution with parallel writes.",
       "action": "Update the client mapping to require exact surface, account capability, model, reasoning level, permission mode, and version evidence; preserve the portable authorization, ownership, cost, and reconciliation boundaries; then refresh the marker."
     },
     {

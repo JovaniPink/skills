@@ -23,7 +23,7 @@ That is a larger trust boundary than using a skill as developer guidance. A prod
 
 Runtime skills therefore belong in the separate `JovaniPink/jovanipink-adk` foundation and private product overlays. They do not belong in this assistant catalog's client observation matrix.
 
-The first runtime foundation accepts instruction and Markdown reference files only. It rejects scripts, hooks, assets, executables, dependency manifests, `allowed-tools`, mutable remote loading, and undeclared archive content. It verifies a content-addressed bundle and release receipt before constructing an ADK skill toolset.
+The planned first runtime foundation accepts instruction and Markdown reference files only. It rejects scripts, hooks, assets, executables, dependency manifests, `allowed-tools`, mutable remote loading, and undeclared archive content. Its public contract verifies a content-addressed bundle and release receipt before constructing an ADK skill toolset. This assistant repository does not claim that separate implementation is complete.
 
 ## Google Agents CLI
 

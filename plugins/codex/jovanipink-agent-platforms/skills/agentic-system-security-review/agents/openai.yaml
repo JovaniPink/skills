@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agentic System Security Review"
+  short_description: "Review agentic system threats and controls"
+  default_prompt: "Use $jovanipink-agent-platforms:agentic-system-security-review to perform a read-only threat and control review of this agentic system."
+policy:
+  allow_implicit_invocation: true
