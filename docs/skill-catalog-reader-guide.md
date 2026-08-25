@@ -1,12 +1,12 @@
 # JovaniPink Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 70 portable agent skills organized into six focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The JovaniPink Skills catalog contains 76 portable agent skills organized into seven focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
 ## How the catalog is organized
 
-The six plugins separate broad workflow categories so you can install only what you need:
+The seven plugins separate broad workflow categories so you can install only what you need:
 
 1. `jovanipink-skills` contains the core verification, research, diagnosis, security, and publication workflows.
 2. `jovanipink-engineering` contains software planning, implementation, review, testing, architecture, and operational-quality workflows.
@@ -14,6 +14,7 @@ The six plugins separate broad workflow categories so you can install only what 
 4. `jovanipink-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
 5. `jovanipink-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
 6. `jovanipink-ai-systems` contains optional AI evaluation, context reliability, and source-to-output conformance workflows.
+7. `jovanipink-agent-platforms` contains human-facing Google ADK, agent architecture, tool, protocol, security, and retrieval workflows.
 
 The counts, groupings, and invocation policies below are reconciled against the [canonical skill sources](../skills/) and the catalog's [metadata parser](../scripts/cataloglib.py). Generated plugin trees are projections, not the inventory authority.
 
@@ -25,7 +26,8 @@ The counts, groupings, and invocation policies below are reconciled against the 
 | `jovanipink-operations` | 11 | None |
 | `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
 | `jovanipink-ai-systems` | 3 | None |
-| **Total** | **70** | **13 skills** |
+| `jovanipink-agent-platforms` | 6 | None |
+| **Total** | **76** | **13 skills** |
 
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
 
@@ -375,6 +377,34 @@ Reviews context as atomic assertions with provenance, authority, effective and r
 ### source-output-conformance-audit
 
 Audits exact source identity through decoding, parsing or extraction, normalization, validation, write preparation, isolated persistence, and readback. It uses source-cited expected values and mutation-sensitive tests while reporting correctness, completeness, storage correctness, reproducibility, and unresolved evidence separately.
+
+## Agent platform skills: jovanipink-agent-platforms
+
+The optional agent-platform plugin contains six human-facing workflows for designing and reviewing agent systems. They do not become a SaaS runtime bundle, register tools, or authorize authentication, release, infrastructure, or deployment.
+
+### agent-context-state-memory-design
+
+Designs or reviews prompt context, session events, scoped state, long-term memory, retrieval, and artifacts. It maps identity, authority, provenance, freshness, retention, deletion, isolation, and poisoning without treating model summaries as product truth.
+
+### agent-protocol-interoperability-review
+
+Reviews A2A, MCP, or another agent-facing protocol using exact specification and implementation versions. It covers discovery, identity, delegated authority, schemas, task lifecycle, streaming, failure, retry, idempotency, cancellation, and revocation.
+
+### agent-tool-action-boundary-review
+
+Reviews the deterministic boundary between an agent and its host-registered tools. It covers principals, permissions, schemas, arguments, data, network reach, effect classes, durable approval, replay protection, recovery, and audit evidence.
+
+### agentic-system-security-review
+
+Reviews an agentic system across identity, models, instructions, tools, memory, retrieval, delegation, protocols, supply chain, outputs, resource limits, revocation, and emergency stopping. It is separate from conventional application security and skill-package security.
+
+### google-adk-engineering-profile
+
+Reviews a Google ADK design using its exact language, package version, model, agents, tools, sessions, memory, retrieval, evaluation, and environment evidence. It treats runtime Agent Skills and tool confirmation as experimental until exact-version tests establish the required behavior.
+
+### retrieval-grounding-quality-review
+
+Reviews whether retrieval selects authorized, current, relevant evidence and whether generated claims remain within that evidence. It covers access isolation, retrieval metrics, claim support, citations, abstention, conflicts, poisoning, injection, and limitations.
 
 ## Choosing a skill
 

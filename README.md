@@ -63,6 +63,10 @@ Eleven focused workflows cover alignment interviews, domain vocabulary, codebase
 
 Three optional AI-reliability workflows cover agent evaluation design, assertion-level context reliability, and exact source-to-output conformance. They are independently authored from Jovani-owned practice with NIST TEVV resources and W3C PROV used only as primary correctness authorities. The plugin launches no external evaluation and contains no private context, hooks, scripts, dependencies, bundled agents, or broad tool grants.
 
+### `jovanipink-agent-platforms`
+
+Six optional human-facing workflows cover Google ADK engineering, agent context and memory, tool and action boundaries, protocol interoperability, agentic-system security, and retrieval-grounding quality. They help people review agent systems through ChatGPT, Codex, Claude, and Gemini CLI. They are not runtime skill bundles, do not register tools, and do not authorize authentication, infrastructure, release, or deployment.
+
 ## Repository model
 
 - `skills/` is the only authoring source.
@@ -111,4 +115,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The v0.9 candidate adds a faceted catalog, measured plugin packs and small recipes, a complete evaluation contract for every current skill, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. It remains a candidate until the six agent-platform skills and exact-package client observations are complete. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.
+The v0.9 candidate contains 76 skills across seven focused plugins. It adds a faceted catalog, measured plugin packs and small recipes, complete evaluation records, six human-facing agent-platform workflows, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. Automated validation and exact-package client observations remain separate acceptance evidence. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.

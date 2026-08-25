@@ -28,6 +28,7 @@ Read [Choose Your Skills](choose-your-skills.md). A useful starting point is:
 - `jovanipink-skills` for research, verification, diagnosis, and public-boundary review;
 - `jovanipink-engineering` for a broad engineering lifecycle;
 - `jovanipink-operations` for requirements, decisions, measurement, and incidents.
+- `jovanipink-agent-platforms` for human-facing Google ADK, agent architecture, tool, security, protocol, and retrieval reviews.
 
 Avoid installing all plugins by default.
 

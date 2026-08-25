@@ -49,6 +49,12 @@ PLUGIN_SPECS = {
         "short_description": "AI reliability workflows for Codex",
         "keywords": ["skills", "ai", "evaluation", "context", "conformance"],
     },
+    "jovanipink-agent-platforms": {
+        "display_name": "JovaniPink Agent Platforms",
+        "description": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
+        "short_description": "Agent platform engineering workflows for Codex",
+        "keywords": ["skills", "agents", "adk", "security", "retrieval"],
+    },
 }
 
 

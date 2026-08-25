@@ -1,0 +1,6 @@
+interface:
+  display_name: "Retrieval Grounding Quality Review"
+  short_description: "Review retrieval and evidence support quality"
+  default_prompt: "Use $retrieval-grounding-quality-review to review this retrieval and grounding system."
+policy:
+  allow_implicit_invocation: true

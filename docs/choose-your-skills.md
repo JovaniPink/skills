@@ -16,6 +16,7 @@ The current measured sizes live in [`catalog/packs.json`](../catalog/packs.json)
 | Work on requirements, decisions, measurement, adoption, or incidents | `jovanipink-operations` |
 | Improve alignment, explanation, writing, continuity, or skill authoring | `jovanipink-reasoning` |
 | Evaluate AI behavior, context reliability, or source conformance | `jovanipink-ai-systems` |
+| Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `jovanipink-agent-platforms` |
 
 The engineering plugin is above the 6,000-character warning threshold in v0.9. Install it when its broad lifecycle coverage is useful. For a narrow task, directly select the needed skill and avoid enabling unrelated plugins.
 
@@ -30,6 +31,8 @@ Recipes are suggested combinations, not separate installable products. Do not as
 | Review a public release | `public-private-boundary-review`, `prelaunch-readiness`, `publish-change-safely` |
 | Diagnose with evidence | `systematic-diagnosis`, `claim-verification` |
 | Review an AI workflow | `agent-evaluation-design`, `context-reliability-review`, `source-output-conformance-audit` |
+| Secure an agent system | `agent-context-state-memory-design`, `agent-tool-action-boundary-review`, `agentic-system-security-review` |
+| Review a Google ADK system | `google-adk-engineering-profile`, `agent-evaluation-design`, `agentic-system-security-review` |
 | Review a service release | `application-security-review`, `operational-readiness-review`, `observability-design` |
 | Write a decision brief | `source-grounded-research`, `decision-governance-records`, `stakeholder-technical-communication` |
 | Learn after launch | `iteration-postlaunch-learning`, `kpi-outcome-measurement`, `production-incident-analysis` |
@@ -42,7 +45,7 @@ Use `cross-stack-quality-gates` to discover the repository's actual commands. Ad
 
 ## Add agent-platform skills only for agent-system work
 
-The `jovanipink-agent-platforms` plugin is introduced on the separate v0.9 agent-platform branch. It is for people designing or reviewing agent systems through ChatGPT, Codex, Claude, or Gemini CLI. It is not a runtime bundle for a SaaS agent.
+The `jovanipink-agent-platforms` plugin is for people designing or reviewing agent systems through ChatGPT, Codex, Claude, or Gemini CLI. It is not a runtime bundle for a SaaS agent.
 
 Read [Google ADK](google-adk.md) and [Agent platform boundaries](agent-platform-boundaries.md) before using those workflows in an ADK project.
 

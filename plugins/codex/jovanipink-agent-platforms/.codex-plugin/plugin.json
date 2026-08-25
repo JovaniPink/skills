@@ -1,0 +1,26 @@
+{
+  "name": "jovanipink-agent-platforms",
+  "version": "0.9.0",
+  "description": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
+  "author": {
+    "name": "Jovani Pink",
+    "url": "https://jovanipink.com"
+  },
+  "homepage": "https://github.com/JovaniPink/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "JovaniPink Agent Platforms",
+    "shortDescription": "Agent platform engineering workflows for Codex",
+    "longDescription": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
+    "developerName": "Jovani Pink",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "Help me choose and use a JovaniPink Agent Platforms workflow skill."
+    ]
+  }
+}

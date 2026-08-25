@@ -5,6 +5,26 @@
   "max_review_age_days": 90,
   "sources": [
     {
+      "source_url": "https://a2a-protocol.org/v1.0.0/specification/",
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "f5d15f00006b7e25b8a3a2766b309b661fff36dbd4330933ed61bfc8d435f05b"
+    },
+    {
+      "source_url": "https://adk-labs.github.io/adk-docs/",
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "d7ef2604695b330f77cfae7799553e66fee19046f1649ec2bf067c1ffb0f7e6b"
+    },
+    {
+      "source_url": "https://adk-labs.github.io/adk-docs/safety/",
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "bcf70d52da1b5930ede0f53ce1e481fea28bb7a1986a1eff85fa8677d53bcdba"
+    },
+    {
+      "source_url": "https://adk-labs.github.io/adk-docs/sessions/",
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "2fe5651d11f558ad70fcc511ecc4d6c0091965e8d849770cea89859f6e8da16a"
+    },
+    {
       "source_url": "https://agentskills.io/specification",
       "marker_kind": "content-sha256",
       "marker_value": "25c0c4f0033c190cc01968d76762a54caddb50817c79ebf50e91f9f03a6858c8"
@@ -43,6 +63,16 @@
       "source_url": "https://experienceleague.adobe.com/en/docs/experience-manager",
       "marker_kind": "last-modified",
       "marker_value": "Thu, 20 Aug 2026 20:17:07 GMT"
+    },
+    {
+      "source_url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+      "marker_kind": "last-modified",
+      "marker_value": "Tue, 25 Aug 2026 17:54:23 GMT"
+    },
+    {
+      "source_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "86bf4cb6ab1b8c3103b67e9e990c88e79f6cbc26844ab52ea5a85e2bcb741f1a"
     },
     {
       "source_url": "https://git-scm.com/docs/git-merge",

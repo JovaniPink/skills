@@ -73,6 +73,7 @@ class CatalogTests(unittest.TestCase):
             "## Operations skills: jovanipink-operations": "jovanipink-operations",
             "## Reasoning skills: jovanipink-reasoning": "jovanipink-reasoning",
             "## AI systems skills: jovanipink-ai-systems": "jovanipink-ai-systems",
+            "## Agent platform skills: jovanipink-agent-platforms": "jovanipink-agent-platforms",
         }
         documented = {plugin: [] for plugin in canonical}
         documented_explicit: set[str] = set()
@@ -118,6 +119,7 @@ class CatalogTests(unittest.TestCase):
             "## Operations: jovanipink-operations": "jovanipink-operations",
             "## Reasoning: jovanipink-reasoning": "jovanipink-reasoning",
             "## AI systems: jovanipink-ai-systems": "jovanipink-ai-systems",
+            "## Agent platforms: jovanipink-agent-platforms": "jovanipink-agent-platforms",
         }
         documented = {plugin: [] for plugin in canonical}
         documented_invocation: dict[str, str] = {}
@@ -282,6 +284,7 @@ class CatalogTests(unittest.TestCase):
         catalog = json.loads((ROOT / "catalog" / "upstream-reviews.json").read_text(encoding="utf-8"))
         self.assertEqual([], validate_instance(catalog, schema))
         expected = {
+            "https://a2a-protocol.org/v1.0.0/specification/",
             "https://agentskills.io/specification",
             "https://developer.hashicorp.com/terraform/language",
             "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
@@ -290,6 +293,8 @@ class CatalogTests(unittest.TestCase):
             "https://git-scm.com/docs/git-merge",
             "https://git-scm.com/docs/git-worktree",
             "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+            "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+            "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
             "https://opentelemetry.io/docs/concepts/signals/",
         }
         records = {record["url"]: record for record in catalog["reviews"]}
@@ -468,8 +473,8 @@ class CatalogTests(unittest.TestCase):
             "context-reliability-review": "read-only",
             "source-output-conformance-audit": "bounded-execution",
         }
-        self.assertEqual(70, len(SKILLS))
-        self.assertEqual(6, len(skills_by_plugin()))
+        self.assertGreaterEqual(len(SKILLS), 70)
+        self.assertGreaterEqual(len(skills_by_plugin()), 6)
         self.assertEqual(set(new_skills), set(skills_by_plugin()["jovanipink-ai-systems"]))
         self.assertEqual(13, len(EXPLICIT_SKILLS))
 
@@ -494,6 +499,73 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual("implicit", metadata["invocation"])
             self.assertEqual("original", metadata["provenance"])
             self.assertEqual(risk_class, metadata["risk_class"])
+
+    def test_v09_agent_platform_contract_and_catalog_counts(self) -> None:
+        new_skills = {
+            "agent-context-state-memory-design": "state-memory-lifecycle.md",
+            "agent-protocol-interoperability-review": "protocol-boundaries.md",
+            "agent-tool-action-boundary-review": "tool-action-matrix.md",
+            "agentic-system-security-review": "agentic-threat-domains.md",
+            "google-adk-engineering-profile": "adk-version-boundaries.md",
+            "retrieval-grounding-quality-review": "retrieval-evidence-matrix.md",
+        }
+        self.assertEqual(76, len(SKILLS))
+        self.assertEqual(7, len(skills_by_plugin()))
+        self.assertEqual(set(new_skills), set(skills_by_plugin()["jovanipink-agent-platforms"]))
+        self.assertEqual(13, len(EXPLICIT_SKILLS))
+
+        for skill, reference in new_skills.items():
+            root = ROOT / "skills" / skill
+            files = {
+                path.relative_to(root).as_posix()
+                for path in root.rglob("*")
+                if path.is_file()
+            }
+            self.assertEqual(
+                {"SKILL.md", "agents/openai.yaml", f"references/{reference}"},
+                files,
+            )
+            metadata = read_skill_metadata(root)
+            self.assertEqual("jovanipink-agent-platforms", metadata["plugin"])
+            self.assertEqual("implicit", metadata["invocation"])
+            self.assertEqual("clean-room", metadata["provenance"])
+            self.assertEqual("read-only", metadata["risk_class"])
+
+        security = (ROOT / "skills" / "agentic-system-security-review" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in (
+            "application-security-review",
+            "skill-security-review",
+            "cannot grant a tool",
+            "direct and indirect prompt injection",
+            "cross-user and cross-tenant",
+        ):
+            self.assertIn(boundary, security)
+
+        adk = (ROOT / "skills" / "google-adk-engineering-profile" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in (
+            "experimental",
+            "SkillToolset",
+            "runtime bundle",
+            "does not authorize deployment",
+        ):
+            self.assertIn(boundary, adk)
+
+        protocol = (ROOT / "skills" / "agent-protocol-interoperability-review" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in (
+            "normative schemas",
+            "signature verification",
+            "functional equivalence",
+            "authorization-required state is a request for authorization",
+        ):
+            self.assertIn(boundary, protocol)
+
+        retrieval = (ROOT / "skills" / "retrieval-grounding-quality-review" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in (
+            "embeddings as sensitive derived data",
+            "inversion or reconstruction",
+            "tone, and task usefulness",
+        ):
+            self.assertIn(boundary, retrieval)
 
     def test_v08_ai_reliability_routing_and_safety_separation(self) -> None:
         cases = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))
@@ -736,6 +808,10 @@ class CatalogTests(unittest.TestCase):
 <main>Official authority content</main>'''
         changed = second.replace(b"Official authority content", b"Changed authority content")
         self.assertEqual(_normalized_content_sha256(first), _normalized_content_sha256(second))
+        self.assertEqual(
+            _normalized_content_sha256(first, strip_trailing=True),
+            _normalized_content_sha256(first + b"\r\n", strip_trailing=True),
+        )
         self.assertNotEqual(_normalized_content_sha256(first), _normalized_content_sha256(changed))
 
     def test_upstream_freshness_uses_primary_authority_urls_only(self) -> None:

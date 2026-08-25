@@ -1,18 +1,18 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.9.0",
-  "source_commit": "d59f3bf8293bd95c7359c344c487a63af47a1495",
+  "source_commit": "24998cdfd16ce0b87ad0883c9919c24d058f89ce",
   "created_on": "2026-08-25",
   "artifacts": [
     {
       "kind": "file",
       "path": ".agents/plugins/marketplace.json",
-      "sha256": "6af00ddc6228f3009fe2bb2a3851f36feae712212052a93f125f188b652e4687"
+      "sha256": "af942f464b170de956897ad48ceeb5719ee406e40a3cc273735dc03748f27689"
     },
     {
       "kind": "file",
       "path": ".claude-plugin/marketplace.json",
-      "sha256": "1b2aae63ce35d3980f6d7e43b010ba3a07a75d738a24c2aae7acd9646d6a4112"
+      "sha256": "27eb1b7389661f211222ba3a43ccf3cba9f17952125b068cbafd9cc21b95bde1"
     },
     {
       "kind": "file",
@@ -27,7 +27,7 @@
     {
       "kind": "file",
       "path": "catalog/packs.json",
-      "sha256": "7ebfe022307509769de1c1997246e108b1d3606c9e78c166632b80bba5a33228"
+      "sha256": "64ca7008682110085adc392890ba3cd9ac14e85ccfa30a80c99e1361917656ac"
     },
     {
       "kind": "file",
@@ -37,17 +37,17 @@
     {
       "kind": "file",
       "path": "catalog/skills.json",
-      "sha256": "172df01c9cfb832a7d40a9c845b2c40d7bd710a85e7d7fc33a085bfb7cfaed78"
+      "sha256": "1c79941cfedd0d2fdce69c7fd3fc914544ad897c545ac63527a471e106a21377"
     },
     {
       "kind": "file",
       "path": "catalog/upstream-pins.json",
-      "sha256": "82ef5929f13257329beed551fc2233d0a07ff2d4b3495c924aec296089f8b479"
+      "sha256": "d78433f3da0637be1bcd429ec18bed52c6228dbdc9d56c1d8f38f0dd6b53617b"
     },
     {
       "kind": "file",
       "path": "catalog/upstream-reviews.json",
-      "sha256": "70aefd8ed24aa5f95c72564ccdfb254b7f7874351ab6ee5a9d02c482aa308ac8"
+      "sha256": "759aa0d81dca661ed68d63ae4787a1d4efcca2c104e296cc68314a61cec44e63"
     },
     {
       "kind": "zip",
@@ -66,8 +66,28 @@
     },
     {
       "kind": "zip",
+      "path": "dist/claude-ai/agent-context-state-memory-design-0.9.0.zip",
+      "sha256": "5c992bce002502950e6a060fbf368152c768ccdcc2c3b6a980a296c3d128cdb7"
+    },
+    {
+      "kind": "zip",
       "path": "dist/claude-ai/agent-evaluation-design-0.9.0.zip",
       "sha256": "2bd58d3dcdf1859fa8fe8d7de8f78c980a1b79a5dea8aacc61a968f75b811424"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/agent-protocol-interoperability-review-0.9.0.zip",
+      "sha256": "42ff65a0e0dd27c543cc9a6da68d3b60b2960f8e1256dc2d561c9d7ac3634af5"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/agent-tool-action-boundary-review-0.9.0.zip",
+      "sha256": "aa4af06458d1b8bdde7b1b28ec1e30a97ebf488911f71905225bd575eef627d6"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/agentic-system-security-review-0.9.0.zip",
+      "sha256": "77f33ae1e31b175a095048989cf939559f47702717f53ef74cde2ee239443894"
     },
     {
       "kind": "zip",
@@ -181,6 +201,11 @@
     },
     {
       "kind": "zip",
+      "path": "dist/claude-ai/google-adk-engineering-profile-0.9.0.zip",
+      "sha256": "f814f7ce85b2153d2d09634d15fc430d09daa9a9d072e36bbbfdafab31214488"
+    },
+    {
+      "kind": "zip",
       "path": "dist/claude-ai/guided-configuration-0.9.0.zip",
       "sha256": "c1560c2f97927b207dcc3357ab72edc80d9583d97885cd1f21be8906f9c04f7c"
     },
@@ -222,7 +247,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/multi-agent-orchestration-0.9.0.zip",
-      "sha256": "1a1f84ba0b1ab739cdfa28ff3147da6090e2684b4e34d39ba7d7e3148b897359"
+      "sha256": "b6a3e7681bb286cc3113f2d9d54756d65a775eaa23c21581738d0d342d07b336"
     },
     {
       "kind": "zip",
@@ -308,6 +333,11 @@
       "kind": "zip",
       "path": "dist/claude-ai/respond-to-code-review-0.9.0.zip",
       "sha256": "4c73b0442ad94d57d95f5d416df9ba717bfe980a63beb122c05a29ce120469ed"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/retrieval-grounding-quality-review-0.9.0.zip",
+      "sha256": "bcd1b286b6e6236add01b17ac0de20a4941563289737fc49d247225c10ee4536"
     },
     {
       "kind": "zip",
@@ -402,7 +432,12 @@
     {
       "kind": "file",
       "path": "evals/cases.json",
-      "sha256": "c1ed9ee80feadc1b1690e8c6ef49a969e269026cfb51a8f02dc62876fb112b2e"
+      "sha256": "3b6f2d81c7651c287420fb5f574dbfda965bc4d8e1059f0d833d7906044bdb8b"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/claude/jovanipink-agent-platforms",
+      "sha256": "5d364d39b3ba876eac00d153383a9f1b08446050061e2cc74643c1c6cb3ff921"
     },
     {
       "kind": "tree",
@@ -412,7 +447,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-engineering",
-      "sha256": "0013f63b372b40a05d0f624ce3827124a405b65ec25618a2c2f8a06bebad619b"
+      "sha256": "55c092eb3639cb9ab44059b33ff26f199a20c9216d71a1e9db6f82a0111cc3a4"
     },
     {
       "kind": "tree",
@@ -436,13 +471,18 @@
     },
     {
       "kind": "tree",
+      "path": "plugins/codex/jovanipink-agent-platforms",
+      "sha256": "ed873afcb5a6a91b1b8500b50a8e81d6d2d4761ec9a13e71cc44ce2fcef12053"
+    },
+    {
+      "kind": "tree",
       "path": "plugins/codex/jovanipink-ai-systems",
       "sha256": "7fb8a5789bf7861bf9ae4b0bd886c6f82ca2c95b1bb2f8dc542e84abc50464f0"
     },
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-engineering",
-      "sha256": "59280ce6966482be03a963dddb9efe3054daf296889246469d8fa7111d356f0b"
+      "sha256": "9d4032ead5cbf5304cb03c24c33e8c7a647b6961b30941b25ed898a6995516fe"
     },
     {
       "kind": "tree",
@@ -467,7 +507,7 @@
     {
       "kind": "file",
       "path": "provenance/catalog.json",
-      "sha256": "a96e654b317d965f2e1a66cf80b7d80e96e4a690b9a5bbc8f74f9c37e9006a84"
+      "sha256": "19b6b27c3a5ed96ab222ef90febf5268c45de0a66bcbed92a0968af5a7e0b5b1"
     }
   ]
 }
