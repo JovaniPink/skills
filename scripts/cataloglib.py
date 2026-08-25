@@ -6,13 +6,24 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from typing import TypedDict
 
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = "0.9.0"
 CATALOG_NAME = "jovanipink-skills"
 PLUGIN_CATEGORY = "Developer Tools"
-PLUGIN_SPECS = {
+
+class PluginSpec(TypedDict):
+    """Typed metadata used to generate both client plugin manifests."""
+
+    display_name: str
+    description: str
+    short_description: str
+    keywords: list[str]
+
+
+PLUGIN_SPECS: dict[str, PluginSpec] = {
     "jovanipink-skills": {
         "display_name": "JovaniPink Skills",
         "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",

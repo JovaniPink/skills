@@ -27,7 +27,7 @@
     {
       "source_url": "https://agentskills.io/specification",
       "marker_kind": "content-sha256",
-      "marker_value": "25c0c4f0033c190cc01968d76762a54caddb50817c79ebf50e91f9f03a6858c8"
+      "marker_value": "075f5590115922cfec8bdd7b54a7860b5971b5879a6c81d83257f0898cdd15f8"
     },
     {
       "source_url": "https://airc.nist.gov/",
@@ -37,7 +37,7 @@
     {
       "source_url": "https://developer.hashicorp.com/terraform/language",
       "marker_kind": "etag",
-      "marker_value": "\"4f24a4af6ea9606151b31a7ab9e4ff29\""
+      "marker_value": "\"f1f4218617284701c2dfd8ebe78a65b9\""
     },
     {
       "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
@@ -47,12 +47,12 @@
     {
       "source_url": "https://docs.python.org/3/",
       "marker_kind": "etag",
-      "marker_value": "\"6a8d57f5-4bea\""
+      "marker_value": "\"6a8de61d-4bea\""
     },
     {
       "source_url": "https://docs.python.org/3/library/unittest.html",
       "marker_kind": "etag",
-      "marker_value": "\"6a8d57f6-51851\""
+      "marker_value": "\"6a8de61d-51851\""
     },
     {
       "source_url": "https://docs.spring.io/spring-boot/",
@@ -92,7 +92,7 @@
     {
       "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
       "marker_kind": "etag",
-      "marker_value": "\"7fd2d091f402750eafde72f08b2726a5\""
+      "marker_value": "\"02aaba07d1b9527a8ca512f25ecfbdcf\""
     },
     {
       "source_url": "https://learn.microsoft.com/en-us/dotnet/",

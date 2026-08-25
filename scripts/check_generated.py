@@ -17,30 +17,34 @@ def check() -> list[str]:
         output_root = Path(temporary) / "plugins"
         build(output_root, write_marketplaces=False)
         for client in ("codex", "claude"):
-          for plugin in skills_by_plugin():
-            expected = directory_hashes(output_root / client / plugin)
-            actual = directory_hashes(ROOT / "plugins" / client / plugin)
-            missing = sorted(set(expected) - set(actual))
-            extra = sorted(set(actual) - set(expected))
-            changed = sorted(path for path in set(expected) & set(actual) if expected[path] != actual[path])
-            for path in missing:
-                errors.append(f"{client}/{plugin} generated file missing: {path}")
-            for path in extra:
-                errors.append(f"{client}/{plugin} generated file unexpected: {path}")
-            for path in changed:
-                errors.append(f"{client}/{plugin} generated file drifted: {path}")
+            for plugin in skills_by_plugin():
+                expected_hashes = directory_hashes(output_root / client / plugin)
+                actual_hashes = directory_hashes(ROOT / "plugins" / client / plugin)
+                missing = sorted(set(expected_hashes) - set(actual_hashes))
+                extra = sorted(set(actual_hashes) - set(expected_hashes))
+                changed = sorted(
+                    relative_path
+                    for relative_path in set(expected_hashes) & set(actual_hashes)
+                    if expected_hashes[relative_path] != actual_hashes[relative_path]
+                )
+                for relative_path in missing:
+                    errors.append(f"{client}/{plugin} generated file missing: {relative_path}")
+                for relative_path in extra:
+                    errors.append(f"{client}/{plugin} generated file unexpected: {relative_path}")
+                for relative_path in changed:
+                    errors.append(f"{client}/{plugin} generated file drifted: {relative_path}")
 
         codex_marketplace, claude_marketplace = marketplace_documents()
         expected_marketplaces = (
             (ROOT / ".agents" / "plugins" / "marketplace.json", codex_marketplace),
             (ROOT / ".claude-plugin" / "marketplace.json", claude_marketplace),
         )
-        for path, expected in expected_marketplaces:
+        for marketplace_path, expected in expected_marketplaces:
             rendered = json.dumps(expected, indent=2, sort_keys=False) + "\n"
-            if not path.is_file():
-                errors.append(f"generated marketplace missing: {path.relative_to(ROOT)}")
-            elif path.read_text(encoding="utf-8") != rendered:
-                errors.append(f"generated marketplace drifted: {path.relative_to(ROOT)}")
+            if not marketplace_path.is_file():
+                errors.append(f"generated marketplace missing: {marketplace_path.relative_to(ROOT)}")
+            elif marketplace_path.read_text(encoding="utf-8") != rendered:
+                errors.append(f"generated marketplace drifted: {marketplace_path.relative_to(ROOT)}")
     return errors
 
 

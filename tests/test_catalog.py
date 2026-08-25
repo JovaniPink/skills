@@ -7,6 +7,8 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from types import TracebackType
+from typing import ClassVar, Literal
 from unittest.mock import patch
 
 
@@ -35,6 +37,7 @@ from validate_catalog import (  # noqa: E402
     immutable_action_reference_errors,
     skill_name_errors,
     validate_all,
+    validate_ci_tools,
     validate_packages,
 )
 
@@ -75,7 +78,7 @@ class CatalogTests(unittest.TestCase):
             "## AI systems skills: jovanipink-ai-systems": "jovanipink-ai-systems",
             "## Agent platform skills: jovanipink-agent-platforms": "jovanipink-agent-platforms",
         }
-        documented = {plugin: [] for plugin in canonical}
+        documented: dict[str, list[str]] = {plugin: [] for plugin in canonical}
         documented_explicit: set[str] = set()
         current_plugin: str | None = None
         current_skill: str | None = None
@@ -121,7 +124,7 @@ class CatalogTests(unittest.TestCase):
             "## AI systems: jovanipink-ai-systems": "jovanipink-ai-systems",
             "## Agent platforms: jovanipink-agent-platforms": "jovanipink-agent-platforms",
         }
-        documented = {plugin: [] for plugin in canonical}
+        documented: dict[str, list[str]] = {plugin: [] for plugin in canonical}
         documented_invocation: dict[str, str] = {}
         current_plugin: str | None = None
 
@@ -194,11 +197,14 @@ class CatalogTests(unittest.TestCase):
     def test_repository_independence_keeps_narrow_repository_link_exceptions(self) -> None:
         owned = "https://" + "github.com/" + "JovaniPink/skills"
         action = "https://" + "github.com/" + "actions/checkout"
+        ci_tool = "https://" + "github.com/" + "python/mypy"
         package_id = "plugin install " + "jovanipink-engineering@jovanipink-skills"
         self.assertEqual([], scan_repository_independence("README.md", owned))
         self.assertEqual([], scan_repository_independence("provenance/ci-actions.json", action))
+        self.assertEqual([], scan_repository_independence("provenance/ci-tools.json", ci_tool))
         self.assertEqual([], scan_repository_independence("docs/README.md", package_id))
         self.assertTrue(scan_repository_independence("docs/example.md", action))
+        self.assertTrue(scan_repository_independence("docs/example.md", ci_tool))
 
     def test_repository_independence_allows_only_the_reviewed_google_agents_cli_link(self) -> None:
         agents_cli = "https://" + "github.com/" + "google/agents-cli"
@@ -278,6 +284,18 @@ class CatalogTests(unittest.TestCase):
             "Anthropic Managed Agents",
         ):
             self.assertIn(surface, surface_enum)
+
+    def test_v09_validation_evidence_matches_observed_matrix(self) -> None:
+        matrix = json.loads((ROOT / "docs" / "client-observations-v0.9.json").read_text(encoding="utf-8"))
+        evidence = (ROOT / "docs" / "validation-evidence.md").read_text(encoding="utf-8")
+        summary = matrix["summary"]
+        expected = (
+            f"Manual matrix: {summary['total']} exact-version rows; {summary['pass']} pass, "
+            f"{summary['fail']} fail, {summary['blocked']} blocked, "
+            f"{summary['not_supported']} not supported, and {summary['not_run']} not run"
+        )
+        self.assertIn(expected, evidence)
+        self.assertNotIn("no v0.9 rows", evidence)
 
     def test_v09_changed_upstreams_have_human_readable_review_records(self) -> None:
         schema = json.loads((ROOT / "catalog" / "upstream-reviews-schema.json").read_text(encoding="utf-8"))
@@ -764,6 +782,36 @@ class CatalogTests(unittest.TestCase):
         )
         self.assertEqual([], immutable_action_reference_errors(local, "fixture.yml"))
 
+    def test_ci_python_tools_are_typed_linted_and_hash_locked(self) -> None:
+        errors: list[str] = []
+        validate_ci_tools(errors)
+        self.assertEqual([], errors)
+        requirements = (ROOT / "requirements-ci-linux.txt").read_text(encoding="utf-8")
+        workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
+        self.assertIn("--only-binary=:all:", requirements)
+        self.assertEqual(6, requirements.count("--hash=sha256:"))
+        self.assertIn(
+            'run: "python3 -m pip install --require-hashes --only-binary=:all: '
+            '-r requirements-ci-linux.txt"',
+            workflow,
+        )
+
+    def test_subagent_client_mapping_tracks_current_security_boundaries(self) -> None:
+        mapping = (
+            ROOT
+            / "skills"
+            / "multi-agent-orchestration"
+            / "references"
+            / "client-mapping.md"
+        ).read_text(encoding="utf-8")
+        for required_text in (
+            "custom-agent configuration",
+            "registered tools",
+            "active trust boundary",
+            "not permission to broaden",
+        ):
+            self.assertIn(required_text, mapping)
+
     def test_revocation_filter_withdraws_catalog_advertisement(self) -> None:
         self.assertEqual(("kept-skill",), filter_revoked(("kept-skill", "revoked-skill"), frozenset({"revoked-skill"})))
 
@@ -779,12 +827,20 @@ class CatalogTests(unittest.TestCase):
         from check_upstream_freshness import _fetch_marker
 
         class Response:
-            headers = {"ETag": '"transient"', "Last-Modified": "Sun, 23 Aug 2026 18:16:51 GMT"}
+            headers: ClassVar[dict[str, str]] = {
+                "ETag": '"transient"',
+                "Last-Modified": "Sun, 23 Aug 2026 18:16:51 GMT",
+            }
 
-            def __enter__(self):
+            def __enter__(self) -> Response:
                 return self
 
-            def __exit__(self, *args):
+            def __exit__(
+                self,
+                exc_type: type[BaseException] | None,
+                exc_value: BaseException | None,
+                traceback: TracebackType | None,
+            ) -> Literal[False]:
                 return False
 
             def read(self) -> bytes:

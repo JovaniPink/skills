@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["$schema", "reviewed_on", "tools"],
+  "properties": {
+    "$schema": {"const": "./ci-tools-schema.json"},
+    "reviewed_on": {"type": "string", "format": "date"},
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "version", "source_url", "license", "artifact_sha256", "reviewed_on", "use"],
+        "properties": {
+          "name": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+$"},
+          "version": {"type": "string", "pattern": "^[0-9][A-Za-z0-9.+-]*$"},
+          "source_url": {"type": "string", "format": "uri"},
+          "license": {"type": "string", "minLength": 1},
+          "artifact_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "reviewed_on": {"type": "string", "format": "date"},
+          "use": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

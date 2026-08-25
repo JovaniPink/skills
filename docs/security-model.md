@@ -26,6 +26,7 @@ The catalog protects user intent, credentials, private data, repository integrit
 - generated native invocation controls checked against canonical metadata
 - standard-library-only repository generation and validation
 - immutable third-party GitHub Action revisions, enforced by repository validation
+- hash-locked mypy and Ruff wheels with reviewed direct and transitive dependency provenance
 - required trigger, provenance, reference, and public-boundary checks
 - primary-authority provenance plus generic originality and repository-independence scanning
 - explicit abort and state-advance gates for Git conflict reconciliation

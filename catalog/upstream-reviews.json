@@ -58,8 +58,8 @@
         "value-attribution-evidence-maturity",
         "workshop-planning-synthesis"
       ],
-      "finding": "The required SKILL.md structure, string-valued metadata, progressive disclosure, and reference model remain compatible. The current page more clearly documents the 64-character name limit, consecutive-hyphen rejection, compatibility metadata, and experimental allowed-tools.",
-      "action": "Keep allowed-tools out of canonical skills, preserve ASCII names, and add regression coverage for the current name and frontmatter limits."
+      "finding": "The current page still requires a SKILL.md file with YAML frontmatter, a matching lowercase name of at most 64 characters, a description of at most 1024 characters, and string-valued metadata. It retains optional compatibility metadata, focused relative references, progressive disclosure, and experimental allowed-tools. No current specification change requires a canonical skill change.",
+      "action": "Refresh the reviewed content marker. Keep allowed-tools out of canonical skills, preserve ASCII names, and retain regression coverage for name, description, metadata, and frontmatter limits."
     },
     {
       "url": "https://developer.hashicorp.com/terraform/language",
@@ -68,7 +68,7 @@
       "affected_skills": [
         "terraform-engineering-profile"
       ],
-      "finding": "The current language page covers a newer Terraform line and additional language areas, but the profile already discovers repository versions and refuses a universal command or apply authority.",
+      "finding": "The current language page identifies Terraform 1.15 as latest and 1.16 as a release candidate, and it includes resources, data sources, modules, state, stacks, testing, import, and compatibility material. The profile already discovers repository versions and refuses a universal command or apply authority.",
       "action": "Refresh the source marker. Keep the profile version-neutral and require repository-pinned version discovery."
     },
     {
@@ -90,8 +90,8 @@
       "affected_skills": [
         "python-engineering-profile"
       ],
-      "finding": "The floating Python 3 page now resolves to Python 3.14.7. The profile already requires discovery of the repository-pinned interpreter and does not assume a universal version or command.",
-      "action": "Refresh the source marker. Keep version-sensitive guidance tied to repository evidence."
+      "finding": "The floating Python 3 page still resolves to Python 3.14.7 after its August 25 documentation rebuild. It continues to link the language, library, setup, packaging, deprecation, and static typing authorities. The profile already requires discovery of the repository-pinned interpreter and does not assume a universal version or command.",
+      "action": "Refresh the rebuilt page marker. Keep version-sensitive guidance tied to repository evidence; no skill instruction change is required."
     },
     {
       "url": "https://docs.python.org/3/library/unittest.html",
@@ -100,8 +100,8 @@
       "affected_skills": [
         "test-quality-review"
       ],
-      "finding": "The current reference still grounds tests in self-contained cases, observable assertions, fixtures, isolation, and explicit skipped or expected-failure states. The test-quality workflow remains framework-neutral and compatible.",
-      "action": "Refresh the source marker. No skill instruction change is required."
+      "finding": "The Python 3.14.7 unittest page was rebuilt on August 25. It still grounds tests in self-contained cases, observable assertions, fixtures, isolation, discovery behavior, and explicit skipped or expected-failure states. The test-quality workflow remains framework-neutral and compatible.",
+      "action": "Refresh the rebuilt page marker. No skill instruction change is required."
     },
     {
       "url": "https://git-scm.com/docs/git-merge",
@@ -131,8 +131,8 @@
       "affected_skills": [
         "multi-agent-orchestration"
       ],
-      "finding": "The current page distinguishes ChatGPT Work from local Codex clients; documents local delegation after a direct request or applicable project or skill instruction; describes surface-specific thread inspection; allows eligible Ultra sessions to delegate suitable work proactively; documents inherited or configured model and reasoning settings; carries the parent sandbox and surface-specific permission behavior into child work; and continues to emphasize independent work, higher token cost, and caution with parallel writes.",
-      "action": "Update the client mapping to require exact surface, account capability, model, reasoning level, permission mode, and version evidence; preserve the portable authorization, ownership, cost, and reconciliation boundaries; then refresh the marker."
+      "finding": "The current page distinguishes ChatGPT Work from local Codex clients; documents direct or instruction-driven delegation; describes surface-specific thread inspection; allows eligible Ultra sessions to delegate suitable work proactively; and emphasizes independent work, higher token cost, and caution with parallel writes. It now documents inherited permission and sandbox behavior, custom-agent configuration layers, per-agent overrides, MCP and skill configuration, concurrency controls, and legacy configuration aliases in greater detail.",
+      "action": "Update the client mapping to require exact surface, account capability, model, reasoning level, permission mode, custom-agent configuration, registered tools, and version evidence. Preserve the portable authorization, ownership, cost, and reconciliation boundaries, then refresh the marker."
     },
     {
       "url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",

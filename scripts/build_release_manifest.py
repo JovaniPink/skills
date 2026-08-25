@@ -10,7 +10,7 @@ import re
 from datetime import date
 from pathlib import Path
 
-from cataloglib import ROOT, SKILLS, VERSION, directory_hashes, read_skill_metadata, skills_by_plugin
+from cataloglib import ROOT, SKILLS, VERSION, directory_hashes, skills_by_plugin
 
 
 def _file_hash(path: Path) -> str:

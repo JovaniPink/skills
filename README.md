@@ -83,9 +83,13 @@ Do not hand-edit generated plugin trees. Change the canonical skill, then run:
 ```sh
 python3 scripts/build_distributions.py
 python3 scripts/package_claude_ai.py
+python3 -m mypy --strict scripts tests
+python3 -m ruff check scripts tests
 python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
 ```
+
+The Linux CI runner installs its reviewed type and lint tools from `requirements-ci-linux.txt`. Other platforms should use mypy 1.20.2 and Ruff 0.15.12 from a trusted local environment; the Linux-only wheel lock is not a portable development environment.
 
 ## Installation surfaces
 

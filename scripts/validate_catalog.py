@@ -28,6 +28,9 @@ ALLOWED_CANONICAL_TOP_KEYS = {"name", "description", "license", "metadata"}
 ALLOWED_RISK_CLASSES = {"read-only", "bounded-execution", "network-read", "external-write", "trust-decision"}
 ACTION_USE = re.compile(r"(?m)^\s*-\s*uses:\s*([^#\s]+)")
 IMMUTABLE_REVISION = re.compile(r"[0-9a-fA-F]{40}")
+HASHED_REQUIREMENT = re.compile(
+    r"^([A-Za-z0-9_.-]+)==([0-9][A-Za-z0-9.+-]*) --hash=sha256:([0-9a-f]{64})$"
+)
 
 
 def skill_name_errors(name: str) -> list[str]:
@@ -43,7 +46,8 @@ def skill_name_errors(name: str) -> list[str]:
 
 def _load_json(path: Path, errors: list[str]) -> object | None:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        value: object = json.loads(path.read_text(encoding="utf-8"))
+        return value
     except (OSError, json.JSONDecodeError) as error:
         errors.append(f"{path.relative_to(ROOT)}: invalid JSON: {error}")
         return None
@@ -125,6 +129,61 @@ def validate_workflows(errors: list[str]) -> None:
         )
 
 
+def validate_ci_tools(errors: list[str]) -> None:
+    """Reconcile hash-locked CI wheels with their reviewed provenance."""
+
+    document = _validate_json_schema(
+        ROOT / "provenance" / "ci-tools.json",
+        ROOT / "provenance" / "ci-tools-schema.json",
+        errors,
+    )
+    if not isinstance(document, dict) or not isinstance(document.get("tools"), list):
+        return
+
+    expected: set[tuple[str, str, str]] = set()
+    for tool in document["tools"]:
+        if not isinstance(tool, dict):
+            continue
+        name = tool.get("name")
+        version = tool.get("version")
+        digest = tool.get("artifact_sha256")
+        if isinstance(name, str) and isinstance(version, str) and isinstance(digest, str):
+            expected.add((name, version, digest))
+
+    actual: set[tuple[str, str, str]] = set()
+    parsed_count = 0
+    requirements_path = ROOT / "requirements-ci-linux.txt"
+    for line_number, raw_line in enumerate(requirements_path.read_text(encoding="utf-8").splitlines(), start=1):
+        line = raw_line.strip()
+        if not line or line.startswith("#") or line == "--only-binary=:all:":
+            continue
+        match = HASHED_REQUIREMENT.fullmatch(line)
+        if match is None:
+            errors.append(
+                f"requirements-ci-linux.txt:{line_number}: dependency must use an exact version and SHA-256 hash"
+            )
+            continue
+        parsed_count += 1
+        actual.add((match.group(1), match.group(2), match.group(3)))
+
+    if len(expected) != len(document["tools"]):
+        errors.append("provenance/ci-tools.json: duplicate or malformed tool records")
+    if len(actual) != parsed_count:
+        errors.append("requirements-ci-linux.txt: duplicate dependency records are not permitted")
+    if actual != expected:
+        errors.append("requirements-ci-linux.txt: locked dependencies do not match reviewed CI tool provenance")
+
+    workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text(encoding="utf-8")
+    required_commands = (
+        "python3 -m pip install --require-hashes --only-binary=:all: -r requirements-ci-linux.txt",
+        "python3 -m mypy --strict scripts tests",
+        "python3 -m ruff check scripts tests",
+    )
+    for command in required_commands:
+        if command not in workflow:
+            errors.append(f".github/workflows/validate.yml: missing required static gate: {command}")
+
+
 def validate_canonical(errors: list[str]) -> None:
     skills_root = ROOT / "skills"
     actual = sorted(path.name for path in skills_root.iterdir() if path.is_dir()) if skills_root.is_dir() else []
@@ -140,11 +199,11 @@ def validate_canonical(errors: list[str]) -> None:
         try:
             frontmatter, body = split_frontmatter(text)
             metadata = read_skill_metadata(skill_dir)
-        except ValueError as error:
-            errors.append(f"skills/{skill}/SKILL.md: {error}")
+        except ValueError as metadata_error:
+            errors.append(f"skills/{skill}/SKILL.md: {metadata_error}")
             continue
-        for error in skill_name_errors(metadata["name"]):
-            errors.append(f"skills/{skill}/SKILL.md: {error}")
+        for name_error in skill_name_errors(metadata["name"]):
+            errors.append(f"skills/{skill}/SKILL.md: {name_error}")
         top_keys = {match.group(1) for match in re.finditer(r"(?m)^([A-Za-z][A-Za-z0-9_.-]*):", frontmatter)}
         unexpected = sorted(top_keys - ALLOWED_CANONICAL_TOP_KEYS)
         if unexpected:
@@ -202,7 +261,11 @@ def validate_evals(errors: list[str]) -> None:
     if not isinstance(document, dict) or not isinstance(document.get("skills"), list):
         return
     records = document["skills"]
-    names = [record.get("skill") for record in records if isinstance(record, dict)]
+    names = [
+        name
+        for record in records
+        if isinstance(record, dict) and isinstance((name := record.get("skill")), str)
+    ]
     if sorted(names) != list(ALL_SKILLS):
         errors.append(f"evals/cases.json: expected one record for every skill, found {sorted(names)}")
     ids: set[str] = set()
@@ -251,7 +314,11 @@ def validate_provenance(errors: list[str]) -> None:
     if not isinstance(document, dict) or not isinstance(document.get("entries"), list):
         return
     entries = document["entries"]
-    names = [entry.get("skill") for entry in entries if isinstance(entry, dict)]
+    names = [
+        name
+        for entry in entries
+        if isinstance(entry, dict) and isinstance((name := entry.get("skill")), str)
+    ]
     if sorted(names) != list(ALL_SKILLS):
         errors.append(f"provenance/catalog.json: expected one entry for every skill, found {sorted(names)}")
     for entry in entries:
@@ -299,13 +366,18 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         ("catalog/compatibility.json", "catalog/compatibility-schema.json"),
         ("catalog/upstream-pins.json", "catalog/upstream-pins-schema.json"),
         ("provenance/ci-actions.json", "provenance/ci-actions-schema.json"),
+        ("provenance/ci-tools.json", "provenance/ci-tools-schema.json"),
     ):
         _validate_json_schema(ROOT / document_name, ROOT / schema_name, errors)
 
     taxonomy = _load_json(ROOT / "catalog" / "skills.json", errors)
     if isinstance(taxonomy, dict) and isinstance(taxonomy.get("skills"), list):
         records = taxonomy["skills"]
-        names = [record.get("skill") for record in records if isinstance(record, dict)]
+        names = [
+            name
+            for record in records
+            if isinstance(record, dict) and isinstance((name := record.get("skill")), str)
+        ]
         if sorted(names) != list(SKILLS):
             errors.append("catalog/skills.json: expected one record for every active skill")
         known = set(SKILLS)
@@ -419,7 +491,11 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         ids = [record.get("case_id") for record in records if isinstance(record, dict)]
         if len(ids) != len(set(ids)):
             errors.append(f"{observation_path.relative_to(ROOT)}: case IDs must be unique")
-        surfaces = {record.get("surface") for record in records if isinstance(record, dict)}
+        surfaces = {
+            surface
+            for record in records
+            if isinstance(record, dict) and isinstance((surface := record.get("surface")), str)
+        }
         expected_surfaces = {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"}
         if observations.get("catalog_version") not in {"0.1.0", "0.2.0", "0.3.0"}:
             expected_surfaces.add("ChatGPT Web")
@@ -563,8 +639,8 @@ def validate_packages(errors: list[str]) -> None:
             if f"{skill}/SKILL.md" not in names:
                 errors.append(f"{archive_path.name}: missing nested {skill}/SKILL.md")
             for name in names:
-                parts = PurePosixPath(name).parts
-                if not parts or parts[0] != skill or ".." in parts or name.startswith("/"):
+                archive_parts = PurePosixPath(name).parts
+                if not archive_parts or archive_parts[0] != skill or ".." in archive_parts or name.startswith("/"):
                     errors.append(f"{archive_path.name}: unsafe or incorrectly nested entry {name}")
                 if "/agents/" in f"/{name}":
                     errors.append(f"{archive_path.name}: Claude.ai package contains Codex interface {name}")
@@ -600,6 +676,7 @@ def validate_release_manifest(errors: list[str]) -> None:
 def validate_all(require_packages: bool = True) -> list[str]:
     errors: list[str] = []
     validate_workflows(errors)
+    validate_ci_tools(errors)
     validate_canonical(errors)
     validate_evals(errors)
     validate_provenance(errors)
