@@ -426,6 +426,16 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         if observations.get("catalog_version") == "0.8.0":
             expected_surfaces.remove("Codex Desktop")
             expected_surfaces.add("ChatGPT Desktop")
+        if observations.get("catalog_version") == "0.9.0":
+            expected_surfaces.update(
+                {
+                    "ChatGPT Desktop",
+                    "Gemini CLI",
+                    "OpenAI Skills API",
+                    "Anthropic Skills API",
+                    "Anthropic Managed Agents",
+                }
+            )
         if surfaces != expected_surfaces:
             errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
         source_commit = observations.get("tested_source_commit")
