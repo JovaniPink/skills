@@ -22,14 +22,14 @@ Identify the intended users, tenants, questions, source authorities, corpus revi
 ## Workflow
 
 1. Map source ownership, licensing, authority, versions, effective time, ingestion, chunking, metadata, indexing, deletion, and refresh behavior.
-2. Verify access control before retrieval. Test user, tenant, case, and document filters, including attempted cross-scope retrieval.
+2. Verify access control before retrieval. Test user, tenant, case, and document filters, including attempted cross-scope retrieval. Treat embeddings as sensitive derived data and evaluate whether inversion or reconstruction could expose source content.
 3. Define representative, boundary, no-answer, conflicting-source, stale-source, adversarial, and known-failure queries. Pin the corpus and configuration.
 4. Measure retrieval separately from generation. Assess relevant-source recall, irrelevant evidence, rank quality, coverage, freshness, latency, and missing-authority cases.
 5. Map each material output claim to supporting evidence. Distinguish direct support, partial support, contradiction, unsupported inference, and missing evidence.
 6. Review citation accuracy, source identity, units, dates, context, and whether a citation supports the nearby claim. Citation presence alone does not establish grounding.
 7. Test prompt injection and retrieval poisoning in documents, metadata, tool results, and user content. Retrieved text remains untrusted data, not higher-priority instruction.
 8. Define abstention, clarification, fallback, conflict disclosure, correction, and revocation behavior.
-9. Record limitations, subgroup performance, cost, and what the cases cannot establish. Do not claim universal grounding from a sampled evaluation.
+9. Measure whether retrieval changes intended product behavior, including correctness, relevance, safety, tone, and task usefulness. Record limitations, subgroup performance, cost, and what the cases cannot establish. Do not claim universal grounding from a sampled evaluation.
 
 ## Routing Boundaries
 

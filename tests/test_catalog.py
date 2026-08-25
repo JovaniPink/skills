@@ -284,6 +284,7 @@ class CatalogTests(unittest.TestCase):
         catalog = json.loads((ROOT / "catalog" / "upstream-reviews.json").read_text(encoding="utf-8"))
         self.assertEqual([], validate_instance(catalog, schema))
         expected = {
+            "https://a2a-protocol.org/v1.0.0/specification/",
             "https://agentskills.io/specification",
             "https://developer.hashicorp.com/terraform/language",
             "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
@@ -292,6 +293,7 @@ class CatalogTests(unittest.TestCase):
             "https://git-scm.com/docs/git-merge",
             "https://git-scm.com/docs/git-worktree",
             "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+            "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
             "https://opentelemetry.io/docs/concepts/signals/",
         }
         records = {record["url"]: record for record in catalog["reviews"]}
@@ -546,6 +548,23 @@ class CatalogTests(unittest.TestCase):
             "does not authorize deployment",
         ):
             self.assertIn(boundary, adk)
+
+        protocol = (ROOT / "skills" / "agent-protocol-interoperability-review" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in (
+            "normative schemas",
+            "signature verification",
+            "functional equivalence",
+            "authorization-required state is a request for authorization",
+        ):
+            self.assertIn(boundary, protocol)
+
+        retrieval = (ROOT / "skills" / "retrieval-grounding-quality-review" / "SKILL.md").read_text(encoding="utf-8")
+        for boundary in (
+            "embeddings as sensitive derived data",
+            "inversion or reconstruction",
+            "tone, and task usefulness",
+        ):
+            self.assertIn(boundary, retrieval)
 
     def test_v08_ai_reliability_routing_and_safety_separation(self) -> None:
         cases = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))

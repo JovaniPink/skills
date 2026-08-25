@@ -4,6 +4,16 @@
   "reviewed_on": "2026-08-25",
   "reviews": [
     {
+      "url": "https://a2a-protocol.org/v1.0.0/specification/",
+      "status": "reviewed",
+      "ownership_check": "The A2A Protocol project remains the official authority for the versioned A2A specification.",
+      "affected_skills": [
+        "agent-protocol-interoperability-review"
+      ],
+      "finding": "A2A 1.0.0 is now the latest released specification. It adds explicit major-minor negotiation, functional equivalence across JSON-RPC, gRPC, and HTTP+JSON bindings, task listing and subscription operations, signed and cached Agent Cards, in-task authorization signaling, and documented breaking migrations. Its normative data objects come from the versioned protocol definition rather than the rendered convenience artifact.",
+      "action": "Replace the mutable latest link with the versioned 1.0.0 specification. Add binding-equivalence, normative-schema, signed-discovery, authorization-scope, downgrade, and breaking-migration checks while preserving the rule that protocol support is not observed interoperability."
+    },
+    {
       "url": "https://agentskills.io/specification",
       "status": "reviewed",
       "ownership_check": "Agent Skills specification site remains the named open-format authority.",
@@ -123,6 +133,16 @@
       ],
       "finding": "The current page distinguishes ChatGPT Work from local Codex clients; documents local delegation after a direct request or applicable project or skill instruction; describes surface-specific thread inspection; allows eligible Ultra sessions to delegate suitable work proactively; documents inherited or configured model and reasoning settings; carries the parent sandbox and surface-specific permission behavior into child work; and continues to emphasize independent work, higher token cost, and caution with parallel writes.",
       "action": "Update the client mapping to require exact surface, account capability, model, reasoning level, permission mode, and version evidence; preserve the portable authorization, ownership, cost, and reconciliation boundaries; then refresh the marker."
+    },
+    {
+      "url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+      "status": "reviewed",
+      "ownership_check": "The OWASP Gen AI Security Project remains the named publisher of the vector and embedding risk guidance.",
+      "affected_skills": [
+        "retrieval-grounding-quality-review"
+      ],
+      "finding": "The current guidance continues to cover unauthorized access, cross-context leakage, federation conflicts, poisoning, and permission-aware isolation. It also calls out embedding inversion and retrieval-driven behavior changes, which were not explicit in the first workflow draft.",
+      "action": "Add embedding-confidentiality and intended-behavior checks to the retrieval review, keep retrieved content untrusted, and refresh the stable normalized marker."
     },
     {
       "url": "https://opentelemetry.io/docs/concepts/signals/",

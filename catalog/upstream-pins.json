@@ -5,9 +5,9 @@
   "max_review_age_days": 90,
   "sources": [
     {
-      "source_url": "https://a2a-protocol.org/latest/specification/",
+      "source_url": "https://a2a-protocol.org/v1.0.0/specification/",
       "marker_kind": "normalized-content-sha256",
-      "marker_value": "301f6cbb22a55f303b9fcdd6b75f6ecff891eb7f0123fabe29b8716f282297f0"
+      "marker_value": "f5d15f00006b7e25b8a3a2766b309b661fff36dbd4330933ed61bfc8d435f05b"
     },
     {
       "source_url": "https://adk-labs.github.io/adk-docs/",
@@ -72,7 +72,7 @@
     {
       "source_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
       "marker_kind": "normalized-content-sha256",
-      "marker_value": "fabcb1ee136c2ccf804e929844652b5dde1f0c1b38633575d100fa97d334e370"
+      "marker_value": "86bf4cb6ab1b8c3103b67e9e990c88e79f6cbc26844ab52ea5a85e2bcb741f1a"
     },
     {
       "source_url": "https://git-scm.com/docs/git-merge",

@@ -6,11 +6,13 @@ Assess retrieval and claim support as separate stages.
 | --- | --- |
 | Source | Is the source authorized, licensed, current, versioned, and eligible for this user and purpose? |
 | Ingestion | Were content, metadata, authority, time, access control, and deletion status preserved? |
+| Embedding | Can stored or exposed vectors reveal protected source content through inversion, reconstruction, or similarity access? |
 | Query | Does the case represent a real need, boundary, conflict, no-answer state, or attack? |
 | Retrieval | Were relevant sources found, ranked, filtered, and returned within limits? |
 | Claim | Is each material claim directly or partially supported, contradicted, or unsupported? |
 | Citation | Does the cited source support the nearby claim with correct date, unit, and context? |
 | Safety | Can document text, metadata, or a tool result change instructions, cross a tenant boundary, or trigger a tool? |
+| Behavior | Does retrieval preserve the intended correctness, relevance, safety, tone, and usefulness of the application? |
 | Recovery | Can the system abstain, ask, disclose conflict, correct a result, and revoke bad content? |
 
 ## Primary resources

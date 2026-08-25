@@ -22,12 +22,12 @@ Identify the protocols, exact versions, roles, owners, trust zones, transports, 
 ## Workflow
 
 1. Map each participant as client, server, agent, tool host, remote agent, gateway, or application. Record which party controls discovery and trust.
-2. Pin protocol and implementation versions. Distinguish required specification behavior, optional behavior, extensions, and implementation-specific behavior.
-3. Trace discovery documents, capability advertisement, schema negotiation, content types, task or request identifiers, streaming, artifacts, errors, cancellation, and completion.
+2. Pin protocol and implementation versions. Distinguish required specification behavior, optional behavior, extensions, implementation-specific behavior, and normative schemas from rendered or generated convenience artifacts.
+3. Trace discovery documents, signature verification, caching and refresh, capability advertisement, schema negotiation, protocol binding selection, content types, task or request identifiers, streaming, artifacts, errors, cancellation, and completion.
 4. Trace end-user identity, service identity, delegated authority, credentials, consent, and tenant context across every hop. Reject ambient or silently expanded authority.
 5. Review argument and output validation, content injection, URL fetching, redirects, SSRF, data exfiltration, and unsafe rendering.
 6. Define retries, timeouts, duplicate delivery, idempotency, ordering, partial results, recovery, and revocation.
-7. Test supported version pairs, downgrade or mismatch behavior, malicious discovery data, invalid schemas, lost cancellation, duplicate actions, and unauthorized capability claims.
+7. Test supported version and binding pairs, functional equivalence, downgrade or mismatch behavior, breaking migrations, malicious or stale discovery data, invalid schemas, lost cancellation, duplicate actions, and unauthorized capability claims. An authorization-required state is a request for authorization, not authorization by itself.
 8. Report compatibility as observed for the exact combination. Do not create connectivity, credentials, infrastructure, or deployment by implication.
 
 ## Routing Boundaries
