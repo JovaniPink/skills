@@ -22,7 +22,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 - `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed generic originality checks
 - `python3 scripts/check_repository_independence.py`: PASS - external repository references remain limited to primary authorities and the reviewed Google Agents CLI provenance exception
 - `python3 scripts/validate.py`: PASS - schemas, taxonomy, recipes, links, invocation mappings, provenance, packages, release manifest, generated drift, fixtures, and policy records
-- `python3 -m unittest discover -s tests -v`: PASS - 49 regression tests
+- `python3 -m unittest discover -s tests -v`: PASS - 52 regression tests
 - `python3 scripts/check_upstream_freshness.py --online`: PASS - every reviewed primary-authority marker matched current observed content
 - `git diff --check`: PASS
 - Codex bundled skill validator: PASS - all six new canonical agent-platform skills

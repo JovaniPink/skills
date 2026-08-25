@@ -296,6 +296,11 @@ class CatalogTests(unittest.TestCase):
         )
         self.assertIn(expected, evidence)
         self.assertNotIn("no v0.9 rows", evidence)
+        observed_test_count = unittest.defaultTestLoader.discover(str(ROOT / "tests")).countTestCases()
+        self.assertIn(
+            f"`python3 -m unittest discover -s tests -v`: PASS - {observed_test_count} regression tests",
+            evidence,
+        )
 
     def test_v09_changed_upstreams_have_human_readable_review_records(self) -> None:
         schema = json.loads((ROOT / "catalog" / "upstream-reviews-schema.json").read_text(encoding="utf-8"))
