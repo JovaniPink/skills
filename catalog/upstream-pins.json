@@ -1,13 +1,13 @@
 {
   "$schema": "./upstream-pins-schema.json",
-  "catalog_version": "0.8.0",
-  "reviewed_on": "2026-08-24",
+  "catalog_version": "0.9.0",
+  "reviewed_on": "2026-08-25",
   "max_review_age_days": 90,
   "sources": [
     {
       "source_url": "https://agentskills.io/specification",
       "marker_kind": "content-sha256",
-      "marker_value": "4ea27080f349336383054e201d07dbdf9d88421eeecc8bd0a357f5dc2554d0b3"
+      "marker_value": "25c0c4f0033c190cc01968d76762a54caddb50817c79ebf50e91f9f03a6858c8"
     },
     {
       "source_url": "https://airc.nist.gov/",
@@ -17,22 +17,22 @@
     {
       "source_url": "https://developer.hashicorp.com/terraform/language",
       "marker_kind": "etag",
-      "marker_value": "\"d75d544547e0b86ba46b94558dfc2940\""
+      "marker_value": "\"4f24a4af6ea9606151b31a7ab9e4ff29\""
     },
     {
       "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
       "marker_kind": "content-sha256",
-      "marker_value": "6023d4d5565c6d6e95c4ba808de8069a12d1a1945f0eb4d4e684e70a30f1acc0"
+      "marker_value": "e6fcdca5a60e4374a0b7d07eb647690d6acb9defea22a0714c185a715adc471c"
     },
     {
       "source_url": "https://docs.python.org/3/",
       "marker_kind": "etag",
-      "marker_value": "\"6a8c058b-4bea\""
+      "marker_value": "\"6a8d57f5-4bea\""
     },
     {
       "source_url": "https://docs.python.org/3/library/unittest.html",
       "marker_kind": "etag",
-      "marker_value": "\"6a8c058b-51851\""
+      "marker_value": "\"6a8d57f6-51851\""
     },
     {
       "source_url": "https://docs.spring.io/spring-boot/",
@@ -47,12 +47,12 @@
     {
       "source_url": "https://git-scm.com/docs/git-merge",
       "marker_kind": "last-modified",
-      "marker_value": "Fri, 21 Aug 2026 13:51:12 GMT"
+      "marker_value": "Tue, 25 Aug 2026 04:46:39 GMT"
     },
     {
       "source_url": "https://git-scm.com/docs/git-worktree",
       "marker_kind": "last-modified",
-      "marker_value": "Fri, 21 Aug 2026 13:51:12 GMT"
+      "marker_value": "Tue, 25 Aug 2026 04:46:40 GMT"
     },
     {
       "source_url": "https://go.dev/doc/",
@@ -62,7 +62,7 @@
     {
       "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
       "marker_kind": "etag",
-      "marker_value": "\"17f3b1613f1345a8efae302ede9a08f4\""
+      "marker_value": "\"83783beabe1f47c5ee41184c87c8567a\""
     },
     {
       "source_url": "https://learn.microsoft.com/en-us/dotnet/",
@@ -72,7 +72,7 @@
     {
       "source_url": "https://opentelemetry.io/docs/concepts/signals/",
       "marker_kind": "etag",
-      "marker_value": "\"7a3caeb825850efe95bbdee2df61bb58-ssl\""
+      "marker_value": "\"1e2cbd57f91c87b790c90398233c38fb-ssl\""
     },
     {
       "source_url": "https://owasp.org/www-project-application-security-verification-standard/",

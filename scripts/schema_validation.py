@@ -97,4 +97,12 @@ def validate_instance(instance: object, schema: object, path: str = "$") -> list
         if isinstance(format_name, str) and not _format_is_valid(instance, format_name):
             errors.append(f"{path}: is not a valid {format_name}")
 
+    if isinstance(instance, (int, float)) and not isinstance(instance, bool):
+        minimum = schema.get("minimum")
+        if isinstance(minimum, (int, float)) and instance < minimum:
+            errors.append(f"{path}: must be at least {minimum}")
+        maximum = schema.get("maximum")
+        if isinstance(maximum, (int, float)) and instance > maximum:
+            errors.append(f"{path}: must be at most {maximum}")
+
     return errors

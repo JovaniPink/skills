@@ -4,7 +4,7 @@ description: "Design or revise a portable Agent Skill with precise routing, invo
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.8.0"
+  version: "0.9.0"
   plugin: "jovanipink-reasoning"
   invocation: "implicit"
   provenance: "clean-room"

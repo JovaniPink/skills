@@ -17,7 +17,7 @@ description: What the skill does and the concrete situations that should activat
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.8.0"
+  version: "0.9.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "original"
@@ -64,6 +64,8 @@ References must be directly linked from `SKILL.md`, use relative paths, and be n
 - Confirm that the workflow is authored from Jovani-owned work and only primary authorities needed for format, interoperability, or correctness.
 - Do not track, cite, mirror, compare, or use third-party skill catalogs as implementation sources.
 - Add three positive, three near-miss, and one conflict or safety trigger case.
+- Add at least three output-quality criteria and an installed-versus-baseline record.
+- Add one strict taxonomy record with maturity evidence, companions, and routing conflicts.
 - Run reference and link validation.
 - Run the public and private boundary scan.
 - Run the originality and repository-independence scans.

@@ -1,0 +1,1632 @@
+{
+  "$schema": "./skills-schema.json",
+  "catalog_version": "0.9.0",
+  "skills": [
+    {
+      "skill": "acceptance-evidence-ledger",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "test",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "repository",
+        "service"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "claim-verification",
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "accessibility-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "review",
+        "test"
+      ],
+      "targets": [
+        "code",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "test-strategy",
+        "code-change-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "adobe-aem-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "agent-evaluation-design",
+      "plugin": "jovanipink-ai-systems",
+      "capability_family": "ai-engineering",
+      "lifecycle_stages": [
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "agent",
+        "model"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "context-reliability-review",
+        "test-strategy"
+      ],
+      "conflicts_with": [
+        "test-strategy"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "alignment-interview",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "discover",
+        "frame"
+      ],
+      "targets": [
+        "organization",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "problem-framing",
+        "domain-vocabulary-modeling"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "api-contract-compatibility-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "code",
+        "data",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "change-impact-analysis",
+        "test-strategy"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "application-security-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "test"
+      ],
+      "targets": [
+        "code",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "dependency-supply-chain-review",
+        "operational-readiness-review"
+      ],
+      "conflicts_with": [
+        "skill-security-review"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "authority-boundary-review",
+      "plugin": "jovanipink-skills",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "review"
+      ],
+      "targets": [
+        "data",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "data-migration-readiness",
+        "data-authority-migration-ratification"
+      ],
+      "conflicts_with": [
+        "context-reliability-review"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "change-adoption-planning",
+      "plugin": "jovanipink-operations",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "design",
+        "release",
+        "operate",
+        "learn"
+      ],
+      "targets": [
+        "organization"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "stakeholder-technical-communication",
+        "kpi-outcome-measurement"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "change-impact-analysis",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "code-change-review",
+        "api-contract-compatibility-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "claim-verification",
+      "plugin": "jovanipink-skills",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "review",
+        "release",
+        "operate"
+      ],
+      "targets": [
+        "repository",
+        "service",
+        "publication"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "acceptance-evidence-ledger",
+        "source-grounded-research"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "code-change-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "change-impact-analysis",
+        "test-quality-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "codebase-explanation",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "communication",
+      "lifecycle_stages": [
+        "discover"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "domain-vocabulary-modeling"
+      ],
+      "conflicts_with": [
+        "design-rationale-investigation"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "context-reliability-review",
+      "plugin": "jovanipink-ai-systems",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "operate"
+      ],
+      "targets": [
+        "agent",
+        "data"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "agent-evaluation-design",
+        "source-grounded-research"
+      ],
+      "conflicts_with": [
+        "authority-boundary-review"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "cross-capability-dependency-mapping",
+      "plugin": "jovanipink-operations",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "release"
+      ],
+      "targets": [
+        "organization",
+        "data",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "requirements-synthesis",
+        "implementation-planning"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "cross-stack-quality-gates",
+      "plugin": "jovanipink-skills",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "test",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "test-quality-review",
+        "claim-verification"
+      ],
+      "conflicts_with": [
+        "test-quality-review"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "csharp-dotnet-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "data-authority-migration-ratification",
+      "plugin": "jovanipink-operations",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "data",
+        "organization"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "authority-boundary-review",
+        "data-migration-readiness"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "data-migration-readiness",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "data",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "authority-boundary-review",
+        "operational-readiness-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "decision-evidence-trace",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "communication",
+      "lifecycle_stages": [
+        "build",
+        "review",
+        "learn"
+      ],
+      "targets": [
+        "repository",
+        "organization"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "acceptance-evidence-ledger",
+        "task-handoff"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "decision-governance-records",
+      "plugin": "jovanipink-operations",
+      "capability_family": "communication",
+      "lifecycle_stages": [
+        "frame",
+        "design",
+        "review",
+        "learn"
+      ],
+      "targets": [
+        "organization",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "source-grounded-research",
+        "stakeholder-technical-communication"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "dependency-supply-chain-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "review",
+        "release",
+        "operate"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "application-security-review",
+        "skill-security-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "design-rationale-investigation",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "discover",
+        "learn"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "network-read",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "codebase-explanation",
+        "source-grounded-research"
+      ],
+      "conflicts_with": [
+        "codebase-explanation"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "domain-vocabulary-modeling",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "discover",
+        "frame",
+        "design"
+      ],
+      "targets": [
+        "data",
+        "organization",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "alignment-interview",
+        "requirements-synthesis"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "finish-development-branch",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "review",
+        "release"
+      ],
+      "targets": [
+        "repository"
+      ],
+      "risk_class": "external-write",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "claim-verification",
+        "publish-change-safely"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "go-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "guided-configuration",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "build",
+        "operate"
+      ],
+      "targets": [
+        "repository",
+        "service"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "claim-verification"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "high-signal-technical-writing",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "communication",
+      "lifecycle_stages": [
+        "review"
+      ],
+      "targets": [
+        "publication",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "stakeholder-technical-communication",
+        "public-private-boundary-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "implementation-planning",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "design",
+        "build",
+        "test",
+        "release"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "problem-framing",
+        "test-strategy"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "iteration-postlaunch-learning",
+      "plugin": "jovanipink-operations",
+      "capability_family": "operations",
+      "lifecycle_stages": [
+        "operate",
+        "learn"
+      ],
+      "targets": [
+        "service",
+        "organization"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "kpi-outcome-measurement",
+        "production-incident-analysis"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "java-spring-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "kpi-outcome-measurement",
+      "plugin": "jovanipink-operations",
+      "capability_family": "operations",
+      "lifecycle_stages": [
+        "design",
+        "operate",
+        "learn"
+      ],
+      "targets": [
+        "data",
+        "organization",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "value-attribution-evidence-maturity",
+        "iteration-postlaunch-learning"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "merge-conflict-reconciliation",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "build",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates",
+        "code-change-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "module-interface-design",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "design",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "domain-vocabulary-modeling",
+        "api-contract-compatibility-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "multi-agent-orchestration",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "build",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "agent",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "implementation-planning",
+        "acceptance-evidence-ledger"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "observability-design",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "operations",
+      "lifecycle_stages": [
+        "design",
+        "build",
+        "operate"
+      ],
+      "targets": [
+        "service",
+        "data"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "operational-readiness-review",
+        "production-incident-analysis"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "operational-readiness-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "operations",
+      "lifecycle_stages": [
+        "review",
+        "release",
+        "operate"
+      ],
+      "targets": [
+        "service",
+        "organization"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "observability-design",
+        "prelaunch-readiness"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "performance-scalability-diagnosis",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "operations",
+      "lifecycle_stages": [
+        "test",
+        "operate",
+        "learn"
+      ],
+      "targets": [
+        "service",
+        "code"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "observability-design",
+        "systematic-diagnosis"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "php-drupal-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "plan-execution",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "build",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "implementation-planning",
+        "test-driven-change"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "portable-skill-authoring",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "ai-engineering",
+      "lifecycle_stages": [
+        "design",
+        "build",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "agent",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "skill-security-review",
+        "agent-evaluation-design"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "postgresql-sql-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "prelaunch-readiness",
+      "plugin": "jovanipink-skills",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "test",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "service",
+        "publication"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "operational-readiness-review",
+        "claim-verification"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "problem-framing",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "discover",
+        "frame"
+      ],
+      "targets": [
+        "organization",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "alignment-interview",
+        "requirements-synthesis"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "production-incident-analysis",
+      "plugin": "jovanipink-operations",
+      "capability_family": "operations",
+      "lifecycle_stages": [
+        "operate",
+        "learn"
+      ],
+      "targets": [
+        "service",
+        "organization"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "observability-design",
+        "iteration-postlaunch-learning"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "prototype-spike",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "design",
+        "build",
+        "test"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "problem-framing",
+        "test-strategy"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "public-private-boundary-review",
+      "plugin": "jovanipink-skills",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "review",
+        "release"
+      ],
+      "targets": [
+        "repository",
+        "publication"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "high-signal-technical-writing",
+        "publish-change-safely"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "publish-change-safely",
+      "plugin": "jovanipink-skills",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "review",
+        "release"
+      ],
+      "targets": [
+        "repository",
+        "publication"
+      ],
+      "risk_class": "external-write",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "public-private-boundary-review",
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "python-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "request-code-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "external-write",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "code-change-review",
+        "claim-verification"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "requirements-synthesis",
+      "plugin": "jovanipink-operations",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "discover",
+        "frame",
+        "design"
+      ],
+      "targets": [
+        "organization",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "domain-vocabulary-modeling",
+        "problem-framing"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "respond-to-code-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "review",
+        "build",
+        "test"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "code-change-review",
+        "test-driven-change"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "salesforce-apex-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "skill-import-provenance",
+      "plugin": "jovanipink-skills",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "agent",
+        "repository"
+      ],
+      "risk_class": "trust-decision",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "skill-security-review",
+        "public-private-boundary-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "skill-security-review",
+      "plugin": "jovanipink-skills",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "review",
+        "release"
+      ],
+      "targets": [
+        "agent",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "dependency-supply-chain-review",
+        "public-private-boundary-review"
+      ],
+      "conflicts_with": [
+        "application-security-review"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "source-grounded-research",
+      "plugin": "jovanipink-skills",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "discover",
+        "frame"
+      ],
+      "targets": [
+        "publication",
+        "repository"
+      ],
+      "risk_class": "network-read",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "claim-verification",
+        "decision-governance-records"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "source-output-conformance-audit",
+      "plugin": "jovanipink-ai-systems",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "test",
+        "review"
+      ],
+      "targets": [
+        "data",
+        "service"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "authority-boundary-review",
+        "test-quality-review"
+      ],
+      "conflicts_with": [
+        "test-quality-review"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "stakeholder-technical-communication",
+      "plugin": "jovanipink-operations",
+      "capability_family": "communication",
+      "lifecycle_stages": [
+        "review",
+        "release",
+        "operate"
+      ],
+      "targets": [
+        "organization",
+        "publication"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "high-signal-technical-writing",
+        "decision-governance-records"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "swift-swiftui-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "systematic-diagnosis",
+      "plugin": "jovanipink-skills",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "service"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "performance-scalability-diagnosis",
+        "test-driven-change"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "task-handoff",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "review",
+        "learn"
+      ],
+      "targets": [
+        "repository",
+        "organization"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "acceptance-evidence-ledger",
+        "decision-evidence-trace"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "terraform-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "test-driven-change",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "build",
+        "test"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "test-quality-review",
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "test-quality-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "test-strategy",
+        "code-change-review"
+      ],
+      "conflicts_with": [
+        "cross-stack-quality-gates",
+        "source-output-conformance-audit"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "test-strategy",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "design",
+        "test"
+      ],
+      "targets": [
+        "code",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "implementation-planning",
+        "test-quality-review"
+      ],
+      "conflicts_with": [
+        "agent-evaluation-design"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "typescript-javascript-engineering-profile",
+      "plugin": "jovanipink-stack-profiles",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "service"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "cross-stack-quality-gates"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "value-attribution-evidence-maturity",
+      "plugin": "jovanipink-operations",
+      "capability_family": "operations",
+      "lifecycle_stages": [
+        "review",
+        "operate",
+        "learn"
+      ],
+      "targets": [
+        "data",
+        "organization"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "kpi-outcome-measurement",
+        "source-grounded-research"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "workflow-retrospective",
+      "plugin": "jovanipink-reasoning",
+      "capability_family": "communication",
+      "lifecycle_stages": [
+        "review",
+        "learn"
+      ],
+      "targets": [
+        "organization",
+        "repository"
+      ],
+      "risk_class": "read-only",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "decision-evidence-trace",
+        "iteration-postlaunch-learning"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "workshop-planning-synthesis",
+      "plugin": "jovanipink-operations",
+      "capability_family": "planning",
+      "lifecycle_stages": [
+        "frame",
+        "design",
+        "learn"
+      ],
+      "targets": [
+        "organization"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "requirements-synthesis",
+        "decision-governance-records"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "worktree-isolation",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "execution",
+      "lifecycle_stages": [
+        "design",
+        "build"
+      ],
+      "targets": [
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "implementation-planning",
+        "multi-agent-orchestration"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    }
+  ]
+}
+

@@ -15,6 +15,9 @@ The catalog protects user intent, credentials, private data, repository integrit
 - secrets and private identifiers copied into a public repository
 - generated adapters drifting from reviewed canonical sources
 - claims of successful validation, deployment, or parity without observed evidence
+- repository-mounted instructions changed by contributors or compromised dependencies
+- model-mediated tools receiving broader identity, data, tenant, or action authority than the host intended
+- context, memory, retrieval, or tool-response poisoning in agent systems
 
 ## Catalog controls
 
@@ -29,8 +32,12 @@ The catalog protects user intent, credentials, private data, repository integrit
 - secret-free guided configuration and privacy-bounded handoff and retrospective workflows
 - generated distributions compared byte-for-byte with a clean temporary build
 - individual Claude.ai ZIPs with a bounded, inspectable root
+- strict taxonomy, recipe-size, source-review, and maturity-evidence records
+- separate assistant, API-managed, and ADK runtime trust boundaries
 
 Host permissions remain the final enforcement layer. A skill is not a sandbox.
+
+Repository-mounted skills are part of an agent's trust boundary. Pin and review the exact repository revision, minimize registered tools, isolate users and sessions, and preserve external authorization for consequential actions. Skill prose never grants a tool, credential, tenant, approval, deployment, or release state.
 
 ## Review decisions
 

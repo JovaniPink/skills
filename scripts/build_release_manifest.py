@@ -33,10 +33,15 @@ def build(source_commit: str, output: Path | None = None) -> Path:
     for path in (
         ROOT / ".agents" / "plugins" / "marketplace.json",
         ROOT / ".claude-plugin" / "marketplace.json",
+        ROOT / "catalog" / "skills.json",
+        ROOT / "catalog" / "packs.json",
         ROOT / "catalog" / "compatibility.json",
         ROOT / "catalog" / "deprecations.json",
         ROOT / "catalog" / "revocations.json",
+        ROOT / "catalog" / "upstream-reviews.json",
         ROOT / "catalog" / "upstream-pins.json",
+        ROOT / "evals" / "cases.json",
+        ROOT / "provenance" / "catalog.json",
     ):
         artifacts.append({"kind": "file", "path": path.relative_to(ROOT).as_posix(), "sha256": _file_hash(path)})
     for skill in SKILLS:
