@@ -284,7 +284,7 @@ class CatalogTests(unittest.TestCase):
         expected = {
             "https://agentskills.io/specification",
             "https://developer.hashicorp.com/terraform/language",
-            "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
+            "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
             "https://docs.python.org/3/",
             "https://docs.python.org/3/library/unittest.html",
             "https://git-scm.com/docs/git-merge",

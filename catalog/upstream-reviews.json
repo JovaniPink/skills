@@ -62,7 +62,7 @@
       "action": "Refresh the source marker. Keep the profile version-neutral and require repository-pinned version discovery."
     },
     {
-      "url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
+      "url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
       "status": "reviewed",
       "ownership_check": "GitHub Docs remains the official authority for pull request reviews.",
       "affected_skills": [
@@ -71,7 +71,7 @@
         "respond-to-code-review"
       ],
       "finding": "The current page still separates comment, approve, and request-changes decisions. It says anyone with read access can review and comment, requesting a review requires write access, organization members with write or triage permission can assign reviewers, CODEOWNERS can request review automatically, and administrators can require approvals. The review skills already separate proposal, review, merge, and external-write authority.",
-      "action": "Refresh the source marker. No skill instruction change is required."
+      "action": "Use GitHub's official Markdown representation for a stable authority-content marker. No skill instruction change is required."
     },
     {
       "url": "https://docs.python.org/3/",

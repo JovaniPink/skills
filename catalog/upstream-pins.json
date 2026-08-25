@@ -20,9 +20,9 @@
       "marker_value": "\"4f24a4af6ea9606151b31a7ab9e4ff29\""
     },
     {
-      "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
+      "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
       "marker_kind": "content-sha256",
-      "marker_value": "881e1922458e52f4de459473a16e9defd583b9789a938ba0f56519ed8a73f425"
+      "marker_value": "c44c52d5951bb6a5690df953455d69caf26df9f13c531d17c10898bd733129f9"
     },
     {
       "source_url": "https://docs.python.org/3/",
