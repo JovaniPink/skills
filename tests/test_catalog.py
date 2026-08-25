@@ -787,8 +787,14 @@ class CatalogTests(unittest.TestCase):
         validate_ci_tools(errors)
         self.assertEqual([], errors)
         requirements = (ROOT / "requirements-ci-linux.txt").read_text(encoding="utf-8")
+        workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
         self.assertIn("--only-binary=:all:", requirements)
         self.assertEqual(6, requirements.count("--hash=sha256:"))
+        self.assertIn(
+            'run: "python3 -m pip install --require-hashes --only-binary=:all: '
+            '-r requirements-ci-linux.txt"',
+            workflow,
+        )
 
     def test_subagent_client_mapping_tracks_current_security_boundaries(self) -> None:
         mapping = (

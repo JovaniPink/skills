@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install hash-locked validation tools
-        run: python3 -m pip install --require-hashes --only-binary=:all: -r requirements-ci-linux.txt
+        run: "python3 -m pip install --require-hashes --only-binary=:all: -r requirements-ci-linux.txt"
       - name: Run static type and lint checks
         run: |
           python3 -m mypy --strict scripts tests
