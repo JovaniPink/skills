@@ -293,6 +293,7 @@ class CatalogTests(unittest.TestCase):
             "https://git-scm.com/docs/git-merge",
             "https://git-scm.com/docs/git-worktree",
             "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+            "https://genai.owasp.org/initiatives/agentic-security-initiative/",
             "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
             "https://opentelemetry.io/docs/concepts/signals/",
         }
