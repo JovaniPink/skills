@@ -47,12 +47,12 @@
     {
       "source_url": "https://docs.python.org/3/",
       "marker_kind": "etag",
-      "marker_value": "\"6a8d57f5-4bea\""
+      "marker_value": "\"6a8de61d-4bea\""
     },
     {
       "source_url": "https://docs.python.org/3/library/unittest.html",
       "marker_kind": "etag",
-      "marker_value": "\"6a8d57f6-51851\""
+      "marker_value": "\"6a8de61d-51851\""
     },
     {
       "source_url": "https://docs.spring.io/spring-boot/",

@@ -90,8 +90,8 @@
       "affected_skills": [
         "python-engineering-profile"
       ],
-      "finding": "The floating Python 3 page now resolves to Python 3.14.7. The profile already requires discovery of the repository-pinned interpreter and does not assume a universal version or command.",
-      "action": "Refresh the source marker. Keep version-sensitive guidance tied to repository evidence."
+      "finding": "The floating Python 3 page still resolves to Python 3.14.7 after its August 25 documentation rebuild. It continues to link the language, library, setup, packaging, deprecation, and static typing authorities. The profile already requires discovery of the repository-pinned interpreter and does not assume a universal version or command.",
+      "action": "Refresh the rebuilt page marker. Keep version-sensitive guidance tied to repository evidence; no skill instruction change is required."
     },
     {
       "url": "https://docs.python.org/3/library/unittest.html",
@@ -100,8 +100,8 @@
       "affected_skills": [
         "test-quality-review"
       ],
-      "finding": "The current reference still grounds tests in self-contained cases, observable assertions, fixtures, isolation, and explicit skipped or expected-failure states. The test-quality workflow remains framework-neutral and compatible.",
-      "action": "Refresh the source marker. No skill instruction change is required."
+      "finding": "The Python 3.14.7 unittest page was rebuilt on August 25. It still grounds tests in self-contained cases, observable assertions, fixtures, isolation, discovery behavior, and explicit skipped or expected-failure states. The test-quality workflow remains framework-neutral and compatible.",
+      "action": "Refresh the rebuilt page marker. No skill instruction change is required."
     },
     {
       "url": "https://git-scm.com/docs/git-merge",
