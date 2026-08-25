@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.9.0",
-  "source_commit": "7a6f859bcad6d70dd3378f9ed99c1f12eaa6faa5",
+  "source_commit": "81c3c9a42e4602816c5121122d7d4b7cf8179951",
   "created_on": "2026-08-25",
   "artifacts": [
     {
@@ -42,12 +42,12 @@
     {
       "kind": "file",
       "path": "catalog/upstream-pins.json",
-      "sha256": "96cdff30020c6516fe896ee187befac71758b8cd53a5ee40a070ccfa18264a15"
+      "sha256": "93cfc4e1577f7b323e46eac722982bd8bad1b1505a15fc6b3f7b98a7856c6f5a"
     },
     {
       "kind": "file",
       "path": "catalog/upstream-reviews.json",
-      "sha256": "de0f63ba0e91d531e4449b56594660c5256c9a8cf3efa8d30f02c505c8fffab0"
+      "sha256": "34ec821ede0bfd058d8f0dfd8a865fbd8fdfe44fdb3ff1696590410de4a528ce"
     },
     {
       "kind": "zip",
@@ -222,7 +222,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/multi-agent-orchestration-0.9.0.zip",
-      "sha256": "74076d2195a3d85519e65e66981c246d1ed40ef96e708849a0de79ddec938295"
+      "sha256": "1a1f84ba0b1ab739cdfa28ff3147da6090e2684b4e34d39ba7d7e3148b897359"
     },
     {
       "kind": "zip",
@@ -412,7 +412,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-engineering",
-      "sha256": "062088b46e6a7f17763175ca2c6cd04ae5dbc4b3a2c6a232a92a251ee285d7cf"
+      "sha256": "0013f63b372b40a05d0f624ce3827124a405b65ec25618a2c2f8a06bebad619b"
     },
     {
       "kind": "tree",
@@ -442,7 +442,7 @@
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-engineering",
-      "sha256": "a388a2dd3f8e3591d57d315ed971c648a79d872fa3c929ff812d0cac3ca226a0"
+      "sha256": "59280ce6966482be03a963dddb9efe3054daf296889246469d8fa7111d356f0b"
     },
     {
       "kind": "tree",
