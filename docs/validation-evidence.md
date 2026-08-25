@@ -4,7 +4,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 
 ## v0.9 evidence and taxonomy candidate
 
-- Source commit: `81c3c9a42e4602816c5121122d7d4b7cf8179951`
+- Source commit: `d59f3bf8293bd95c7359c344c487a63af47a1495`
 - Catalog/plugin version: `0.9.0`
 - Date: 2026-08-25
 - Canonical skills: 70 across six optional plugins; 13 explicit-only skills

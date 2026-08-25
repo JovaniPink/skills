@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.9.0",
-  "source_commit": "81c3c9a42e4602816c5121122d7d4b7cf8179951",
+  "source_commit": "d59f3bf8293bd95c7359c344c487a63af47a1495",
   "created_on": "2026-08-25",
   "artifacts": [
     {
@@ -42,12 +42,12 @@
     {
       "kind": "file",
       "path": "catalog/upstream-pins.json",
-      "sha256": "93cfc4e1577f7b323e46eac722982bd8bad1b1505a15fc6b3f7b98a7856c6f5a"
+      "sha256": "82ef5929f13257329beed551fc2233d0a07ff2d4b3495c924aec296089f8b479"
     },
     {
       "kind": "file",
       "path": "catalog/upstream-reviews.json",
-      "sha256": "34ec821ede0bfd058d8f0dfd8a865fbd8fdfe44fdb3ff1696590410de4a528ce"
+      "sha256": "70aefd8ed24aa5f95c72564ccdfb254b7f7874351ab6ee5a9d02c482aa308ac8"
     },
     {
       "kind": "zip",
@@ -467,7 +467,7 @@
     {
       "kind": "file",
       "path": "provenance/catalog.json",
-      "sha256": "d17448360a5f07af4f085bd58bfe26841a306688807abbfb82ae97a9741653e3"
+      "sha256": "a96e654b317d965f2e1a66cf80b7d80e96e4a690b9a5bbc8f74f9c37e9006a84"
     }
   ]
 }
