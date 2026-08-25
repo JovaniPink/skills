@@ -1,0 +1,473 @@
+{
+  "$schema": "../manifest-schema.json",
+  "catalog_version": "0.9.0",
+  "source_commit": "7a6f859bcad6d70dd3378f9ed99c1f12eaa6faa5",
+  "created_on": "2026-08-25",
+  "artifacts": [
+    {
+      "kind": "file",
+      "path": ".agents/plugins/marketplace.json",
+      "sha256": "6af00ddc6228f3009fe2bb2a3851f36feae712212052a93f125f188b652e4687"
+    },
+    {
+      "kind": "file",
+      "path": ".claude-plugin/marketplace.json",
+      "sha256": "1b2aae63ce35d3980f6d7e43b010ba3a07a75d738a24c2aae7acd9646d6a4112"
+    },
+    {
+      "kind": "file",
+      "path": "catalog/compatibility.json",
+      "sha256": "8e008fa278a0bcf08846f57a746dec511696b6ec666fb59ff693f26a3e2c93b7"
+    },
+    {
+      "kind": "file",
+      "path": "catalog/deprecations.json",
+      "sha256": "e4b7c910ddf7d776080f32c12a2950c8d60a30218c8781b62c0a441cdff48d33"
+    },
+    {
+      "kind": "file",
+      "path": "catalog/packs.json",
+      "sha256": "7ebfe022307509769de1c1997246e108b1d3606c9e78c166632b80bba5a33228"
+    },
+    {
+      "kind": "file",
+      "path": "catalog/revocations.json",
+      "sha256": "a5c2e865e7c3def80160831f8d3e3d582e6215fdf45de5233731289849ae6a09"
+    },
+    {
+      "kind": "file",
+      "path": "catalog/skills.json",
+      "sha256": "172df01c9cfb832a7d40a9c845b2c40d7bd710a85e7d7fc33a085bfb7cfaed78"
+    },
+    {
+      "kind": "file",
+      "path": "catalog/upstream-pins.json",
+      "sha256": "96cdff30020c6516fe896ee187befac71758b8cd53a5ee40a070ccfa18264a15"
+    },
+    {
+      "kind": "file",
+      "path": "catalog/upstream-reviews.json",
+      "sha256": "de0f63ba0e91d531e4449b56594660c5256c9a8cf3efa8d30f02c505c8fffab0"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/acceptance-evidence-ledger-0.9.0.zip",
+      "sha256": "1b43223911eeb19ffafb031071f26286ff6deae628d82943a591440b3f862ead"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/accessibility-review-0.9.0.zip",
+      "sha256": "a599e8accf11a8fa34d3f66dec96ce170ba4c7a8c21c356282dcaee9f4e2ce73"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/adobe-aem-engineering-profile-0.9.0.zip",
+      "sha256": "53f8d8d2d5177563aebe2eb0b8ba2ead8b0ef884666fef006192dd0b67eef390"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/agent-evaluation-design-0.9.0.zip",
+      "sha256": "2bd58d3dcdf1859fa8fe8d7de8f78c980a1b79a5dea8aacc61a968f75b811424"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/alignment-interview-0.9.0.zip",
+      "sha256": "f102df43621e3dd88185124b59ca4f15b8ef5e32fde744bca685076f40480c04"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/api-contract-compatibility-review-0.9.0.zip",
+      "sha256": "65097d9f2e9095d99fb49a7a9fd3068806634f30c410d453f1140561e8bee16d"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/application-security-review-0.9.0.zip",
+      "sha256": "cc02ac440bdb62022d8ee87f789ff1ac3e5be52c8db55255b551b7cc3081cb7a"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/authority-boundary-review-0.9.0.zip",
+      "sha256": "82ea848200e5aaf070839f951cebea060ed8817e66806cbbc55a191fda77546c"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/change-adoption-planning-0.9.0.zip",
+      "sha256": "eff411fb4379a52d9401ab052a973af3bf43fa413e1ca675146b0cb80c990199"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/change-impact-analysis-0.9.0.zip",
+      "sha256": "7e788aa3350f562e45f84dcba491aa44cd5fae91ae5d51099434585fcf5f308a"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/claim-verification-0.9.0.zip",
+      "sha256": "149a77d1682f341be3b070952160225170f75eb482b9f92ace80cc37c5873c90"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/code-change-review-0.9.0.zip",
+      "sha256": "ca72205750fe182f7feeffb5df8f262917af79e1bf00db7ddcd255860e8b0d9c"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/codebase-explanation-0.9.0.zip",
+      "sha256": "3472af93033482659513676648a64bcec5e5ac062a22db85fdce360ff59c5353"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/context-reliability-review-0.9.0.zip",
+      "sha256": "e47360fc040d330574c882604e724106fa98e83ad0143619d569ebc71e709a81"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/cross-capability-dependency-mapping-0.9.0.zip",
+      "sha256": "8815030c05641b2b3ac5970a5417c1d3431bab883675ed6f654799eeb7f7d232"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/cross-stack-quality-gates-0.9.0.zip",
+      "sha256": "e7ce14fc3f4388b950495826d66f5bd7e89dadfbb87f339286d638234707fc10"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/csharp-dotnet-engineering-profile-0.9.0.zip",
+      "sha256": "a647989b825cd6c7e6183035c481a47c72e3cdde138bcc38b39a22a7acbb25a9"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/data-authority-migration-ratification-0.9.0.zip",
+      "sha256": "bdd123a384f5c3c13ed259bcda8c03e61d66db1ad2c60f33e5d41ddece5e9b39"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/data-migration-readiness-0.9.0.zip",
+      "sha256": "d78e899d38b049c95ade80f103016ad4f125f75c24d6dc567f81d485c285c310"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/decision-evidence-trace-0.9.0.zip",
+      "sha256": "2683843237d43cef74cc57ba0ea55bd28fe57e4bc18e662c727a0a64f8132d0f"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/decision-governance-records-0.9.0.zip",
+      "sha256": "5256bca8211499cfa1a33e54628035db391d00548f841bd0dbccf9a66c154e08"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/dependency-supply-chain-review-0.9.0.zip",
+      "sha256": "70ca6e07a329f99bb6949722a9cf324c95fff94b1728a70c64104f5294c860b5"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/design-rationale-investigation-0.9.0.zip",
+      "sha256": "395d62f150d4debf143d13265d3953fb69d0f58b2d1cc7eb6bc878f7e9a07e6f"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/domain-vocabulary-modeling-0.9.0.zip",
+      "sha256": "8c336510f5e1161d2e3a66e42f05a202d7cfa5545b1282fc1085fffb98f75075"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/finish-development-branch-0.9.0.zip",
+      "sha256": "1086f09e01405846a338019a734f444df8539a0d31ecec6000a46d7ede62fd7d"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/go-engineering-profile-0.9.0.zip",
+      "sha256": "2d1898ef06fcd00c44228e612bcd3d44b27b6fd43cfb4e3b78579b81ac41cba1"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/guided-configuration-0.9.0.zip",
+      "sha256": "c1560c2f97927b207dcc3357ab72edc80d9583d97885cd1f21be8906f9c04f7c"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/high-signal-technical-writing-0.9.0.zip",
+      "sha256": "cad814951e1ede06aabbc4def72a24634bf9729d82930d1bc1930c8d1f2b0c9f"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/implementation-planning-0.9.0.zip",
+      "sha256": "69007b27dff96c717af36a7a6ddb6b5b62cb2c633d0b8c6d145c194c3d96a7cf"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/iteration-postlaunch-learning-0.9.0.zip",
+      "sha256": "61687136db430b5df2fb9d9b125759fda5baaea993b4bf9852fa7e5462feeaa4"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/java-spring-engineering-profile-0.9.0.zip",
+      "sha256": "914ef49e4d31a99926d5e229e3d43212e2773f26921222f15c35c6f6f4d1f5a8"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/kpi-outcome-measurement-0.9.0.zip",
+      "sha256": "4371f0d2f94a282ee4ef2bd1ac2adcfd5af3afe9a5819557fe21bbf82aa2100d"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/merge-conflict-reconciliation-0.9.0.zip",
+      "sha256": "76e3ca01c6b400a2eaad4ba93bbd51f6bc4c61d9ac7885d4f6ffe4d3c7002889"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/module-interface-design-0.9.0.zip",
+      "sha256": "d7e8d676a42386589ed1e37c097bbf7f4b958b4e720d9fd18ef164d798504e3f"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/multi-agent-orchestration-0.9.0.zip",
+      "sha256": "74076d2195a3d85519e65e66981c246d1ed40ef96e708849a0de79ddec938295"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/observability-design-0.9.0.zip",
+      "sha256": "d68274400d59d7e0e123bcc5c66658897c2e6bd777a8626e1ef5e910b9980972"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/operational-readiness-review-0.9.0.zip",
+      "sha256": "85bfe39100aad34c2c5fabb1c5253b2b9ee0bcc2d651acc9cc3049d99c48bad2"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/performance-scalability-diagnosis-0.9.0.zip",
+      "sha256": "ea8b98c6fae68cd03570cdd7f67d55360a046a63b043431df8e0481d9dd6c507"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/php-drupal-engineering-profile-0.9.0.zip",
+      "sha256": "1d9a0926899f8598f34136e9e112271f917da13029880c02ea5196875d155313"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/plan-execution-0.9.0.zip",
+      "sha256": "370d51a573ed6e114c5768ee69375ccd3a48e01427d52a2ab138359413d131f6"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/portable-skill-authoring-0.9.0.zip",
+      "sha256": "86badede0ecba31b64d3c7655a0f7c748dc2b767060a5c7295675f07ecffd425"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/postgresql-sql-engineering-profile-0.9.0.zip",
+      "sha256": "a0b4f95269085b4fbbc223a147495ec1b247f4a563faec4273ed437a83e920a9"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/prelaunch-readiness-0.9.0.zip",
+      "sha256": "595e0f5fbbc203f6498648af8460f0380e21eacc3dd721640136fafc57f7ad7a"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/problem-framing-0.9.0.zip",
+      "sha256": "85e0477c3a1eabae1d7a689d53662dab2c826d04710bf8cf0aa5944f0606d8e0"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/production-incident-analysis-0.9.0.zip",
+      "sha256": "c7614d90ece68be3c5948a3134dc1ece2a2d4209ce03ca1b6061b78575b11fe3"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/prototype-spike-0.9.0.zip",
+      "sha256": "f458a36d91a90b68aaf1186814f3091f90f684a5b7ae2b6863a9582a45f6a6bd"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/public-private-boundary-review-0.9.0.zip",
+      "sha256": "f6bec431e25beb7939b25f8cf8c8d3d1884993da6a6fae5ce16ea3c60b0c253c"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/publish-change-safely-0.9.0.zip",
+      "sha256": "355d2d5c6ea7856f7cc6407ff4db134b0bcce300248718e3d0c9714dc95a0a92"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/python-engineering-profile-0.9.0.zip",
+      "sha256": "a98fee1f743d171e93ffb02a126af44d6c727aae06325b0bc5675a943a2e13c7"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/request-code-review-0.9.0.zip",
+      "sha256": "69f720f3359718e845a3fc7497492710c162ec7a75324aa2e4e775185bd8c913"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/requirements-synthesis-0.9.0.zip",
+      "sha256": "ff1b7c6d10636a6a09ac13fa8f013f736e43153076b93b9df34068418f2ddb53"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/respond-to-code-review-0.9.0.zip",
+      "sha256": "4c73b0442ad94d57d95f5d416df9ba717bfe980a63beb122c05a29ce120469ed"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/salesforce-apex-engineering-profile-0.9.0.zip",
+      "sha256": "f6ca440b812078ecbef4e93516b2bf8e9f2cdedd45b97db083983152c08290bf"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/skill-import-provenance-0.9.0.zip",
+      "sha256": "d38acf09e4338d4c252f18fe7790010b79050a9acf2b921fc32d22eeb0962363"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/skill-security-review-0.9.0.zip",
+      "sha256": "64b5ccc5aca05640c7cc881b2f08d99586ef36040c4ea15b221fccd8fa5ab3f3"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/source-grounded-research-0.9.0.zip",
+      "sha256": "4544255360cfdc723a53411723260333a462a3b93e25433c3d2382e0d616378f"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/source-output-conformance-audit-0.9.0.zip",
+      "sha256": "be241ad770a866a506c1651b04be3168d8e3256cd5cb1a11623df28379a20606"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/stakeholder-technical-communication-0.9.0.zip",
+      "sha256": "2284ac76f8125cf4828fbcdc391b37ebcb7c72f3459f4effe2b87e46c76ce71c"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/swift-swiftui-engineering-profile-0.9.0.zip",
+      "sha256": "6a06a66089aebb26474c91ca50fd4104aa75a309281c7aae083c7fa45a5021c4"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/systematic-diagnosis-0.9.0.zip",
+      "sha256": "c37f7bf2b24e88384a042816ed3ecfd8bd92d6ca7eb62fbb8d2fc5b27df8f00a"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/task-handoff-0.9.0.zip",
+      "sha256": "c652ef6f47c0aa19e1b958bf003aabce395e8eeea52f612e0d99dcc583023bb4"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/terraform-engineering-profile-0.9.0.zip",
+      "sha256": "0f34f610d2cdac436ee6c2a931cc09d54e606627d1636df1e0b87c532a1069c6"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/test-driven-change-0.9.0.zip",
+      "sha256": "bc498fa289552e1f2f83d3004929220d4dc80da61b700305405aecc50f93c764"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/test-quality-review-0.9.0.zip",
+      "sha256": "9a69e952d7fe39cee1b9b08d416a9e157ada64b2b5815d37b97279c9f7e0a7a0"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/test-strategy-0.9.0.zip",
+      "sha256": "818556621314cf8d96b4188100338131cf6c97327809fa7c662f647c7b45ba6e"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/typescript-javascript-engineering-profile-0.9.0.zip",
+      "sha256": "8d98980a643b46d304907c6f5b9d43ee632925aa78800516319263e3c577eae0"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/value-attribution-evidence-maturity-0.9.0.zip",
+      "sha256": "93d67ffdb5f98bbf23c3a0327d49311947d01f65d53a643d08b4cb98bd41b2c8"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/workflow-retrospective-0.9.0.zip",
+      "sha256": "aadeb6d6fe2a8a1ac2ab0d233580b5c0eb30448343ef4bb945ae082093632156"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/workshop-planning-synthesis-0.9.0.zip",
+      "sha256": "e37b8727d53cc1b2859442489d8e199a0e65b147ea3f4023d6881611d8632bb5"
+    },
+    {
+      "kind": "zip",
+      "path": "dist/claude-ai/worktree-isolation-0.9.0.zip",
+      "sha256": "5a6aa614807e81f622e86ab7dca9f231991c7dbcfac4b9a72511d878b5338981"
+    },
+    {
+      "kind": "file",
+      "path": "evals/cases.json",
+      "sha256": "c1ed9ee80feadc1b1690e8c6ef49a969e269026cfb51a8f02dc62876fb112b2e"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/claude/jovanipink-ai-systems",
+      "sha256": "764e8c6d90ff7b0f159764c7f9627d8306048f01cf6f77d9d527124297775150"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/claude/jovanipink-engineering",
+      "sha256": "062088b46e6a7f17763175ca2c6cd04ae5dbc4b3a2c6a232a92a251ee285d7cf"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/claude/jovanipink-operations",
+      "sha256": "dd28efaba80e1640910021079d18f9b9ae6b594ad61bcf1570ec7bda26ead4ec"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/claude/jovanipink-reasoning",
+      "sha256": "27cc3b0cdb9be5cfc53675f22a401f47d43ed056bbf369edfff6f7aa533fea3a"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/claude/jovanipink-skills",
+      "sha256": "fb3e194b46b5fb0493bf5bc0f3902c1985cc6a806669194b0eaa97da4f1761ce"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/claude/jovanipink-stack-profiles",
+      "sha256": "65916fe9f013294eb59221823ba03f412c98ba85c99f91a99ea0102700c4e4b7"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/codex/jovanipink-ai-systems",
+      "sha256": "7fb8a5789bf7861bf9ae4b0bd886c6f82ca2c95b1bb2f8dc542e84abc50464f0"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/codex/jovanipink-engineering",
+      "sha256": "a388a2dd3f8e3591d57d315ed971c648a79d872fa3c929ff812d0cac3ca226a0"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/codex/jovanipink-operations",
+      "sha256": "cb4576f226c88a08868afa001b8ad695fa45a17bb7f0fcc38ffb28559a3e696c"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/codex/jovanipink-reasoning",
+      "sha256": "f79ff82cf3f2f298bc9fa930d883e1ea9d4ceb05fcd4184ac66c667d688eceab"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/codex/jovanipink-skills",
+      "sha256": "7decff1cb5fd3c8d04b17f75b5cab5860ec486ee9d7186b02ea6761c258abced"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/codex/jovanipink-stack-profiles",
+      "sha256": "c5c8558a032b64520f59b80956d7237b08047c61dcc8d45e9e2d0d2074a0e122"
+    },
+    {
+      "kind": "file",
+      "path": "provenance/catalog.json",
+      "sha256": "d17448360a5f07af4f085bd58bfe26841a306688807abbfb82ae97a9741653e3"
+    }
+  ]
+}
