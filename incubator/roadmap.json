@@ -1,7 +1,7 @@
 {
   "$schema": "./roadmap-schema.json",
   "roadmap_version": 1,
-  "updated_on": "2026-08-23",
+  "updated_on": "2026-08-25",
   "tracks": [
     {
       "id": "engineering-lifecycle",
@@ -195,6 +195,27 @@
         "conformance execution is limited to repository-defined checks and authorized disposable fixtures or test stores",
         "routing cases distinguish generic testing, evidence ledgers, authority architecture, and product-specific model reviews",
         "generated artifacts pass originality, repository-independence, security, determinism, package-boundary, and client-observation checks"
+      ]
+    },
+    {
+      "id": "agent-platform-foundations",
+      "target_release": "v0.9",
+      "plugin": "jovanipink-agent-platforms",
+      "status": "incubating",
+      "skills": [
+        "google-adk-engineering-profile",
+        "agent-context-state-memory-design",
+        "agent-tool-action-boundary-review",
+        "agent-protocol-interoperability-review",
+        "agentic-system-security-review",
+        "retrieval-grounding-quality-review"
+      ],
+      "entry_criteria": [
+        "each workflow is independently authored from current primary platform, protocol, evaluation, and security authorities",
+        "the plugin remains human-facing and does not contain runtime bundles, tools, credentials, hooks, scripts, agents, or deployment behavior",
+        "routing separates application security, skill security, agentic-system security, general evaluation, and framework-specific composition",
+        "every skill has taxonomy, provenance, positive, near-miss, safety, output-quality, baseline, and focused-reference evidence",
+        "generated artifacts and small recipes pass discovery-budget, security, originality, repository-independence, and deterministic checks"
       ]
     }
   ]

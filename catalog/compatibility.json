@@ -1,6 +1,6 @@
 {
   "$schema": "./compatibility-schema.json",
-  "catalog_version": "0.8.0",
+  "catalog_version": "0.9.0",
   "records": [
     {
       "plugin_version": "0.1.0",

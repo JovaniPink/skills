@@ -82,6 +82,15 @@ def _ci_action_exception(label: str, host: str, owner: str) -> bool:
     )
 
 
+def _reviewed_tool_exception(label: str, host: str, owner: str, repo: str) -> bool:
+    return (
+        label == "docs/google-adk.md"
+        and host.casefold() == "github.com"
+        and owner.casefold() == "google"
+        and repo.casefold() == "agents-cli"
+    )
+
+
 def scan_text(label: str, text: str) -> list[str]:
     """Scan one text surface while preserving narrow path-based exceptions."""
 
@@ -89,7 +98,9 @@ def scan_text(label: str, text: str) -> list[str]:
     for match in REPOSITORY_URL.finditer(text):
         host = match.group("host").casefold()
         owner = match.group("owner")
-        if _owned(owner) or _ci_action_exception(label, host, owner):
+        if _owned(owner) or _ci_action_exception(label, host, owner) or _reviewed_tool_exception(
+            label, host, owner, match.group("repo")
+        ):
             continue
         line = text.count("\n", 0, match.start()) + 1
         errors.append(f"{label}:{line}: external repository URL is not permitted")

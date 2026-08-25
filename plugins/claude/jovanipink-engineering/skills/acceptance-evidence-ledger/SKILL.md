@@ -4,7 +4,7 @@ description: "Create or update an acceptance ledger for substantial work that ne
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.8.0"
+  version: "0.9.0"
   plugin: "jovanipink-engineering"
   invocation: "explicit"
   provenance: "original"

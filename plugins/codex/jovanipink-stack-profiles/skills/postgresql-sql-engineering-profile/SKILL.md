@@ -4,7 +4,7 @@ description: Apply focused PostgreSQL and SQL engineering judgment after reposit
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.8.0"
+  version: "0.9.0"
   plugin: "jovanipink-stack-profiles"
   invocation: "implicit"
   provenance: "clean-room"

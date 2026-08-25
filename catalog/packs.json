@@ -1,0 +1,222 @@
+{
+  "$schema": "./packs-schema.json",
+  "catalog_version": "0.9.0",
+  "budget_warning_characters": 6000,
+  "budget_limit_characters": 8000,
+  "plugin_packs": [
+    {
+      "plugin": "jovanipink-ai-systems",
+      "purpose": "AI evaluation, context reliability, and source-to-output conformance.",
+      "skills": [
+        "agent-evaluation-design",
+        "context-reliability-review",
+        "source-output-conformance-audit"
+      ],
+      "description_characters": 1130,
+      "budget_status": "within-budget"
+    },
+    {
+      "plugin": "jovanipink-engineering",
+      "purpose": "Planning, implementation, testing, review, Git, and operational engineering.",
+      "skills": [
+        "acceptance-evidence-ledger",
+        "accessibility-review",
+        "api-contract-compatibility-review",
+        "application-security-review",
+        "code-change-review",
+        "data-migration-readiness",
+        "dependency-supply-chain-review",
+        "finish-development-branch",
+        "implementation-planning",
+        "merge-conflict-reconciliation",
+        "module-interface-design",
+        "multi-agent-orchestration",
+        "observability-design",
+        "operational-readiness-review",
+        "performance-scalability-diagnosis",
+        "plan-execution",
+        "problem-framing",
+        "prototype-spike",
+        "request-code-review",
+        "respond-to-code-review",
+        "test-driven-change",
+        "test-quality-review",
+        "test-strategy",
+        "worktree-isolation"
+      ],
+      "description_characters": 6249,
+      "budget_status": "warning"
+    },
+    {
+      "plugin": "jovanipink-operations",
+      "purpose": "Requirements, decisions, measurement, adoption, workshops, and incident learning.",
+      "skills": [
+        "change-adoption-planning",
+        "cross-capability-dependency-mapping",
+        "data-authority-migration-ratification",
+        "decision-governance-records",
+        "iteration-postlaunch-learning",
+        "kpi-outcome-measurement",
+        "production-incident-analysis",
+        "requirements-synthesis",
+        "stakeholder-technical-communication",
+        "value-attribution-evidence-maturity",
+        "workshop-planning-synthesis"
+      ],
+      "description_characters": 2570,
+      "budget_status": "within-budget"
+    },
+    {
+      "plugin": "jovanipink-reasoning",
+      "purpose": "Alignment, explanation, impact analysis, writing, continuity, and skill authoring.",
+      "skills": [
+        "alignment-interview",
+        "change-impact-analysis",
+        "codebase-explanation",
+        "decision-evidence-trace",
+        "design-rationale-investigation",
+        "domain-vocabulary-modeling",
+        "guided-configuration",
+        "high-signal-technical-writing",
+        "portable-skill-authoring",
+        "task-handoff",
+        "workflow-retrospective"
+      ],
+      "description_characters": 3128,
+      "budget_status": "within-budget"
+    },
+    {
+      "plugin": "jovanipink-skills",
+      "purpose": "Evidence, diagnosis, quality gates, publication safety, and skill security.",
+      "skills": [
+        "authority-boundary-review",
+        "claim-verification",
+        "cross-stack-quality-gates",
+        "prelaunch-readiness",
+        "public-private-boundary-review",
+        "publish-change-safely",
+        "skill-import-provenance",
+        "skill-security-review",
+        "source-grounded-research",
+        "systematic-diagnosis"
+      ],
+      "description_characters": 2595,
+      "budget_status": "within-budget"
+    },
+    {
+      "plugin": "jovanipink-stack-profiles",
+      "purpose": "Optional stack-specific engineering judgment after repository discovery.",
+      "skills": [
+        "adobe-aem-engineering-profile",
+        "csharp-dotnet-engineering-profile",
+        "go-engineering-profile",
+        "java-spring-engineering-profile",
+        "php-drupal-engineering-profile",
+        "postgresql-sql-engineering-profile",
+        "python-engineering-profile",
+        "salesforce-apex-engineering-profile",
+        "swift-swiftui-engineering-profile",
+        "terraform-engineering-profile",
+        "typescript-javascript-engineering-profile"
+      ],
+      "description_characters": 2683,
+      "budget_status": "within-budget"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "verify-a-completion-claim",
+      "purpose": "Verify a material completion claim and preserve acceptance evidence.",
+      "skills": [
+        "claim-verification",
+        "acceptance-evidence-ledger"
+      ],
+      "description_characters": 587,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "plan-a-safe-code-change",
+      "purpose": "Frame and plan a code change with risk-based testing.",
+      "skills": [
+        "problem-framing",
+        "implementation-planning",
+        "test-strategy"
+      ],
+      "description_characters": 760,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "review-a-public-release",
+      "purpose": "Review a change for public exposure and publication readiness.",
+      "skills": [
+        "public-private-boundary-review",
+        "prelaunch-readiness",
+        "publish-change-safely"
+      ],
+      "description_characters": 789,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "diagnose-with-evidence",
+      "purpose": "Diagnose a defect and verify the resulting claims.",
+      "skills": [
+        "systematic-diagnosis",
+        "claim-verification"
+      ],
+      "description_characters": 491,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "review-an-ai-workflow",
+      "purpose": "Design AI evaluations and review the reliability of supplied context.",
+      "skills": [
+        "agent-evaluation-design",
+        "context-reliability-review",
+        "source-output-conformance-audit"
+      ],
+      "description_characters": 1130,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "review-a-service-release",
+      "purpose": "Review application controls and operational readiness before release.",
+      "skills": [
+        "application-security-review",
+        "operational-readiness-review",
+        "observability-design"
+      ],
+      "description_characters": 815,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "write-a-decision-brief",
+      "purpose": "Ground a decision in sources and communicate it for its intended audience.",
+      "skills": [
+        "source-grounded-research",
+        "decision-governance-records",
+        "stakeholder-technical-communication"
+      ],
+      "description_characters": 734,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    },
+    {
+      "id": "learn-after-launch",
+      "purpose": "Connect observed outcomes and incidents to a bounded next decision.",
+      "skills": [
+        "iteration-postlaunch-learning",
+        "kpi-outcome-measurement",
+        "production-incident-analysis"
+      ],
+      "description_characters": 697,
+      "budget_status": "within-budget",
+      "installation_claim": "composition-only"
+    }
+  ]
+}

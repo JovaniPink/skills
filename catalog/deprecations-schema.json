@@ -4,7 +4,7 @@
   "required": ["$schema", "catalog_version", "entries"],
   "properties": {
     "$schema": {"const": "./deprecations-schema.json"},
-    "catalog_version": {"const": "0.8.0"},
+    "catalog_version": {"const": "0.9.0"},
     "entries": {
       "type": "array",
       "items": {

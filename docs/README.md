@@ -4,7 +4,7 @@ JovaniPink Skills is a public catalog of reusable workflows for Codex, ChatGPT, 
 
 This guide explains how to choose, install, invoke, verify, update, and remove the skills safely.
 
-Use the [skill cheatsheet](skill-cheatsheet.md) for quick selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 70-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
+Use the [five-minute quickstart](quickstart.md) for a local start. Use [Choose Your Skills](choose-your-skills.md) and the [skill cheatsheet](skill-cheatsheet.md) for selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 70-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
 
 ## Start with the security boundary
 
@@ -36,6 +36,7 @@ Install the smallest plugin that covers the work.
 | `jovanipink-stack-profiles` | Focused Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
 | `jovanipink-operations` | Requirements, decisions, workshops, measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incidents, and data authority decisions |
 | `jovanipink-reasoning` | Alignment, domain vocabulary, code explanation, design rationale, change impact, technical writing, decision traces, portable skill authoring, guided configuration, task handoff, and workflow retrospectives |
+| `jovanipink-ai-systems` | AI evaluation contracts, context reliability, and exact source-to-output conformance |
 
 Installing every plugin at once increases the amount of skill description text loaded by a client. It can also increase trigger collisions. Start with one plugin and add another only when the work needs it.
 
@@ -72,6 +73,7 @@ codex plugin add jovanipink-engineering@jovanipink-skills
 codex plugin add jovanipink-stack-profiles@jovanipink-skills
 codex plugin add jovanipink-operations@jovanipink-skills
 codex plugin add jovanipink-reasoning@jovanipink-skills
+codex plugin add jovanipink-ai-systems@jovanipink-skills
 ```
 
 Verify the installed version and enabled state:
@@ -111,6 +113,7 @@ claude plugin install jovanipink-engineering@jovanipink-skills --scope user
 claude plugin install jovanipink-stack-profiles@jovanipink-skills --scope user
 claude plugin install jovanipink-operations@jovanipink-skills --scope user
 claude plugin install jovanipink-reasoning@jovanipink-skills --scope user
+claude plugin install jovanipink-ai-systems@jovanipink-skills --scope user
 ```
 
 Verify the installed version and enabled state:
@@ -210,6 +213,12 @@ Examples:
 
 Use the [manual smoke test record](manual-smoke-tests.md) and [client surface research](client-surface-research.md) for observed behavior. Treat blocked or untested rows as unknown, not as passes.
 
+## Keep API and runtime surfaces separate
+
+OpenAI Skills API, Anthropic Skills API, Anthropic Managed Agents, Gemini CLI, and Google ADK runtime skills are distinct products and trust boundaries. A local plugin observation does not prove an API upload, repository mount, managed session, or ADK runtime behavior.
+
+Read [Agent Platform Boundaries](agent-platform-boundaries.md) and [Google ADK](google-adk.md) before using skills in an agent application. Runtime ADK observations belong in the separate runtime adapter repository, not in this assistant catalog.
+
 ## Update a local installation
 
 Review upstream changes before updating. Then refresh the marketplace using the command supported by the client.
@@ -288,6 +297,10 @@ Use this workflow:
 Useful repository documents:
 
 - [Architecture](architecture.md)
+- [Taxonomy](taxonomy.md)
+- [Choose your skills](choose-your-skills.md)
+- [Agent platform boundaries](agent-platform-boundaries.md)
+- [Google ADK](google-adk.md)
 - [Authoring guide](authoring.md)
 - [Editorial style](editorial-style.md)
 - [Testing guide](testing.md)
@@ -322,7 +335,12 @@ If an action could publish, merge, deploy, delete, send, or change an external s
 - [Agent Skills specification](https://agentskills.io/specification)
 - [OpenAI Build skills](https://learn.chatgpt.com/docs/build-skills)
 - [OpenAI Build plugins](https://developers.openai.com/plugins/build/plugins)
+- [OpenAI Skills API](https://developers.openai.com/api/reference/go/resources/skills)
 - [Claude Code plugins](https://code.claude.com/docs/en/discover-plugins)
 - [Claude plugin marketplaces](https://code.claude.com/docs/en/plugin-marketplaces)
 - [Claude Skills support](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
+- [Anthropic Skills API guide](https://platform.claude.com/docs/en/build-with-claude/skills-guide)
+- [Anthropic Managed Agents skills](https://platform.claude.com/docs/en/managed-agents/skills)
+- [Gemini CLI Agent Skills](https://geminicli.com/docs/cli/skills/)
+- [Google ADK Agent Skills](https://adk-labs.github.io/adk-docs/skills/)
 - [Repository license](../LICENSE)

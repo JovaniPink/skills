@@ -33,6 +33,7 @@ from schema_validation import validate_instance  # noqa: E402
 from sync_private_overlay import sync as sync_private_overlay  # noqa: E402
 from validate_catalog import (  # noqa: E402
     immutable_action_reference_errors,
+    skill_name_errors,
     validate_all,
     validate_packages,
 )
@@ -197,8 +198,145 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual([], scan_repository_independence("docs/README.md", package_id))
         self.assertTrue(scan_repository_independence("docs/example.md", action))
 
+    def test_repository_independence_allows_only_the_reviewed_google_agents_cli_link(self) -> None:
+        agents_cli = "https://" + "github.com/" + "google/agents-cli"
+        unrelated = "https://" + "github.com/" + "google/unrelated"
+        self.assertEqual([], scan_repository_independence("docs/google-adk.md", agents_cli))
+        self.assertTrue(scan_repository_independence("docs/example.md", agents_cli))
+        self.assertTrue(scan_repository_independence("docs/google-adk.md", unrelated))
+
     def test_provenance_sources_are_primary_authorities(self) -> None:
         self.assertEqual([], provenance_source_errors())
+
+    def test_v09_taxonomy_reconciles_with_canonical_skills(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "skills-schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "catalog" / "skills.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_instance(catalog, schema))
+        records = {record["skill"]: record for record in catalog["skills"]}
+        self.assertEqual(set(SKILLS), set(records))
+        for skill, record in records.items():
+            metadata = read_skill_metadata(ROOT / "skills" / skill)
+            self.assertEqual(metadata["plugin"], record["plugin"])
+            self.assertEqual(metadata["risk_class"], record["risk_class"])
+            self.assertEqual(metadata["invocation"], record["invocation"])
+            self.assertTrue((ROOT / record["maturity_evidence"]).is_file())
+            self.assertNotIn(skill, record["composes_with"])
+            self.assertNotIn(skill, record["conflicts_with"])
+            for related in record["composes_with"] + record["conflicts_with"]:
+                self.assertIn(related, records)
+
+    def test_v09_packs_and_recipes_reconcile_and_fit_discovery_budget(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "packs-schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "catalog" / "packs.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_instance(catalog, schema))
+        plugins = skills_by_plugin()
+        packs = {record["plugin"]: record for record in catalog["plugin_packs"]}
+        self.assertEqual(set(plugins), set(packs))
+        for plugin, record in packs.items():
+            self.assertEqual(list(plugins[plugin]), record["skills"])
+            expected = sum(
+                len(read_skill_metadata(ROOT / "skills" / skill)["description"])
+                for skill in record["skills"]
+            )
+            self.assertEqual(expected, record["description_characters"])
+            expected_status = "over-limit" if expected > 8000 else "warning" if expected >= 6000 else "within-budget"
+            self.assertEqual(expected_status, record["budget_status"])
+
+        for recipe in catalog["recipes"]:
+            self.assertIn(len(recipe["skills"]), {2, 3})
+            self.assertEqual(len(recipe["skills"]), len(set(recipe["skills"])))
+            expected = sum(
+                len(read_skill_metadata(ROOT / "skills" / skill)["description"])
+                for skill in recipe["skills"]
+            )
+            self.assertEqual(expected, recipe["description_characters"])
+            self.assertLessEqual(recipe["description_characters"], 8000)
+            expected_status = "warning" if expected >= 6000 else "within-budget"
+            self.assertEqual(expected_status, recipe["budget_status"])
+
+    def test_v09_every_skill_has_complete_evaluation_contract(self) -> None:
+        schema = json.loads((ROOT / "evals" / "schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_instance(catalog, schema))
+        self.assertEqual(set(SKILLS), {record["skill"] for record in catalog["skills"]})
+        for record in catalog["skills"]:
+            self.assertGreaterEqual(len(record["output_rubric"]), 3)
+            self.assertIn(
+                record["baseline_comparison"]["status"],
+                {"pass", "fail", "blocked", "not_supported"},
+            )
+
+    def test_v09_observation_schema_has_distinct_api_and_gemini_surfaces(self) -> None:
+        schema = json.loads((ROOT / "docs" / "client-observations-schema.json").read_text(encoding="utf-8"))
+        surface_enum = schema["properties"]["records"]["items"]["properties"]["surface"]["enum"]
+        for surface in (
+            "Gemini CLI",
+            "OpenAI Skills API",
+            "Anthropic Skills API",
+            "Anthropic Managed Agents",
+        ):
+            self.assertIn(surface, surface_enum)
+
+    def test_v09_changed_upstreams_have_human_readable_review_records(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "upstream-reviews-schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "catalog" / "upstream-reviews.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_instance(catalog, schema))
+        expected = {
+            "https://agentskills.io/specification",
+            "https://developer.hashicorp.com/terraform/language",
+            "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
+            "https://docs.python.org/3/",
+            "https://docs.python.org/3/library/unittest.html",
+            "https://git-scm.com/docs/git-merge",
+            "https://git-scm.com/docs/git-worktree",
+            "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+            "https://opentelemetry.io/docs/concepts/signals/",
+        }
+        records = {record["url"]: record for record in catalog["reviews"]}
+        self.assertEqual(expected, set(records))
+        for record in records.values():
+            self.assertEqual("reviewed", record["status"])
+            self.assertGreaterEqual(len(record["affected_skills"]), 1)
+            self.assertTrue(record["finding"])
+            self.assertTrue(record["action"])
+
+    def test_v09_subagent_mapping_preserves_surface_and_configuration_boundaries(self) -> None:
+        mapping = (
+            ROOT
+            / "skills"
+            / "multi-agent-orchestration"
+            / "references"
+            / "client-mapping.md"
+        ).read_text(encoding="utf-8")
+        for required in (
+            "exact surface",
+            "account capability",
+            "reasoning level",
+            "permission mode",
+            "Do not treat one trigger path as proof for another",
+            "Use the smallest useful fanout",
+            "verify the actual configuration instead of assuming it",
+        ):
+            self.assertIn(required, mapping)
+
+    def test_v09_open_spec_name_limits_are_enforced(self) -> None:
+        self.assertEqual([], skill_name_errors("safe-skill"))
+        self.assertTrue(skill_name_errors("bad--skill"))
+        self.assertTrue(skill_name_errors("a" * 65))
+        self.assertTrue(skill_name_errors("Bad-Skill"))
+
+    def test_v09_release_manifest_tracks_governance_records(self) -> None:
+        manifest = json.loads((ROOT / "releases" / "0.9.0" / "manifest.json").read_text(encoding="utf-8"))
+        paths = {artifact["path"] for artifact in manifest["artifacts"]}
+        self.assertTrue(
+            {
+                "catalog/skills.json",
+                "catalog/packs.json",
+                "catalog/upstream-reviews.json",
+                "evals/cases.json",
+                "provenance/catalog.json",
+            }.issubset(paths)
+        )
 
     def test_native_invocation_controls_match_canonical_metadata(self) -> None:
         for skill in SKILLS:

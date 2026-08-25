@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["$schema", "catalog_version", "budget_warning_characters", "budget_limit_characters", "plugin_packs", "recipes"],
+  "properties": {
+    "$schema": {"const": "./packs-schema.json"},
+    "catalog_version": {"const": "0.9.0"},
+    "budget_warning_characters": {"const": 6000},
+    "budget_limit_characters": {"const": 8000},
+    "plugin_packs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["plugin", "purpose", "skills", "description_characters", "budget_status"],
+        "properties": {
+          "plugin": {"type": "string", "pattern": "^jovanipink-[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "purpose": {"type": "string", "minLength": 1},
+          "skills": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+          "description_characters": {"type": "integer", "minimum": 1},
+          "budget_status": {"enum": ["within-budget", "warning", "over-limit"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "recipes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "purpose", "skills", "description_characters", "budget_status", "installation_claim"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "purpose": {"type": "string", "minLength": 1},
+          "skills": {"type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
+          "description_characters": {"type": "integer", "minimum": 1, "maximum": 8000},
+          "budget_status": {"enum": ["within-budget", "warning"]},
+          "installation_claim": {"const": "composition-only"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

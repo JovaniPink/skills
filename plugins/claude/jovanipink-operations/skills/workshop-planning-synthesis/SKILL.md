@@ -4,7 +4,7 @@ description: Plan a workshop around a concrete decision or learning outcome, the
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.8.0"
+  version: "0.9.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

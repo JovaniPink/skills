@@ -4,7 +4,7 @@ Portable, evidence-oriented agent skills for software delivery, research, operat
 
 This repository is an independent MIT-licensed work. It does not redistribute proprietary skill text. Public skills remain separate from private, repository-local overlays.
 
-Start with [How to use JovaniPink Skills](docs/README.md) for secure installation, invocation, validation, updating, removal, troubleshooting, and client resource links. Use the [skill cheatsheet](docs/skill-cheatsheet.md) for quick selection or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for the full inventory and explicit-only boundaries.
+Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets.
 
 ## Catalog
 
@@ -71,7 +71,7 @@ Three optional AI-reliability workflows cover agent evaluation design, assertion
 - `evals/` contains trigger and safety cases.
 - `provenance/catalog.json` records primary format or correctness authorities and the Jovani-authored implementation boundary for every skill.
 - `scripts/` contains standard-library-only generation, packaging, and validation, including guards for mutable third-party GitHub Action references and external repository coupling.
-- `catalog/` contains strict compatibility, deprecation, revocation, and upstream-pinning records.
+- `catalog/` contains strict taxonomy, pack, recipe, compatibility, deprecation, revocation, upstream-review, and upstream-pinning records.
 - `releases/` contains exact-source release manifests and artifact checksums.
 
 Do not hand-edit generated plugin trees. Change the canonical skill, then run:
@@ -111,4 +111,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-Version 0.8 adds the optional `jovanipink-ai-systems` plugin with three independently authored AI-reliability workflows. Public-directory submission and cross-client parity claims remain deferred until field testing is recorded.
+The v0.9 candidate adds a faceted catalog, measured plugin packs and small recipes, a complete evaluation contract for every current skill, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. It remains a candidate until the six agent-platform skills and exact-package client observations are complete. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.

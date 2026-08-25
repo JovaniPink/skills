@@ -30,6 +30,17 @@ ACTION_USE = re.compile(r"(?m)^\s*-\s*uses:\s*([^#\s]+)")
 IMMUTABLE_REVISION = re.compile(r"[0-9a-fA-F]{40}")
 
 
+def skill_name_errors(name: str) -> list[str]:
+    """Return open-spec naming errors while preserving the catalog's ASCII policy."""
+
+    errors: list[str] = []
+    if not 1 <= len(name) <= 64:
+        errors.append("skill name must contain 1 to 64 characters")
+    if re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", name) is None:
+        errors.append("skill name must use lowercase ASCII letters, numbers, and single hyphens")
+    return errors
+
+
 def _load_json(path: Path, errors: list[str]) -> object | None:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -132,6 +143,8 @@ def validate_canonical(errors: list[str]) -> None:
         except ValueError as error:
             errors.append(f"skills/{skill}/SKILL.md: {error}")
             continue
+        for error in skill_name_errors(metadata["name"]):
+            errors.append(f"skills/{skill}/SKILL.md: {error}")
         top_keys = {match.group(1) for match in re.finditer(r"(?m)^([A-Za-z][A-Za-z0-9_.-]*):", frontmatter)}
         unexpected = sorted(top_keys - ALLOWED_CANONICAL_TOP_KEYS)
         if unexpected:
@@ -201,13 +214,12 @@ def validate_evals(errors: list[str]) -> None:
         expected_invocation = read_skill_metadata(ROOT / "skills" / skill)["invocation"]
         if record.get("invocation") != expected_invocation:
             errors.append(f"evals/cases.json: {skill} invocation must be {expected_invocation}")
-        if read_skill_metadata(ROOT / "skills" / skill)["plugin"] != "jovanipink-skills":
-            rubric = record.get("output_rubric")
-            baseline = record.get("baseline_comparison")
-            if not isinstance(rubric, list) or len(rubric) < 3:
-                errors.append(f"evals/cases.json: {skill} requires an output-quality rubric")
-            if not isinstance(baseline, dict) or baseline.get("status") == "not_run":
-                errors.append(f"evals/cases.json: {skill} requires a terminal baseline comparison")
+        rubric = record.get("output_rubric")
+        baseline = record.get("baseline_comparison")
+        if not isinstance(rubric, list) or len(rubric) < 3:
+            errors.append(f"evals/cases.json: {skill} requires an output-quality rubric")
+        if not isinstance(baseline, dict) or baseline.get("status") == "not_run":
+            errors.append(f"evals/cases.json: {skill} requires a terminal baseline comparison")
         for category, minimum in (("positive", 3), ("near_miss", 3), ("safety", 1)):
             cases = record.get(category)
             if not isinstance(cases, list) or len(cases) < minimum:
@@ -279,6 +291,9 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                 seen.add(skill)
 
     for document_name, schema_name in (
+        ("catalog/skills.json", "catalog/skills-schema.json"),
+        ("catalog/packs.json", "catalog/packs-schema.json"),
+        ("catalog/upstream-reviews.json", "catalog/upstream-reviews-schema.json"),
         ("catalog/deprecations.json", "catalog/deprecations-schema.json"),
         ("catalog/revocations.json", "catalog/revocations-schema.json"),
         ("catalog/compatibility.json", "catalog/compatibility-schema.json"),
@@ -286,6 +301,99 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         ("provenance/ci-actions.json", "provenance/ci-actions-schema.json"),
     ):
         _validate_json_schema(ROOT / document_name, ROOT / schema_name, errors)
+
+    taxonomy = _load_json(ROOT / "catalog" / "skills.json", errors)
+    if isinstance(taxonomy, dict) and isinstance(taxonomy.get("skills"), list):
+        records = taxonomy["skills"]
+        names = [record.get("skill") for record in records if isinstance(record, dict)]
+        if sorted(names) != list(SKILLS):
+            errors.append("catalog/skills.json: expected one record for every active skill")
+        known = set(SKILLS)
+        for record in records:
+            if not isinstance(record, dict) or record.get("skill") not in known:
+                continue
+            skill = record["skill"]
+            metadata = read_skill_metadata(ROOT / "skills" / skill)
+            for key in ("plugin", "risk_class", "invocation"):
+                if record.get(key) != metadata[key]:
+                    errors.append(f"catalog/skills.json: {skill} {key} does not match canonical metadata")
+            for key in ("composes_with", "conflicts_with"):
+                related = record.get(key, [])
+                if isinstance(related, list):
+                    if skill in related:
+                        errors.append(f"catalog/skills.json: {skill} cannot {key} itself")
+                    unknown = sorted(set(related) - known)
+                    if unknown:
+                        errors.append(f"catalog/skills.json: {skill} has unknown {key} values {unknown}")
+            evidence = ROOT / str(record.get("maturity_evidence", ""))
+            if not evidence.is_file():
+                errors.append(f"catalog/skills.json: {skill} maturity evidence is missing")
+
+    packs = _load_json(ROOT / "catalog" / "packs.json", errors)
+    if isinstance(packs, dict):
+        grouped = skills_by_plugin()
+        pack_records = packs.get("plugin_packs", [])
+        pack_plugins = [record.get("plugin") for record in pack_records if isinstance(record, dict)]
+        if set(pack_plugins) != set(grouped) or len(pack_plugins) != len(set(pack_plugins)):
+            errors.append("catalog/packs.json: plugin packs must reconcile one-to-one with generated plugins")
+        for record in pack_records:
+            if not isinstance(record, dict) or record.get("plugin") not in grouped:
+                continue
+            plugin = record["plugin"]
+            expected_skills = list(grouped[plugin])
+            if record.get("skills") != expected_skills:
+                errors.append(f"catalog/packs.json: {plugin} skills do not match canonical routing")
+            expected_size = sum(
+                len(read_skill_metadata(ROOT / "skills" / skill)["description"])
+                for skill in expected_skills
+            )
+            if record.get("description_characters") != expected_size:
+                errors.append(f"catalog/packs.json: {plugin} description size is stale")
+            expected_status = "over-limit" if expected_size > 8000 else "warning" if expected_size >= 6000 else "within-budget"
+            if record.get("budget_status") != expected_status:
+                errors.append(f"catalog/packs.json: {plugin} budget status is stale")
+        recipe_ids: set[str] = set()
+        for recipe in packs.get("recipes", []):
+            if not isinstance(recipe, dict):
+                continue
+            recipe_id = recipe.get("id")
+            if recipe_id in recipe_ids:
+                errors.append(f"catalog/packs.json: duplicate recipe {recipe_id}")
+            if isinstance(recipe_id, str):
+                recipe_ids.add(recipe_id)
+            recipe_skills = recipe.get("skills", [])
+            unknown = sorted(set(recipe_skills) - set(SKILLS)) if isinstance(recipe_skills, list) else []
+            if unknown:
+                errors.append(f"catalog/packs.json: recipe {recipe_id} has unknown skills {unknown}")
+                continue
+            if isinstance(recipe_skills, list):
+                expected_size = sum(
+                    len(read_skill_metadata(ROOT / "skills" / skill)["description"])
+                    for skill in recipe_skills
+                )
+                if recipe.get("description_characters") != expected_size:
+                    errors.append(f"catalog/packs.json: recipe {recipe_id} description size is stale")
+                if expected_size > 8000:
+                    errors.append(f"catalog/packs.json: recipe {recipe_id} exceeds the 8000-character limit")
+                expected_status = "warning" if expected_size >= 6000 else "within-budget"
+                if recipe.get("budget_status") != expected_status:
+                    errors.append(f"catalog/packs.json: recipe {recipe_id} budget status is stale")
+
+    reviews = _load_json(ROOT / "catalog" / "upstream-reviews.json", errors)
+    if isinstance(reviews, dict):
+        review_urls: set[str] = set()
+        for review in reviews.get("reviews", []):
+            if not isinstance(review, dict):
+                continue
+            url = review.get("url")
+            if url in review_urls:
+                errors.append(f"catalog/upstream-reviews.json: duplicate review URL {url}")
+            if isinstance(url, str):
+                review_urls.add(url)
+            affected = review.get("affected_skills", [])
+            unknown = sorted(set(affected) - set(SKILLS)) if isinstance(affected, list) else []
+            if unknown:
+                errors.append(f"catalog/upstream-reviews.json: unknown affected skills {unknown}")
 
     compatibility = _load_json(ROOT / "catalog" / "compatibility.json", errors)
     if isinstance(compatibility, dict):
