@@ -12,7 +12,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 - Evaluation contract: every skill has three positive cases, three near-miss cases, one safety or conflict case, an output-quality rubric, a baseline comparison, provenance, taxonomy, and maturity evidence
 - Upstream review: twelve changed primary sources have human-readable review records; mutable A2A latest guidance was replaced with the reviewed versioned 1.0.0 specification, and GitHub review guidance uses its stable official Markdown representation
 - Manual matrix: no v0.9 rows have been created because no exact-package receiving-client observation has been performed
-- Acceptance: BLOCKED until current, exact-version client observations exist for every claimed surface
+- Acceptance: BLOCKED. The partial exact-version v0.9 observations include passes, failures, and authority or authentication blockers, but they do not cover every required behavior on every claimed surface.
 
 ## v0.9 agent-platform automated checks
 
@@ -61,6 +61,8 @@ No v0.9 installation, discovery, activation, focused-reference loading, refusal,
 ## v0.8 client evidence boundary
 
 See `client-observations-v0.8.json`. Installation, discovery, implicit activation, focused-reference loading, refusal, update, and removal are separate rows for each surface. Every row is terminal `blocked` because no receiving-client mutation or invocation was authorized. Generated compatibility and strict manifest validation are not treated as installation, activation, resource loading, lifecycle behavior, or cross-client parity.
+
+See `client-observations-v0.9.json` and `client-observations-v0.9.md` for the first current candidate observations. Codex CLI focused-reference loading passed. Claude Code discovery passed but invocation was blocked by expired authentication. ChatGPT web and Claude.ai did not contain the new v0.9 skill. Gemini workspace linking passed, but authenticated discovery remains blocked. API and managed-agent surfaces remain authority-gated.
 
 ## v0.7 tested source
 

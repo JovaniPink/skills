@@ -640,6 +640,16 @@ class CatalogTests(unittest.TestCase):
             if matrix["catalog_version"] == "0.8.0":
                 expected_surfaces.remove("Codex Desktop")
                 expected_surfaces.add("ChatGPT Desktop")
+            if matrix["catalog_version"] == "0.9.0":
+                expected_surfaces.update(
+                    {
+                        "ChatGPT Desktop",
+                        "Gemini CLI",
+                        "OpenAI Skills API",
+                        "Anthropic Skills API",
+                        "Anthropic Managed Agents",
+                    }
+                )
             self.assertEqual(expected_surfaces, {record["surface"] for record in records})
 
     def test_v04_records_chatgpt_web_as_a_distinct_surface(self) -> None:
