@@ -11,7 +11,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 - Generated artifacts: 76 Codex projections, 76 Claude projections, and 76 deterministic Claude.ai archives
 - Evaluation contract: every skill has three positive cases, three near-miss cases, one safety or conflict case, an output-quality rubric, a baseline comparison, provenance, taxonomy, and maturity evidence
 - Upstream review: twelve changed primary sources have human-readable review records; mutable A2A latest guidance was replaced with the reviewed versioned 1.0.0 specification, and GitHub review guidance uses its stable official Markdown representation
-- Manual matrix: no v0.9 rows have been created because no exact-package receiving-client observation has been performed
+- Manual matrix: 16 exact-version rows; 6 pass, 2 fail, 8 blocked, 0 not supported, and 0 not run
 - Acceptance: BLOCKED. The partial exact-version v0.9 observations include passes, failures, and authority or authentication blockers, but they do not cover every required behavior on every claimed surface.
 
 ## v0.9 agent-platform automated checks
@@ -31,7 +31,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 
 ## v0.9 client evidence boundary
 
-No v0.9 installation, discovery, activation, focused-reference loading, refusal, update, removal, API, managed-agent, or Gemini CLI behavior is claimed. A v0.8 blocked row is historical evidence, not a substitute for a v0.9 observation. Runtime Google ADK behavior belongs to the separate runtime adapter repository. Automated validation proves structural consistency, deterministic packaging, editorial boundaries, and exact upstream markers; it does not prove receiving-client behavior.
+The current v0.9 matrix records exact-version installation, discovery, and focused-reference observations where they were performed. It also records failures and authentication, application-control, account, network, and cost blockers without inferring parity. Update, removal, Desktop invocation, API invocation, managed-agent behavior, and authenticated Gemini discovery remain incomplete. Runtime Google ADK behavior belongs to the separate runtime adapter repository. Automated validation proves structural consistency, deterministic packaging, editorial boundaries, and exact upstream markers; it does not prove unobserved receiving-client behavior.
 
 ## v0.8 tested source
 

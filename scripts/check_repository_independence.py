@@ -73,6 +73,15 @@ PRIMARY_AUTHORITY_HOSTS = frozenset(
         "php.net",
     }
 )
+GITHUB_REPOSITORY_ROOT = "https://" + "github.com/"
+CI_TOOL_SOURCES = {
+    "librt": GITHUB_REPOSITORY_ROOT + "mypyc/librt",
+    "mypy": GITHUB_REPOSITORY_ROOT + "python/mypy",
+    "mypy_extensions": GITHUB_REPOSITORY_ROOT + "python/mypy_extensions",
+    "pathspec": GITHUB_REPOSITORY_ROOT + "cpburnz/python-pathspec",
+    "ruff": GITHUB_REPOSITORY_ROOT + "astral-sh/ruff",
+    "typing_extensions": GITHUB_REPOSITORY_ROOT + "python/typing_extensions",
+}
 
 
 def _owned(owner: str) -> bool:
@@ -85,6 +94,10 @@ def _ci_action_exception(label: str, host: str, owner: str) -> bool:
         and host.casefold() == "github.com"
         and owner.casefold() == "actions"
     )
+
+
+def _ci_tool_exception(label: str, host: str) -> bool:
+    return label == "provenance/ci-tools.json" and host.casefold() == "github.com"
 
 
 def _reviewed_tool_exception(label: str, host: str, owner: str, repo: str) -> bool:
@@ -103,8 +116,11 @@ def scan_text(label: str, text: str) -> list[str]:
     for match in REPOSITORY_URL.finditer(text):
         host = match.group("host").casefold()
         owner = match.group("owner")
-        if _owned(owner) or _ci_action_exception(label, host, owner) or _reviewed_tool_exception(
-            label, host, owner, match.group("repo")
+        if (
+            _owned(owner)
+            or _ci_action_exception(label, host, owner)
+            or _ci_tool_exception(label, host)
+            or _reviewed_tool_exception(label, host, owner, match.group("repo"))
         ):
             continue
         line = text.count("\n", 0, match.start()) + 1
@@ -176,6 +192,26 @@ def ci_action_provenance_errors() -> list[str]:
     return errors
 
 
+def ci_tool_provenance_errors() -> list[str]:
+    """Limit CI tool repository exceptions to the reviewed package sources."""
+
+    path = ROOT / "provenance" / "ci-tools.json"
+    document = json.loads(path.read_text(encoding="utf-8"))
+    errors: list[str] = []
+    observed: set[str] = set()
+    for tool in document.get("tools", []):
+        if not isinstance(tool, dict):
+            continue
+        name = str(tool.get("name", ""))
+        source_url = str(tool.get("source_url", ""))
+        observed.add(name)
+        if CI_TOOL_SOURCES.get(name) != source_url:
+            errors.append(f"provenance/ci-tools.json: unsupported repository-link exception for {name or 'unknown'}")
+    if observed != set(CI_TOOL_SOURCES):
+        errors.append("provenance/ci-tools.json: reviewed CI tool source set is incomplete")
+    return errors
+
+
 def _content_paths() -> list[Path]:
     try:
         result = subprocess.run(
@@ -212,6 +248,7 @@ def check(include_packages: bool = True) -> list[str]:
                 errors.append(f"{archive_path.relative_to(ROOT)}: invalid ZIP: {error}")
     errors.extend(provenance_source_errors())
     errors.extend(ci_action_provenance_errors())
+    errors.extend(ci_tool_provenance_errors())
     return errors
 
 

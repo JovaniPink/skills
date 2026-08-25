@@ -114,7 +114,16 @@ def _fetch_marker(url: str, preferred_kind: str | None = None) -> tuple[str, str
 def source_urls() -> list[str]:
     catalog = _load(ROOT / "provenance" / "catalog.json")
     entries = catalog.get("entries", [])
-    return sorted({entry["source_url"] for entry in entries if isinstance(entry, dict) and isinstance(entry.get("source_url"), str)})
+    if not isinstance(entries, list):
+        raise ValueError("provenance catalog entries must be an array")
+    urls: set[str] = set()
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        source_url = entry.get("source_url")
+        if isinstance(source_url, str):
+            urls.add(source_url)
+    return sorted(urls)
 
 
 def refresh_pins(output: Path | None = None) -> Path:
@@ -141,11 +150,18 @@ def refresh_pins(output: Path | None = None) -> Path:
 def check(online: bool = False, today: date | None = None) -> tuple[list[str], dict[str, object]]:
     today = today or date.today()
     pins = _load(ROOT / "catalog" / "upstream-pins.json")
-    expected = {
-        item["source_url"]: (item["marker_kind"], item["marker_value"])
-        for item in pins.get("sources", [])
-        if isinstance(item, dict) and isinstance(item.get("source_url"), str)
-    }
+    raw_sources = pins.get("sources", [])
+    if not isinstance(raw_sources, list):
+        raise ValueError("upstream pin sources must be an array")
+    expected: dict[str, tuple[str, str]] = {}
+    for item in raw_sources:
+        if not isinstance(item, dict):
+            continue
+        source_url = item.get("source_url")
+        marker_kind = item.get("marker_kind")
+        marker_value = item.get("marker_value")
+        if isinstance(source_url, str) and isinstance(marker_kind, str) and isinstance(marker_value, str):
+            expected[source_url] = (marker_kind, marker_value)
     errors: list[str] = []
     urls = source_urls()
     missing = sorted(set(urls) - set(expected))
@@ -154,8 +170,14 @@ def check(online: bool = False, today: date | None = None) -> tuple[list[str], d
         errors.append(f"upstream pins missing provenance sources: {missing}")
     if extra:
         errors.append(f"upstream pins contain unused sources: {extra}")
-    reviewed_on = date.fromisoformat(str(pins["reviewed_on"]))
-    maximum = int(pins["max_review_age_days"])
+    reviewed_on_value = pins.get("reviewed_on")
+    maximum_value = pins.get("max_review_age_days")
+    if not isinstance(reviewed_on_value, str):
+        raise ValueError("upstream pin review date must be a string")
+    if not isinstance(maximum_value, int) or isinstance(maximum_value, bool):
+        raise ValueError("upstream pin maximum review age must be an integer")
+    reviewed_on = date.fromisoformat(reviewed_on_value)
+    maximum = maximum_value
     if (today - reviewed_on).days > maximum:
         errors.append(f"security re-review is overdue: pins reviewed {reviewed_on.isoformat()}, maximum age {maximum} days")
     records: list[dict[str, str]] = []

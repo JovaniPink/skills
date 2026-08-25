@@ -7,6 +7,7 @@ import argparse
 import json
 import shutil
 from pathlib import Path
+from typing import TypedDict
 
 from cataloglib import (
     CATALOG_NAME,
@@ -21,15 +22,52 @@ from cataloglib import (
 )
 
 
+class CodexMarketplaceSource(TypedDict):
+    source: str
+    path: str
+
+
+class CodexMarketplacePolicy(TypedDict):
+    installation: str
+    authentication: str
+
+
+class CodexMarketplacePlugin(TypedDict):
+    name: str
+    source: CodexMarketplaceSource
+    policy: CodexMarketplacePolicy
+    category: str
+
+
+class CodexMarketplace(TypedDict):
+    name: str
+    interface: dict[str, str]
+    plugins: list[CodexMarketplacePlugin]
+
+
+class ClaudeMarketplacePlugin(TypedDict):
+    name: str
+    source: str
+    description: str
+    version: str
+
+
+class ClaudeMarketplace(TypedDict):
+    name: str
+    description: str
+    owner: dict[str, str]
+    plugins: list[ClaudeMarketplacePlugin]
+
+
 def _write_json(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, sort_keys=False) + "\n", encoding="utf-8")
 
 
-def marketplace_documents() -> tuple[dict[str, object], dict[str, object]]:
+def marketplace_documents() -> tuple[CodexMarketplace, ClaudeMarketplace]:
     """Return the client-native marketplace documents for tracked output."""
 
-    codex = {
+    codex: CodexMarketplace = {
         "name": CATALOG_NAME,
         "interface": {"displayName": "JovaniPink Skills Catalog"},
         "plugins": [
@@ -48,7 +86,7 @@ def marketplace_documents() -> tuple[dict[str, object], dict[str, object]]:
             for plugin in skills_by_plugin()
         ],
     }
-    claude = {
+    claude: ClaudeMarketplace = {
         "name": CATALOG_NAME,
         "description": "Portable workflow skills for software, research, and operations.",
         "owner": {"name": "Jovani Pink", "url": "https://jovanipink.com"},

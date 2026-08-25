@@ -4,6 +4,28 @@ The authoritative row-level evidence is `client-observations.json`, validated by
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
+## Current v0.9 summary
+
+The v0.9 candidate source and representative archive are pinned in `client-observations-v0.9.json`. The matrix records only behavior observed on the exact named client version or service surface.
+
+| Surface | Passed observations | Failed observations | Blocked observations | Surface status |
+| --- | ---: | ---: | ---: | --- |
+| Codex CLI | 3 | 0 | 0 | PASS |
+| Codex Desktop | 0 | 0 | 1 | BLOCKED |
+| ChatGPT Desktop | 0 | 0 | 1 | BLOCKED |
+| ChatGPT Web | 0 | 1 | 0 | FAIL |
+| Claude Code CLI | 2 | 0 | 1 | BLOCKED |
+| Claude Code Desktop | 0 | 0 | 1 | BLOCKED |
+| Claude.ai | 0 | 1 | 0 | FAIL |
+| Gemini CLI | 1 | 0 | 1 | BLOCKED |
+| OpenAI Skills API | 0 | 0 | 1 | BLOCKED |
+| Anthropic Skills API | 0 | 0 | 1 | BLOCKED |
+| Anthropic Managed Agents | 0 | 0 | 1 | BLOCKED |
+
+Totals: 6 `pass`, 2 `fail`, 8 `blocked`, 0 `not_supported`, and 0 `not_run`. The catalog remains blocked for v0.9 acceptance.
+
+Codex CLI installed all seven plugins, resolved the named agent security skill, and loaded a fact available only in its focused reference. Claude Code CLI discovered all seven plugins and all 76 skills, but its model invocation stopped because authentication had expired. ChatGPT Web and Claude.ai did not contain the new v0.9 skill. Gemini linked all 76 skills in a disposable workspace, but authenticated discovery was not performed. No API credential, new OAuth grant, deployment, release, or production access was created for these tests.
+
 ## Current v0.8 summary
 
 The v0.8 source and representative archive are pinned in `client-observations-v0.8.json`. Each surface has separate installation, discovery, implicit-activation, focused-reference, refusal, update, and removal rows. No receiving-client operation was authorized, so every observation is terminal `blocked` rather than `not_run`.

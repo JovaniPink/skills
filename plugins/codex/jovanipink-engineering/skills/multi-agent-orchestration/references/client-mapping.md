@@ -16,6 +16,8 @@ Codex can expose subagents and inspectable threads depending on the surface and 
 
 Each subagent performs its own model and tool work, so parallel work uses more tokens than a comparable single-agent run. Use the smallest useful fanout and keep write-heavy work isolated; verify the actual configuration instead of assuming it.
 
+Current Codex documentation also describes project or personal custom-agent files that can override model, reasoning, sandbox, MCP, and skill settings, plus global concurrency controls. Treat those files as part of the active trust boundary. Inspect the effective custom-agent configuration and registered tools before assigning work; an inherited or overridden setting is not permission to broaden the user's requested scope.
+
 ## Claude
 
 Claude Code can expose subagents, and some versions can expose experimental agent teams with different coordination behavior. Consult the current [Claude subagent documentation](https://code.claude.com/docs/en/sub-agents) and [Claude agent team documentation](https://code.claude.com/docs/en/agent-teams). Record unsupported behavior as unsupported rather than inferring parity.

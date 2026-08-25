@@ -24,7 +24,7 @@ Use only Jovani-owned work and primary authorities needed for format, interopera
 
 Do not copy external text, examples, names, structure, scripts, or distinctive expression. Third-party skill catalogs are not tracked, cited, mirrored, compared, installed, or used as implementation sources. Any external investigation occurs outside Git and may influence rejection or safety boundaries only. Current skills must remain independently authored from Jovani-owned work and the applicable primary authority.
 
-Repository-independence validation rejects external skill-repository links and install identifiers, repository-to-repository capability mappings, source-specific attribution, and non-primary behavior provenance. Jovani-owned repository links and pinned CI Action dependency provenance are narrow operational exceptions; CI dependencies do not authorize skill behavior.
+Repository-independence validation rejects external skill-repository links and install identifiers, repository-to-repository capability mappings, source-specific attribution, and non-primary behavior provenance. Jovani-owned repository links and pinned CI dependency provenance are narrow operational exceptions; CI dependencies do not authorize skill behavior. `provenance/ci-tools.json` records the exact version, source, license, reviewed wheel hash, and use of every direct or transitive Python tool installed by CI.
 
 ## Placement policy
 

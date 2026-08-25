@@ -1,0 +1,60 @@
+{
+  "$schema": "./ci-tools-schema.json",
+  "reviewed_on": "2026-08-25",
+  "tools": [
+    {
+      "name": "librt",
+      "version": "0.15.0",
+      "source_url": "https://github.com/mypyc/librt",
+      "license": "MIT",
+      "artifact_sha256": "89cc46cfd15022e35084355478c9ac809d90b1152222706ac9a7655ec21df6fa",
+      "reviewed_on": "2026-08-25",
+      "use": "Binary runtime dependency selected by the locked mypy wheel for Python 3.12 CI."
+    },
+    {
+      "name": "mypy",
+      "version": "1.20.2",
+      "source_url": "https://github.com/python/mypy",
+      "license": "MIT",
+      "artifact_sha256": "a5da6976f20cae27059ea8d0c86e7cef3de720e04c4bb9ee18e3690fdb792066",
+      "reviewed_on": "2026-08-25",
+      "use": "Strict static type checking for repository Python scripts and tests."
+    },
+    {
+      "name": "mypy_extensions",
+      "version": "1.1.0",
+      "source_url": "https://github.com/python/mypy_extensions",
+      "license": "MIT",
+      "artifact_sha256": "1be4cccdb0f2482337c4743e60421de3a356cd97508abadd57d47403e94f5505",
+      "reviewed_on": "2026-08-25",
+      "use": "Locked runtime dependency of mypy."
+    },
+    {
+      "name": "pathspec",
+      "version": "1.1.1",
+      "source_url": "https://github.com/cpburnz/python-pathspec",
+      "license": "MPL-2.0",
+      "artifact_sha256": "a00ce642f577bf7f473932318056212bc4f8bfdf53128c78bbd5af0b9b20b189",
+      "reviewed_on": "2026-08-25",
+      "use": "Locked runtime dependency of mypy."
+    },
+    {
+      "name": "ruff",
+      "version": "0.15.12",
+      "source_url": "https://github.com/astral-sh/ruff",
+      "license": "MIT",
+      "artifact_sha256": "83b2f4f2f3b1026b5fb449b467d9264bf22067b600f7b6f41fc5958909f449d0",
+      "reviewed_on": "2026-08-25",
+      "use": "Static lint checking for repository Python scripts and tests."
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "source_url": "https://github.com/python/typing_extensions",
+      "license": "PSF-2.0",
+      "artifact_sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "reviewed_on": "2026-08-25",
+      "use": "Locked runtime dependency of mypy."
+    }
+  ]
+}
