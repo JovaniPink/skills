@@ -2,32 +2,36 @@
 
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
-## v0.9 evidence and taxonomy candidate
+## v0.9 agent-platform candidate
 
-- Source commit: `d59f3bf8293bd95c7359c344c487a63af47a1495`
+- Source artifact commit: `24998cdfd16ce0b87ad0883c9919c24d058f89ce`
 - Catalog/plugin version: `0.9.0`
 - Date: 2026-08-25
-- Canonical skills: 70 across six optional plugins; 13 explicit-only skills
-- Generated artifacts: 70 Codex projections, 70 Claude projections, and 70 deterministic Claude.ai archives
+- Canonical skills: 76 across seven optional plugins; 6 agent-platform skills and 13 explicit-only skills
+- Generated artifacts: 76 Codex projections, 76 Claude projections, and 76 deterministic Claude.ai archives
 - Evaluation contract: every skill has three positive cases, three near-miss cases, one safety or conflict case, an output-quality rubric, a baseline comparison, provenance, taxonomy, and maturity evidence
-- Upstream review: nine changed primary sources have human-readable review records; the GitHub pull request review and OpenAI subagent sources were reviewed again after new same-day changes
-- Acceptance: BLOCKED until current, exact-version client observations replace or extend the older v0.8 blocked matrix
+- Upstream review: twelve changed primary sources have human-readable review records; mutable A2A latest guidance was replaced with the reviewed versioned 1.0.0 specification, and GitHub review guidance uses its stable official Markdown representation
+- Manual matrix: no v0.9 rows have been created because no exact-package receiving-client observation has been performed
+- Acceptance: BLOCKED until current, exact-version client observations exist for every claimed surface
 
-## v0.9 evidence and taxonomy automated checks
+## v0.9 agent-platform automated checks
 
-- `python3 scripts/build_distributions.py --check`: PASS - all six Codex and Claude plugin trees and both marketplace records match canonical sources
-- `python3 scripts/package_claude_ai.py`: PASS - 70 deterministic, individually nested Claude.ai ZIPs generated with SHA-256 checksums
+- `python3 scripts/build_distributions.py --check`: PASS - all seven Codex and Claude plugin trees and both marketplace records match canonical sources
+- `python3 scripts/package_claude_ai.py`: PASS - 76 deterministic, individually nested Claude.ai ZIPs generated with SHA-256 checksums
 - `python3 scripts/check_public_boundary.py`: PASS - canonical, documentation, generated, and packaged surfaces passed the public/private boundary scan
 - `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed generic originality checks
-- `python3 scripts/check_repository_independence.py`: PASS - external repository references remain limited to the reviewed Google Agents CLI provenance exception
+- `python3 scripts/check_repository_independence.py`: PASS - external repository references remain limited to primary authorities and the reviewed Google Agents CLI provenance exception
 - `python3 scripts/validate.py`: PASS - schemas, taxonomy, recipes, links, invocation mappings, provenance, packages, release manifest, generated drift, fixtures, and policy records
-- `python3 -m unittest discover -s tests -v`: PASS - 48 regression tests
+- `python3 -m unittest discover -s tests -v`: PASS - 49 regression tests
 - `python3 scripts/check_upstream_freshness.py --online`: PASS - every reviewed primary-authority marker matched current observed content
 - `git diff --check`: PASS
+- Codex bundled skill validator: PASS - all six new canonical agent-platform skills
+- Codex bundled plugin validator: PASS - generated `jovanipink-agent-platforms` plugin
+- `claude plugin validate plugins/claude/jovanipink-agent-platforms --strict`: PASS
 
-## v0.9 evidence boundary
+## v0.9 client evidence boundary
 
-Automated validation proves structural consistency, deterministic packaging, editorial boundaries, and exact upstream markers. It does not prove installation, discovery, activation, focused-reference loading, API behavior, client parity, or runtime safety on a receiving surface. Those claims require separate observations tied to exact client versions, source revisions, package hashes, prompts, timestamps, and sanitized evidence.
+No v0.9 installation, discovery, activation, focused-reference loading, refusal, update, removal, API, managed-agent, or Gemini CLI behavior is claimed. A v0.8 blocked row is historical evidence, not a substitute for a v0.9 observation. Runtime Google ADK behavior belongs to the separate runtime adapter repository. Automated validation proves structural consistency, deterministic packaging, editorial boundaries, and exact upstream markers; it does not prove receiving-client behavior.
 
 ## v0.8 tested source
 
