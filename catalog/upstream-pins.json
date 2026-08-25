@@ -22,7 +22,7 @@
     {
       "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews",
       "marker_kind": "content-sha256",
-      "marker_value": "e6fcdca5a60e4374a0b7d07eb647690d6acb9defea22a0714c185a715adc471c"
+      "marker_value": "881e1922458e52f4de459473a16e9defd583b9789a938ba0f56519ed8a73f425"
     },
     {
       "source_url": "https://docs.python.org/3/",
@@ -62,7 +62,7 @@
     {
       "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
       "marker_kind": "etag",
-      "marker_value": "\"83783beabe1f47c5ee41184c87c8567a\""
+      "marker_value": "\"7fd2d091f402750eafde72f08b2726a5\""
     },
     {
       "source_url": "https://learn.microsoft.com/en-us/dotnet/",

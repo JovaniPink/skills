@@ -300,6 +300,25 @@ class CatalogTests(unittest.TestCase):
             self.assertTrue(record["finding"])
             self.assertTrue(record["action"])
 
+    def test_v09_subagent_mapping_preserves_surface_and_configuration_boundaries(self) -> None:
+        mapping = (
+            ROOT
+            / "skills"
+            / "multi-agent-orchestration"
+            / "references"
+            / "client-mapping.md"
+        ).read_text(encoding="utf-8")
+        for required in (
+            "exact surface",
+            "account capability",
+            "reasoning level",
+            "permission mode",
+            "Do not treat one trigger path as proof for another",
+            "Use the smallest useful fanout",
+            "verify the actual configuration instead of assuming it",
+        ):
+            self.assertIn(required, mapping)
+
     def test_v09_open_spec_name_limits_are_enforced(self) -> None:
         self.assertEqual([], skill_name_errors("safe-skill"))
         self.assertTrue(skill_name_errors("bad--skill"))
