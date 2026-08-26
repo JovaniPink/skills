@@ -74,7 +74,7 @@ Six optional human-facing workflows cover Google ADK engineering, agent context 
 - `incubator/` is intentionally undiscoverable unfinished work.
 - `evals/` contains trigger and safety cases.
 - `provenance/catalog.json` records primary format or correctness authorities and the Jovani-authored implementation boundary for every skill.
-- `scripts/` contains standard-library-only generation, packaging, and validation, including guards for mutable third-party GitHub Action references and external repository coupling.
+- `scripts/` contains standard-library-only generation, packaging, and catalog validation, plus a locked PyYAML gate for GitHub Actions workflow syntax.
 - `catalog/` contains strict taxonomy, pack, recipe, compatibility, deprecation, revocation, upstream-review, and upstream-pinning records.
 - `releases/` contains exact-source release manifests and artifact checksums.
 
@@ -83,13 +83,14 @@ Do not hand-edit generated plugin trees. Change the canonical skill, then run:
 ```sh
 python3 scripts/build_distributions.py
 python3 scripts/package_claude_ai.py
+python3 scripts/check_workflows.py
 python3 -m mypy --strict scripts tests
 python3 -m ruff check scripts tests
 python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
 ```
 
-The Linux CI runner installs its reviewed type and lint tools from `requirements-ci-linux.txt`. Other platforms should use mypy 1.20.2 and Ruff 0.15.12 from a trusted local environment; the Linux-only wheel lock is not a portable development environment.
+The Linux CI runner installs its reviewed workflow, type, and lint tools from `requirements-ci-linux.txt`. Other platforms should use PyYAML 6.0.3, types-PyYAML 6.0.12.20260815, mypy 1.20.2, and Ruff 0.15.12 from a trusted local environment; the Linux-only wheel lock is not a portable development environment.
 
 ## Installation surfaces
 

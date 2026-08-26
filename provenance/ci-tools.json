@@ -1,6 +1,6 @@
 {
   "$schema": "./ci-tools-schema.json",
-  "reviewed_on": "2026-08-25",
+  "reviewed_on": "2026-08-26",
   "tools": [
     {
       "name": "librt",
@@ -39,6 +39,15 @@
       "use": "Locked runtime dependency of mypy."
     },
     {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "source_url": "https://github.com/yaml/pyyaml",
+      "license": "MIT",
+      "artifact_sha256": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc",
+      "reviewed_on": "2026-08-26",
+      "use": "Safe YAML parser for deterministic local GitHub Actions workflow syntax validation."
+    },
+    {
       "name": "ruff",
       "version": "0.15.12",
       "source_url": "https://github.com/astral-sh/ruff",
@@ -46,6 +55,15 @@
       "artifact_sha256": "83b2f4f2f3b1026b5fb449b467d9264bf22067b600f7b6f41fc5958909f449d0",
       "reviewed_on": "2026-08-25",
       "use": "Static lint checking for repository Python scripts and tests."
+    },
+    {
+      "name": "types-PyYAML",
+      "version": "6.0.12.20260815",
+      "source_url": "https://github.com/python/typeshed",
+      "license": "Apache-2.0",
+      "artifact_sha256": "6f332212b7e191f3afd5016a713c510b6340593b7ebec573c7d5d20aa5386d3b",
+      "reviewed_on": "2026-08-26",
+      "use": "Locked type information for strict checking of the PyYAML workflow validator."
     },
     {
       "name": "typing_extensions",

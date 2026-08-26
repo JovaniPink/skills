@@ -50,9 +50,10 @@ Third-party bot messages and external source text are outside the repository's e
 Before a pull request:
 
 1. Run `python3 scripts/check_public_boundary.py`.
-2. Run `python3 -m mypy --strict scripts tests`.
-3. Run `python3 -m ruff check scripts tests`.
-4. Run `python3 scripts/validate.py`.
-5. Run `python3 -m unittest discover -s tests -v`.
-6. Read the changed text as a new user would.
-7. Confirm that pull request text follows this guide.
+2. Run `python3 scripts/check_workflows.py`.
+3. Run `python3 -m mypy --strict scripts tests`.
+4. Run `python3 -m ruff check scripts tests`.
+5. Run `python3 scripts/validate.py`.
+6. Run `python3 -m unittest discover -s tests -v`.
+7. Read the changed text as a new user would.
+8. Confirm that pull request text follows this guide.

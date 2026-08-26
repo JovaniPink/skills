@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from importlib.metadata import PackageNotFoundError
 from pathlib import Path
 from types import TracebackType
 from typing import ClassVar, Literal
@@ -20,6 +21,11 @@ from cataloglib import EXPLICIT_SKILLS, SKILLS, filter_revoked, read_skill_metad
 from check_upstream_freshness import (  # noqa: E402
     _normalized_content_sha256,
     check as check_upstream_freshness,
+)
+from check_workflows import (  # noqa: E402
+    PYYAML_VERSION,
+    check as check_workflows,
+    workflow_syntax_errors,
 )
 from check_generated import check as check_generated  # noqa: E402
 from check_originality import check as check_originality  # noqa: E402
@@ -198,10 +204,12 @@ class CatalogTests(unittest.TestCase):
         owned = "https://" + "github.com/" + "JovaniPink/skills"
         action = "https://" + "github.com/" + "actions/checkout"
         ci_tool = "https://" + "github.com/" + "python/mypy"
+        workflow_parser = "https://" + "github.com/" + "yaml/pyyaml"
         package_id = "plugin install " + "jovanipink-engineering@jovanipink-skills"
         self.assertEqual([], scan_repository_independence("README.md", owned))
         self.assertEqual([], scan_repository_independence("provenance/ci-actions.json", action))
         self.assertEqual([], scan_repository_independence("provenance/ci-tools.json", ci_tool))
+        self.assertEqual([], scan_repository_independence("provenance/ci-tools.json", workflow_parser))
         self.assertEqual([], scan_repository_independence("docs/README.md", package_id))
         self.assertTrue(scan_repository_independence("docs/example.md", action))
         self.assertTrue(scan_repository_independence("docs/example.md", ci_tool))
@@ -787,6 +795,48 @@ class CatalogTests(unittest.TestCase):
         )
         self.assertEqual([], immutable_action_reference_errors(local, "fixture.yml"))
 
+    def test_workflow_syntax_gate_catches_unquoted_only_binary_regression(self) -> None:
+        workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
+        quoted = (
+            'run: "python3 -m pip install --require-hashes --only-binary=:all: '
+            '-r requirements-ci-linux.txt"'
+        )
+        unquoted = "run: " + quoted.removeprefix('run: "').removesuffix('"')
+        self.assertIn(quoted, workflow)
+        self.assertEqual([], workflow_syntax_errors(workflow, "fixture.yml"))
+
+        mutated = workflow.replace(quoted, unquoted)
+        expected_line = mutated.count("\n", 0, mutated.index(unquoted)) + 1
+        errors = workflow_syntax_errors(mutated, "fixture.yml")
+        self.assertEqual(1, len(errors))
+        self.assertIn(f"fixture.yml:{expected_line}:", errors[0])
+        self.assertIn("mapping values are not allowed here", errors[0])
+
+    def test_workflow_syntax_gate_rejects_invalid_document_roots(self) -> None:
+        self.assertEqual(
+            ["empty.yml: workflow must not be empty"],
+            workflow_syntax_errors("", "empty.yml"),
+        )
+        self.assertEqual(
+            ["sequence.yml: workflow root must be a mapping"],
+            workflow_syntax_errors("- item\n", "sequence.yml"),
+        )
+
+    def test_workflow_syntax_gate_fails_closed_on_parser_version(self) -> None:
+        with patch("check_workflows.version", side_effect=PackageNotFoundError):
+            self.assertEqual(
+                [f"PyYAML {PYYAML_VERSION} is required; install requirements-ci-linux.txt on Linux"],
+                check_workflows(),
+            )
+        with patch("check_workflows.version", return_value="0.0.0"):
+            self.assertEqual(
+                [f"PyYAML {PYYAML_VERSION} is required; found 0.0.0"],
+                check_workflows(),
+            )
+
+    def test_repository_workflows_pass_syntax_gate(self) -> None:
+        self.assertEqual([], check_workflows())
+
     def test_ci_python_tools_are_typed_linted_and_hash_locked(self) -> None:
         errors: list[str] = []
         validate_ci_tools(errors)
@@ -794,12 +844,15 @@ class CatalogTests(unittest.TestCase):
         requirements = (ROOT / "requirements-ci-linux.txt").read_text(encoding="utf-8")
         workflow = (ROOT / ".github/workflows/validate.yml").read_text(encoding="utf-8")
         self.assertIn("--only-binary=:all:", requirements)
-        self.assertEqual(6, requirements.count("--hash=sha256:"))
+        self.assertIn("PyYAML==6.0.3", requirements)
+        self.assertIn("types-PyYAML==6.0.12.20260815", requirements)
+        self.assertEqual(8, requirements.count("--hash=sha256:"))
         self.assertIn(
             'run: "python3 -m pip install --require-hashes --only-binary=:all: '
             '-r requirements-ci-linux.txt"',
             workflow,
         )
+        self.assertIn("run: python3 scripts/check_workflows.py", workflow)
 
     def test_subagent_client_mapping_tracks_current_security_boundaries(self) -> None:
         mapping = (

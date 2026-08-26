@@ -18,11 +18,12 @@ This file records observed outcomes for catalog release candidates. Validators d
 
 - `python3 scripts/build_distributions.py --check`: PASS - all seven Codex and Claude plugin trees and both marketplace records match canonical sources
 - `python3 scripts/package_claude_ai.py`: PASS - 76 deterministic, individually nested Claude.ai ZIPs generated with SHA-256 checksums
+- `python3 scripts/check_workflows.py`: PASS - both GitHub Actions workflows parse with locked PyYAML 6.0.3; regressions reject the historical unquoted `--only-binary=:all:` command, empty or nonmapping roots, and missing or mismatched parser versions
 - `python3 scripts/check_public_boundary.py`: PASS - canonical, documentation, generated, and packaged surfaces passed the public/private boundary scan
 - `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed generic originality checks
 - `python3 scripts/check_repository_independence.py`: PASS - external repository references remain limited to primary authorities and the reviewed Google Agents CLI provenance exception
 - `python3 scripts/validate.py`: PASS - schemas, taxonomy, recipes, links, invocation mappings, provenance, packages, release manifest, generated drift, fixtures, and policy records
-- `python3 -m unittest discover -s tests -v`: PASS - 52 regression tests
+- `python3 -m unittest discover -s tests -v`: PASS - 56 regression tests
 - `python3 scripts/check_upstream_freshness.py --online`: PASS - every reviewed primary-authority marker matched current observed content
 - `git diff --check`: PASS
 - Codex bundled skill validator: PASS - all six new canonical agent-platform skills

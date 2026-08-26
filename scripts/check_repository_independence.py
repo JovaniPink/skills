@@ -79,7 +79,9 @@ CI_TOOL_SOURCES = {
     "mypy": GITHUB_REPOSITORY_ROOT + "python/mypy",
     "mypy_extensions": GITHUB_REPOSITORY_ROOT + "python/mypy_extensions",
     "pathspec": GITHUB_REPOSITORY_ROOT + "cpburnz/python-pathspec",
+    "PyYAML": GITHUB_REPOSITORY_ROOT + "yaml/pyyaml",
     "ruff": GITHUB_REPOSITORY_ROOT + "astral-sh/ruff",
+    "types-PyYAML": GITHUB_REPOSITORY_ROOT + "python/typeshed",
     "typing_extensions": GITHUB_REPOSITORY_ROOT + "python/typing_extensions",
 }
 
