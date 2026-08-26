@@ -176,6 +176,7 @@ def validate_ci_tools(errors: list[str]) -> None:
     workflow = (ROOT / ".github" / "workflows" / "validate.yml").read_text(encoding="utf-8")
     required_commands = (
         "python3 -m pip install --require-hashes --only-binary=:all: -r requirements-ci-linux.txt",
+        "python3 scripts/check_workflows.py",
         "python3 -m mypy --strict scripts tests",
         "python3 -m ruff check scripts tests",
     )

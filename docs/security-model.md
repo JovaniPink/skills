@@ -24,9 +24,9 @@ The catalog protects user intent, credentials, private data, repository integrit
 - no skill-level executables, hooks, MCP servers, dependencies, or broad tool grants
 - explicit-only controls for workflows whose timing or bounded mutations require direct selection
 - generated native invocation controls checked against canonical metadata
-- standard-library-only repository generation and validation
+- standard-library-only repository generation and catalog validation, with a separately locked workflow YAML parser
 - immutable third-party GitHub Action revisions, enforced by repository validation
-- hash-locked mypy and Ruff wheels with reviewed direct and transitive dependency provenance
+- hash-locked PyYAML, type information, mypy, and Ruff wheels with reviewed direct and transitive dependency provenance
 - required trigger, provenance, reference, and public-boundary checks
 - primary-authority provenance plus generic originality and repository-independence scanning
 - explicit abort and state-advance gates for Git conflict reconciliation

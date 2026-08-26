@@ -14,7 +14,10 @@ For sensitive work, check out a reviewed tag or full commit rather than a mutabl
 
 ## Minute 2: Validate the clone
 
+Use PyYAML 6.0.3 from a trusted local environment, or use the reviewed Linux lock described in [Testing and validation](testing.md).
+
 ```sh
+python3 scripts/check_workflows.py
 python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
 ```

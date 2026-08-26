@@ -263,7 +263,10 @@ Replace `jovanipink-skills` before the `@` character with the plugin you install
 
 Run the deterministic catalog validation and unit tests:
 
+Use PyYAML 6.0.3 from a trusted local environment, or use the reviewed Linux lock in `requirements-ci-linux.txt`.
+
 ```sh
+python3 scripts/check_workflows.py
 python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
 ```
@@ -280,7 +283,7 @@ Check the public boundary before publication:
 python3 scripts/check_public_boundary.py
 ```
 
-Validation checks structure, metadata, links, generated drift, packages, trigger cases, and public boundary rules. It does not prove behavior in every client. Manual client observations remain separate evidence.
+Validation checks workflow YAML syntax, structure, metadata, links, generated drift, packages, trigger cases, and public boundary rules. It does not prove behavior in every client. Manual client observations remain separate evidence.
 
 ## Author or change a skill
 

@@ -4,6 +4,14 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+### Added
+
+- Deterministic local PyYAML validation for GitHub Actions workflow syntax, including regression tests for the v0.9 unquoted `--only-binary=:all:` failure, invalid document roots, and parser dependency drift.
+
+### Security
+
+- PyYAML and its type information are exact-versioned, SHA-256 locked for the Linux CI runner, and reconciled with reviewed dependency provenance.
+
 ## [0.8.0] - 2026-08-23
 
 ### Added

@@ -5,13 +5,14 @@ Run from the repository root:
 ```sh
 python3 scripts/build_distributions.py
 python3 scripts/package_claude_ai.py
+python3 scripts/check_workflows.py
 python3 -m mypy --strict scripts tests
 python3 -m ruff check scripts tests
 python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
 ```
 
-The Linux CI requirements file pins every type and lint dependency by version and wheel hash. It is not a portable local environment. `scripts/validate.py` reconciles that lock with reviewed provenance and checks canonical metadata, Codex policy mapping, Claude explicit-invocation mapping, trigger coverage, primary-authority provenance, originality, repository independence, local references, public/private boundary patterns, marketplace structure, ZIP layout, and generated-tree drift.
+The Linux CI requirements file pins the workflow parser, its type information, and every type and lint dependency by version and wheel hash. It is not a portable local environment. Use PyYAML 6.0.3 with `scripts/check_workflows.py` on other platforms. `scripts/validate.py` reconciles the Linux lock with reviewed provenance and checks canonical metadata, Codex policy mapping, Claude explicit-invocation mapping, trigger coverage, primary-authority provenance, originality, repository independence, local references, public/private boundary patterns, marketplace structure, ZIP layout, and generated-tree drift.
 
 ## External validators
 
