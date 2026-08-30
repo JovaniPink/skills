@@ -35,6 +35,7 @@ Recipes are suggested combinations, not separate installable products. Do not as
 | Review a Google ADK system | `google-adk-engineering-profile`, `agent-evaluation-design`, `agentic-system-security-review` |
 | Review a service release | `application-security-review`, `operational-readiness-review`, `observability-design` |
 | Write a decision brief | `source-grounded-research`, `decision-governance-records`, `stakeholder-technical-communication` |
+| Connect research to evaluated public findings | `research-to-publication-lifecycle`, `source-grounded-research`, `workflow-retrospective` |
 | Learn after launch | `iteration-postlaunch-learning`, `kpi-outcome-measurement`, `production-incident-analysis` |
 
 All recommended recipes are measured and must remain below 8,000 discovery-description characters. The validator rejects stale measurements and over-limit recipes.

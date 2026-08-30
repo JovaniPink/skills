@@ -26,6 +26,12 @@ Build conclusions from evidence that can support the exact claim being made.
 7. Distinguish observed facts, source claims, inference, proposal, and unresolved questions.
 8. Recheck volatile facts immediately before reporting them.
 
+## Knowledge lifecycle handoff
+
+When the user is building a traceable research or publication lifecycle, prepare source records compatible with `knowledge-contract.v1` rather than inventing a second schema. For each material source, preserve a stable project-scoped ID, canonical publisher URL, publisher and author identity, publication and retrieval dates, as-of meaning, access conditions, license, methodology warnings, domains, topics, tags, entities, verification status, limitations, and relationships.
+
+The source record is a handoff, not a publication decision. Catalog inclusion does not prove endorsement, permission, maintenance, or model fitness. Route an authorized end-to-end research, model, outcome, evaluation, and publication workflow to `research-to-publication-lifecycle` when that skill is installed.
+
 ## Evidence rules
 
 - Link the page that directly supports each material claim.
@@ -36,4 +42,4 @@ Build conclusions from evidence that can support the exact claim being made.
 
 ## Output
 
-Lead with the conclusion, then give a concise evidence table containing `Finding`, `Status`, `Source`, `Date`, and `Limit`. End with unresolved questions or recommended verification where needed.
+Lead with the conclusion, then give a concise evidence table containing `Finding`, `Status`, `Source`, `Date`, and `Limit`. End with unresolved questions or recommended verification where needed. When a knowledge-lifecycle handoff was requested, also return the proposed source IDs and public-safe source fields without writing them unless the user authorized a named destination.

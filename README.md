@@ -16,6 +16,7 @@ The catalog is split into focused plugins so clients can discover only the workf
 | --- | --- | --- |
 | `claim-verification` | Test material claims against current authority-class evidence | Implicit |
 | `source-grounded-research` | Research with primary sources, dates, provenance, and uncertainty | Implicit |
+| `research-to-publication-lifecycle` | Connect sources, forecasts, outcomes, evaluations, retrospectives, and public-safe findings | Explicit-only |
 | `systematic-diagnosis` | Establish a causal diagnosis without silently fixing the system | Implicit |
 | `authority-boundary-review` | Map authoritative stores, projections, writers, readers, and contracts | Implicit |
 | `cross-stack-quality-gates` | Discover and run safe repository-defined gates across supported application, language, data, and infrastructure stacks | Implicit |
@@ -120,4 +121,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The v0.9 candidate contains 76 skills across seven focused plugins. It adds a faceted catalog, measured plugin packs and small recipes, complete evaluation records, six human-facing agent-platform workflows, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. Automated validation and exact-package client observations remain separate acceptance evidence. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.
+The v0.9 candidate contains 77 skills across seven focused plugins. It adds a faceted catalog, measured plugin packs and small recipes, complete evaluation records, six human-facing agent-platform workflows, a source-to-publication lifecycle router, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. Automated validation and exact-package client observations remain separate acceptance evidence. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.

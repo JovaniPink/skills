@@ -1,8 +1,8 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.9.0",
-  "source_commit": "57f4fab03e634fe0c35384236e50412572281226",
-  "created_on": "2026-08-25",
+  "source_commit": "959788d1ce3aa560415458f86aaf2b9ba526dcd1",
+  "created_on": "2026-08-30",
   "artifacts": [
     {
       "kind": "file",
@@ -27,7 +27,7 @@
     {
       "kind": "file",
       "path": "catalog/packs.json",
-      "sha256": "64ca7008682110085adc392890ba3cd9ac14e85ccfa30a80c99e1361917656ac"
+      "sha256": "fc1c3e8eda2e3e4816f40582112e0bb18989f487f7d98096d8e6089f9c03d613"
     },
     {
       "kind": "file",
@@ -37,7 +37,7 @@
     {
       "kind": "file",
       "path": "catalog/skills.json",
-      "sha256": "1c79941cfedd0d2fdce69c7fd3fc914544ad897c545ac63527a471e106a21377"
+      "sha256": "f6ac64da01909915a60a6bc198cc48adef70cbf84cd9bfa9d7b38d5c2ea9c00c"
     },
     {
       "kind": "file",
@@ -167,7 +167,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/decision-evidence-trace-0.9.0.zip",
-      "sha256": "2683843237d43cef74cc57ba0ea55bd28fe57e4bc18e662c727a0a64f8132d0f"
+      "sha256": "fa26fa245d3a9db9c19df06669cfdc88f49ff10851af6395bd6d5fd10264f276"
     },
     {
       "kind": "zip",
@@ -331,6 +331,11 @@
     },
     {
       "kind": "zip",
+      "path": "dist/claude-ai/research-to-publication-lifecycle-0.9.0.zip",
+      "sha256": "cb070c85cafb3d7dd33f6fdb4f7f853456bb9a923bcbd7d143433a9abd7591af"
+    },
+    {
+      "kind": "zip",
       "path": "dist/claude-ai/respond-to-code-review-0.9.0.zip",
       "sha256": "4c73b0442ad94d57d95f5d416df9ba717bfe980a63beb122c05a29ce120469ed"
     },
@@ -357,12 +362,12 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/source-grounded-research-0.9.0.zip",
-      "sha256": "4544255360cfdc723a53411723260333a462a3b93e25433c3d2382e0d616378f"
+      "sha256": "e60079b8b3ea625564979c2c03f96a1b1ca2461de5ade1279d97e12119f7f30a"
     },
     {
       "kind": "zip",
       "path": "dist/claude-ai/source-output-conformance-audit-0.9.0.zip",
-      "sha256": "be241ad770a866a506c1651b04be3168d8e3256cd5cb1a11623df28379a20606"
+      "sha256": "a405d168e9b6c2c20742b11e3bf3966395288c31ab98ac610fd17bea6a5d8b35"
     },
     {
       "kind": "zip",
@@ -417,7 +422,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/workflow-retrospective-0.9.0.zip",
-      "sha256": "aadeb6d6fe2a8a1ac2ab0d233580b5c0eb30448343ef4bb945ae082093632156"
+      "sha256": "9081461b53dc9bd9e2196829797f347b3447457108418d3ddb2d3d07d83f41ec"
     },
     {
       "kind": "zip",
@@ -432,7 +437,7 @@
     {
       "kind": "file",
       "path": "evals/cases.json",
-      "sha256": "3b6f2d81c7651c287420fb5f574dbfda965bc4d8e1059f0d833d7906044bdb8b"
+      "sha256": "fd6d3f7f97dab1e3bf5ce56e18bc101a89aa592c821a66ae457fdb3560c76ef4"
     },
     {
       "kind": "tree",
@@ -442,7 +447,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-ai-systems",
-      "sha256": "764e8c6d90ff7b0f159764c7f9627d8306048f01cf6f77d9d527124297775150"
+      "sha256": "7563fcc7537d8ed485859546f44cbc0b64a16260f54ac9419bc56abaaf62ac69"
     },
     {
       "kind": "tree",
@@ -457,12 +462,12 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-reasoning",
-      "sha256": "27cc3b0cdb9be5cfc53675f22a401f47d43ed056bbf369edfff6f7aa533fea3a"
+      "sha256": "7f1de6c70ea0307a61c6daa098cb27136445dc29d336955dde26e2da4621c93c"
     },
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-skills",
-      "sha256": "fb3e194b46b5fb0493bf5bc0f3902c1985cc6a806669194b0eaa97da4f1761ce"
+      "sha256": "d9507dcfc743fd459e018f5be5337f39915ea31d74b6447a74e4b970bebc8017"
     },
     {
       "kind": "tree",
@@ -477,7 +482,7 @@
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-ai-systems",
-      "sha256": "7fb8a5789bf7861bf9ae4b0bd886c6f82ca2c95b1bb2f8dc542e84abc50464f0"
+      "sha256": "a0d19ccaba49d5c2734a86c3b3c5d2b02a9bdeff0aeeb4f2853f1090ecf164e3"
     },
     {
       "kind": "tree",
@@ -492,12 +497,12 @@
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-reasoning",
-      "sha256": "f79ff82cf3f2f298bc9fa930d883e1ea9d4ceb05fcd4184ac66c667d688eceab"
+      "sha256": "71eb4078387b003042cca79580cc68e40a47008a505e90b76fe53a7dc940c76e"
     },
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-skills",
-      "sha256": "7decff1cb5fd3c8d04b17f75b5cab5860ec486ee9d7186b02ea6761c258abced"
+      "sha256": "e17f5a5278302ef48fd5edae333d50624e747a7d57743328c220dca3401e8da2"
     },
     {
       "kind": "tree",
@@ -507,7 +512,7 @@
     {
       "kind": "file",
       "path": "provenance/catalog.json",
-      "sha256": "19b6b27c3a5ed96ab222ef90febf5268c45de0a66bcbed92a0968af5a7e0b5b1"
+      "sha256": "1606ba056e118f14e6c05ff028fb0b151c400b6db4796a96576f5418b5eabb7b"
     }
   ]
 }

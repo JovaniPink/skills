@@ -1,6 +1,6 @@
 # JovaniPink Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 76 portable agent skills organized into seven focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The JovaniPink Skills catalog contains 77 portable agent skills organized into seven focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
@@ -20,14 +20,14 @@ The counts, groupings, and invocation policies below are reconciled against the 
 
 | Plugin | Skill count | Explicit-only skills |
 | --- | ---: | --- |
-| `jovanipink-skills` | 10 | `publish-change-safely`, `skill-import-provenance` |
+| `jovanipink-skills` | 11 | `publish-change-safely`, `research-to-publication-lifecycle`, `skill-import-provenance` |
 | `jovanipink-engineering` | 24 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
 | `jovanipink-stack-profiles` | 11 | None |
 | `jovanipink-operations` | 11 | None |
 | `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
 | `jovanipink-ai-systems` | 3 | None |
 | `jovanipink-agent-platforms` | 6 | None |
-| **Total** | **76** | **13 skills** |
+| **Total** | **77** | **14 skills** |
 
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
 
@@ -50,7 +50,7 @@ Direct invocation selects the workflow. It does not authorize every action menti
 
 ## Core skills: jovanipink-skills
 
-The core plugin contains 10 skills for evidence, diagnosis, security, authority, and safe publication.
+The core plugin contains 11 skills for evidence, diagnosis, security, authority, and safe publication.
 
 ### authority-boundary-review
 
@@ -77,6 +77,12 @@ Examines code, documentation, examples, articles, and release artifacts for secr
 Invocation: `explicit-only`.
 
 Verifies GitHub identity, repository, visibility, remote, branch, diff scope, checks, commit, push, and pull request state before publishing a change. Selecting the skill does not automatically authorize a push, PR, merge, or release.
+
+### research-to-publication-lifecycle
+
+Invocation: `explicit-only`.
+
+Coordinates existing research, evidence-trace, source-conformance, retrospective, and public-boundary skills into stable knowledge-object handoffs. It keeps forecast cutoffs, observations, evaluations, corrections, visibility, and publication authority distinct and does not write or publish automatically.
 
 ### skill-import-provenance
 

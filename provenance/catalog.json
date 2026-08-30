@@ -1270,6 +1270,20 @@
       "revocation": "Remove or revise if citations are treated as proof of grounding, tenant controls are bypassed, or retrieved content gains instruction authority."
     },
     {
+      "skill": "research-to-publication-lifecycle",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://agentskills.io/specification",
+      "upstream_license": "No external research workflow, schema text, template, routing policy, model, dataset, or publication system was imported; the open specification is used only as format authority.",
+      "pinned_revision": "retrieved-2026-08-30",
+      "reviewed_on": "2026-08-30",
+      "reviewed_material": ["Open Agent Skills specification", "Jovani-owned research, evidence, and publication practice"],
+      "local_changes": "Original explicit-only routing workflow connecting Jovani-owned evidence skills through stable source, forecast, observation, evaluation, retrospective, correction, and public-projection handoffs.",
+      "security_review": "APPROVE WITH CONDITIONS: instruction-and-reference-only routing with no scripts, hooks, dependencies, agents, tools, private paths, source data, identity tracking, paid services, file writes, publication, deployment, or provider actions; each consequential action retains separate authority.",
+      "rereview_triggers": ["knowledge contract or relationship vocabulary changes", "companion-skill scope changes", "new file-write, private-data, provider, publication, deployment, or external behavior"],
+      "revocation": "Disable if routing bypasses source custody, rewrites forecasts after cutoff, exposes private objects, or treats schema validity as authority or publication approval."
+    },
+    {
       "skill": "workflow-retrospective",
       "disposition": "covered",
       "implementation_method": "clean-room",

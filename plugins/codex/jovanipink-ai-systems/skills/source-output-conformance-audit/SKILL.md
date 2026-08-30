@@ -36,6 +36,12 @@ Define the authorized source set, expected output contract, parser or extractor 
    - unresolved evidence: required proof is missing, inaccessible, or contradictory.
 9. Report defects by first divergent stage. Do not infer full correctness from parser tests, a manifest, successful writes, or a repeated model response alone.
 
+## Knowledge lifecycle handoff
+
+When the audited path participates in `knowledge-contract.v1`, retain the exact IDs for source or dataset snapshots, method records, model runs, observations, and evaluations. The conformance matrix should identify which record can support each relationship. Keep raw facts, derived values, model output, human judgment, and retrospective interpretation in separate objects.
+
+For forecast paths, reject any source snapshot whose as-of time is later than the declared cutoff. Do not overwrite a forecast after its cutoff; corrections create linked versions. Route a complete question-to-publication workflow to `research-to-publication-lifecycle` when that skill is installed.
+
 ## Routing Boundaries
 
 - Use `test-strategy` to choose general software test layers.
@@ -46,4 +52,4 @@ Define the authorized source set, expected output contract, parser or extractor 
 
 ## Output
 
-Return `Scope and authority`, `Pinned source identity`, `Oracle`, a conformance matrix with `Stage`, `Input identity`, `Transformation`, `Expected`, `Observed`, `Evidence`, and `Result`, followed by `Mutation results`, `Correctness`, `Completeness`, `Storage correctness`, `Reproducibility`, `Unresolved evidence`, `Defects by first divergence`, and `Next authorized checks`.
+Return `Scope and authority`, `Pinned source identity`, `Oracle`, a conformance matrix with `Stage`, `Input identity`, `Transformation`, `Expected`, `Observed`, `Evidence`, and `Result`, followed by `Mutation results`, `Correctness`, `Completeness`, `Storage correctness`, `Reproducibility`, `Unresolved evidence`, `Defects by first divergence`, and `Next authorized checks`. When requested, add the proposed knowledge-object IDs and relationship evidence without publishing or writing them automatically.

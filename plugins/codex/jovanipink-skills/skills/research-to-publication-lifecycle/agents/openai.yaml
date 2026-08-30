@@ -1,0 +1,6 @@
+interface:
+  display_name: "Research-to-Publication Lifecycle"
+  short_description: "Connect sources, forecasts, outcomes, and findings"
+  default_prompt: "Use $jovanipink-skills:research-to-publication-lifecycle to coordinate a traceable research, evaluation, retrospective, and public-safe publication workflow."
+policy:
+  allow_implicit_invocation: false
