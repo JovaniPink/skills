@@ -1290,6 +1290,36 @@
       "maturity_evidence": "evals/cases.json"
     },
     {
+      "skill": "research-to-publication-lifecycle",
+      "plugin": "jovanipink-skills",
+      "capability_family": "evidence",
+      "lifecycle_stages": [
+        "discover",
+        "frame",
+        "test",
+        "review",
+        "release",
+        "learn"
+      ],
+      "targets": [
+        "data",
+        "publication",
+        "repository"
+      ],
+      "risk_class": "bounded-execution",
+      "invocation": "explicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "source-grounded-research",
+        "decision-evidence-trace",
+        "source-output-conformance-audit",
+        "workflow-retrospective",
+        "public-private-boundary-review"
+      ],
+      "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
       "skill": "salesforce-apex-engineering-profile",
       "plugin": "jovanipink-stack-profiles",
       "capability_family": "review",

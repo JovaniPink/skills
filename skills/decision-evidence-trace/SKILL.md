@@ -24,6 +24,12 @@ Record public reasons and observable evidence for consequential task decisions.
 5. Append corrections as new entries. Do not silently rewrite earlier entries when the trace is designated append-only.
 6. At checkpoints, reconcile open decisions, invalidated assumptions, deviations, and the evidence needed next.
 
+## Knowledge lifecycle handoff
+
+When the trace supports a `knowledge-contract.v1` lifecycle, map observable research notes to `note` objects and externally supportable assertions to `claim` objects. Preserve stable project-scoped IDs, evidence status, editorial status, visibility, limitations, source relationships, and correction links. A correction appends a linked replacement version; it never rewrites a designated append-only entry.
+
+Do not turn private reasoning into a claim object or treat a trace entry as source authority. Route the complete research-to-publication sequence to `research-to-publication-lifecycle` when that skill is installed.
+
 ## Boundaries
 
 - Do not record hidden chain-of-thought, internal deliberation, raw model reasoning, or private scratch work.
@@ -33,4 +39,4 @@ Record public reasons and observable evidence for consequential task decisions.
 
 ## Output
 
-Return the current entries, unresolved evidence needs, and the trace location if a file was explicitly authorized.
+Return the current entries, unresolved evidence needs, and the trace location if a file was explicitly authorized. If a knowledge-lifecycle handoff was requested, include proposed note or claim IDs and relationships separately from the trace.

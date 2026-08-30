@@ -50,7 +50,7 @@ Direct invocation selects the workflow. It does not authorize every action menti
 
 ## Core skills: jovanipink-skills
 
-The core plugin contains 10 skills for evidence, diagnosis, security, authority, and safe publication.
+The core plugin contains 11 skills for evidence, diagnosis, security, authority, and safe publication.
 
 ### authority-boundary-review
 
@@ -91,6 +91,12 @@ Audits an agent skill or plugin for prompt manipulation, unsafe commands, excess
 ### source-grounded-research
 
 Researches a question using current primary sources while preserving URLs, dates, units, provenance, and uncertainty. Use it for web investigations, comparisons, recommendations, and fact checks where current evidence matters.
+
+### research-to-publication-lifecycle
+
+Invocation: `explicit-only`.
+
+Coordinates existing research, evidence-trace, source-conformance, retrospective, and public-boundary skills into stable knowledge-object handoffs. It keeps forecast cutoffs, observations, evaluations, corrections, visibility, and publication authority distinct and does not write or publish automatically.
 
 ### systematic-diagnosis
 

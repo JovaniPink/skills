@@ -188,6 +188,7 @@ In ChatGPT, use the `@` skill selector documented by OpenAI. Exact display names
 The explicit-only skills are:
 
 - `acceptance-evidence-ledger`
+- `research-to-publication-lifecycle`
 - `publish-change-safely`
 - `skill-import-provenance`
 - `plan-execution`

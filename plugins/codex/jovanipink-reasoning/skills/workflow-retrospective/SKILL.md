@@ -25,6 +25,12 @@ Turn observed execution evidence into a small, testable workflow improvement.
 6. Propose one bounded experiment with an owner, success signal, guardrail, review date, and rollback or rejection condition.
 7. Record what remains unknown and what evidence would change the conclusion.
 
+## Knowledge lifecycle handoff
+
+When the reviewed workflow participates in `knowledge-contract.v1`, prepare a `retrospective` object with a stable project-scoped ID, review period, subject IDs, findings, remaining unknowns, evidence status, limitations, and relationships to the evaluated work. Preserve correction history rather than rewriting an earlier retrospective.
+
+A retrospective is after-the-fact interpretation. It does not change the original source snapshot, scenario, forecast, observation, or evaluation. Route a complete research-to-publication workflow to `research-to-publication-lifecycle` when that skill is installed.
+
 ## Boundaries
 
 - Use the current task and explicitly supplied artifacts. Do not search raw chats, private histories, unrelated repositories, or broad connector data by default.
@@ -34,4 +40,4 @@ Turn observed execution evidence into a small, testable workflow improvement.
 
 ## Output
 
-Return `Scope`, `Observed timeline`, `What helped`, `What hindered`, `Contributing conditions`, `Evidence limits`, `Improvement experiment`, `Owner and review date`, and `Rejected generalizations`.
+Return `Scope`, `Observed timeline`, `What helped`, `What hindered`, `Contributing conditions`, `Evidence limits`, `Improvement experiment`, `Owner and review date`, and `Rejected generalizations`. If a knowledge-lifecycle handoff was requested, add the proposed retrospective ID, subject relationships, findings, unknowns, and limitations without writing or publishing them automatically.
