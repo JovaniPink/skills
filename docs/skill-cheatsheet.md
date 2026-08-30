@@ -28,10 +28,10 @@ Use this plugin for verification, research, diagnosis, authority boundaries, pub
 | `prelaunch-readiness` | Reviews repository, provider, deployment, and live evidence before a public launch. | Implicit |
 | `public-private-boundary-review` | Finds secrets, private details, proprietary material, and unsupported public claims before publication. | Implicit |
 | `publish-change-safely` | Verifies identity, repository, remote, branch, diff, checks, push, and pull request state. | Explicit-only |
+| `research-to-publication-lifecycle` | Connects research, forecasts, observations, evaluations, retrospectives, corrections, and public-safe findings. | Explicit-only |
 | `skill-import-provenance` | Gates Jovani-owned skill transfers and rejects third-party catalog material as an implementation source. | Explicit-only |
 | `skill-security-review` | Audits skills and plugins for unsafe instructions, permissions, dependencies, hooks, and data exposure. | Implicit |
 | `source-grounded-research` | Researches current questions with primary sources, URLs, dates, provenance, and uncertainty. | Implicit |
-| `research-to-publication-lifecycle` | Connects research, forecasts, observations, evaluations, retrospectives, corrections, and public-safe findings. | Explicit-only |
 | `systematic-diagnosis` | Reproduces and narrows a defect to establish a causal boundary without silently implementing a fix. | Implicit |
 
 ## Engineering: jovanipink-engineering

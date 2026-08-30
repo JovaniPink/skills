@@ -507,7 +507,7 @@ class CatalogTests(unittest.TestCase):
         self.assertGreaterEqual(len(SKILLS), 70)
         self.assertGreaterEqual(len(skills_by_plugin()), 6)
         self.assertEqual(set(new_skills), set(skills_by_plugin()["jovanipink-ai-systems"]))
-        self.assertEqual(13, len(EXPLICIT_SKILLS))
+        self.assertEqual(14, len(EXPLICIT_SKILLS))
 
         references = {
             "agent-evaluation-design": "evaluation-contract.md",
@@ -540,10 +540,10 @@ class CatalogTests(unittest.TestCase):
             "google-adk-engineering-profile": "adk-version-boundaries.md",
             "retrieval-grounding-quality-review": "retrieval-evidence-matrix.md",
         }
-        self.assertEqual(76, len(SKILLS))
+        self.assertEqual(77, len(SKILLS))
         self.assertEqual(7, len(skills_by_plugin()))
         self.assertEqual(set(new_skills), set(skills_by_plugin()["jovanipink-agent-platforms"]))
-        self.assertEqual(13, len(EXPLICIT_SKILLS))
+        self.assertEqual(14, len(EXPLICIT_SKILLS))
 
         for skill, reference in new_skills.items():
             root = ROOT / "skills" / skill
