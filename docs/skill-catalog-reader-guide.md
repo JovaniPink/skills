@@ -21,7 +21,7 @@ The counts, groupings, and invocation policies below are reconciled against the 
 | Plugin | Skill count | Explicit-only skills |
 | --- | ---: | --- |
 | `jovanipink-skills` | 11 | `publish-change-safely`, `research-to-publication-lifecycle`, `skill-import-provenance` |
-| `jovanipink-engineering` | 24 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
+| `jovanipink-engineering` | 25 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
 | `jovanipink-stack-profiles` | 11 | None |
 | `jovanipink-operations` | 11 | None |
 | `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
@@ -141,6 +141,12 @@ Reviews software dependencies and build inputs for provenance, integrity, mainte
 Invocation: `explicit-only`.
 
 Reconciles a development branch and presents evidence-based choices for creating a PR, merging, retaining the branch, or cleaning it up. It does not assume authority to push, merge, delete, or abandon work.
+
+### functional-motion-review
+
+Invocation: `implicit`.
+
+Reviews whether motion serves a reader task while preserving evidence authority, static content, keyboard operation, reduced motion, interruption, and measured performance. It distinguishes participant findings from proposed benefits and does not implement changes or add analytics. Candidate status does not establish cross-client behavior.
 
 ### implementation-planning
 

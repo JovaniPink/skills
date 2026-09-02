@@ -443,7 +443,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual("jovanipink-ai-systems", tracks["ai-reliability-foundations"]["plugin"])
 
     def test_v07_acceptance_ledger_contract(self) -> None:
-        self.assertEqual(24, len(skills_by_plugin()["jovanipink-engineering"]))
+        self.assertEqual(25, len(skills_by_plugin()["jovanipink-engineering"]))
         self.assertIn("acceptance-evidence-ledger", EXPLICIT_SKILLS)
 
         expanded_profiles = {
@@ -531,6 +531,21 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual("original", metadata["provenance"])
             self.assertEqual(risk_class, metadata["risk_class"])
 
+    def test_functional_motion_review_has_no_execution_surface(self) -> None:
+        root = ROOT / "skills" / "functional-motion-review"
+        self.assertEqual(
+            {"SKILL.md", "agents/openai.yaml"},
+            {path.relative_to(root).as_posix() for path in root.rglob("*") if path.is_file()},
+        )
+        metadata = read_skill_metadata(root)
+        self.assertEqual("read-only", metadata["risk_class"])
+        self.assertEqual("implicit", metadata["invocation"])
+        self.assertEqual("original", metadata["provenance"])
+        cases = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))
+        record = next(item for item in cases["skills"] if item["skill"] == "functional-motion-review")
+        self.assertEqual(4, len(record["safety"]))
+        self.assertEqual("blocked", record["baseline_comparison"]["status"])
+
     def test_v09_agent_platform_contract_and_catalog_counts(self) -> None:
         new_skills = {
             "agent-context-state-memory-design": "state-memory-lifecycle.md",
@@ -540,7 +555,7 @@ class CatalogTests(unittest.TestCase):
             "google-adk-engineering-profile": "adk-version-boundaries.md",
             "retrieval-grounding-quality-review": "retrieval-evidence-matrix.md",
         }
-        self.assertEqual(77, len(SKILLS))
+        self.assertEqual(78, len(SKILLS))
         self.assertEqual(7, len(skills_by_plugin()))
         self.assertEqual(set(new_skills), set(skills_by_plugin()["jovanipink-agent-platforms"]))
         self.assertEqual(14, len(EXPLICIT_SKILLS))
