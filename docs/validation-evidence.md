@@ -2,6 +2,21 @@
 
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
+## Functional motion review local candidate, 2026-09-02
+
+- Source artifact commit: `b8de97f` (canonical motion review, generated distributions, and boundary test).
+- Candidate catalog: 78 skills; 25 engineering skills; no new execution surface.
+- `python3 scripts/build_distributions.py`: PASS - 78 Codex and 78 Claude projections generated from canonical sources.
+- `python3 scripts/package_claude_ai.py`: PASS - 78 deterministic archives.
+- `python3 scripts/check_workflows.py`: PASS - two workflows.
+- `python3 -m mypy --strict scripts tests`: PASS - 17 files.
+- `python3 -m ruff check scripts tests`: PASS.
+- `python3 scripts/validate.py`: PASS - deterministic validations, including refreshed candidate artifact checksums.
+- `python3 -m unittest discover -s tests -v`: PASS - 57 regression tests
+- Local Python 3.14.7; existing PyYAML 6.0.3, mypy 1.20.2, and Ruff 0.15.12 reused without installation.
+- Installed-versus-baseline and cross-client behavioral evaluation: BLOCKED on separately authorized exact-package installation and controlled comparison. Authored trigger/safety cases and package checks do not establish behavioral parity.
+- Publication, release tagging, marketplace submission, and deployment: not performed.
+
 ## v0.9 agent-platform candidate
 
 - Source artifact commit: `24998cdfd16ce0b87ad0883c9919c24d058f89ce`
