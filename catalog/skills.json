@@ -3,6 +3,36 @@
   "catalog_version": "0.9.0",
   "skills": [
     {
+      "skill": "functional-motion-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "design",
+        "test",
+        "review",
+        "learn"
+      ],
+      "targets": [
+        "code",
+        "data",
+        "publication"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "accessibility-review",
+        "performance-scalability-diagnosis",
+        "api-contract-compatibility-review",
+        "authority-boundary-review"
+      ],
+      "conflicts_with": [
+        "accessibility-review",
+        "performance-scalability-diagnosis"
+      ],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
       "skill": "agent-context-state-memory-design",
       "plugin": "jovanipink-agent-platforms",
       "capability_family": "ai-engineering",

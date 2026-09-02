@@ -4,6 +4,27 @@
   "reviewed_on": "2026-08-25",
   "entries": [
     {
+      "skill": "functional-motion-review",
+      "disposition": "covered",
+      "implementation_method": "original",
+      "source_url": "https://www.w3.org/TR/WCAG22/",
+      "upstream_license": "No external workflow text imported; W3C guidance is a primary correctness authority only.",
+      "pinned_revision": "retrieved-2026-09-02",
+      "reviewed_on": "2026-09-02",
+      "reviewed_material": [
+        "W3C WCAG 2.2 interaction-animation guidance",
+        "Jovani-owned evidence-led presentation requirements and local pilot observations"
+      ],
+      "local_changes": "Original read-only review of reader tasks, evidence authority, local motion roles and intensity, static fallback, interruption, performance receipts, and comprehension evidence.",
+      "security_review": "APPROVE: instruction-only read-only candidate; no scripts, hooks, dependencies, agents, permissions, analytics, recruitment, publication, or deployment.",
+      "rereview_triggers": [
+        "motion or evidence guidance changes",
+        "new execution, telemetry, user-research, or publication behavior",
+        "client invocation or adapter changes"
+      ],
+      "revocation": "Remove or revise through reviewed commits if the workflow gains implicit mutation authority, misleading evidence claims, or inaccessible presentation requirements."
+    },
+    {
       "skill": "adobe-aem-engineering-profile",
       "disposition": "covered",
       "implementation_method": "original",

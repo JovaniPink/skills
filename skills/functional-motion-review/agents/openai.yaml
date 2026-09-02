@@ -1,0 +1,6 @@
+interface:
+  display_name: "Functional Motion Review"
+  short_description: "Review evidence-led motion and static fallbacks"
+  default_prompt: "Use $functional-motion-review to assess this experience against reader tasks, evidence authority, accessibility, interruption, and measured performance."
+policy:
+  allow_implicit_invocation: true

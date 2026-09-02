@@ -41,6 +41,7 @@
         "data-migration-readiness",
         "dependency-supply-chain-review",
         "finish-development-branch",
+        "functional-motion-review",
         "implementation-planning",
         "merge-conflict-reconciliation",
         "module-interface-design",
@@ -58,7 +59,7 @@
         "test-strategy",
         "worktree-isolation"
       ],
-      "description_characters": 6249,
+      "description_characters": 6482,
       "budget_status": "warning"
     },
     {

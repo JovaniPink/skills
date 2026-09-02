@@ -42,6 +42,7 @@ The catalog is split into focused plugins so clients can discover only the workf
 | `finish-development-branch` | Present integration, retention, and cleanup options without implicit actions | Explicit-only |
 | `multi-agent-orchestration` | Coordinate authorized independent tasks with ownership and reconciliation | Explicit-only |
 | `code-change-review` | Review an exact diff for verified actionable defects | Implicit |
+| `functional-motion-review` | Review reader benefit, evidence authority, static fallback, and interruption | Implicit |
 | `module-interface-design` | Design smaller stable contracts from callers and invariants | Implicit |
 | `prototype-spike` | Test one uncertainty with isolated bounded implementation | Explicit-only |
 | `merge-conflict-reconciliation` | Reconcile Git conflicts while preserving abort and action gates | Explicit-only |
@@ -121,4 +122,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The v0.9 candidate contains 77 skills across seven focused plugins. It adds a faceted catalog, measured plugin packs and small recipes, complete evaluation records, six human-facing agent-platform workflows, a source-to-publication lifecycle router, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. Automated validation and exact-package client observations remain separate acceptance evidence. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.
+The v0.9 candidate contains 78 skills across seven focused plugins. It adds a faceted catalog, measured plugin packs and small recipes, complete evaluation records, six human-facing agent-platform workflows, a source-to-publication lifecycle router, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. Automated validation and exact-package client observations remain separate acceptance evidence. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.
