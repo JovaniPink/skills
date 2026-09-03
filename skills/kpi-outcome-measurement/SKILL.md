@@ -4,7 +4,7 @@ description: Design or review outcome measurement with precise definitions, unit
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Decision use, Metric dictionary, Data lineage, Baseline and target, Guardrails, Bias and gaming risks, and Review cadence.
-

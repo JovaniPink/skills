@@ -1,8 +1,14 @@
 # Manual Cross-Client Smoke Tests
 
-The authoritative row-level evidence is `client-observations.json`, validated by `client-observations-schema.json`. It records exact client versions/builds, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference.
+Each versioned `client-observations*.json` record is authoritative only for its named release and is validated by `client-observations-schema.json`. A row records the exact client version or build, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference.
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
+
+## Current v0.10 release-candidate boundary
+
+The v0.10 repository candidate contains 77 skills across seven plugins, including the explicit-only `research-to-publication-lifecycle` skill. Repository checks and deterministic packages do not establish receiving-client behavior.
+
+No v0.10 client observation matrix has been recorded. Client installation, discovery, explicit activation, focused-reference loading, refusal behavior, update, removal, and cross-client parity therefore remain unverified, and v0.10 acceptance is BLOCKED. Create versioned rows only after a named surface produces a terminal observed result; do not copy or rewrite the historical v0.9 observations.
 
 ## Current v0.9 summary
 

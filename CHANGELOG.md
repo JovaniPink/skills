@@ -6,10 +6,16 @@ All notable changes use this file. The project follows semantic versioning after
 
 ### Added
 
+- Explicit-only `research-to-publication-lifecycle` coordination for source custody, forecast cutoffs, outcome evaluation, corrections, retrospectives, and public-safe knowledge-object handoffs.
 - Deterministic local PyYAML validation for GitHub Actions workflow syntax, including regression tests for the v0.9 unquoted `--only-binary=:all:` failure, invalid document roots, and parser dependency drift.
+
+### Changed
+
+- Prepared the 77-skill, seven-plugin catalog as a v0.10 release candidate with synchronized metadata, schemas, generated client distributions, deterministic Claude.ai archives, and a versioned release manifest.
 
 ### Security
 
+- The lifecycle router remains explicit-only and does not authorize private-data exposure, publication, deployment, paid services, or post-outcome forecast rewriting.
 - PyYAML and its type information are exact-versioned, SHA-256 locked for the Linux CI runner, and reconciled with reviewed dependency provenance.
 
 ## [0.8.0] - 2026-08-23

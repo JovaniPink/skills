@@ -17,7 +17,7 @@ description: What the skill does and the concrete situations that should activat
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "original"

@@ -2,6 +2,34 @@
 
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
+## v0.10 research-to-publication candidate
+
+- Source artifact commit: `SOURCE_COMMIT_PENDING`
+- Catalog/plugin version: `0.10.0`
+- Date: 2026-09-03
+- Canonical skills: 77 across seven optional plugins; 14 explicit-only skills
+- Generated artifacts: 77 Codex projections, 77 Claude projections, and 77 deterministic Claude.ai archives
+- Release scope: one newly merged explicit-only `research-to-publication-lifecycle` router, its focused knowledge-object handoff, catalog-wide release metadata, and generated adapters; no skill was deprecated or revoked
+- Manual matrix: no v0.10 client observation matrix has been recorded
+- Acceptance: BLOCKED. Repository validation establishes candidate structure and reproducibility, not client installation, discovery, activation, focused-reference loading, refusal behavior, update, removal, or cross-client parity.
+
+### Automated repository checks
+
+- `python3 scripts/build_distributions.py --write-marketplaces`: PASS - all 77 canonical skills regenerated into seven Codex and seven Claude plugin trees with current marketplace metadata
+- `python3 scripts/package_claude_ai.py` twice: PASS - both runs produced 77 archives and the same `SHA256SUMS` file digest, `64808be264e593592ce654e0186fb0475192822b3c3cd3fbe34cfa0ed894b1cb`
+- `python3 scripts/check_public_boundary.py`: PASS - canonical, documentation, generated, and packaged surfaces passed the public/private boundary scan
+- `python3 scripts/check_workflows.py`: PASS - both GitHub Actions workflows parsed with the repository-locked validator
+- `python3 -m mypy --strict scripts tests`: PASS - 17 source files passed strict type checking
+- `python3 -m ruff check scripts tests`: PASS
+- `python3 scripts/build_distributions.py --check`: PASS - generated plugin trees and both marketplace records match canonical sources
+- `python3 scripts/validate.py`: PASS - all deterministic catalog validations passed
+- `python3 -m unittest discover -s tests -v`: PASS - 57 regression tests
+- `git diff --check`: PASS
+
+### Client evidence boundary
+
+The v0.10 candidate has no versioned client rows. Its acceptance remains blocked until fresh, terminal observations are recorded against the exact v0.10 package. The versioned v0.9 observation files remain historical and unchanged. No publication, tag, release, client installation, or provider action was performed.
+
 ## v0.9 agent-platform candidate
 
 - Source artifact commit: `24998cdfd16ce0b87ad0883c9919c24d058f89ce`

@@ -4,7 +4,7 @@ description: Analyze a production incident using timestamped evidence, system be
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Impact, Timeline, Detection, Causal analysis, Contributing conditions, Response, Recovery evidence, Actions, and Unresolved questions.
-

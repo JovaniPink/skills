@@ -121,4 +121,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The v0.9 candidate contains 77 skills across seven focused plugins. It adds a faceted catalog, measured plugin packs and small recipes, complete evaluation records, six human-facing agent-platform workflows, a source-to-publication lifecycle router, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. Automated validation and exact-package client observations remain separate acceptance evidence. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.
+The v0.10 release candidate contains 77 skills across seven focused plugins. It adds the explicit-only research-to-publication lifecycle router to the existing faceted catalog, measured plugin packs, evaluation records, agent-platform workflows, and reviewed authority records. Automated validation and exact-package client observations remain separate acceptance evidence. Client acceptance, public-directory submission, runtime deployment, tagging, publication, and cross-client parity claims remain deferred.

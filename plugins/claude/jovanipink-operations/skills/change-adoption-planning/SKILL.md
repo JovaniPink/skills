@@ -4,7 +4,7 @@ description: Plan organizational or product change around affected people, behav
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Target behavior, Stakeholder map, Barriers, Interventions, Rollout, Support, Measurement, Risks, and Owners.
-

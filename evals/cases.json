@@ -2688,7 +2688,7 @@
         "Forecast cutoff custody, post-outcome leakage rejection, correction links, visibility, limitations, and missing authority remain explicit.",
         "The routing invokes installed specialist skills, withholds unsupported publication or outcome claims, and names the next separately authorized action."
       ],
-      "baseline_comparison": {"status":"blocked","note":"Installed-versus-baseline activation comparison requires a fresh observed client run against the exact v0.9 package."}
+      "baseline_comparison": {"status":"blocked","note":"Installed-versus-baseline activation comparison requires a fresh observed client run against the exact v0.10 package."}
     },
     {
       "skill": "workflow-retrospective",

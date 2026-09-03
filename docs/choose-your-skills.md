@@ -18,7 +18,7 @@ The current measured sizes live in [`catalog/packs.json`](../catalog/packs.json)
 | Evaluate AI behavior, context reliability, or source conformance | `jovanipink-ai-systems` |
 | Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `jovanipink-agent-platforms` |
 
-The engineering plugin is above the 6,000-character warning threshold in v0.9. Install it when its broad lifecycle coverage is useful. For a narrow task, directly select the needed skill and avoid enabling unrelated plugins.
+The engineering plugin is above the 6,000-character warning threshold in v0.10. Install it when its broad lifecycle coverage is useful. For a narrow task, directly select the needed skill and avoid enabling unrelated plugins.
 
 ## Small recipes
 

@@ -4,7 +4,7 @@ description: Assess claimed value, benefit, savings, risk reduction, or outcome 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Claim register, Evidence maturity, Calculation and lineage, Attribution limits, Sensitivity, Supported language, and Next evidence.
-

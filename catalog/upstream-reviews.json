@@ -1,6 +1,6 @@
 {
   "$schema": "./upstream-reviews-schema.json",
-  "catalog_version": "0.9.0",
+  "catalog_version": "0.10.0",
   "reviewed_on": "2026-08-25",
   "reviews": [
     {

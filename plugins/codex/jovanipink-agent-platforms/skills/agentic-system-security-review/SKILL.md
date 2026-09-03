@@ -4,7 +4,7 @@ description: Review an agentic system across agent identity, models, instruction
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-agent-platforms"
   invocation: "implicit"
   provenance: "clean-room"

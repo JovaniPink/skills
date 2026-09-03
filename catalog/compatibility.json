@@ -1,6 +1,6 @@
 {
   "$schema": "./compatibility-schema.json",
-  "catalog_version": "0.9.0",
+  "catalog_version": "0.10.0",
   "records": [
     {
       "plugin_version": "0.1.0",
@@ -49,6 +49,12 @@
       "evidence_path": "docs/client-observations-v0.8.json",
       "acceptance_status": "blocked",
       "claim": "v0.8 generated artifacts are validated separately from installed-client behavior. Discovery, activation, focused-reference loading, installation, update, and removal require fresh surface-specific observations against the exact package."
+    },
+    {
+      "plugin_version": "0.9.0",
+      "evidence_path": "docs/client-observations-v0.9.json",
+      "acceptance_status": "blocked",
+      "claim": "v0.9 exact-version observations remain surface-specific. Passing command-line installation or resource loading does not establish Desktop, web, API, managed-agent, or cross-client acceptance."
     }
   ]
 }

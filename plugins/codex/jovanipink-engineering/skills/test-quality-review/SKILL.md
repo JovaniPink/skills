@@ -4,7 +4,7 @@ description: Review the quality of a test suite or change-specific tests for mea
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -34,4 +34,3 @@ Use current primary guidance as a review baseline, then report only what the ava
 ## Output
 
 Return Protected behavior, Oracle quality, Missing risks, Flakiness and isolation, Maintenance cost, and Recommended evidence.
-

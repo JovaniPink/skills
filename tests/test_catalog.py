@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_distributions import build, marketplace_documents  # noqa: E402
-from cataloglib import EXPLICIT_SKILLS, SKILLS, filter_revoked, read_skill_metadata, skills_by_plugin  # noqa: E402
+from cataloglib import EXPLICIT_SKILLS, SKILLS, VERSION, filter_revoked, read_skill_metadata, skills_by_plugin  # noqa: E402
 from check_upstream_freshness import (  # noqa: E402
     _normalized_content_sha256,
     check as check_upstream_freshness,
@@ -49,6 +49,41 @@ from validate_catalog import (  # noqa: E402
 
 
 class CatalogTests(unittest.TestCase):
+    def test_v010_release_candidate_versions_and_counts(self) -> None:
+        self.assertEqual("0.10.0", VERSION)
+        self.assertEqual(77, len(SKILLS))
+        self.assertEqual(7, len(skills_by_plugin()))
+        self.assertEqual(14, len(EXPLICIT_SKILLS))
+
+        evidence = (ROOT / "docs" / "validation-evidence.md").read_text(encoding="utf-8")
+        candidate = evidence.split("## v0.10 research-to-publication candidate\n", 1)[1].split("\n## ", 1)[0]
+        observed_test_count = unittest.defaultTestLoader.discover(str(ROOT / "tests")).countTestCases()
+        self.assertIn("Canonical skills: 77 across seven optional plugins; 14 explicit-only skills", candidate)
+        self.assertIn(
+            f"`python3 -m unittest discover -s tests -v`: PASS - {observed_test_count} regression tests",
+            candidate,
+        )
+
+        for skill in SKILLS:
+            metadata = read_skill_metadata(ROOT / "skills" / skill)
+            self.assertEqual(VERSION, metadata["version"], skill)
+
+        for name in (
+            "compatibility.json",
+            "deprecations.json",
+            "packs.json",
+            "revocations.json",
+            "skills.json",
+            "upstream-pins.json",
+            "upstream-reviews.json",
+        ):
+            document = json.loads((ROOT / "catalog" / name).read_text(encoding="utf-8"))
+            self.assertEqual(VERSION, document["catalog_version"], name)
+
+        compatibility = json.loads((ROOT / "catalog" / "compatibility.json").read_text(encoding="utf-8"))
+        self.assertEqual("0.9.0", compatibility["records"][-1]["plugin_version"])
+        self.assertEqual("docs/client-observations-v0.9.json", compatibility["records"][-1]["evidence_path"])
+
     def test_catalog_and_generated_distributions_validate(self) -> None:
         self.assertEqual([], validate_all(require_packages=True))
         self.assertEqual([], check_generated())
@@ -304,11 +339,6 @@ class CatalogTests(unittest.TestCase):
         )
         self.assertIn(expected, evidence)
         self.assertNotIn("no v0.9 rows", evidence)
-        observed_test_count = unittest.defaultTestLoader.discover(str(ROOT / "tests")).countTestCases()
-        self.assertIn(
-            f"`python3 -m unittest discover -s tests -v`: PASS - {observed_test_count} regression tests",
-            evidence,
-        )
 
     def test_v09_changed_upstreams_have_human_readable_review_records(self) -> None:
         schema = json.loads((ROOT / "catalog" / "upstream-reviews-schema.json").read_text(encoding="utf-8"))

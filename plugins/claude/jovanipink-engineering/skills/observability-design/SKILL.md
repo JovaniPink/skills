@@ -4,7 +4,7 @@ description: Review or design observability for services and applications using 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -34,4 +34,3 @@ Use current primary guidance as a review baseline, then report only what the ava
 ## Output
 
 Return Journeys and objectives, Signal design, Correlation, Dashboards, Alerts, Privacy and cost controls, and Validation plan.
-

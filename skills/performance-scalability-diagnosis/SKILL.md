@@ -4,7 +4,7 @@ description: Diagnose latency, throughput, resource, contention, and scalability
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -34,4 +34,3 @@ Use current primary guidance as a review baseline, then report only what the ava
 ## Output
 
 Return Symptom, Baseline, Hypotheses, Measurements, Causal diagnosis, Capacity estimate, and Next experiment.
-

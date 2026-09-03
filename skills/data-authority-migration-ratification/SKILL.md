@@ -4,7 +4,7 @@ description: Prepare a proposed data-authority and migration decision record cov
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Current authority, Proposed contract, Migration phases, Reconciliation, Rollback, Risks, Decision owner, Required evidence, and Status.
-

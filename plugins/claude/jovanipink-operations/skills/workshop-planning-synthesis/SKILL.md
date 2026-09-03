@@ -4,7 +4,7 @@ description: Plan a workshop around a concrete decision or learning outcome, the
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Purpose, Participants and roles, Prework, Agenda, Facilitation plan, Evidence captured, Decisions, Dissent, Actions, and Follow-up.
-

@@ -4,7 +4,7 @@ description: Plan and synthesize postlaunch learning from observed behavior, inc
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -34,4 +34,3 @@ Use generic terminology and preserve the status of every material statement: obs
 ## Output
 
 Return Intended outcomes, Observed evidence, Variance, Learning, Priorities, Next experiments, and Claim limits.
-
