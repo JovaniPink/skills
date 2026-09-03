@@ -529,6 +529,45 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             errors.append(f"{observation_path.relative_to(ROOT)}: summary counts do not reconcile with records")
 
 
+def validate_current_client_evidence(errors: list[str]) -> None:
+    """Keep current documentation tied to its versioned observation matrix."""
+
+    release = "v" + ".".join(VERSION.split(".")[:2])
+    matrix_name = f"client-observations-{release}.json"
+    matrix_path = ROOT / "docs" / matrix_name
+    matrix = _load_json(matrix_path, errors)
+    if not isinstance(matrix, dict):
+        errors.append(f"docs/{matrix_name}: current observation matrix must be an object")
+    elif matrix.get("catalog_version") != VERSION or matrix.get("plugin_version") != VERSION:
+        errors.append(f"docs/{matrix_name}: current observation matrix versions must match {VERSION}")
+
+    required_sections = {
+        "manual-smoke-tests.md": (None, f"Current {release} summary"),
+        "validation-evidence.md": (f"{release} agent-platform candidate", f"{release} client evidence boundary"),
+    }
+    for name, headings in required_sections.items():
+        path = ROOT / "docs" / name
+        if not path.is_file():
+            errors.append(f"docs/{name}: missing current client evidence documentation")
+            continue
+        text = path.read_text(encoding="utf-8")
+        for heading in headings:
+            label = f"docs/{name}: {heading or 'introduction'}"
+            if heading is None:
+                section = re.split(r"(?m)^## ", text, maxsplit=1)[0]
+            else:
+                match = re.search(rf"(?m)^## {re.escape(heading)}\s*$", text)
+                if match is None:
+                    errors.append(f"{label}: missing current evidence section")
+                    continue
+                section = re.split(r"(?m)^## ", text[match.end():], maxsplit=1)[0]
+            if matrix_name not in REFERENCE_LINK.findall(section):
+                errors.append(f"{label}: must link to {matrix_name}")
+            references = set(re.findall(r"client-observations(?:-v[0-9.]+)?\.json", section))
+            for reference in sorted(references - {matrix_name}):
+                errors.append(f"{label}: historical matrix {reference} cannot serve as current evidence")
+
+
 def validate_generated_adapters(errors: list[str]) -> None:
     for skill in SKILLS:
         metadata = read_skill_metadata(ROOT / "skills" / skill)
@@ -682,6 +721,7 @@ def validate_all(require_packages: bool = True) -> list[str]:
     validate_evals(errors)
     validate_provenance(errors)
     validate_auxiliary_records(errors)
+    validate_current_client_evidence(errors)
     validate_generated_adapters(errors)
     validate_marketplaces(errors)
     if require_packages:

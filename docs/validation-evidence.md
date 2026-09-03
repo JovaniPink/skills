@@ -12,9 +12,12 @@ This file records observed outcomes for catalog release candidates. Validators d
 - Evaluation contract: every skill has three positive cases, three near-miss cases, one safety or conflict case, an output-quality rubric, a baseline comparison, provenance, taxonomy, and maturity evidence
 - Upstream review: twelve changed primary sources have human-readable review records; mutable A2A latest guidance was replaced with the reviewed versioned 1.0.0 specification, and GitHub review guidance uses its stable official Markdown representation
 - Manual matrix: 16 exact-version rows; 6 pass, 2 fail, 8 blocked, 0 not supported, and 0 not run
+- Row-level evidence: [v0.9 client observation matrix](client-observations-v0.9.json)
 - Acceptance: BLOCKED. The partial exact-version v0.9 observations include passes, failures, and authority or authentication blockers, but they do not cover every required behavior on every claimed surface.
 
 ## v0.9 agent-platform automated checks
+
+These results describe the original candidate checks. The later documentation contract recheck is recorded separately below.
 
 - `python3 scripts/build_distributions.py --check`: PASS - all seven Codex and Claude plugin trees and both marketplace records match canonical sources
 - `python3 scripts/package_claude_ai.py`: PASS - 76 deterministic, individually nested Claude.ai ZIPs generated with SHA-256 checksums
@@ -30,7 +33,21 @@ This file records observed outcomes for catalog release candidates. Validators d
 - Codex bundled plugin validator: PASS - generated `jovanipink-agent-platforms` plugin
 - `claude plugin validate plugins/claude/jovanipink-agent-platforms --strict`: PASS
 
+## v0.9 documentation contract recheck
+
+Local working-tree checks on 2026-09-02 confirmed the documentation contract against the [v0.9 client observation matrix](client-observations-v0.9.json). The client records, tested source commit, and blocked acceptance status are unchanged.
+
+- `python3 scripts/build_distributions.py --check`: PASS - generated plugin trees and marketplace records match canonical sources
+- `python3 scripts/package_claude_ai.py`: PASS - 77 current archives regenerated; no tracked generated output changed
+- `python3 scripts/validate.py`: PASS - deterministic repository validation, including current evidence links and matrix version checks
+- `python3 -m unittest discover -s tests -v`: PASS - 59 regression tests, including missing, historical, and mismatched current evidence cases
+- `python3 -m mypy --strict scripts tests`: PASS
+- `python3 -m ruff check scripts tests`: PASS
+- `python3 scripts/check_workflows.py`: PASS
+
 ## v0.9 client evidence boundary
+
+See the [v0.9 client observation matrix](client-observations-v0.9.json) and [v0.9 observation notes](client-observations-v0.9.md). Earlier matrices are historical evidence for their named versions.
 
 The current v0.9 matrix records exact-version installation, discovery, and focused-reference observations where they were performed. It also records failures and authentication, application-control, account, network, and cost blockers without inferring parity. Update, removal, Desktop invocation, API invocation, managed-agent behavior, and authenticated Gemini discovery remain incomplete. Runtime Google ADK behavior belongs to the separate runtime adapter repository. Automated validation proves structural consistency, deterministic packaging, editorial boundaries, and exact upstream markers; it does not prove unobserved receiving-client behavior.
 
@@ -62,8 +79,6 @@ The current v0.9 matrix records exact-version installation, discovery, and focus
 ## v0.8 client evidence boundary
 
 See `client-observations-v0.8.json`. Installation, discovery, implicit activation, focused-reference loading, refusal, update, and removal are separate rows for each surface. Every row is terminal `blocked` because no receiving-client mutation or invocation was authorized. Generated compatibility and strict manifest validation are not treated as installation, activation, resource loading, lifecycle behavior, or cross-client parity.
-
-See `client-observations-v0.9.json` and `client-observations-v0.9.md` for the first current candidate observations. Codex CLI focused-reference loading passed. Claude Code discovery passed but invocation was blocked by expired authentication. ChatGPT web and Claude.ai did not contain the new v0.9 skill. Gemini workspace linking passed, but authenticated discovery remains blocked. API and managed-agent surfaces remain authority-gated.
 
 ## v0.7 tested source
 
@@ -143,7 +158,7 @@ See `client-observations-v0.6.json`. Every supported surface has a terminal `blo
 
 See `client-observations-v0.5.json`. Every supported surface has a terminal `blocked` suite record tied to the exact tested source commit and representative ZIP checksum. Package validation is not treated as installation, discovery, activation, reference loading, upload acceptance, or client parity.
 
-## Tested source
+## v0.1 tested source
 
 - Source commit: `e2426dcb1f6d4a170c91c68a1eace4869de4fce0`
 - Catalog/plugin version: `0.1.0`
@@ -151,7 +166,7 @@ See `client-observations-v0.5.json`. Every supported surface has a terminal `blo
 - Manual matrix: 31 terminal rows; 17 pass, 14 blocked, 0 fail, 0 not supported, 0 not run
 - Acceptance: BLOCKED until the row-level client blockers are cleared
 
-## Automated repository checks
+## v0.1 automated repository checks
 
 - `python3 scripts/validate.py`: PASS - catalog, adapters, trigger coverage, strict schemas, links, public boundary, packages, checksums, fixtures, and generated drift
 - `python3 -m unittest discover -s tests -v`: PASS - 13 regression tests
@@ -165,6 +180,6 @@ See `client-observations-v0.5.json`. Every supported surface has a terminal `blo
 - `claude plugin validate plugins/claude/jovanipink-skills --strict`: PASS - generated Claude plugin, Claude Code 2.1.220
 - Claude.ai packages: PASS - 10 deterministic, individually nested ZIPs with SHA-256 checksums
 
-## Client evidence boundary
+## v0.1 client evidence boundary
 
-See `manual-smoke-tests.md` and `client-observations.json`. Codex CLI and the required manual Claude Code CLI behaviors passed. Codex Desktop, Claude Code Desktop, and Claude.ai invocation remain blocked, and Claude Code's built-in plugin-eval ablation remains blocked by client availability. No validation, CLI result, or package inspection is substituted for those observations.
+See the historical v0.1 summary in [manual smoke tests](manual-smoke-tests.md) and the [legacy v0.1 matrix](client-observations.json). Codex CLI and the required manual Claude Code CLI behaviors passed. Codex Desktop, Claude Code Desktop, and Claude.ai invocation remain blocked, and Claude Code's built-in plugin-eval ablation remains blocked by client availability. No validation, CLI result, or package inspection is substituted for those observations.

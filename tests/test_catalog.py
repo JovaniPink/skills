@@ -44,6 +44,7 @@ from validate_catalog import (  # noqa: E402
     skill_name_errors,
     validate_all,
     validate_ci_tools,
+    validate_current_client_evidence,
     validate_packages,
 )
 
@@ -296,6 +297,7 @@ class CatalogTests(unittest.TestCase):
     def test_v09_validation_evidence_matches_observed_matrix(self) -> None:
         matrix = json.loads((ROOT / "docs" / "client-observations-v0.9.json").read_text(encoding="utf-8"))
         evidence = (ROOT / "docs" / "validation-evidence.md").read_text(encoding="utf-8")
+        evidence = evidence.split("\n## v0.8 tested source", 1)[0]
         summary = matrix["summary"]
         expected = (
             f"Manual matrix: {summary['total']} exact-version rows; {summary['pass']} pass, "
@@ -309,6 +311,72 @@ class CatalogTests(unittest.TestCase):
             f"`python3 -m unittest discover -s tests -v`: PASS - {observed_test_count} regression tests",
             evidence,
         )
+
+    def test_v09_current_evidence_links_to_versioned_matrix(self) -> None:
+        smoke = (ROOT / "docs" / "manual-smoke-tests.md").read_text(encoding="utf-8")
+        evidence = (ROOT / "docs" / "validation-evidence.md").read_text(encoding="utf-8")
+        sections = {
+            "smoke introduction": smoke.split("\n## ", 1)[0],
+            "smoke summary": smoke.split("## Current v0.9 summary\n", 1)[1].split("\n## ", 1)[0],
+            "candidate": evidence.split("## v0.9 agent-platform candidate\n", 1)[1].split("\n## ", 1)[0],
+            "client boundary": evidence.split("## v0.9 client evidence boundary\n", 1)[1].split("\n## ", 1)[0],
+        }
+        for label, section in sections.items():
+            with self.subTest(section=label):
+                self.assertIn("(client-observations-v0.9.json)", section)
+                self.assertNotIn("client-observations.json", section)
+        errors: list[str] = []
+        validate_current_client_evidence(errors)
+        self.assertEqual([], errors)
+
+    def _current_evidence_errors(self, changes: dict[str, str | None]) -> list[str]:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "docs").mkdir()
+            for name in ("manual-smoke-tests.md", "validation-evidence.md", "client-observations-v0.9.json"):
+                text = changes.get(name, (ROOT / "docs" / name).read_text(encoding="utf-8"))
+                if text is not None:
+                    (root / "docs" / name).write_text(text, encoding="utf-8")
+            errors: list[str] = []
+            with patch("validate_catalog.ROOT", root):
+                validate_current_client_evidence(errors)
+            return errors
+
+    def test_current_evidence_validator_rejects_missing_or_historical_links(self) -> None:
+        targets = (
+            ("manual-smoke-tests.md", "# Manual Cross-Client Smoke Tests"),
+            ("manual-smoke-tests.md", "## Current v0.9 summary"),
+            ("validation-evidence.md", "## v0.9 agent-platform candidate"),
+            ("validation-evidence.md", "## v0.9 client evidence boundary"),
+        )
+        self.assertEqual([], self._current_evidence_errors({}))
+        for name, heading in targets:
+            original = (ROOT / "docs" / name).read_text(encoding="utf-8")
+            section = original.split(heading + "\n", 1)[1].split("\n## ", 1)[0]
+            for replacement in ("client-observations.json", "client-observations-v0.8.json", ""):
+                with self.subTest(document=name, heading=heading, replacement=replacement):
+                    changed = original.replace(section, section.replace("client-observations-v0.9.json", replacement), 1)
+                    errors = self._current_evidence_errors({name: changed})
+                    self.assertTrue(any(f"docs/{name}:" in error and "must link to" in error for error in errors), errors)
+            with self.subTest(document=name, heading=heading, historical_with_current=True):
+                changed = original.replace(section, section + "\nSee `client-observations.json`.\n", 1)
+                errors = self._current_evidence_errors({name: changed})
+                self.assertTrue(any("historical matrix" in error for error in errors), errors)
+            with self.subTest(document=name, heading=heading, missing_section=True):
+                changed = original.replace(heading + "\n" + section, "", 1)
+                self.assertTrue(self._current_evidence_errors({name: changed}))
+
+    def test_current_evidence_validator_requires_current_matrix_and_documents(self) -> None:
+        for name in ("manual-smoke-tests.md", "validation-evidence.md", "client-observations-v0.9.json"):
+            with self.subTest(missing=name):
+                errors = self._current_evidence_errors({name: None})
+                self.assertTrue(any(f"docs/{name}:" in error for error in errors), errors)
+        for field in ("catalog_version", "plugin_version"):
+            with self.subTest(mismatched=field):
+                matrix = json.loads((ROOT / "docs" / "client-observations-v0.9.json").read_text(encoding="utf-8"))
+                matrix[field] = "0.1.0"
+                errors = self._current_evidence_errors({"client-observations-v0.9.json": json.dumps(matrix)})
+                self.assertTrue(any("versions must match 0.9.0" in error for error in errors), errors)
 
     def test_v09_changed_upstreams_have_human_readable_review_records(self) -> None:
         schema = json.loads((ROOT / "catalog" / "upstream-reviews-schema.json").read_text(encoding="utf-8"))

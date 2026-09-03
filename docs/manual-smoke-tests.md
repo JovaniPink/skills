@@ -1,12 +1,12 @@
 # Manual Cross-Client Smoke Tests
 
-The authoritative row-level evidence is `client-observations.json`, validated by `client-observations-schema.json`. It records exact client versions/builds, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference.
+The authoritative row-level evidence for the current v0.9 candidate is the [v0.9 client observation matrix](client-observations-v0.9.json), validated by [the observation schema](client-observations-schema.json). It records exact client versions/builds, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference. Earlier summaries below are historical evidence for their named versions.
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
 ## Current v0.9 summary
 
-The v0.9 candidate source and representative archive are pinned in `client-observations-v0.9.json`. The matrix records only behavior observed on the exact named client version or service surface.
+The v0.9 candidate source and representative archive are pinned in the [v0.9 client observation matrix](client-observations-v0.9.json). The matrix records only behavior observed on the exact named client version or service surface.
 
 | Surface | Passed observations | Failed observations | Blocked observations | Surface status |
 | --- | ---: | ---: | ---: | --- |
@@ -26,7 +26,7 @@ Totals: 6 `pass`, 2 `fail`, 8 `blocked`, 0 `not_supported`, and 0 `not_run`. The
 
 Codex CLI installed all seven plugins, resolved the named agent security skill, and loaded a fact available only in its focused reference. Claude Code CLI discovered all seven plugins and all 76 skills, but its model invocation stopped because authentication had expired. ChatGPT Web and Claude.ai did not contain the new v0.9 skill. Gemini linked all 76 skills in a disposable workspace, but authenticated discovery was not performed. No API credential, new OAuth grant, deployment, release, or production access was created for these tests.
 
-## Current v0.8 summary
+## Historical v0.8 summary
 
 The v0.8 source and representative archive are pinned in `client-observations-v0.8.json`. Each surface has separate installation, discovery, implicit-activation, focused-reference, refusal, update, and removal rows. No receiving-client operation was authorized, so every observation is terminal `blocked` rather than `not_run`.
 
@@ -41,7 +41,7 @@ The v0.8 source and representative archive are pinned in `client-observations-v0
 
 Totals: 0 `pass`, 0 `fail`, 42 `blocked`, 0 `not_supported`, and 0 `not_run`. Strict generated-plugin and archive validation does not establish receiving-client behavior.
 
-## Current v0.6 summary
+## Historical v0.6 summary
 
 The engineering-depth and continuity source commit is pinned in `client-observations-v0.6.json`. Fresh command-line observations were recorded on 2026-08-21 without inferring behavior on another surface.
 
@@ -70,7 +70,7 @@ Blocked v0.6 evidence:
 
 Codex CLI warned that enabled skill descriptions exceeded its discovery-context budget after all five JovaniPink plugins and unrelated plugins were enabled. This is an observed reason to enable only the plugins needed for a task; it is not evidence that a particular skill failed. Other client warnings were not attributed to this catalog without causal evidence.
 
-## Current v0.5 summary
+## Historical v0.5 summary
 
 The reasoning-foundation source commit is pinned in `client-observations-v0.5.json`. All six surface suites have the terminal result `blocked` because the exact v0.5 plugin has not yet been installed and exercised in fresh client sessions.
 
@@ -85,7 +85,7 @@ The reasoning-foundation source commit is pinned in `client-observations-v0.5.js
 
 The focused-reference prompt asks for the native location of `disable-model-invocation` and requires a boundary documented only in the `portable-skill-authoring` client adapter reference. A valid package and generated reference file do not prove that a client loaded it.
 
-## Current v0.4 summary
+## Historical v0.4 summary
 
 The operations and catalog-lifecycle source commit is pinned in `client-observations-v0.4.json`. Fresh local observations were recorded on 2026-08-21 without inferring parity between clients.
 
@@ -115,15 +115,17 @@ Blocked v0.4 evidence:
 
 Codex CLI also emitted a skill-description budget warning when all four catalog plugins and other plugins were enabled. Focused installation or disabling unused plugins is recommended. Other client warnings were recorded but were not attributed to this catalog without causal evidence.
 
-## Current v0.3 summary
+## Historical v0.3 summary
 
 The engineering-quality and stack-profile source commit is pinned in client-observations-v0.3.json. All 34 required rows have the terminal result blocked because no fresh client session was authorized or available during the release run. No v0.3 installation, activation, reference-loading, uninstallation, or parity claim is made.
 
-## Current v0.2 summary
+## Historical v0.2 summary
 
 The engineering lifecycle source commit is pinned in `client-observations-v0.2.json`. All 29 required rows have the terminal result `blocked` because no fresh client session was authorized or available during the release run. No v0.2 client activation, resource-loading, installation, uninstallation, or parity claim is made.
 
-## Current v0.1 summary
+## Historical v0.1 summary
+
+The unversioned [legacy client observation matrix](client-observations.json) records v0.1 observations only. It is not evidence for the current candidate.
 
 | Surface | Version/build | Passed observations | Blocked observations | Surface status |
 | --- | --- | ---: | ---: | --- |
