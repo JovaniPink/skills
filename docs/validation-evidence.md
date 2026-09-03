@@ -4,7 +4,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 
 ## v0.10 research-to-publication candidate
 
-- Source artifact commit: `SOURCE_COMMIT_PENDING`
+- Source artifact commit: `d07a67d495c5271fd752db5682bd0148b93d8e81`
 - Catalog/plugin version: `0.10.0`
 - Date: 2026-09-03
 - Canonical skills: 77 across seven optional plugins; 14 explicit-only skills
