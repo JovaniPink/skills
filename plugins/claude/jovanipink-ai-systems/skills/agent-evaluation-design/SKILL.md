@@ -4,7 +4,7 @@ description: Design an evaluation contract for an AI agent, model-assisted workf
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-ai-systems"
   invocation: "implicit"
   provenance: "original"

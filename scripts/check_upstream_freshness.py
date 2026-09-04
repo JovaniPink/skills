@@ -15,7 +15,16 @@ from urllib.parse import urlparse
 from cataloglib import ROOT, VERSION
 
 
-NORMALIZED_HTML_HOSTS = frozenset({"airc.nist.gov", "trailhead.salesforce.com", "www.drupal.org"})
+NORMALIZED_HTML_HOSTS = frozenset(
+    {
+        "airc.nist.gov",
+        "developers.googleblog.com",
+        "genai.owasp.org",
+        "learn.chatgpt.com",
+        "trailhead.salesforce.com",
+        "www.drupal.org",
+    }
+)
 TRAILING_WHITESPACE_NORMALIZED_URLS = frozenset(
     {"https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"}
 )
@@ -103,7 +112,9 @@ def _fetch_marker(url: str, preferred_kind: str | None = None) -> tuple[str, str
         if preferred_kind is not None:
             return "content-sha256", hashlib.sha256(response.read()).hexdigest()
         if host in NORMALIZED_HTML_HOSTS:
-            return "normalized-content-sha256", _normalized_content_sha256(response.read())
+            return "normalized-content-sha256", _normalized_content_sha256(
+                response.read(), strip_trailing=url in TRAILING_WHITESPACE_NORMALIZED_URLS
+            )
         if etag and not etag.startswith("W/"):
             return "etag", etag
         if last_modified:
@@ -123,6 +134,16 @@ def source_urls() -> list[str]:
         source_url = entry.get("source_url")
         if isinstance(source_url, str):
             urls.add(source_url)
+    reviews = _load(ROOT / "catalog" / "upstream-reviews.json")
+    review_records = reviews.get("reviews", [])
+    if not isinstance(review_records, list):
+        raise ValueError("upstream review records must be an array")
+    for review in review_records:
+        if not isinstance(review, dict):
+            continue
+        review_url = review.get("url")
+        if isinstance(review_url, str):
+            urls.add(review_url)
     return sorted(urls)
 
 

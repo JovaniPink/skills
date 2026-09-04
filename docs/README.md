@@ -1,6 +1,6 @@
 # How to Use JovaniPink Skills
 
-JovaniPink Skills is a public catalog of reusable workflows for Codex, ChatGPT, Claude Code, Claude Desktop, and Claude.ai. The canonical skills follow the open Agent Skills format. Generated plugin packages adapt the same source for each client.
+JovaniPink Skills is a public catalog of reusable workflows for Codex, ChatGPT, Claude Code, Claude Desktop, and Claude.ai. Antigravity CLI is the next planned Google developer-client observation surface after the Codex pilot; Gemini CLI is retained only as historical evidence and a conditional enterprise compatibility surface. The canonical skills follow the open Agent Skills format. Generated plugin packages adapt the same source for each client.
 
 This guide explains how to choose, install, invoke, verify, update, and remove the skills safely.
 
@@ -220,9 +220,9 @@ Use the [manual smoke test record](manual-smoke-tests.md) and [client surface re
 
 ## Keep API and runtime surfaces separate
 
-OpenAI Skills API, Anthropic Skills API, Anthropic Managed Agents, Gemini CLI, and Google ADK runtime skills are distinct products and trust boundaries. A local plugin observation does not prove an API upload, repository mount, managed session, or ADK runtime behavior.
+OpenAI Skills API, Anthropic Skills API, Anthropic Managed Agents, Antigravity CLI, enterprise-only Gemini CLI compatibility, Gemini Managed Agents, and Google ADK runtime skills are distinct products and trust boundaries. A local plugin observation does not prove an API upload, repository mount, managed session, hosted run, or ADK runtime behavior.
 
-Read [Agent Platform Boundaries](agent-platform-boundaries.md) and [Google ADK](google-adk.md) before using skills in an agent application. Runtime ADK observations belong in the separate runtime adapter repository, not in this assistant catalog.
+Read [Agent Platform Boundaries](agent-platform-boundaries.md), [Google agent surfaces](google-agent-surfaces.md), and [Google ADK](google-adk.md) before using skills in an agent application. Runtime ADK observations belong in the separate runtime adapter repository, not in this assistant catalog.
 
 ## Update a local installation
 
@@ -349,6 +349,7 @@ If an action could publish, merge, deploy, delete, send, or change an external s
 - [Claude Skills support](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
 - [Anthropic Skills API guide](https://platform.claude.com/docs/en/build-with-claude/skills-guide)
 - [Anthropic Managed Agents skills](https://platform.claude.com/docs/en/managed-agents/skills)
-- [Gemini CLI Agent Skills](https://geminicli.com/docs/cli/skills/)
+- [Google's Gemini CLI to Antigravity CLI transition](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills/)
 - [Google ADK Agent Skills](https://adk-labs.github.io/adk-docs/skills/)
 - [Repository license](../LICENSE)

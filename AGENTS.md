@@ -1,5 +1,6 @@
 # Repository guidance
 
+- Before changing a subtree, read its applicable subtree `AGENTS.md`; for specialized work, launch from that directory so client instruction loading is observable.
 - Author skills only under `skills/`; regenerate client distributions.
 - Treat `plugins/` as generated output.
 - Do not add private paths, identities, infrastructure contracts, secrets, proprietary text, hooks, MCP servers, broad tool grants, or skill-level executables.

@@ -1,0 +1,115 @@
+{
+  "$schema": "./google-surfaces-schema.json",
+  "catalog_version": "0.10.0",
+  "cross_lane_aggregation": "forbidden",
+  "records": [
+    {
+      "surface": "antigravity-cli",
+      "lane": "primary-google-behavioral-portability",
+      "question": "Does a focused skill treatment improve a clean local Google coding agent?",
+      "evidence_status": "blocked",
+      "evidence_class": "none",
+      "lifecycle_status": "current",
+      "precondition": "codex-pilot-useful-treatment",
+      "evidence_reference": null,
+      "historical_evidence_reference": null,
+      "claim": "No Antigravity runner or behavioral result exists; work is gated on a useful Codex treatment and a clean isolated environment."
+    },
+    {
+      "surface": "gemini-cli-enterprise",
+      "lane": "conditional-enterprise-compatibility",
+      "question": "Does intentionally licensed enterprise Gemini CLI load the selected projection?",
+      "evidence_status": "blocked",
+      "evidence_class": "none",
+      "lifecycle_status": "conditional",
+      "precondition": "applicable-enterprise-license",
+      "evidence_reference": null,
+      "historical_evidence_reference": "docs/client-observations-v0.9.json",
+      "claim": "The historical Gemini CLI 0.56.0 workspace-link observation did not establish licensed enterprise compatibility."
+    },
+    {
+      "surface": "antigravity-desktop",
+      "lane": "manual-observational-parity",
+      "question": "Does a useful CLI treatment remain useful on the visual desktop or IDE surface?",
+      "evidence_status": "blocked",
+      "evidence_class": "none",
+      "lifecycle_status": "current",
+      "precondition": "useful-antigravity-cli-treatment",
+      "evidence_reference": null,
+      "historical_evidence_reference": null,
+      "claim": "Desktop usefulness requires a separate manual observation and is not inferred from CLI behavior."
+    },
+    {
+      "surface": "antigravity-sdk",
+      "lane": "runtime-harness",
+      "question": "Can the selected semantics run safely through Google's Python harness?",
+      "evidence_status": "blocked",
+      "evidence_class": "none",
+      "lifecycle_status": "current",
+      "precondition": "useful-antigravity-cli-treatment",
+      "evidence_reference": null,
+      "historical_evidence_reference": null,
+      "claim": "A shared harness does not make SDK behavior evidence interchangeable with CLI evidence."
+    },
+    {
+      "surface": "gemini-managed-agent",
+      "lane": "hosted-agent",
+      "question": "Can a mounted skill improve a hosted sandboxed agent within a preregistered cost and retention envelope?",
+      "evidence_status": "blocked",
+      "evidence_class": "none",
+      "lifecycle_status": "current",
+      "precondition": "synthetic-public-case-and-cost-authority",
+      "evidence_reference": null,
+      "historical_evidence_reference": null,
+      "claim": "Managed Agents are excluded from the initial quantitative pilot and require separate hosted-environment evidence."
+    },
+    {
+      "surface": "google-adk",
+      "lane": "runtime-compatibility",
+      "question": "Can an immutable reviewed bundle load without expanding tools, identity, permissions, or release authority?",
+      "evidence_status": "blocked",
+      "evidence_class": "documentation",
+      "lifecycle_status": "experimental",
+      "precondition": "separate-jovanipink-adk-evaluation",
+      "evidence_reference": "docs/google-adk.md",
+      "historical_evidence_reference": null,
+      "claim": "Public documentation is not an ADK runtime pass; runtime evidence remains owned by the separate ADK repository."
+    },
+    {
+      "surface": "agents-cli",
+      "lane": "lifecycle-tool",
+      "question": "Can a coding agent safely evaluate or prepare a Google deployment?",
+      "evidence_status": "blocked",
+      "evidence_class": "documentation",
+      "lifecycle_status": "current",
+      "precondition": "explicit-release-authority-for-provider-actions",
+      "evidence_reference": "docs/google-agent-surfaces.md",
+      "historical_evidence_reference": null,
+      "claim": "Evaluation and preparation are separate from infra, deploy, publish, and provider readback authority."
+    },
+    {
+      "surface": "data-agent-kit",
+      "lane": "tool-plugin-compatibility",
+      "question": "Can vendor skills and MCP tools support governed data work without becoming semantic authority?",
+      "evidence_status": "blocked",
+      "evidence_class": "documentation",
+      "lifecycle_status": "preview",
+      "precondition": "separate-reviewed-tool-compatibility-test",
+      "evidence_reference": "docs/google-agent-surfaces.md",
+      "historical_evidence_reference": null,
+      "claim": "Preview vendor tooling cannot define product semantics, registry authority, deployment approval, or evaluation truth."
+    },
+    {
+      "surface": "gemini-enterprise-agent-platform",
+      "lane": "product-runtime",
+      "question": "Can a production application meet its identity, governance, runtime, memory, evaluation, and observability requirements?",
+      "evidence_status": "blocked",
+      "evidence_class": "documentation",
+      "lifecycle_status": "production",
+      "precondition": "product-specific-runtime-evidence",
+      "evidence_reference": "docs/google-agent-surfaces.md",
+      "historical_evidence_reference": null,
+      "claim": "Product and runtime evidence is never blended with skill behavioral evidence."
+    }
+  ]
+}

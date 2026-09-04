@@ -1,69 +1,145 @@
 {
   "$schema": "./skills-schema.json",
-  "catalog_version": "0.9.0",
+  "catalog_version": "0.10.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
       "plugin": "jovanipink-agent-platforms",
       "capability_family": "ai-engineering",
-      "lifecycle_stages": ["design", "review", "operate"],
-      "targets": ["data", "agent", "model", "service"],
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "operate"
+      ],
+      "targets": [
+        "data",
+        "agent",
+        "model",
+        "service"
+      ],
       "risk_class": "read-only",
       "invocation": "implicit",
       "maturity": "candidate",
-      "composes_with": ["context-reliability-review", "retrieval-grounding-quality-review", "agentic-system-security-review"],
-      "conflicts_with": ["context-reliability-review"],
+      "composes_with": [
+        "context-reliability-review",
+        "retrieval-grounding-quality-review",
+        "agentic-system-security-review"
+      ],
+      "conflicts_with": [
+        "context-reliability-review"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {
       "skill": "agent-protocol-interoperability-review",
       "plugin": "jovanipink-agent-platforms",
       "capability_family": "ai-engineering",
-      "lifecycle_stages": ["design", "review", "release"],
-      "targets": ["agent", "service"],
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "release"
+      ],
+      "targets": [
+        "agent",
+        "service"
+      ],
       "risk_class": "read-only",
       "invocation": "implicit",
       "maturity": "candidate",
-      "composes_with": ["api-contract-compatibility-review", "agent-tool-action-boundary-review", "agentic-system-security-review"],
-      "conflicts_with": ["api-contract-compatibility-review"],
+      "composes_with": [
+        "api-contract-compatibility-review",
+        "agent-tool-action-boundary-review",
+        "agentic-system-security-review"
+      ],
+      "conflicts_with": [
+        "api-contract-compatibility-review"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {
       "skill": "agent-tool-action-boundary-review",
       "plugin": "jovanipink-agent-platforms",
       "capability_family": "ai-engineering",
-      "lifecycle_stages": ["design", "review", "release", "operate"],
-      "targets": ["agent", "service", "data"],
+      "lifecycle_stages": [
+        "design",
+        "review",
+        "release",
+        "operate"
+      ],
+      "targets": [
+        "agent",
+        "service",
+        "data"
+      ],
       "risk_class": "read-only",
       "invocation": "implicit",
       "maturity": "candidate",
-      "composes_with": ["application-security-review", "agentic-system-security-review", "operational-readiness-review"],
-      "conflicts_with": ["application-security-review"],
+      "composes_with": [
+        "application-security-review",
+        "agentic-system-security-review",
+        "operational-readiness-review"
+      ],
+      "conflicts_with": [
+        "application-security-review"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {
       "skill": "agentic-system-security-review",
       "plugin": "jovanipink-agent-platforms",
       "capability_family": "ai-engineering",
-      "lifecycle_stages": ["design", "test", "review", "release", "operate"],
-      "targets": ["agent", "model", "service", "data"],
+      "lifecycle_stages": [
+        "design",
+        "test",
+        "review",
+        "release",
+        "operate"
+      ],
+      "targets": [
+        "agent",
+        "model",
+        "service",
+        "data"
+      ],
       "risk_class": "read-only",
       "invocation": "implicit",
       "maturity": "candidate",
-      "composes_with": ["application-security-review", "skill-security-review", "dependency-supply-chain-review"],
-      "conflicts_with": ["application-security-review", "skill-security-review"],
+      "composes_with": [
+        "application-security-review",
+        "skill-security-review",
+        "dependency-supply-chain-review"
+      ],
+      "conflicts_with": [
+        "application-security-review",
+        "skill-security-review"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {
       "skill": "google-adk-engineering-profile",
       "plugin": "jovanipink-agent-platforms",
       "capability_family": "ai-engineering",
-      "lifecycle_stages": ["discover", "design", "build", "test", "review"],
-      "targets": ["code", "repository", "agent", "service"],
+      "lifecycle_stages": [
+        "discover",
+        "design",
+        "build",
+        "test",
+        "review"
+      ],
+      "targets": [
+        "code",
+        "repository",
+        "agent",
+        "service"
+      ],
       "risk_class": "read-only",
       "invocation": "implicit",
       "maturity": "candidate",
-      "composes_with": ["agentic-system-security-review", "agent-evaluation-design", "observability-design"],
+      "composes_with": [
+        "agentic-system-security-review",
+        "agent-evaluation-design",
+        "observability-design"
+      ],
       "conflicts_with": [],
       "maturity_evidence": "evals/cases.json"
     },
@@ -71,13 +147,29 @@
       "skill": "retrieval-grounding-quality-review",
       "plugin": "jovanipink-agent-platforms",
       "capability_family": "ai-engineering",
-      "lifecycle_stages": ["design", "test", "review", "operate"],
-      "targets": ["data", "agent", "model"],
+      "lifecycle_stages": [
+        "design",
+        "test",
+        "review",
+        "operate"
+      ],
+      "targets": [
+        "data",
+        "agent",
+        "model"
+      ],
       "risk_class": "read-only",
       "invocation": "implicit",
       "maturity": "candidate",
-      "composes_with": ["agent-evaluation-design", "context-reliability-review", "source-grounded-research"],
-      "conflicts_with": ["source-grounded-research", "source-output-conformance-audit"],
+      "composes_with": [
+        "agent-evaluation-design",
+        "context-reliability-review",
+        "source-grounded-research"
+      ],
+      "conflicts_with": [
+        "source-grounded-research",
+        "source-output-conformance-audit"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {

@@ -53,7 +53,7 @@ claude plugin install jovanipink-skills@jovanipink-skills --scope user
 claude plugin list --json
 ```
 
-Gemini CLI uses its own Agent Skills scopes and `/skills` commands. Follow the current [Gemini CLI Agent Skills documentation](https://geminicli.com/docs/cli/skills/) and record that surface separately.
+Antigravity CLI is the primary future Google developer-client surface for individuals. Gemini CLI remains a conditional enterprise compatibility surface after Google's transition. Do not install or test either client through this quickstart; follow the [Google agent surface boundaries](google-agent-surfaces.md) and record each exact surface separately.
 
 Start a fresh session after installation.
 

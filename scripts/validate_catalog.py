@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import zipfile
 from pathlib import Path, PurePosixPath
 
@@ -342,6 +343,18 @@ def validate_provenance(errors: list[str]) -> None:
                 )
 
 
+def profile_measurement_surface_errors(profile: dict[str, object]) -> list[str]:
+    """Return errors when discovery measurements do not exactly cover target surfaces."""
+
+    target_surfaces = profile.get("target_surfaces", [])
+    measurements = profile.get("discovery_measurements", {})
+    if not isinstance(target_surfaces, list) or not isinstance(measurements, dict):
+        return ["discovery measurements must be an object keyed by target surfaces"]
+    if set(measurements) != set(target_surfaces):
+        return ["discovery measurements must match target surfaces"]
+    return []
+
+
 def validate_auxiliary_records(errors: list[str]) -> None:
     roadmap = _validate_json_schema(
         ROOT / "incubator" / "roadmap.json",
@@ -361,6 +374,9 @@ def validate_auxiliary_records(errors: list[str]) -> None:
     for document_name, schema_name in (
         ("catalog/skills.json", "catalog/skills-schema.json"),
         ("catalog/packs.json", "catalog/packs-schema.json"),
+        ("catalog/profiles.json", "catalog/profiles-schema.json"),
+        ("catalog/google-surfaces.json", "catalog/google-surfaces-schema.json"),
+        ("catalog/evidence.json", "catalog/evidence-schema.json"),
         ("catalog/upstream-reviews.json", "catalog/upstream-reviews-schema.json"),
         ("catalog/deprecations.json", "catalog/deprecations-schema.json"),
         ("catalog/revocations.json", "catalog/revocations-schema.json"),
@@ -452,6 +468,108 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                 if recipe.get("budget_status") != expected_status:
                     errors.append(f"catalog/packs.json: recipe {recipe_id} budget status is stale")
 
+    profiles = _load_json(ROOT / "catalog" / "profiles.json", errors)
+    if isinstance(profiles, dict):
+        profile_ids: set[str] = set()
+        for profile in profiles.get("profiles", []):
+            if not isinstance(profile, dict):
+                continue
+            profile_id = profile.get("id")
+            if profile_id in profile_ids:
+                errors.append(f"catalog/profiles.json: duplicate profile {profile_id}")
+            if isinstance(profile_id, str):
+                profile_ids.add(profile_id)
+            profile_skills = profile.get("skills", [])
+            unknown = sorted(set(profile_skills) - set(SKILLS)) if isinstance(profile_skills, list) else []
+            if unknown:
+                errors.append(f"catalog/profiles.json: profile {profile_id} has unknown skills {unknown}")
+                continue
+            if isinstance(profile_skills, list):
+                expected_size = sum(
+                    len(read_skill_metadata(ROOT / "skills" / skill)["description"])
+                    for skill in profile_skills
+                )
+                measurements = profile.get("discovery_measurements", {})
+                for target_surface in profile.get("target_surfaces", []):
+                    measurement = measurements.get(target_surface, {}) if isinstance(measurements, dict) else {}
+                    if measurement.get("description_characters") != expected_size:
+                        errors.append(
+                            f"catalog/profiles.json: profile {profile_id} has stale {target_surface} description size"
+                        )
+                for error in profile_measurement_surface_errors(profile):
+                    errors.append(f"catalog/profiles.json: profile {profile_id} {error}")
+                surface_evidence = profile.get("surface_evidence", {})
+                if isinstance(surface_evidence, dict) and set(surface_evidence) != set(profile.get("target_surfaces", [])):
+                    errors.append(
+                        f"catalog/profiles.json: profile {profile_id} surface evidence must match target surfaces"
+                    )
+            behavioral = profile.get("behavioral_evidence", {})
+            if isinstance(behavioral, dict):
+                status = behavioral.get("status")
+                version = behavioral.get("observed_against_version")
+                observed_at = behavioral.get("observed_at")
+                reference = behavioral.get("evidence_reference")
+                if status == "none" and any(value is not None for value in (version, observed_at, reference)):
+                    errors.append(f"catalog/profiles.json: profile {profile_id} none evidence must be empty")
+                if status in {"partial", "verified"}:
+                    if any(value is None for value in (version, observed_at, reference)):
+                        errors.append(f"catalog/profiles.json: profile {profile_id} {status} evidence is incomplete")
+                    elif not (ROOT / str(reference)).is_file():
+                        errors.append(f"catalog/profiles.json: profile {profile_id} evidence reference is missing")
+
+    evidence_catalog = _load_json(ROOT / "catalog" / "evidence.json", errors)
+    if isinstance(evidence_catalog, dict):
+        evidence_records = evidence_catalog.get("skills", [])
+        evidence_names = [
+            skill_name
+            for record in evidence_records
+            if isinstance(record, dict) and isinstance((skill_name := record.get("skill")), str)
+        ]
+        if sorted(evidence_names) != list(SKILLS):
+            errors.append("catalog/evidence.json: expected one record for every active skill")
+        if len(evidence_names) != len(set(evidence_names)):
+            errors.append("catalog/evidence.json: duplicate skill records")
+        for record in evidence_records:
+            if not isinstance(record, dict) or record.get("skill") not in SKILLS:
+                continue
+            skill = record["skill"]
+            evidence_path = ROOT / str(record.get("workflow_maturity_evidence", ""))
+            if not evidence_path.is_file():
+                errors.append(f"catalog/evidence.json: {skill} workflow maturity evidence is missing")
+            behavioral = record.get("behavioral_evidence", {})
+            if not isinstance(behavioral, dict):
+                continue
+            status = behavioral.get("status")
+            version = behavioral.get("verified_against_version")
+            observed_at = behavioral.get("observed_at")
+            if status == "none" and (version is not None or observed_at is not None):
+                errors.append(f"catalog/evidence.json: {skill} none evidence must not claim a version or date")
+            if status in {"partial", "verified"} and (version is None or observed_at is None):
+                errors.append(f"catalog/evidence.json: {skill} {status} evidence needs a version and date")
+
+    google_surfaces = _load_json(ROOT / "catalog" / "google-surfaces.json", errors)
+    if isinstance(google_surfaces, dict):
+        records = google_surfaces.get("records", [])
+        surface_names = [
+            surface
+            for record in records
+            if isinstance(record, dict) and isinstance((surface := record.get("surface")), str)
+        ] if isinstance(records, list) else []
+        if len(surface_names) != len(set(surface_names)):
+            errors.append("catalog/google-surfaces.json: duplicate surface records")
+        for record in records if isinstance(records, list) else []:
+            if not isinstance(record, dict):
+                continue
+            for field in ("evidence_reference", "historical_evidence_reference"):
+                reference = record.get(field)
+                if isinstance(reference, str) and not (ROOT / reference).is_file():
+                    errors.append(
+                        f"catalog/google-surfaces.json: {record.get('surface')} {field} is missing"
+                    )
+        forbidden_metric_keys = {"aggregate", "success_rate", "blended_success_rate", "cross_agent_success_rate"}
+        if forbidden_metric_keys.intersection(google_surfaces):
+            errors.append("catalog/google-surfaces.json: blended cross-lane metrics are forbidden")
+
     reviews = _load_json(ROOT / "catalog" / "upstream-reviews.json", errors)
     if isinstance(reviews, dict):
         review_urls: set[str] = set()
@@ -515,6 +633,12 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             )
         if surfaces != expected_surfaces:
             errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
+        for record in records:
+            if isinstance(record, dict) and record.get("surface") == "Gemini CLI":
+                if record.get("evidence_scope") != "historical":
+                    errors.append(
+                        f"{observation_path.relative_to(ROOT)}: Gemini CLI evidence must be labeled historical"
+                    )
         source_commit = observations.get("tested_source_commit")
         if any(record.get("source_commit") != source_commit for record in records if isinstance(record, dict)):
             errors.append(f"{observation_path.relative_to(ROOT)}: every row must reference the tested source commit")
@@ -527,6 +651,25 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         actual_summary["total"] = len(records)
         if observations.get("summary") != actual_summary:
             errors.append(f"{observation_path.relative_to(ROOT)}: summary counts do not reconcile with records")
+
+    active_google_guidance = (
+        ROOT / "README.md",
+        ROOT / "docs" / "README.md",
+        ROOT / "docs" / "quickstart.md",
+        ROOT / "docs" / "architecture.md",
+        ROOT / "docs" / "choose-your-skills.md",
+        ROOT / "docs" / "client-surface-research.md",
+        ROOT / "docs" / "agent-platform-boundaries.md",
+        ROOT / "docs" / "google-adk.md",
+        ROOT / "docs" / "google-agent-surfaces.md",
+    )
+    qualifier = re.compile(r"Antigravity|enterprise|historical|transition|conditional", re.IGNORECASE)
+    for path in active_google_guidance:
+        for paragraph in path.read_text(encoding="utf-8").split("\n\n"):
+            if "Gemini CLI" in paragraph and qualifier.search(paragraph) is None:
+                errors.append(
+                    f"{path.relative_to(ROOT)}: Gemini CLI guidance needs an Antigravity transition or enterprise qualification"
+                )
 
 
 def validate_generated_adapters(errors: list[str]) -> None:
@@ -647,6 +790,123 @@ def validate_packages(errors: list[str]) -> None:
                     errors.append(f"{archive_path.name}: Claude.ai package contains Codex interface {name}")
 
 
+def _git_output(root: Path, arguments: list[str]) -> bytes:
+    completed = subprocess.run(
+        ["git", *arguments],
+        cwd=root,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if completed.returncode != 0:
+        detail = completed.stderr.decode("utf-8", errors="replace").strip()
+        raise ValueError(detail or f"git {' '.join(arguments)} failed")
+    return completed.stdout
+
+
+def _source_artifact_digest(root: Path, source_commit: str, relative: str, kind: str) -> str:
+    if not relative or relative.startswith("/") or ".." in PurePosixPath(relative).parts:
+        raise ValueError("artifact path must be a repository-relative path")
+    object_name = f"{source_commit}:{relative}"
+    object_type = _git_output(root, ["cat-file", "-t", object_name]).decode("utf-8").strip()
+    if kind != "tree":
+        if object_type != "blob":
+            raise ValueError(f"source artifact {relative} must be a blob")
+        return hashlib.sha256(_git_output(root, ["cat-file", "blob", object_name])).hexdigest()
+    if object_type != "tree":
+        raise ValueError(f"source artifact {relative} must be a tree")
+    listing = _git_output(root, ["ls-tree", "-r", "-z", source_commit, "--", relative])
+    prefix = f"{relative.rstrip('/')}/".encode("utf-8")
+    hashes: dict[str, str] = {}
+    for record in listing.split(b"\0"):
+        if not record:
+            continue
+        metadata, raw_path = record.split(b"\t", 1)
+        _, entry_type, object_id = metadata.split()
+        if entry_type != b"blob" or not raw_path.startswith(prefix):
+            raise ValueError(f"source tree {relative} has an unexpected entry")
+        child = raw_path[len(prefix):].decode("utf-8")
+        hashes[child] = hashlib.sha256(
+            _git_output(root, ["cat-file", "blob", object_id.decode("ascii")])
+        ).hexdigest()
+    rendered = json.dumps(hashes, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+
+
+def release_manifest_source_errors(document: dict[str, object], root: Path = ROOT) -> list[str]:
+    """Return source-history and source-byte errors for a release manifest."""
+
+    source_commit = document.get("source_commit")
+    if not isinstance(source_commit, str):
+        return ["source commit is missing or malformed"]
+    try:
+        _git_output(root, ["cat-file", "-e", f"{source_commit}^{{commit}}"])
+    except ValueError as error:
+        return [f"source commit is unavailable: {error}"]
+    try:
+        _git_output(root, ["merge-base", "--is-ancestor", source_commit, "HEAD"])
+    except ValueError:
+        return ["source commit is not an ancestor of the submitted HEAD"]
+
+    artifacts = document.get("artifacts")
+    if not isinstance(artifacts, list):
+        return ["artifacts must be a list"]
+    errors: list[str] = []
+    for artifact in artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        relative = artifact.get("path")
+        kind = artifact.get("kind")
+        expected = artifact.get("sha256")
+        if not isinstance(relative, str) or not isinstance(kind, str) or not isinstance(expected, str):
+            continue
+        try:
+            source_digest = _source_artifact_digest(root, source_commit, relative, kind)
+        except ValueError as error:
+            errors.append(f"source artifact {relative} is unavailable or invalid: {error}")
+            continue
+        if source_digest != expected:
+            errors.append(f"source checksum drift for {relative}")
+    return errors
+
+
+def release_manifest_current_errors(document: dict[str, object], root: Path = ROOT) -> list[str]:
+    """Return current-tree byte errors for a release manifest."""
+
+    artifacts = document.get("artifacts")
+    if not isinstance(artifacts, list):
+        return ["artifacts must be a list"]
+    errors: list[str] = []
+    for artifact in artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        relative = artifact.get("path")
+        kind = artifact.get("kind")
+        expected = artifact.get("sha256")
+        if not isinstance(relative, str) or not isinstance(kind, str) or not isinstance(expected, str):
+            continue
+        if not relative or relative.startswith("/") or ".." in PurePosixPath(relative).parts:
+            errors.append(f"current artifact {relative} has an invalid path")
+            continue
+        path = root / relative
+        if kind == "tree":
+            if not path.is_dir():
+                errors.append(f"missing artifact {relative}")
+                continue
+            from cataloglib import directory_hashes
+
+            rendered = json.dumps(directory_hashes(path), sort_keys=True, separators=(",", ":"))
+            digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+        elif path.is_file():
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        else:
+            errors.append(f"missing artifact {relative}")
+            continue
+        if expected != digest:
+            errors.append(f"current checksum drift for {relative}")
+    return errors
+
+
 def validate_release_manifest(errors: list[str]) -> None:
     manifest = ROOT / "releases" / VERSION / "manifest.json"
     if not manifest.is_file():
@@ -655,23 +915,12 @@ def validate_release_manifest(errors: list[str]) -> None:
     document = _validate_json_schema(manifest, ROOT / "releases" / "manifest-schema.json", errors)
     if not isinstance(document, dict):
         return
-    for artifact in document.get("artifacts", []):
-        if not isinstance(artifact, dict):
-            continue
-        path = ROOT / str(artifact.get("path", ""))
-        kind = artifact.get("kind")
-        if kind == "tree":
-            from cataloglib import directory_hashes
-
-            rendered = json.dumps(directory_hashes(path), sort_keys=True, separators=(",", ":"))
-            digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
-        elif path.is_file():
-            digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        else:
-            errors.append(f"{manifest.relative_to(ROOT)}: missing artifact {artifact.get('path')}")
-            continue
-        if artifact.get("sha256") != digest:
-            errors.append(f"{manifest.relative_to(ROOT)}: checksum drift for {artifact.get('path')}")
+    if document.get("catalog_version") != VERSION:
+        errors.append(f"{manifest.relative_to(ROOT)}: catalog version does not match {VERSION}")
+    for error in release_manifest_source_errors(document):
+        errors.append(f"{manifest.relative_to(ROOT)}: {error}")
+    for error in release_manifest_current_errors(document):
+        errors.append(f"{manifest.relative_to(ROOT)}: {error}")
 
 
 def validate_all(require_packages: bool = True) -> list[str]:

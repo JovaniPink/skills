@@ -53,6 +53,6 @@ Skills provide judgment, sequencing, and reporting structure. Deterministic requ
 6. Record each client surface's observed behavior.
 7. Release only when automated and required manual evidence is complete.
 
-API-managed skills and runtime-agent skills have separate compatibility and security records. OpenAI Skills API, Anthropic Skills API, Anthropic Managed Agents, Gemini CLI, and Google ADK runtime behavior are not inferred from local Codex or Claude plugin output. ADK runtime skills belong to the separate runtime-adapter repository and private product overlays.
+API-managed skills and runtime-agent skills have separate compatibility and security records. OpenAI Skills API, Anthropic Skills API, Anthropic Managed Agents, Antigravity CLI, conditional enterprise Gemini CLI, Gemini Managed Agents, and Google ADK runtime behavior are not inferred from local Codex or Claude plugin output. ADK runtime skills belong to the separate runtime-adapter repository and private product overlays.
 
 Unready work remains in `incubator/`. Retired skills move to `deprecated/` with a migration notice and are removed from generated catalogs.

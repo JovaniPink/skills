@@ -4,11 +4,11 @@ Portable, evidence-oriented agent skills for software delivery, research, operat
 
 This repository is an independent MIT-licensed work. It does not redistribute proprietary skill text. Public skills remain separate from private, repository-local overlays.
 
-Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets.
+Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets. The [behavioral evidence model](docs/behavioral-evidence-model.md) separates workflow maturity, observed client behavior, and runtime eligibility. The [daily agent operating model](docs/daily-agent-operating-model.md) supplies trust profiles and a compact ChatGPT-to-Codex handoff contract. The [Google agent surfaces](docs/google-agent-surfaces.md) record keeps Antigravity, Gemini enterprise compatibility, hosted agents, ADK, and lifecycle tooling in separate lanes.
 
 ## Catalog
 
-The catalog is split into focused plugins so clients can discover only the workflows a user installs.
+Plugins are distribution units. Skill-level profiles are activation and discovery units. The catalog keeps both because installing a plugin and exposing every skill in that plugin are different decisions.
 
 ### `jovanipink-skills`
 
@@ -66,7 +66,7 @@ Three optional AI-reliability workflows cover agent evaluation design, assertion
 
 ### `jovanipink-agent-platforms`
 
-Six optional human-facing workflows cover Google ADK engineering, agent context and memory, tool and action boundaries, protocol interoperability, agentic-system security, and retrieval-grounding quality. They help people review agent systems through ChatGPT, Codex, Claude, and Gemini CLI. They are not runtime skill bundles, do not register tools, and do not authorize authentication, infrastructure, release, or deployment.
+Six optional human-facing workflows cover Google ADK engineering, agent context and memory, tool and action boundaries, protocol interoperability, agentic-system security, and retrieval-grounding quality. They help people review agent systems through ChatGPT, Codex, Claude, and Antigravity CLI; Gemini CLI is a conditional enterprise compatibility surface after Google's individual-user transition. They are not runtime skill bundles, do not register tools, and do not authorize authentication, infrastructure, release, or deployment.
 
 ## Repository model
 
@@ -76,7 +76,7 @@ Six optional human-facing workflows cover Google ADK engineering, agent context 
 - `evals/` contains trigger and safety cases.
 - `provenance/catalog.json` records primary format or correctness authorities and the Jovani-authored implementation boundary for every skill.
 - `scripts/` contains standard-library-only generation, packaging, and catalog validation, plus a locked PyYAML gate for GitHub Actions workflow syntax.
-- `catalog/` contains strict taxonomy, pack, recipe, compatibility, deprecation, revocation, upstream-review, and upstream-pinning records.
+- `catalog/` contains strict taxonomy, pack, recipe, profile, compatibility, behavioral-evidence, deprecation, revocation, upstream-review, and upstream-pinning records.
 - `releases/` contains exact-source release manifests and artifact checksums.
 
 Do not hand-edit generated plugin trees. Change the canonical skill, then run:
@@ -121,4 +121,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The v0.9 candidate contains 77 skills across seven focused plugins. It adds a faceted catalog, measured plugin packs and small recipes, complete evaluation records, six human-facing agent-platform workflows, a source-to-publication lifecycle router, current API and Google ADK boundaries, and human-readable review records for changed upstream authorities. Automated validation and exact-package client observations remain separate acceptance evidence. Public-directory submission, runtime deployment, and cross-client parity claims remain deferred.
+The v0.10 candidate contains 77 skills across seven focused plugins. It records workflow maturity separately from behavioral evidence, client compatibility, and runtime eligibility, and includes an experimental seven-skill Delivery TypeScript activation profile. No valid behavioral result currently supports the profile; the corrected isolated Codex pilot remains pending. Automated validation, Codex behavior, Work/Desktop observations, Claude portability, and ADK runtime compatibility remain separate evidence lanes.

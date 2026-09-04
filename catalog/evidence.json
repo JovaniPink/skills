@@ -1,0 +1,853 @@
+{
+  "$schema": "./evidence-schema.json",
+  "catalog_version": "0.10.0",
+  "skills": [
+    {
+      "skill": "agent-context-state-memory-design",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "agent-protocol-interoperability-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "agent-tool-action-boundary-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "agentic-system-security-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "google-adk-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "retrieval-grounding-quality-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "acceptance-evidence-ledger",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "accessibility-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "adobe-aem-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "agent-evaluation-design",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "alignment-interview",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "api-contract-compatibility-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "application-security-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "authority-boundary-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "change-adoption-planning",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "change-impact-analysis",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "claim-verification",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "code-change-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "codebase-explanation",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "context-reliability-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "cross-capability-dependency-mapping",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "cross-stack-quality-gates",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "csharp-dotnet-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "data-authority-migration-ratification",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "data-migration-readiness",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "decision-evidence-trace",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "decision-governance-records",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "dependency-supply-chain-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "design-rationale-investigation",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "domain-vocabulary-modeling",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "finish-development-branch",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "go-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "guided-configuration",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "high-signal-technical-writing",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "implementation-planning",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "iteration-postlaunch-learning",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "java-spring-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "kpi-outcome-measurement",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "merge-conflict-reconciliation",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "module-interface-design",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "multi-agent-orchestration",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "observability-design",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "operational-readiness-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "performance-scalability-diagnosis",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "php-drupal-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "plan-execution",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "portable-skill-authoring",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "postgresql-sql-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "prelaunch-readiness",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "problem-framing",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "production-incident-analysis",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "prototype-spike",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "public-private-boundary-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "publish-change-safely",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "python-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "request-code-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "requirements-synthesis",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "respond-to-code-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "research-to-publication-lifecycle",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "salesforce-apex-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "skill-import-provenance",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "skill-security-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "source-grounded-research",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "source-output-conformance-audit",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "stakeholder-technical-communication",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "swift-swiftui-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "systematic-diagnosis",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "task-handoff",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "terraform-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "test-driven-change",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "test-quality-review",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "test-strategy",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "typescript-javascript-engineering-profile",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "value-attribution-evidence-maturity",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "workflow-retrospective",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "workshop-planning-synthesis",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "worktree-isolation",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    }
+  ]
+}

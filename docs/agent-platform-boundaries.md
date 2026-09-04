@@ -4,7 +4,7 @@ This project separates skills used by people from skills loaded inside a product
 
 ```text
 Jovani and developers
-    -> ChatGPT, Codex, Claude, or Gemini CLI
+    -> ChatGPT, Codex, Claude, or Antigravity CLI
     -> JovaniPink/skills
     -> Research, planning, engineering, and business workflows
 
@@ -57,7 +57,9 @@ Do not infer API behavior from a desktop or CLI observation.
 - OpenAI Skills API manages project skills and immutable versions. Its evidence belongs to an API-specific compatibility row.
 - Anthropic Skills API manages custom skills for API use. Messages API skills use a code-execution container and have their own data-retention and beta requirements.
 - Anthropic Managed Agents can attach skills or discover repository-mounted skills in a managed session. Its trust and permission model differs from Claude Code and Claude.ai.
-- Gemini CLI discovers local Agent Skills through its own scope and command model.
+- Antigravity CLI is the primary future Google developer-client lane for individuals. Historical Gemini CLI observations do not establish Antigravity behavior.
+- Gemini CLI Enterprise is a conditional compatibility lane requiring an intentionally in-scope enterprise license and its own observation.
+- Antigravity Desktop, Antigravity SDK, and Gemini Managed Agents each require separate evidence.
 - Google ADK runtime skills execute inside an application-owned agent runtime and belong to the separate ADK repository's test matrix.
 
 ## Primary resources
@@ -65,7 +67,8 @@ Do not infer API behavior from a desktop or CLI observation.
 - [OpenAI Skills API](https://developers.openai.com/api/reference/go/resources/skills)
 - [Anthropic Skills API guide](https://platform.claude.com/docs/en/build-with-claude/skills-guide)
 - [Anthropic Managed Agents skills](https://platform.claude.com/docs/en/managed-agents/skills)
-- [Gemini CLI Agent Skills](https://geminicli.com/docs/cli/skills/)
+- [Google's Gemini CLI to Antigravity CLI transition](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills/)
 - [ADK Agent Skills](https://adk-labs.github.io/adk-docs/skills/)
 - [OWASP Agentic Security Initiative](https://genai.owasp.org/initiatives/agentic-security-initiative/)
 - [NIST identity and authorization for software agents](https://www.nist.gov/news-events/news/2026/02/new-concept-paper-identity-and-authority-software-agents)

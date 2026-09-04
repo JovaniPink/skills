@@ -1,6 +1,6 @@
 # Client Surface Research
 
-Reviewed: 2026-08-25
+Reviewed: 2026-09-04
 
 This note separates documented product support from observed installation and invocation behavior. It does not claim parity between clients, APIs, or runtimes.
 
@@ -53,15 +53,19 @@ Primary sources:
 - Anthropic, [Using Agent Skills with the API](https://platform.claude.com/docs/en/build-with-claude/skills-guide), reviewed 2026-08-25.
 - Anthropic, [Managed Agents skills](https://platform.claude.com/docs/en/managed-agents/skills), reviewed 2026-08-25.
 
-## Gemini CLI
+## Antigravity CLI and enterprise Gemini CLI
 
-Gemini CLI supports Agent Skills with local scopes and `/skills` management commands. A Gemini CLI row must record the exact CLI version, scope, source revision, discovery, activation, focused-reference loading, and removal result.
+Google transitioned individual free, Google AI Pro, and Google AI Ultra users from Gemini CLI to Antigravity CLI. Antigravity CLI is therefore the primary future Google developer-client key. Gemini CLI remains a conditional compatibility surface for intentionally licensed Gemini Code Assist Standard or Enterprise and paid Agent Platform use.
 
-Gemini CLI is a developer-assistant surface. It is not evidence for an ADK application runtime.
+The repository preserves its Gemini CLI 0.56.0 rows as historical evidence for that exact package and workspace-link observation. Those rows do not establish current individual guidance or enterprise compatibility. A future Antigravity row must record the exact `agy` version and binary digest, model and effort, clean configuration home, source revision, discovery, activation, focused-reference loading, permissions, sandbox, network policy, normalized terminal and tool events, and removal result. Exit code zero alone is insufficient when a permission denial can be soft-denied while execution continues.
 
-Primary source:
+The seven-skill Delivery TypeScript profile is blocked on Antigravity. Current documentation establishes implicit discovery and slash invocation, but this review found no verified equivalent of Codex's or Claude's explicit-only model-invocation control for `publish-change-safely`. Successful file copying would not prove preservation of that boundary.
 
-- Google, [Gemini CLI Agent Skills](https://geminicli.com/docs/cli/skills/), reviewed 2026-08-25.
+Primary sources:
+
+- Google, [Gemini CLI to Antigravity CLI transition](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/), reviewed 2026-09-04.
+- Google, [Antigravity Agent Skills](https://antigravity.google/docs/skills/), reviewed 2026-09-04.
+- Google, [Antigravity headless mode](https://antigravity.google/docs/cli/headless/), reviewed 2026-09-04.
 
 ## Google ADK runtime
 
@@ -77,4 +81,4 @@ Primary source:
 
 Generated plugin and archive validation does not establish receiving-client behavior. Repository-mounted or uploaded skills are instructions inside a host trust boundary. Review exact content before installation, use the smallest useful pack, start a fresh session, and record each surface separately.
 
-No API credential, model call, cloud deployment, marketplace publication, or runtime ADK operation is part of deterministic repository validation.
+No Antigravity or Gemini installation, API credential, model call, cloud deployment, marketplace publication, or runtime ADK operation is part of deterministic repository validation.

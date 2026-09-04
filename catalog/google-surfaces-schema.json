@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["$schema", "catalog_version", "cross_lane_aggregation", "records"],
+  "properties": {
+    "$schema": {"const": "./google-surfaces-schema.json"},
+    "catalog_version": {"const": "0.10.0"},
+    "cross_lane_aggregation": {"const": "forbidden"},
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "surface",
+          "lane",
+          "question",
+          "evidence_status",
+          "evidence_class",
+          "lifecycle_status",
+          "precondition",
+          "evidence_reference",
+          "historical_evidence_reference",
+          "claim"
+        ],
+        "properties": {
+          "surface": {
+            "enum": [
+              "antigravity-cli",
+              "gemini-cli-enterprise",
+              "antigravity-desktop",
+              "antigravity-sdk",
+              "gemini-managed-agent",
+              "google-adk",
+              "agents-cli",
+              "data-agent-kit",
+              "gemini-enterprise-agent-platform"
+            ]
+          },
+          "lane": {
+            "enum": [
+              "primary-google-behavioral-portability",
+              "conditional-enterprise-compatibility",
+              "manual-observational-parity",
+              "runtime-harness",
+              "hosted-agent",
+              "runtime-compatibility",
+              "lifecycle-tool",
+              "tool-plugin-compatibility",
+              "product-runtime"
+            ]
+          },
+          "question": {"type": "string", "minLength": 1},
+          "evidence_status": {"enum": ["pass", "observed", "failed", "blocked", "stale"]},
+          "evidence_class": {"enum": ["automated", "manual", "documentation", "historical", "none"]},
+          "lifecycle_status": {"enum": ["current", "conditional", "preview", "experimental", "production"]},
+          "precondition": {"type": ["string", "null"], "minLength": 1},
+          "evidence_reference": {"type": ["string", "null"], "pattern": "^docs/[A-Za-z0-9._/-]+$"},
+          "historical_evidence_reference": {"type": ["string", "null"], "pattern": "^docs/[A-Za-z0-9._/-]+$"},
+          "claim": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
