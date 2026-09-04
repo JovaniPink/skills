@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.10.0",
-  "source_commit": "5d28b0c39750f93e2e950a42001fa7ec30b6a716",
+  "source_commit": "5372fb86679690041215d0e2175ab3c301ce2bee",
   "created_on": "2026-09-04",
   "artifacts": [
     {
@@ -42,7 +42,7 @@
     {
       "kind": "file",
       "path": "catalog/profiles.json",
-      "sha256": "a57006e30409a276337065fd6d43c07b92f22443b9f76051c37094129c11799b"
+      "sha256": "9eb5941f14331c58115767999ee8932a188f6526db939fe93accc2683e5e9d66"
     },
     {
       "kind": "file",
