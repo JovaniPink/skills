@@ -4,7 +4,7 @@
   "required": ["$schema", "catalog_version", "budget_warning_characters", "budget_limit_characters", "plugin_packs", "recipes"],
   "properties": {
     "$schema": {"const": "./packs-schema.json"},
-    "catalog_version": {"const": "0.9.0"},
+    "catalog_version": {"const": "0.10.0"},
     "budget_warning_characters": {"const": 6000},
     "budget_limit_characters": {"const": 8000},
     "plugin_packs": {

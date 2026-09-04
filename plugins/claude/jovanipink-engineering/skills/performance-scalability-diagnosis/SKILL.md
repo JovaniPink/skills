@@ -4,7 +4,7 @@ description: Diagnose latency, throughput, resource, contention, and scalability
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.9.0"
+  version: "0.10.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"

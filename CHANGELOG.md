@@ -4,12 +4,25 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-09-04
+
 ### Added
 
+- Orthogonal workflow-maturity, behavioral-evidence, client-compatibility, and runtime-eligibility records.
+- Skill-level activation profiles with surface-specific discovery measurements.
+- Scoped Codex and Claude repository instruction projections.
+- A deliberately generalized public finding from one synthetic baseline-versus-focused Codex comparison.
 - Deterministic local PyYAML validation for GitHub Actions workflow syntax, including regression tests for the v0.9 unquoted `--only-binary=:all:` failure, invalid document roots, and parser dependency drift.
+
+### Changed
+
+- Plugins remain distribution units while profiles become activation and discovery units.
+- The seven-skill Delivery TypeScript profile remains experimental and non-default after a neutral public synthetic case.
 
 ### Security
 
+- Raw traces, private prompts, product case IDs, exact private failures, and product architecture remain outside the public catalog.
+- Client behavior and ADK runtime compatibility are recorded in separate evidence lanes.
 - PyYAML and its type information are exact-versioned, SHA-256 locked for the Linux CI runner, and reconciled with reviewed dependency provenance.
 
 ## [0.8.0] - 2026-08-23

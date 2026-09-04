@@ -2,6 +2,32 @@
 
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
+## v0.10 behavioral-evidence candidate
+
+- Catalog/plugin version: `0.10.0`
+- Date: 2026-09-04
+- Canonical skills: 77 across seven optional plugins
+- Generated artifacts: 77 Codex projections, 77 Claude projections, and 77 deterministic Claude.ai archives
+- Evidence model: workflow maturity, behavioral evidence, client compatibility, and runtime eligibility remain orthogonal
+- Profile decision: the seven-skill Delivery TypeScript profile remains experimental and non-default after one neutral public synthetic case
+- Acceptance: PARTIAL. Repository and package validation pass; the preregistered 12-case behavioral pilot, blinded human review, second-environment reproduction, Work/Desktop observations, and Claude portability remain incomplete.
+
+## v0.10 automated checks
+
+- `python3 scripts/build_distributions.py --check`: PASS - all seven Codex and Claude plugin trees and both marketplace records match canonical sources
+- `python3 scripts/package_claude_ai.py`: PASS - 77 deterministic, individually nested Claude.ai ZIPs generated with SHA-256 checksums
+- `python3 scripts/check_workflows.py`: PASS - both GitHub Actions workflows parse with locked PyYAML 6.0.3
+- `python3 scripts/check_public_boundary.py`: PASS - public canonical, documentation, generated, and packaged surfaces contain no private lab or product evidence
+- `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed originality checks
+- `python3 scripts/check_repository_independence.py`: PASS - repository references remain within reviewed policy
+- `python3 scripts/validate.py`: PASS - schemas, links, invocation mappings, provenance, packages, current release manifest, generated drift, fixtures, and policy records
+- `python3 -m unittest discover -s tests -v`: PASS - 60 regression tests
+- `git diff --check`: PASS
+
+## v0.10 evidence boundary
+
+One public synthetic Codex case has partial behavioral evidence against exact v0.9.0 skill bytes. It does not isolate any individual skill, establish a default profile, complete the preregistered pilot, prove Work/Desktop or Claude behavior, or establish ADK runtime eligibility. No private product case, prompt, raw trace, repository name, architecture detail, or failure pattern is published.
+
 ## v0.9 agent-platform candidate
 
 - Source artifact commit: `24998cdfd16ce0b87ad0883c9919c24d058f89ce`

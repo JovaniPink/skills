@@ -270,6 +270,54 @@ class CatalogTests(unittest.TestCase):
             expected_status = "warning" if expected >= 6000 else "within-budget"
             self.assertEqual(expected_status, recipe["budget_status"])
 
+    def test_v10_profiles_are_skill_level_activation_units(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "profiles-schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "catalog" / "profiles.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_instance(catalog, schema))
+        profiles = {record["id"]: record for record in catalog["profiles"]}
+        delivery = profiles["delivery-typescript-experimental"]
+        self.assertEqual(
+            [
+                "problem-framing",
+                "implementation-planning",
+                "test-driven-change",
+                "cross-stack-quality-gates",
+                "code-change-review",
+                "publish-change-safely",
+                "typescript-javascript-engineering-profile",
+            ],
+            delivery["skills"],
+        )
+        self.assertEqual("experimental", delivery["disposition"])
+        self.assertEqual("partial", delivery["behavioral_evidence"]["status"])
+        self.assertTrue((ROOT / delivery["behavioral_evidence"]["evidence_reference"]).is_file())
+        self.assertEqual({"codex", "claude-code"}, set(delivery["target_surfaces"]))
+        self.assertNotEqual(
+            delivery["discovery_measurements"]["codex"]["budget_policy"],
+            delivery["discovery_measurements"]["claude-code"]["budget_policy"],
+        )
+
+    def test_v10_evidence_axes_do_not_collapse_workflow_and_runtime_state(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "evidence-schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "catalog" / "evidence.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_instance(catalog, schema))
+        records = {record["skill"]: record for record in catalog["skills"]}
+        self.assertEqual(set(SKILLS), set(records))
+        for record in records.values():
+            self.assertEqual("candidate", record["workflow_maturity"])
+            self.assertIn(record["behavioral_evidence"]["status"], {"none", "partial", "verified"})
+            self.assertEqual("not_applicable", record["runtime_eligibility"])
+            self.assertNotIn("client_compatibility", record)
+
+    def test_v10_repository_guidance_routes_subtree_rules(self) -> None:
+        root_guidance = (ROOT / "AGENTS.md").read_text(encoding="utf-8")
+        self.assertIn("applicable subtree", root_guidance)
+        for subtree in ("catalog", "evals", "scripts", "skills"):
+            agents = ROOT / subtree / "AGENTS.md"
+            claude = ROOT / subtree / "CLAUDE.md"
+            self.assertTrue(agents.is_file(), subtree)
+            self.assertEqual("@AGENTS.md\n", claude.read_text(encoding="utf-8"), subtree)
+
     def test_v09_every_skill_has_complete_evaluation_contract(self) -> None:
         schema = json.loads((ROOT / "evals" / "schema.json").read_text(encoding="utf-8"))
         catalog = json.loads((ROOT / "evals" / "cases.json").read_text(encoding="utf-8"))
@@ -304,7 +352,15 @@ class CatalogTests(unittest.TestCase):
         )
         self.assertIn(expected, evidence)
         self.assertNotIn("no v0.9 rows", evidence)
+        self.assertIn(
+            "`python3 -m unittest discover -s tests -v`: PASS - 56 regression tests",
+            evidence,
+        )
+
+    def test_v10_validation_evidence_matches_current_repository(self) -> None:
+        evidence = (ROOT / "docs" / "validation-evidence.md").read_text(encoding="utf-8")
         observed_test_count = unittest.defaultTestLoader.discover(str(ROOT / "tests")).countTestCases()
+        self.assertIn("## v0.10 behavioral-evidence candidate", evidence)
         self.assertIn(
             f"`python3 -m unittest discover -s tests -v`: PASS - {observed_test_count} regression tests",
             evidence,

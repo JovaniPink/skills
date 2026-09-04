@@ -4,7 +4,7 @@
   "required": ["$schema", "catalog_version", "reviewed_on", "max_review_age_days", "sources"],
   "properties": {
     "$schema": {"const": "./upstream-pins-schema.json"},
-    "catalog_version": {"const": "0.9.0"},
+    "catalog_version": {"const": "0.10.0"},
     "reviewed_on": {"type": "string", "format": "date"},
     "max_review_age_days": {"type": "integer", "minimum": 1},
     "sources": {

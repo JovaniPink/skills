@@ -4,7 +4,7 @@
   "required": ["$schema", "catalog_version", "reviewed_on", "reviews"],
   "properties": {
     "$schema": {"const": "./upstream-reviews-schema.json"},
-    "catalog_version": {"const": "0.9.0"},
+    "catalog_version": {"const": "0.10.0"},
     "reviewed_on": {"type": "string", "format": "date"},
     "reviews": {
       "type": "array",

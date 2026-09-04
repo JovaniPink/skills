@@ -1,10 +1,10 @@
 # Choose Your Skills
 
-Start with the smallest plugin that covers the current decision. Add another plugin only when the work crosses a real boundary.
+Start with the smallest exact skill selection that covers the current decision. Plugins distribute skills; profiles select which skills should be activated or exposed for a bounded kind of work.
 
 Clients discover skills from their names and descriptions before loading full instructions. Installing unrelated skills spends discovery space and can create routing collisions. OpenAI documents an initial Codex skill-list budget of 2 percent of the context window, or 8,000 characters when the context size is unknown. This catalog warns at 6,000 characters because system instructions and unrelated installed skills also use context.
 
-The current measured sizes live in [`catalog/packs.json`](../catalog/packs.json). The measurements include canonical discovery descriptions, not the full instruction bodies.
+Plugin measurements live in [`catalog/packs.json`](../catalog/packs.json). Skill-level activation profiles and their per-surface measurements live in [`catalog/profiles.json`](../catalog/profiles.json). The measurements include canonical discovery descriptions, not the full instruction bodies.
 
 ## Pick one plugin first
 
@@ -18,7 +18,13 @@ The current measured sizes live in [`catalog/packs.json`](../catalog/packs.json)
 | Evaluate AI behavior, context reliability, or source conformance | `jovanipink-ai-systems` |
 | Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `jovanipink-agent-platforms` |
 
-The engineering plugin is above the 6,000-character warning threshold in v0.9. Install it when its broad lifecycle coverage is useful. For a narrow task, directly select the needed skill and avoid enabling unrelated plugins.
+The engineering plugin is above the 6,000-character warning threshold in v0.10. Install it when its broad lifecycle coverage is useful. For a narrow task, directly select the needed skill and avoid enabling unrelated plugins.
+
+## Experimental activation profile
+
+`delivery-typescript-experimental` selects seven exact capabilities for a bounded TypeScript delivery task. It exists to support baseline-versus-treatment experiments; it is not a default recommendation and must not be described as behaviorally verified until reviewed receipts support that claim.
+
+Profile budgets are surface-specific. Codex observations record its current initial skill-list behavior, including shortening or omission. Claude Code observations separately record its listing budget, per-entry truncation, overrides, and retained descriptions. No single portable character ceiling is asserted.
 
 ## Small recipes
 
@@ -54,7 +60,7 @@ Read [Google ADK](google-adk.md) and [Agent platform boundaries](agent-platform-
 
 An explicit-only skill requires direct selection. Direct selection chooses the workflow but does not grant permission to push, merge, publish, deploy, delete, or write to an external system.
 
-Use [`catalog/skills.json`](../catalog/skills.json) to check invocation, risk, maturity, companions, and routing conflicts. Treat candidate maturity as incomplete field evidence.
+Use [`catalog/skills.json`](../catalog/skills.json) to check invocation, risk, maturity, companions, and routing conflicts. Use [`catalog/evidence.json`](../catalog/evidence.json) for the orthogonal behavioral, client, and runtime state. Candidate workflow maturity and missing behavioral evidence are different claims.
 
 ## Primary resources
 

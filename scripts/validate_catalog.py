@@ -361,6 +361,8 @@ def validate_auxiliary_records(errors: list[str]) -> None:
     for document_name, schema_name in (
         ("catalog/skills.json", "catalog/skills-schema.json"),
         ("catalog/packs.json", "catalog/packs-schema.json"),
+        ("catalog/profiles.json", "catalog/profiles-schema.json"),
+        ("catalog/evidence.json", "catalog/evidence-schema.json"),
         ("catalog/upstream-reviews.json", "catalog/upstream-reviews-schema.json"),
         ("catalog/deprecations.json", "catalog/deprecations-schema.json"),
         ("catalog/revocations.json", "catalog/revocations-schema.json"),
@@ -451,6 +453,78 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                 expected_status = "warning" if expected_size >= 6000 else "within-budget"
                 if recipe.get("budget_status") != expected_status:
                     errors.append(f"catalog/packs.json: recipe {recipe_id} budget status is stale")
+
+    profiles = _load_json(ROOT / "catalog" / "profiles.json", errors)
+    if isinstance(profiles, dict):
+        profile_ids: set[str] = set()
+        for profile in profiles.get("profiles", []):
+            if not isinstance(profile, dict):
+                continue
+            profile_id = profile.get("id")
+            if profile_id in profile_ids:
+                errors.append(f"catalog/profiles.json: duplicate profile {profile_id}")
+            if isinstance(profile_id, str):
+                profile_ids.add(profile_id)
+            profile_skills = profile.get("skills", [])
+            unknown = sorted(set(profile_skills) - set(SKILLS)) if isinstance(profile_skills, list) else []
+            if unknown:
+                errors.append(f"catalog/profiles.json: profile {profile_id} has unknown skills {unknown}")
+                continue
+            if isinstance(profile_skills, list):
+                expected_size = sum(
+                    len(read_skill_metadata(ROOT / "skills" / skill)["description"])
+                    for skill in profile_skills
+                )
+                measurements = profile.get("discovery_measurements", {})
+                for target_surface in ("codex", "claude-code"):
+                    measurement = measurements.get(target_surface, {}) if isinstance(measurements, dict) else {}
+                    if measurement.get("description_characters") != expected_size:
+                        errors.append(
+                            f"catalog/profiles.json: profile {profile_id} has stale {target_surface} description size"
+                        )
+            behavioral = profile.get("behavioral_evidence", {})
+            if isinstance(behavioral, dict):
+                status = behavioral.get("status")
+                version = behavioral.get("observed_against_version")
+                observed_at = behavioral.get("observed_at")
+                reference = behavioral.get("evidence_reference")
+                if status == "none" and any(value is not None for value in (version, observed_at, reference)):
+                    errors.append(f"catalog/profiles.json: profile {profile_id} none evidence must be empty")
+                if status in {"partial", "verified"}:
+                    if any(value is None for value in (version, observed_at, reference)):
+                        errors.append(f"catalog/profiles.json: profile {profile_id} {status} evidence is incomplete")
+                    elif not (ROOT / str(reference)).is_file():
+                        errors.append(f"catalog/profiles.json: profile {profile_id} evidence reference is missing")
+
+    evidence_catalog = _load_json(ROOT / "catalog" / "evidence.json", errors)
+    if isinstance(evidence_catalog, dict):
+        evidence_records = evidence_catalog.get("skills", [])
+        evidence_names = [
+            skill_name
+            for record in evidence_records
+            if isinstance(record, dict) and isinstance((skill_name := record.get("skill")), str)
+        ]
+        if sorted(evidence_names) != list(SKILLS):
+            errors.append("catalog/evidence.json: expected one record for every active skill")
+        if len(evidence_names) != len(set(evidence_names)):
+            errors.append("catalog/evidence.json: duplicate skill records")
+        for record in evidence_records:
+            if not isinstance(record, dict) or record.get("skill") not in SKILLS:
+                continue
+            skill = record["skill"]
+            evidence_path = ROOT / str(record.get("workflow_maturity_evidence", ""))
+            if not evidence_path.is_file():
+                errors.append(f"catalog/evidence.json: {skill} workflow maturity evidence is missing")
+            behavioral = record.get("behavioral_evidence", {})
+            if not isinstance(behavioral, dict):
+                continue
+            status = behavioral.get("status")
+            version = behavioral.get("verified_against_version")
+            observed_at = behavioral.get("observed_at")
+            if status == "none" and (version is not None or observed_at is not None):
+                errors.append(f"catalog/evidence.json: {skill} none evidence must not claim a version or date")
+            if status in {"partial", "verified"} and (version is None or observed_at is None):
+                errors.append(f"catalog/evidence.json: {skill} {status} evidence needs a version and date")
 
     reviews = _load_json(ROOT / "catalog" / "upstream-reviews.json", errors)
     if isinstance(reviews, dict):
