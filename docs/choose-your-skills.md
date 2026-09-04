@@ -52,9 +52,9 @@ Use `cross-stack-quality-gates` to discover the repository's actual commands. Ad
 
 ## Add agent-platform skills only for agent-system work
 
-The `jovanipink-agent-platforms` plugin is for people designing or reviewing agent systems through ChatGPT, Codex, Claude, or Gemini CLI. It is not a runtime bundle for a SaaS agent.
+The `jovanipink-agent-platforms` plugin is for people designing or reviewing agent systems through ChatGPT, Codex, Claude, or Antigravity CLI. Gemini CLI is a conditional enterprise compatibility surface after Google's individual-user transition. The plugin is not a runtime bundle for a SaaS agent.
 
-Read [Google ADK](google-adk.md) and [Agent platform boundaries](agent-platform-boundaries.md) before using those workflows in an ADK project.
+Read [Google agent surfaces](google-agent-surfaces.md), [Google ADK](google-adk.md), and [Agent platform boundaries](agent-platform-boundaries.md) before using those workflows in a Google agent project.
 
 ## Check invocation and maturity
 
@@ -66,4 +66,5 @@ Use [`catalog/skills.json`](../catalog/skills.json) to check invocation, risk, m
 
 - [OpenAI skill-building guide](https://learn.chatgpt.com/docs/build-skills)
 - [Agent Skills specification](https://agentskills.io/specification)
-- [Gemini CLI Agent Skills](https://geminicli.com/docs/cli/skills/)
+- [Google's Gemini CLI to Antigravity CLI transition](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills/)

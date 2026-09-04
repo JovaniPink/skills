@@ -291,11 +291,66 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual("experimental", delivery["disposition"])
         self.assertEqual("partial", delivery["behavioral_evidence"]["status"])
         self.assertTrue((ROOT / delivery["behavioral_evidence"]["evidence_reference"]).is_file())
-        self.assertEqual({"codex", "claude-code"}, set(delivery["target_surfaces"]))
+        self.assertEqual({"codex", "claude-code", "antigravity-cli"}, set(delivery["target_surfaces"]))
         self.assertNotEqual(
             delivery["discovery_measurements"]["codex"]["budget_policy"],
             delivery["discovery_measurements"]["claude-code"]["budget_policy"],
         )
+        antigravity = delivery["discovery_measurements"]["antigravity-cli"]
+        self.assertEqual("not_observed", antigravity["observed_listing_state"])
+        self.assertNotRegex(antigravity["budget_policy"], r"\b(?:8000|8,000|one percent|1%)\b")
+        self.assertEqual("blocked", delivery["surface_evidence"]["antigravity-cli"]["status"])
+        self.assertIn("publish-change-safely", delivery["surface_evidence"]["antigravity-cli"]["reason"])
+        self.assertEqual(set(delivery["target_surfaces"]), set(delivery["surface_evidence"]))
+
+    def test_v10_google_surfaces_are_independent_and_preconditioned(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "google-surfaces-schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "catalog" / "google-surfaces.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_instance(catalog, schema))
+        records = {record["surface"]: record for record in catalog["records"]}
+        expected = {
+            "antigravity-cli",
+            "gemini-cli-enterprise",
+            "antigravity-desktop",
+            "antigravity-sdk",
+            "gemini-managed-agent",
+            "google-adk",
+            "agents-cli",
+            "data-agent-kit",
+            "gemini-enterprise-agent-platform",
+        }
+        self.assertEqual(expected, set(records))
+        self.assertEqual("primary-google-behavioral-portability", records["antigravity-cli"]["lane"])
+        self.assertEqual("blocked", records["antigravity-cli"]["evidence_status"])
+        self.assertEqual("codex-pilot-useful-treatment", records["antigravity-cli"]["precondition"])
+        self.assertEqual("conditional-enterprise-compatibility", records["gemini-cli-enterprise"]["lane"])
+        self.assertEqual("preview", records["data-agent-kit"]["lifecycle_status"])
+        self.assertEqual("forbidden", catalog["cross_lane_aggregation"])
+        self.assertNotIn("success_rate", catalog)
+        self.assertNotIn("aggregate", catalog)
+
+    def test_v10_active_google_guidance_qualifies_gemini_cli(self) -> None:
+        active_guidance = (
+            ROOT / "README.md",
+            ROOT / "docs" / "README.md",
+            ROOT / "docs" / "quickstart.md",
+            ROOT / "docs" / "architecture.md",
+            ROOT / "docs" / "choose-your-skills.md",
+            ROOT / "docs" / "client-surface-research.md",
+            ROOT / "docs" / "agent-platform-boundaries.md",
+            ROOT / "docs" / "google-adk.md",
+            ROOT / "docs" / "google-agent-surfaces.md",
+        )
+        for path in active_guidance:
+            text = path.read_text(encoding="utf-8")
+            for paragraph in text.split("\n\n"):
+                if "Gemini CLI" not in paragraph:
+                    continue
+                self.assertRegex(
+                    paragraph,
+                    r"(?i)Antigravity|enterprise|historical|transition|conditional",
+                    path.relative_to(ROOT).as_posix(),
+                )
 
     def test_v10_evidence_axes_do_not_collapse_workflow_and_runtime_state(self) -> None:
         schema = json.loads((ROOT / "catalog" / "evidence-schema.json").read_text(encoding="utf-8"))
@@ -330,16 +385,25 @@ class CatalogTests(unittest.TestCase):
                 {"pass", "fail", "blocked", "not_supported"},
             )
 
-    def test_v09_observation_schema_has_distinct_api_and_gemini_surfaces(self) -> None:
+    def test_v09_observation_schema_has_distinct_api_and_google_surfaces(self) -> None:
         schema = json.loads((ROOT / "docs" / "client-observations-schema.json").read_text(encoding="utf-8"))
         surface_enum = schema["properties"]["records"]["items"]["properties"]["surface"]["enum"]
         for surface in (
             "Gemini CLI",
+            "Gemini CLI Enterprise",
+            "Antigravity CLI",
+            "Antigravity Desktop",
+            "Antigravity SDK",
+            "Gemini Managed Agent",
             "OpenAI Skills API",
             "Anthropic Skills API",
             "Anthropic Managed Agents",
         ):
             self.assertIn(surface, surface_enum)
+        matrix = json.loads((ROOT / "docs" / "client-observations-v0.9.json").read_text(encoding="utf-8"))
+        gemini_rows = [record for record in matrix["records"] if record["surface"] == "Gemini CLI"]
+        self.assertTrue(gemini_rows)
+        self.assertEqual({"historical"}, {record["evidence_scope"] for record in gemini_rows})
 
     def test_v09_validation_evidence_matches_observed_matrix(self) -> None:
         matrix = json.loads((ROOT / "docs" / "client-observations-v0.9.json").read_text(encoding="utf-8"))
@@ -383,6 +447,17 @@ class CatalogTests(unittest.TestCase):
             "https://genai.owasp.org/initiatives/agentic-security-initiative/",
             "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
             "https://opentelemetry.io/docs/concepts/signals/",
+            "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
+            "https://antigravity.google/docs/skills/",
+            "https://www.antigravity.google/docs/cli/plugins/",
+            "https://agent-plugins.org/specification",
+            "https://antigravity.google/docs/cli/headless/",
+            "https://ai.google.dev/gemini-api/docs/agents",
+            "https://docs.cloud.google.com/data-agent-kit/overview",
+            "https://ai.google.dev/gemini-api/docs/latest-model",
+            "https://www.antigravity.google/docs/sdk/overview",
+            "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
+            "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
         }
         records = {record["url"]: record for record in catalog["reviews"]}
         self.assertEqual(expected, set(records))
@@ -429,6 +504,11 @@ class CatalogTests(unittest.TestCase):
                 "provenance/catalog.json",
             }.issubset(paths)
         )
+
+    def test_v10_release_manifest_tracks_google_surface_record(self) -> None:
+        manifest = json.loads((ROOT / "releases" / "0.10.0" / "manifest.json").read_text(encoding="utf-8"))
+        paths = {artifact["path"] for artifact in manifest["artifacts"]}
+        self.assertIn("catalog/google-surfaces.json", paths)
 
     def test_native_invocation_controls_match_canonical_metadata(self) -> None:
         for skill in SKILLS:
@@ -936,6 +1016,18 @@ class CatalogTests(unittest.TestCase):
         errors, report = check_upstream_freshness(online=False)
         self.assertEqual([], errors)
         self.assertEqual("pass", report["result"])
+
+    def test_reviewed_google_sources_are_freshness_pinned(self) -> None:
+        reviews = json.loads((ROOT / "catalog" / "upstream-reviews.json").read_text(encoding="utf-8"))
+        pins = json.loads((ROOT / "catalog" / "upstream-pins.json").read_text(encoding="utf-8"))
+        google_reviews = {
+            record["url"]
+            for record in reviews["reviews"]
+            if any(host in record["url"] for host in ("google", "agent-plugins.org"))
+        }
+        pinned = {record["source_url"] for record in pins["sources"]}
+        self.assertTrue(google_reviews)
+        self.assertTrue(google_reviews.issubset(pinned))
 
     def test_freshness_comparison_preserves_the_pinned_marker_kind(self) -> None:
         from check_upstream_freshness import _fetch_marker

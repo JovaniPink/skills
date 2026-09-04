@@ -16,7 +16,8 @@
       ],
       "target_surfaces": [
         "codex",
-        "claude-code"
+        "claude-code",
+        "antigravity-cli"
       ],
       "applicability": "Bounded TypeScript repository work that spans framing, implementation, testing, review, and reviewable delivery.",
       "exclusions": [
@@ -34,6 +35,11 @@
           "description_characters": 1775,
           "budget_policy": "Measure against the tested Claude Code model's skill-list budget and per-entry truncation behavior.",
           "observed_listing_state": "not_observed"
+        },
+        "antigravity-cli": {
+          "description_characters": 1775,
+          "budget_policy": "Measure the exact tested client's retained descriptions, omissions, and activation behavior without assuming a fixed discovery budget.",
+          "observed_listing_state": "not_observed"
         }
       },
       "source_catalog_version": "0.10.0",
@@ -42,6 +48,29 @@
         "observed_against_version": "0.9.0",
         "observed_at": "2026-09-04",
         "evidence_reference": "docs/findings/delivery-typescript-public-pilot-2026-09-04.md"
+      },
+      "surface_evidence": {
+        "codex": {
+          "status": "observed",
+          "observed_against_version": "0.153.0",
+          "observed_at": "2026-09-04",
+          "evidence_reference": "docs/findings/delivery-typescript-public-pilot-2026-09-04.md",
+          "reason": "One public synthetic paired case was neutral; the preregistered pilot remains incomplete."
+        },
+        "claude-code": {
+          "status": "blocked",
+          "observed_against_version": null,
+          "observed_at": null,
+          "evidence_reference": null,
+          "reason": "Claude portability work begins only after the Codex pilot identifies a useful focused treatment."
+        },
+        "antigravity-cli": {
+          "status": "blocked",
+          "observed_against_version": null,
+          "observed_at": null,
+          "evidence_reference": null,
+          "reason": "The Codex pilot is incomplete, and Antigravity has no verified implicit-invocation disable control for publish-change-safely."
+        }
       },
       "disposition": "experimental"
     }

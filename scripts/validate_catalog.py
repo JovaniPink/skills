@@ -362,6 +362,7 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         ("catalog/skills.json", "catalog/skills-schema.json"),
         ("catalog/packs.json", "catalog/packs-schema.json"),
         ("catalog/profiles.json", "catalog/profiles-schema.json"),
+        ("catalog/google-surfaces.json", "catalog/google-surfaces-schema.json"),
         ("catalog/evidence.json", "catalog/evidence-schema.json"),
         ("catalog/upstream-reviews.json", "catalog/upstream-reviews-schema.json"),
         ("catalog/deprecations.json", "catalog/deprecations-schema.json"),
@@ -476,12 +477,17 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                     for skill in profile_skills
                 )
                 measurements = profile.get("discovery_measurements", {})
-                for target_surface in ("codex", "claude-code"):
+                for target_surface in profile.get("target_surfaces", []):
                     measurement = measurements.get(target_surface, {}) if isinstance(measurements, dict) else {}
                     if measurement.get("description_characters") != expected_size:
                         errors.append(
                             f"catalog/profiles.json: profile {profile_id} has stale {target_surface} description size"
                         )
+                surface_evidence = profile.get("surface_evidence", {})
+                if isinstance(surface_evidence, dict) and set(surface_evidence) != set(profile.get("target_surfaces", [])):
+                    errors.append(
+                        f"catalog/profiles.json: profile {profile_id} surface evidence must match target surfaces"
+                    )
             behavioral = profile.get("behavioral_evidence", {})
             if isinstance(behavioral, dict):
                 status = behavioral.get("status")
@@ -525,6 +531,29 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                 errors.append(f"catalog/evidence.json: {skill} none evidence must not claim a version or date")
             if status in {"partial", "verified"} and (version is None or observed_at is None):
                 errors.append(f"catalog/evidence.json: {skill} {status} evidence needs a version and date")
+
+    google_surfaces = _load_json(ROOT / "catalog" / "google-surfaces.json", errors)
+    if isinstance(google_surfaces, dict):
+        records = google_surfaces.get("records", [])
+        surface_names = [
+            surface
+            for record in records
+            if isinstance(record, dict) and isinstance((surface := record.get("surface")), str)
+        ] if isinstance(records, list) else []
+        if len(surface_names) != len(set(surface_names)):
+            errors.append("catalog/google-surfaces.json: duplicate surface records")
+        for record in records if isinstance(records, list) else []:
+            if not isinstance(record, dict):
+                continue
+            for field in ("evidence_reference", "historical_evidence_reference"):
+                reference = record.get(field)
+                if isinstance(reference, str) and not (ROOT / reference).is_file():
+                    errors.append(
+                        f"catalog/google-surfaces.json: {record.get('surface')} {field} is missing"
+                    )
+        forbidden_metric_keys = {"aggregate", "success_rate", "blended_success_rate", "cross_agent_success_rate"}
+        if forbidden_metric_keys.intersection(google_surfaces):
+            errors.append("catalog/google-surfaces.json: blended cross-lane metrics are forbidden")
 
     reviews = _load_json(ROOT / "catalog" / "upstream-reviews.json", errors)
     if isinstance(reviews, dict):
@@ -589,6 +618,12 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             )
         if surfaces != expected_surfaces:
             errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
+        for record in records:
+            if isinstance(record, dict) and record.get("surface") == "Gemini CLI":
+                if record.get("evidence_scope") != "historical":
+                    errors.append(
+                        f"{observation_path.relative_to(ROOT)}: Gemini CLI evidence must be labeled historical"
+                    )
         source_commit = observations.get("tested_source_commit")
         if any(record.get("source_commit") != source_commit for record in records if isinstance(record, dict)):
             errors.append(f"{observation_path.relative_to(ROOT)}: every row must reference the tested source commit")
@@ -601,6 +636,25 @@ def validate_auxiliary_records(errors: list[str]) -> None:
         actual_summary["total"] = len(records)
         if observations.get("summary") != actual_summary:
             errors.append(f"{observation_path.relative_to(ROOT)}: summary counts do not reconcile with records")
+
+    active_google_guidance = (
+        ROOT / "README.md",
+        ROOT / "docs" / "README.md",
+        ROOT / "docs" / "quickstart.md",
+        ROOT / "docs" / "architecture.md",
+        ROOT / "docs" / "choose-your-skills.md",
+        ROOT / "docs" / "client-surface-research.md",
+        ROOT / "docs" / "agent-platform-boundaries.md",
+        ROOT / "docs" / "google-adk.md",
+        ROOT / "docs" / "google-agent-surfaces.md",
+    )
+    qualifier = re.compile(r"Antigravity|enterprise|historical|transition|conditional", re.IGNORECASE)
+    for path in active_google_guidance:
+        for paragraph in path.read_text(encoding="utf-8").split("\n\n"):
+            if "Gemini CLI" in paragraph and qualifier.search(paragraph) is None:
+                errors.append(
+                    f"{path.relative_to(ROOT)}: Gemini CLI guidance needs an Antigravity transition or enterprise qualification"
+                )
 
 
 def validate_generated_adapters(errors: list[str]) -> None:

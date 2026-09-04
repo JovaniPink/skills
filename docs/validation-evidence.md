@@ -10,7 +10,8 @@ This file records observed outcomes for catalog release candidates. Validators d
 - Generated artifacts: 77 Codex projections, 77 Claude projections, and 77 deterministic Claude.ai archives
 - Evidence model: workflow maturity, behavioral evidence, client compatibility, and runtime eligibility remain orthogonal
 - Profile decision: the seven-skill Delivery TypeScript profile remains experimental and non-default after one neutral public synthetic case
-- Acceptance: PARTIAL. Repository and package validation pass; the preregistered 12-case behavioral pilot, blinded human review, second-environment reproduction, Work/Desktop observations, and Claude portability remain incomplete.
+- Google extension: Antigravity CLI is the primary future Google behavioral-portability lane and remains blocked behind a useful Codex pilot treatment; historical Gemini CLI 0.56.0 evidence is not reused as Antigravity or enterprise compatibility evidence
+- Acceptance: PARTIAL. Repository and package validation pass; the preregistered 12-case behavioral pilot, blinded human review, second-environment reproduction, Work/Desktop observations, Claude portability, and Google portability remain incomplete.
 
 ## v0.10 automated checks
 
@@ -21,7 +22,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 - `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed originality checks
 - `python3 scripts/check_repository_independence.py`: PASS - repository references remain within reviewed policy
 - `python3 scripts/validate.py`: PASS - schemas, links, invocation mappings, provenance, packages, current release manifest, generated drift, fixtures, and policy records
-- `python3 -m unittest discover -s tests -v`: PASS - 60 regression tests
+- `python3 -m unittest discover -s tests -v`: PASS - 64 regression tests
 - `git diff --check`: PASS
 
 ## v0.10 evidence boundary
@@ -89,7 +90,7 @@ The current v0.9 matrix records exact-version installation, discovery, and focus
 
 See `client-observations-v0.8.json`. Installation, discovery, implicit activation, focused-reference loading, refusal, update, and removal are separate rows for each surface. Every row is terminal `blocked` because no receiving-client mutation or invocation was authorized. Generated compatibility and strict manifest validation are not treated as installation, activation, resource loading, lifecycle behavior, or cross-client parity.
 
-See `client-observations-v0.9.json` and `client-observations-v0.9.md` for the first current candidate observations. Codex CLI focused-reference loading passed. Claude Code discovery passed but invocation was blocked by expired authentication. ChatGPT web and Claude.ai did not contain the new v0.9 skill. Gemini workspace linking passed, but authenticated discovery remains blocked. API and managed-agent surfaces remain authority-gated.
+See `client-observations-v0.9.json` and `client-observations-v0.9.md` for the first candidate observations. Codex CLI focused-reference loading passed. Claude Code discovery passed but invocation was blocked by expired authentication. ChatGPT web and Claude.ai did not contain the new v0.9 skill. Historical Gemini CLI 0.56.0 workspace linking passed, but authenticated discovery was blocked; it does not establish Antigravity or enterprise Gemini CLI behavior. API and managed-agent surfaces remain authority-gated.
 
 ## v0.7 tested source
 

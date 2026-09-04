@@ -4,7 +4,7 @@ Google Agent Development Kit, or ADK, affects this project in two different ways
 
 ## Developer-assistant use
 
-ChatGPT, Codex, Claude, and Gemini CLI can use a human-facing skill to help a developer design, build, test, or review an ADK application. In this repository, `google-adk-engineering-profile` is that kind of workflow.
+ChatGPT, Codex, Claude, and Antigravity CLI can use a human-facing skill to help a developer design, build, test, or review an ADK application. Gemini CLI is retained only as a conditional enterprise compatibility surface after Google's individual-user transition. In this repository, `google-adk-engineering-profile` is that kind of workflow.
 
 It can help a person:
 
@@ -37,7 +37,9 @@ Before any workspace installation:
 4. Preview the workspace changes.
 5. Keep authentication, infrastructure creation, deployment, and publication separately authorized.
 
-Do not perform an unreviewed global installation.
+Do not perform an unreviewed global installation. Treat `infra`, `deploy`, and `publish` as RELEASE work requiring explicit authority and provider readback; a generated plan or successful command is not deployment proof.
+
+Data Agent Kit is a separate Preview tool and plugin layer. Its vendor skills and MCP tools may support governed data work, but they cannot define product semantics, registry authority, deployment approval, or evaluation truth.
 
 ## Version and evidence rules
 
@@ -55,4 +57,6 @@ Do not perform an unreviewed global installation.
 - [ADK tool confirmation](https://adk-labs.github.io/adk-docs/tools-custom/confirmation/)
 - [Google Agents CLI](https://github.com/google/agents-cli)
 - [Google Agents CLI skills](https://google.github.io/agents-cli/reference/skills/)
-- [Gemini CLI Agent Skills](https://geminicli.com/docs/cli/skills/)
+- [Google's Gemini CLI to Antigravity CLI transition](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/)
+- [Antigravity Agent Skills](https://antigravity.google/docs/skills/)
+- [Data Agent Kit](https://docs.cloud.google.com/data-agent-kit/overview)

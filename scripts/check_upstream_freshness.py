@@ -123,6 +123,16 @@ def source_urls() -> list[str]:
         source_url = entry.get("source_url")
         if isinstance(source_url, str):
             urls.add(source_url)
+    reviews = _load(ROOT / "catalog" / "upstream-reviews.json")
+    review_records = reviews.get("reviews", [])
+    if not isinstance(review_records, list):
+        raise ValueError("upstream review records must be an array")
+    for review in review_records:
+        if not isinstance(review, dict):
+            continue
+        review_url = review.get("url")
+        if isinstance(review_url, str):
+            urls.add(review_url)
     return sorted(urls)
 
 

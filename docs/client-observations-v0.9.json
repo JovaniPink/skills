@@ -248,6 +248,7 @@
     {
       "case_id": "V09-GEMINI-CLI-LINK",
       "surface": "Gemini CLI",
+      "evidence_scope": "historical",
       "client_version": "0.56.0",
       "client_build": "npm stable package with recorded registry integrity",
       "catalog_version": "0.9.0",
@@ -269,6 +270,7 @@
     {
       "case_id": "V09-GEMINI-CLI-DISCOVERY",
       "surface": "Gemini CLI",
+      "evidence_scope": "historical",
       "client_version": "0.56.0",
       "client_build": "npm stable package with recorded registry integrity",
       "catalog_version": "0.9.0",

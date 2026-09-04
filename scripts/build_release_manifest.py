@@ -36,6 +36,7 @@ def build(source_commit: str, output: Path | None = None) -> Path:
         ROOT / "catalog" / "skills.json",
         ROOT / "catalog" / "packs.json",
         ROOT / "catalog" / "profiles.json",
+        ROOT / "catalog" / "google-surfaces.json",
         ROOT / "catalog" / "evidence.json",
         ROOT / "catalog" / "compatibility.json",
         ROOT / "catalog" / "deprecations.json",

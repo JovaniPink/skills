@@ -4,7 +4,7 @@ Portable, evidence-oriented agent skills for software delivery, research, operat
 
 This repository is an independent MIT-licensed work. It does not redistribute proprietary skill text. Public skills remain separate from private, repository-local overlays.
 
-Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets. The [behavioral evidence model](docs/behavioral-evidence-model.md) separates workflow maturity, observed client behavior, and runtime eligibility. The [daily agent operating model](docs/daily-agent-operating-model.md) supplies trust profiles and a compact ChatGPT-to-Codex handoff contract.
+Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets. The [behavioral evidence model](docs/behavioral-evidence-model.md) separates workflow maturity, observed client behavior, and runtime eligibility. The [daily agent operating model](docs/daily-agent-operating-model.md) supplies trust profiles and a compact ChatGPT-to-Codex handoff contract. The [Google agent surfaces](docs/google-agent-surfaces.md) record keeps Antigravity, Gemini enterprise compatibility, hosted agents, ADK, and lifecycle tooling in separate lanes.
 
 ## Catalog
 
@@ -66,7 +66,7 @@ Three optional AI-reliability workflows cover agent evaluation design, assertion
 
 ### `jovanipink-agent-platforms`
 
-Six optional human-facing workflows cover Google ADK engineering, agent context and memory, tool and action boundaries, protocol interoperability, agentic-system security, and retrieval-grounding quality. They help people review agent systems through ChatGPT, Codex, Claude, and Gemini CLI. They are not runtime skill bundles, do not register tools, and do not authorize authentication, infrastructure, release, or deployment.
+Six optional human-facing workflows cover Google ADK engineering, agent context and memory, tool and action boundaries, protocol interoperability, agentic-system security, and retrieval-grounding quality. They help people review agent systems through ChatGPT, Codex, Claude, and Antigravity CLI; Gemini CLI is a conditional enterprise compatibility surface after Google's individual-user transition. They are not runtime skill bundles, do not register tools, and do not authorize authentication, infrastructure, release, or deployment.
 
 ## Repository model
 
