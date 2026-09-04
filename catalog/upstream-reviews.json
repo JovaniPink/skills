@@ -209,7 +209,7 @@
       "status": "reviewed",
       "ownership_check": "Google AI for Developers is the official authority for Gemini API Managed Agents.",
       "affected_skills": ["agent-evaluation-design", "agentic-system-security-review"],
-      "finding": "Managed Agents are hosted sandboxed agent runs with separate tools, source mounting, retention, and potentially very large per-interaction token envelopes.",
+      "finding": "Managed Agents are hosted sandboxed agent runs with separate tools, source mounting, retention, and a documented range of 100,000 to 3 million tokens per interaction.",
       "action": "Keep Managed Agents out of the initial quantitative pilot; begin with synthetic public cases, explicit tool policy, a preregistered cost ceiling, and retention and environment-deletion records."
     },
     {

@@ -35,7 +35,7 @@ Packaging never establishes installation trust, sandboxing, credential scope, pe
 
 ## Cost, freshness, and authority
 
-Managed Agents are excluded from the first quantitative Google lane because individual interactions can have unusually large token envelopes. Data Agent Kit is Preview. Neither surface is inferred from Antigravity CLI evidence.
+Managed Agents are excluded from the first quantitative Google lane because current documentation permits 100,000 to 3 million tokens per interaction. Data Agent Kit is Preview. Neither surface is inferred from Antigravity CLI evidence.
 
 Do not hard-code a preferred Gemini model into a portable skill. Record exact model and effort in each execution envelope, check current Gemini API release and deprecation records, and compare cost per successful case. Documentation reviewed for this release reports Gemini 3.8 Flash as generally available with introductory pricing ending December 31, 2026; that observation is volatile and is not a permanent catalog recommendation.
 
