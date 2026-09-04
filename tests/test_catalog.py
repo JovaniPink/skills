@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import subprocess
@@ -42,6 +43,9 @@ from schema_validation import validate_instance  # noqa: E402
 from sync_private_overlay import sync as sync_private_overlay  # noqa: E402
 from validate_catalog import (  # noqa: E402
     immutable_action_reference_errors,
+    profile_measurement_surface_errors,
+    release_manifest_current_errors,
+    release_manifest_source_errors,
     skill_name_errors,
     validate_all,
     validate_ci_tools,
@@ -290,8 +294,8 @@ class CatalogTests(unittest.TestCase):
             delivery["skills"],
         )
         self.assertEqual("experimental", delivery["disposition"])
-        self.assertEqual("partial", delivery["behavioral_evidence"]["status"])
-        self.assertTrue((ROOT / delivery["behavioral_evidence"]["evidence_reference"]).is_file())
+        self.assertEqual("none", delivery["behavioral_evidence"]["status"])
+        self.assertIsNone(delivery["behavioral_evidence"]["evidence_reference"])
         self.assertEqual({"codex", "claude-code", "antigravity-cli"}, set(delivery["target_surfaces"]))
         self.assertNotEqual(
             delivery["discovery_measurements"]["codex"]["budget_policy"],
@@ -300,9 +304,50 @@ class CatalogTests(unittest.TestCase):
         antigravity = delivery["discovery_measurements"]["antigravity-cli"]
         self.assertEqual("not_observed", antigravity["observed_listing_state"])
         self.assertNotRegex(antigravity["budget_policy"], r"\b(?:8000|8,000|one percent|1%)\b")
+        self.assertEqual("blocked", delivery["surface_evidence"]["codex"]["status"])
         self.assertEqual("blocked", delivery["surface_evidence"]["antigravity-cli"]["status"])
         self.assertIn("publish-change-safely", delivery["surface_evidence"]["antigravity-cli"]["reason"])
         self.assertEqual(set(delivery["target_surfaces"]), set(delivery["surface_evidence"]))
+        self.assertEqual(set(delivery["target_surfaces"]), set(delivery["discovery_measurements"]))
+
+    def test_v10_profiles_allow_every_target_surface_only_when_measurements_match(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "profiles-schema.json").read_text(encoding="utf-8"))
+        catalog = json.loads((ROOT / "catalog" / "profiles.json").read_text(encoding="utf-8"))
+        candidate = copy.deepcopy(catalog["profiles"][0])
+        measurement = candidate["discovery_measurements"].pop("codex")
+        evidence = candidate["surface_evidence"].pop("codex")
+        candidate["target_surfaces"] = ["gemini-managed-agent"]
+        candidate["discovery_measurements"] = {"gemini-managed-agent": measurement}
+        candidate["surface_evidence"] = {"gemini-managed-agent": evidence}
+        self.assertEqual(
+            [],
+            validate_instance(
+                {"$schema": "./profiles-schema.json", "catalog_version": "0.10.0", "profiles": [candidate]},
+                schema,
+            ),
+        )
+        self.assertEqual([], profile_measurement_surface_errors(candidate))
+
+        missing = copy.deepcopy(candidate)
+        missing["discovery_measurements"] = {}
+        self.assertTrue(
+            validate_instance(
+                {"$schema": "./profiles-schema.json", "catalog_version": "0.10.0", "profiles": [missing]},
+                schema,
+            )
+        )
+        self.assertTrue(profile_measurement_surface_errors(missing))
+
+        extra = copy.deepcopy(candidate)
+        extra["discovery_measurements"]["codex"] = measurement
+        self.assertEqual(
+            [],
+            validate_instance(
+                {"$schema": "./profiles-schema.json", "catalog_version": "0.10.0", "profiles": [extra]},
+                schema,
+            ),
+        )
+        self.assertTrue(profile_measurement_surface_errors(extra))
 
     def test_v10_google_surfaces_are_independent_and_preconditioned(self) -> None:
         schema = json.loads((ROOT / "catalog" / "google-surfaces-schema.json").read_text(encoding="utf-8"))
@@ -510,6 +555,55 @@ class CatalogTests(unittest.TestCase):
         manifest = json.loads((ROOT / "releases" / "0.10.0" / "manifest.json").read_text(encoding="utf-8"))
         paths = {artifact["path"] for artifact in manifest["artifacts"]}
         self.assertIn("catalog/google-surfaces.json", paths)
+
+    def test_v10_release_manifest_requires_reachable_ancestor_and_matching_bytes(self) -> None:
+        def git(root: Path, *arguments: str) -> str:
+            completed = subprocess.run(
+                ["git", *arguments], cwd=root, check=True, text=True, capture_output=True
+            )
+            return completed.stdout.strip()
+
+        with tempfile.TemporaryDirectory(prefix="release-lineage-") as temporary:
+            repository = Path(temporary)
+            git(repository, "init", "--initial-branch=main")
+            git(repository, "config", "user.name", "Release Test")
+            git(repository, "config", "user.email", "release-test@example.invalid")
+            artifact = repository / "artifact.txt"
+            artifact.write_text("initial\n", encoding="utf-8")
+            git(repository, "add", "artifact.txt")
+            git(repository, "commit", "-m", "initial")
+            initial = git(repository, "rev-parse", "HEAD")
+
+            git(repository, "switch", "-c", "source")
+            artifact.write_text("source\n", encoding="utf-8")
+            git(repository, "commit", "-am", "source")
+            source = git(repository, "rev-parse", "HEAD")
+            expected = hashlib.sha256(b"source\n").hexdigest()
+            document: dict[str, object] = {
+                "source_commit": source,
+                "artifacts": [{"kind": "file", "path": "artifact.txt", "sha256": expected}],
+            }
+            self.assertEqual([], release_manifest_source_errors(document, repository))
+            self.assertEqual([], release_manifest_current_errors(document, repository))
+
+            unavailable = copy.deepcopy(document)
+            unavailable["source_commit"] = "0" * 40
+            self.assertIn("source commit is unavailable", "\n".join(release_manifest_source_errors(unavailable, repository)))
+
+            byte_mismatched: dict[str, object] = {
+                "source_commit": source,
+                "artifacts": [{"kind": "file", "path": "artifact.txt", "sha256": "f" * 64}],
+            }
+            self.assertIn("source checksum drift", "\n".join(release_manifest_source_errors(byte_mismatched, repository)))
+
+            git(repository, "switch", "-c", "side", initial)
+            artifact.write_text("side\n", encoding="utf-8")
+            git(repository, "commit", "-am", "side")
+            self.assertIn("not an ancestor", "\n".join(release_manifest_source_errors(document, repository)))
+
+            git(repository, "switch", "source")
+            artifact.write_text("changed\n", encoding="utf-8")
+            self.assertIn("current checksum drift", "\n".join(release_manifest_current_errors(document, repository)))
 
     def test_native_invocation_controls_match_canonical_metadata(self) -> None:
         for skill in SKILLS:

@@ -60,6 +60,12 @@ def validate_instance(instance: object, schema: object, path: str = "$") -> list
             for key in required:
                 if key not in instance:
                     errors.append(f"{path}: missing required property {key!r}")
+        minimum = schema.get("minProperties")
+        if isinstance(minimum, int) and len(instance) < minimum:
+            errors.append(f"{path}: requires at least {minimum} properties")
+        maximum = schema.get("maxProperties")
+        if isinstance(maximum, int) and len(instance) > maximum:
+            errors.append(f"{path}: permits at most {maximum} properties")
         for key, value in instance.items():
             child_path = f"{path}.{key}"
             if key in properties:

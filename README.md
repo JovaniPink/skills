@@ -121,4 +121,4 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The v0.10 candidate contains 77 skills across seven focused plugins. It records workflow maturity separately from behavioral evidence, client compatibility, and runtime eligibility, and includes an experimental seven-skill Delivery TypeScript activation profile. One public synthetic Codex case produced a neutral baseline-versus-treatment result, so the profile remains non-default. Automated validation, Codex behavior, Work/Desktop observations, Claude portability, and ADK runtime compatibility remain separate evidence lanes.
+The v0.10 candidate contains 77 skills across seven focused plugins. It records workflow maturity separately from behavioral evidence, client compatibility, and runtime eligibility, and includes an experimental seven-skill Delivery TypeScript activation profile. No valid behavioral result currently supports the profile; the corrected isolated Codex pilot remains pending. Automated validation, Codex behavior, Work/Desktop observations, Claude portability, and ADK runtime compatibility remain separate evidence lanes.

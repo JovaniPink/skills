@@ -6,6 +6,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import zipfile
 from pathlib import Path, PurePosixPath
 
@@ -342,6 +343,18 @@ def validate_provenance(errors: list[str]) -> None:
                 )
 
 
+def profile_measurement_surface_errors(profile: dict[str, object]) -> list[str]:
+    """Return errors when discovery measurements do not exactly cover target surfaces."""
+
+    target_surfaces = profile.get("target_surfaces", [])
+    measurements = profile.get("discovery_measurements", {})
+    if not isinstance(target_surfaces, list) or not isinstance(measurements, dict):
+        return ["discovery measurements must be an object keyed by target surfaces"]
+    if set(measurements) != set(target_surfaces):
+        return ["discovery measurements must match target surfaces"]
+    return []
+
+
 def validate_auxiliary_records(errors: list[str]) -> None:
     roadmap = _validate_json_schema(
         ROOT / "incubator" / "roadmap.json",
@@ -483,6 +496,8 @@ def validate_auxiliary_records(errors: list[str]) -> None:
                         errors.append(
                             f"catalog/profiles.json: profile {profile_id} has stale {target_surface} description size"
                         )
+                for error in profile_measurement_surface_errors(profile):
+                    errors.append(f"catalog/profiles.json: profile {profile_id} {error}")
                 surface_evidence = profile.get("surface_evidence", {})
                 if isinstance(surface_evidence, dict) and set(surface_evidence) != set(profile.get("target_surfaces", [])):
                     errors.append(
@@ -775,6 +790,123 @@ def validate_packages(errors: list[str]) -> None:
                     errors.append(f"{archive_path.name}: Claude.ai package contains Codex interface {name}")
 
 
+def _git_output(root: Path, arguments: list[str]) -> bytes:
+    completed = subprocess.run(
+        ["git", *arguments],
+        cwd=root,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if completed.returncode != 0:
+        detail = completed.stderr.decode("utf-8", errors="replace").strip()
+        raise ValueError(detail or f"git {' '.join(arguments)} failed")
+    return completed.stdout
+
+
+def _source_artifact_digest(root: Path, source_commit: str, relative: str, kind: str) -> str:
+    if not relative or relative.startswith("/") or ".." in PurePosixPath(relative).parts:
+        raise ValueError("artifact path must be a repository-relative path")
+    object_name = f"{source_commit}:{relative}"
+    object_type = _git_output(root, ["cat-file", "-t", object_name]).decode("utf-8").strip()
+    if kind != "tree":
+        if object_type != "blob":
+            raise ValueError(f"source artifact {relative} must be a blob")
+        return hashlib.sha256(_git_output(root, ["cat-file", "blob", object_name])).hexdigest()
+    if object_type != "tree":
+        raise ValueError(f"source artifact {relative} must be a tree")
+    listing = _git_output(root, ["ls-tree", "-r", "-z", source_commit, "--", relative])
+    prefix = f"{relative.rstrip('/')}/".encode("utf-8")
+    hashes: dict[str, str] = {}
+    for record in listing.split(b"\0"):
+        if not record:
+            continue
+        metadata, raw_path = record.split(b"\t", 1)
+        _, entry_type, object_id = metadata.split()
+        if entry_type != b"blob" or not raw_path.startswith(prefix):
+            raise ValueError(f"source tree {relative} has an unexpected entry")
+        child = raw_path[len(prefix):].decode("utf-8")
+        hashes[child] = hashlib.sha256(
+            _git_output(root, ["cat-file", "blob", object_id.decode("ascii")])
+        ).hexdigest()
+    rendered = json.dumps(hashes, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+
+
+def release_manifest_source_errors(document: dict[str, object], root: Path = ROOT) -> list[str]:
+    """Return source-history and source-byte errors for a release manifest."""
+
+    source_commit = document.get("source_commit")
+    if not isinstance(source_commit, str):
+        return ["source commit is missing or malformed"]
+    try:
+        _git_output(root, ["cat-file", "-e", f"{source_commit}^{{commit}}"])
+    except ValueError as error:
+        return [f"source commit is unavailable: {error}"]
+    try:
+        _git_output(root, ["merge-base", "--is-ancestor", source_commit, "HEAD"])
+    except ValueError:
+        return ["source commit is not an ancestor of the submitted HEAD"]
+
+    artifacts = document.get("artifacts")
+    if not isinstance(artifacts, list):
+        return ["artifacts must be a list"]
+    errors: list[str] = []
+    for artifact in artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        relative = artifact.get("path")
+        kind = artifact.get("kind")
+        expected = artifact.get("sha256")
+        if not isinstance(relative, str) or not isinstance(kind, str) or not isinstance(expected, str):
+            continue
+        try:
+            source_digest = _source_artifact_digest(root, source_commit, relative, kind)
+        except ValueError as error:
+            errors.append(f"source artifact {relative} is unavailable or invalid: {error}")
+            continue
+        if source_digest != expected:
+            errors.append(f"source checksum drift for {relative}")
+    return errors
+
+
+def release_manifest_current_errors(document: dict[str, object], root: Path = ROOT) -> list[str]:
+    """Return current-tree byte errors for a release manifest."""
+
+    artifacts = document.get("artifacts")
+    if not isinstance(artifacts, list):
+        return ["artifacts must be a list"]
+    errors: list[str] = []
+    for artifact in artifacts:
+        if not isinstance(artifact, dict):
+            continue
+        relative = artifact.get("path")
+        kind = artifact.get("kind")
+        expected = artifact.get("sha256")
+        if not isinstance(relative, str) or not isinstance(kind, str) or not isinstance(expected, str):
+            continue
+        if not relative or relative.startswith("/") or ".." in PurePosixPath(relative).parts:
+            errors.append(f"current artifact {relative} has an invalid path")
+            continue
+        path = root / relative
+        if kind == "tree":
+            if not path.is_dir():
+                errors.append(f"missing artifact {relative}")
+                continue
+            from cataloglib import directory_hashes
+
+            rendered = json.dumps(directory_hashes(path), sort_keys=True, separators=(",", ":"))
+            digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
+        elif path.is_file():
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        else:
+            errors.append(f"missing artifact {relative}")
+            continue
+        if expected != digest:
+            errors.append(f"current checksum drift for {relative}")
+    return errors
+
+
 def validate_release_manifest(errors: list[str]) -> None:
     manifest = ROOT / "releases" / VERSION / "manifest.json"
     if not manifest.is_file():
@@ -785,23 +917,10 @@ def validate_release_manifest(errors: list[str]) -> None:
         return
     if document.get("catalog_version") != VERSION:
         errors.append(f"{manifest.relative_to(ROOT)}: catalog version does not match {VERSION}")
-    for artifact in document.get("artifacts", []):
-        if not isinstance(artifact, dict):
-            continue
-        path = ROOT / str(artifact.get("path", ""))
-        kind = artifact.get("kind")
-        if kind == "tree":
-            from cataloglib import directory_hashes
-
-            rendered = json.dumps(directory_hashes(path), sort_keys=True, separators=(",", ":"))
-            digest = hashlib.sha256(rendered.encode("utf-8")).hexdigest()
-        elif path.is_file():
-            digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        else:
-            errors.append(f"{manifest.relative_to(ROOT)}: missing artifact {artifact.get('path')}")
-            continue
-        if artifact.get("sha256") != digest:
-            errors.append(f"{manifest.relative_to(ROOT)}: checksum drift for {artifact.get('path')}")
+    for error in release_manifest_source_errors(document):
+        errors.append(f"{manifest.relative_to(ROOT)}: {error}")
+    for error in release_manifest_current_errors(document):
+        errors.append(f"{manifest.relative_to(ROOT)}: {error}")
 
 
 def validate_all(require_packages: bool = True) -> list[str]:

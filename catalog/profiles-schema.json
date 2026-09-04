@@ -57,11 +57,15 @@
           },
           "discovery_measurements": {
             "type": "object",
-            "required": ["codex", "claude-code", "antigravity-cli"],
+            "minProperties": 1,
             "properties": {
               "codex": {"$ref": "#/$defs/discoveryMeasurement"},
               "claude-code": {"$ref": "#/$defs/discoveryMeasurement"},
-              "antigravity-cli": {"$ref": "#/$defs/discoveryMeasurement"}
+              "antigravity-cli": {"$ref": "#/$defs/discoveryMeasurement"},
+              "gemini-cli-enterprise": {"$ref": "#/$defs/discoveryMeasurement"},
+              "antigravity-desktop": {"$ref": "#/$defs/discoveryMeasurement"},
+              "antigravity-sdk": {"$ref": "#/$defs/discoveryMeasurement"},
+              "gemini-managed-agent": {"$ref": "#/$defs/discoveryMeasurement"}
             },
             "additionalProperties": false
           },
@@ -80,18 +84,16 @@
           "surface_evidence": {
             "type": "object",
             "minProperties": 1,
-            "propertyNames": {
-              "enum": [
-                "codex",
-                "claude-code",
-                "antigravity-cli",
-                "gemini-cli-enterprise",
-                "antigravity-desktop",
-                "antigravity-sdk",
-                "gemini-managed-agent"
-              ]
+            "properties": {
+              "codex": {"$ref": "#/$defs/surfaceEvidence"},
+              "claude-code": {"$ref": "#/$defs/surfaceEvidence"},
+              "antigravity-cli": {"$ref": "#/$defs/surfaceEvidence"},
+              "gemini-cli-enterprise": {"$ref": "#/$defs/surfaceEvidence"},
+              "antigravity-desktop": {"$ref": "#/$defs/surfaceEvidence"},
+              "antigravity-sdk": {"$ref": "#/$defs/surfaceEvidence"},
+              "gemini-managed-agent": {"$ref": "#/$defs/surfaceEvidence"}
             },
-            "additionalProperties": {"$ref": "#/$defs/surfaceEvidence"}
+            "additionalProperties": false
           },
           "disposition": {"enum": ["experimental", "recommended", "retired"]}
         },

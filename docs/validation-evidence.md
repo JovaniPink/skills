@@ -9,9 +9,9 @@ This file records observed outcomes for catalog release candidates. Validators d
 - Canonical skills: 77 across seven optional plugins
 - Generated artifacts: 77 Codex projections, 77 Claude projections, and 77 deterministic Claude.ai archives
 - Evidence model: workflow maturity, behavioral evidence, client compatibility, and runtime eligibility remain orthogonal
-- Profile decision: the seven-skill Delivery TypeScript profile remains experimental and non-default after one neutral public synthetic case
+- Profile decision: the seven-skill Delivery TypeScript profile remains experimental and non-default; its prior neutral synthetic record was invalidated and no valid behavioral result currently exists
 - Google extension: Antigravity CLI is the primary future Google behavioral-portability lane and remains blocked behind a useful Codex pilot treatment; historical Gemini CLI 0.56.0 evidence is not reused as Antigravity or enterprise compatibility evidence
-- Acceptance: PARTIAL. Repository and package validation pass; the preregistered 12-case behavioral pilot, blinded human review, second-environment reproduction, Work/Desktop observations, Claude portability, and Google portability remain incomplete.
+- Acceptance: BLOCKED. Repository and package validation may pass, but the corrected preregistered 12-case behavioral pilot, blinded human review, second-environment reproduction, Work/Desktop observations, Claude portability, and Google portability remain incomplete.
 
 ## v0.10 automated checks
 
@@ -22,12 +22,12 @@ This file records observed outcomes for catalog release candidates. Validators d
 - `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed originality checks
 - `python3 scripts/check_repository_independence.py`: PASS - repository references remain within reviewed policy
 - `python3 scripts/validate.py`: PASS - schemas, links, invocation mappings, provenance, packages, current release manifest, generated drift, fixtures, and policy records
-- `python3 -m unittest discover -s tests -v`: PASS - 66 regression tests
+- `python3 -m unittest discover -s tests -v`: PASS - 68 regression tests
 - `git diff --check`: PASS
 
 ## v0.10 evidence boundary
 
-One public synthetic Codex case has partial behavioral evidence against exact v0.9.0 skill bytes. It does not isolate any individual skill, establish a default profile, complete the preregistered pilot, prove Work/Desktop or Claude behavior, or establish ADK runtime eligibility. No private product case, prompt, raw trace, repository name, architecture detail, or failure pattern is published.
+No valid public behavioral observation currently supports the Delivery TypeScript profile. The prior neutral synthetic record was invalidated because the experiment harness did not yet preserve a reachable fixture revision, isolate treatment installation from mutation grading, independently protect the test contract, or enforce a single comparison envelope. It must not establish a default profile, prove any client behavior, or establish ADK runtime eligibility. No private product case, prompt, raw trace, repository name, architecture detail, or failure pattern is published.
 
 ## v0.9 agent-platform candidate
 

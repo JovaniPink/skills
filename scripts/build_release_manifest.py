@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 from datetime import date
 from pathlib import Path
 
@@ -22,9 +23,36 @@ def _tree_hash(path: Path) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
+def _git_text(arguments: list[str]) -> str:
+    completed = subprocess.run(
+        ["git", *arguments],
+        cwd=ROOT,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    if completed.returncode != 0:
+        raise ValueError(completed.stderr.strip() or f"git {' '.join(arguments)} failed")
+    return completed.stdout.strip()
+
+
+def _require_clean_source_checkout(source_commit: str) -> None:
+    _git_text(["cat-file", "-e", f"{source_commit}^{{commit}}"])
+    if _git_text(["rev-parse", "HEAD"]) != source_commit:
+        raise ValueError("source commit must equal the clean checkout HEAD")
+    if _git_text(["status", "--porcelain"]):
+        raise ValueError("release manifest generation requires a clean checkout")
+
+
+def _require_tracked_source_artifact(relative: str) -> None:
+    _git_text(["cat-file", "-e", f"HEAD:{relative}"])
+
+
 def build(source_commit: str, output: Path | None = None) -> Path:
     if re.fullmatch(r"[0-9a-f]{40}", source_commit) is None:
         raise ValueError("source commit must be a full 40-character lowercase Git SHA")
+    _require_clean_source_checkout(source_commit)
     artifacts: list[dict[str, str]] = []
     for client in ("codex", "claude"):
         for plugin in skills_by_plugin():
@@ -52,6 +80,8 @@ def build(source_commit: str, output: Path | None = None) -> Path:
         if not archive.is_file():
             raise FileNotFoundError(f"missing packaged skill: {archive}")
         artifacts.append({"kind": "zip", "path": archive.relative_to(ROOT).as_posix(), "sha256": _file_hash(archive)})
+    for artifact in artifacts:
+        _require_tracked_source_artifact(artifact["path"])
     value = {
         "$schema": "../manifest-schema.json",
         "catalog_version": VERSION,

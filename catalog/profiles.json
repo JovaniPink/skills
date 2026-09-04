@@ -44,18 +44,18 @@
       },
       "source_catalog_version": "0.10.0",
       "behavioral_evidence": {
-        "status": "partial",
-        "observed_against_version": "0.9.0",
-        "observed_at": "2026-09-04",
-        "evidence_reference": "docs/findings/delivery-typescript-public-pilot-2026-09-04.md"
+        "status": "none",
+        "observed_against_version": null,
+        "observed_at": null,
+        "evidence_reference": null
       },
       "surface_evidence": {
         "codex": {
-          "status": "observed",
-          "observed_against_version": "0.153.0",
-          "observed_at": "2026-09-04",
-          "evidence_reference": "docs/findings/delivery-typescript-public-pilot-2026-09-04.md",
-          "reason": "One public synthetic paired case was neutral; the preregistered pilot remains incomplete."
+          "status": "blocked",
+          "observed_against_version": null,
+          "observed_at": null,
+          "evidence_reference": null,
+          "reason": "No valid Codex behavioral result exists until the corrected isolated pilot is complete."
         },
         "claude-code": {
           "status": "blocked",
