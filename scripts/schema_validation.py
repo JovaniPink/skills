@@ -13,7 +13,9 @@ def _is_type(value: object, expected: str) -> bool:
         "array": lambda item: isinstance(item, list),
         "string": lambda item: isinstance(item, str),
         "integer": lambda item: isinstance(item, int) and not isinstance(item, bool),
-        "number": lambda item: isinstance(item, (int, float)) and not isinstance(item, bool),
+        "number": lambda item: (
+            isinstance(item, (int, float)) and not isinstance(item, bool)
+        ),
         "boolean": lambda item: isinstance(item, bool),
         "null": lambda item: item is None,
     }
@@ -32,11 +34,37 @@ def _format_is_valid(value: str, format_name: str) -> bool:
     return True
 
 
-def validate_instance(instance: object, schema: object, path: str = "$") -> list[str]:
-    """Validate the schema keywords used by this repository."""
+def _resolve_local_reference(
+    schema: dict[str, object], root_schema: dict[str, object], path: str
+) -> tuple[dict[str, object] | None, list[str]]:
+    reference = schema.get("$ref")
+    if reference is None:
+        return schema, []
+    if not isinstance(reference, str) or not reference.startswith("#/"):
+        return None, [f"{path}: unsupported schema reference {reference!r}"]
+    target: object = root_schema
+    for raw_part in reference.removeprefix("#/").split("/"):
+        part = raw_part.replace("~1", "/").replace("~0", "~")
+        if not isinstance(target, dict) or part not in target:
+            return None, [f"{path}: unresolved schema reference {reference!r}"]
+        target = target[part]
+    if not isinstance(target, dict):
+        return None, [
+            f"{path}: schema reference {reference!r} must resolve to an object"
+        ]
+    return target, []
+
+
+def _validate_instance(
+    instance: object, schema: object, path: str, root_schema: dict[str, object]
+) -> list[str]:
+    """Validate the supported JSON Schema subset against one instance value."""
 
     if not isinstance(schema, dict):
         return [f"{path}: schema must be an object"]
+    schema, reference_errors = _resolve_local_reference(schema, root_schema, path)
+    if schema is None:
+        return reference_errors
     errors: list[str] = []
 
     if "const" in schema and instance != schema["const"]:
@@ -47,9 +75,24 @@ def validate_instance(instance: object, schema: object, path: str = "$") -> list
             errors.append(f"{path}: must be one of {allowed!r}")
 
     expected_type = schema.get("type")
-    if isinstance(expected_type, str) and not _is_type(instance, expected_type):
-        errors.append(f"{path}: expected {expected_type}, found {type(instance).__name__}")
-        return errors
+    allowed_types = [expected_type] if isinstance(expected_type, str) else expected_type
+    if allowed_types is not None:
+        if not isinstance(allowed_types, list) or not all(
+            isinstance(item, str) for item in allowed_types
+        ):
+            return errors + [
+                f"{path}: schema type must be a string or array of strings"
+            ]
+        if not any(_is_type(instance, item) for item in allowed_types):
+            expected = (
+                allowed_types[0]
+                if len(allowed_types) == 1
+                else f"one of {allowed_types!r}"
+            )
+            errors.append(
+                f"{path}: expected {expected}, found {type(instance).__name__}"
+            )
+            return errors
 
     if isinstance(instance, dict):
         properties = schema.get("properties", {})
@@ -69,7 +112,9 @@ def validate_instance(instance: object, schema: object, path: str = "$") -> list
         for key, value in instance.items():
             child_path = f"{path}.{key}"
             if key in properties:
-                errors.extend(validate_instance(value, properties[key], child_path))
+                errors.extend(
+                    _validate_instance(value, properties[key], child_path, root_schema)
+                )
             elif schema.get("additionalProperties") is False:
                 errors.append(f"{child_path}: additional property is not allowed")
 
@@ -87,7 +132,11 @@ def validate_instance(instance: object, schema: object, path: str = "$") -> list
         item_schema = schema.get("items")
         if isinstance(item_schema, dict):
             for index, value in enumerate(instance):
-                errors.extend(validate_instance(value, item_schema, f"{path}[{index}]"))
+                errors.extend(
+                    _validate_instance(
+                        value, item_schema, f"{path}[{index}]", root_schema
+                    )
+                )
 
     if isinstance(instance, str):
         minimum = schema.get("minLength")
@@ -112,3 +161,11 @@ def validate_instance(instance: object, schema: object, path: str = "$") -> list
             errors.append(f"{path}: must be at most {maximum}")
 
     return errors
+
+
+def validate_instance(instance: object, schema: object, path: str = "$") -> list[str]:
+    """Validate the schema keywords used by this repository."""
+
+    if not isinstance(schema, dict):
+        return [f"{path}: schema must be an object"]
+    return _validate_instance(instance, schema, path, schema)

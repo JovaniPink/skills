@@ -22,7 +22,7 @@ This file records observed outcomes for catalog release candidates. Validators d
 - `python3 scripts/check_originality.py`: PASS - canonical, generated, and packaged skill content passed originality checks
 - `python3 scripts/check_repository_independence.py`: PASS - repository references remain within reviewed policy
 - `python3 scripts/validate.py`: PASS - schemas, links, invocation mappings, provenance, packages, current release manifest, generated drift, fixtures, and policy records
-- `python3 -m unittest discover -s tests -v`: PASS - 68 regression tests
+- `python3 -m unittest discover -s tests -v`: PASS - 69 regression tests
 - `git diff --check`: PASS
 
 ## v0.10 evidence boundary
