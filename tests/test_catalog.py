@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from build_distributions import build, marketplace_documents  # noqa: E402
 from cataloglib import EXPLICIT_SKILLS, SKILLS, filter_revoked, read_skill_metadata, skills_by_plugin  # noqa: E402
 from check_upstream_freshness import (  # noqa: E402
+    NORMALIZED_HTML_HOSTS,
     _normalized_content_sha256,
     check as check_upstream_freshness,
 )
@@ -1085,6 +1086,42 @@ class CatalogTests(unittest.TestCase):
             _normalized_content_sha256(first + b"\r\n", strip_trailing=True),
         )
         self.assertNotEqual(_normalized_content_sha256(first), _normalized_content_sha256(changed))
+
+    def test_dynamic_official_document_hosts_use_normalized_markers(self) -> None:
+        self.assertTrue(
+            {"developers.googleblog.com", "genai.owasp.org", "learn.chatgpt.com"}.issubset(
+                NORMALIZED_HTML_HOSTS
+            )
+        )
+
+    def test_default_normalized_marker_preserves_trailing_whitespace_policy(self) -> None:
+        from check_upstream_freshness import _fetch_marker
+
+        class Response:
+            headers: ClassVar[dict[str, str]] = {}
+
+            def __enter__(self) -> Response:
+                return self
+
+            def __exit__(
+                self,
+                exc_type: type[BaseException] | None,
+                exc_value: BaseException | None,
+                traceback: TracebackType | None,
+            ) -> Literal[False]:
+                return False
+
+            def read(self) -> bytes:
+                return b"stable authority content\r\n"
+
+        url = "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+        with patch("check_upstream_freshness.urllib.request.urlopen", return_value=Response()):
+            kind, value = _fetch_marker(url)
+        self.assertEqual("normalized-content-sha256", kind)
+        self.assertEqual(
+            _normalized_content_sha256(b"stable authority content", strip_trailing=True),
+            value,
+        )
 
     def test_upstream_freshness_uses_primary_authority_urls_only(self) -> None:
         errors, report = check_upstream_freshness(online=False)

@@ -66,13 +66,13 @@
     },
     {
       "source_url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
-      "marker_kind": "content-sha256",
-      "marker_value": "317fb5ab63bb686787253f286712feca1fde7857b392a2fe0ef579356e75d64c"
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "4fd5a7119dd871432ced44375d8155687c31c9190a542fbae0419346b3589209"
     },
     {
       "source_url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
-      "marker_kind": "content-sha256",
-      "marker_value": "37afbc0fb08a4962870a10506eb0edfe4a742e304f03a07200bc7fcd037aefb3"
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "42503dd6104e80db2a3debb1afbcb73ea47d08108d8242d1fc4a5ba0af947ce5"
     },
     {
       "source_url": "https://docs.cloud.google.com/data-agent-kit/overview",
@@ -111,13 +111,13 @@
     },
     {
       "source_url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
-      "marker_kind": "content-sha256",
-      "marker_value": "d20add158eb1b6e7ca14ca717d1fecebe7bc86cee96d40dbd5f0ca2fa3131b5c"
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "00bdaee3c9a40c824f6cb4b71288229efd89fb419f7d5df3011ecea1e0dc4f9c"
     },
     {
       "source_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
-      "marker_kind": "content-sha256",
-      "marker_value": "9456afc407d77dc836dcd7eaf893c66068e3a27c9580de23c83da37c57a9ae1d"
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "0927932d57969d789c3cf47555a9d1e981fa8e02f98a38f1a33b3ab261226f51"
     },
     {
       "source_url": "https://git-scm.com/docs/git-merge",
@@ -136,8 +136,8 @@
     },
     {
       "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
-      "marker_kind": "etag",
-      "marker_value": "\"2f0533c32e20844d3b5e7748a80e422e\""
+      "marker_kind": "normalized-content-sha256",
+      "marker_value": "c22b55bdf3a975169cf552994c4a58230a5a12b33dd3f14f74404b0709c9e05f"
     },
     {
       "source_url": "https://learn.microsoft.com/en-us/dotnet/",
