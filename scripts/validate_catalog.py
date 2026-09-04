@@ -729,6 +729,8 @@ def validate_release_manifest(errors: list[str]) -> None:
     document = _validate_json_schema(manifest, ROOT / "releases" / "manifest-schema.json", errors)
     if not isinstance(document, dict):
         return
+    if document.get("catalog_version") != VERSION:
+        errors.append(f"{manifest.relative_to(ROOT)}: catalog version does not match {VERSION}")
     for artifact in document.get("artifacts", []):
         if not isinstance(artifact, dict):
             continue
