@@ -4,7 +4,7 @@ Portable, evidence-oriented agent skills for software delivery, research, operat
 
 This repository is an independent MIT-licensed work. It does not redistribute proprietary skill text. Public skills remain separate from private, repository-local overlays.
 
-Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets. The [behavioral evidence model](docs/behavioral-evidence-model.md) separates workflow maturity, observed client behavior, and runtime eligibility.
+Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets. The [behavioral evidence model](docs/behavioral-evidence-model.md) separates workflow maturity, observed client behavior, and runtime eligibility. The [daily agent operating model](docs/daily-agent-operating-model.md) supplies trust profiles and a compact ChatGPT-to-Codex handoff contract.
 
 ## Catalog
 
