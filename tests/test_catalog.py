@@ -392,6 +392,16 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(skill_name_errors("Bad-Skill"))
 
     def test_v09_release_manifest_tracks_governance_records(self) -> None:
+        schema = json.loads((ROOT / "releases" / "manifest-schema.json").read_text(encoding="utf-8"))
+        for manifest_path in sorted((ROOT / "releases").glob("*/manifest.json")):
+            document = json.loads(manifest_path.read_text(encoding="utf-8"))
+            with self.subTest(release=manifest_path.parent.name):
+                self.assertEqual([], validate_instance(document, schema))
+        version_schema = schema["properties"]["catalog_version"]
+        for version in ("0.9.0", "0.10.0", "1.2.3-rc.1+build.2"):
+            self.assertEqual([], validate_instance(version, version_schema), version)
+        for version in ("v0.9.0", "01.2.3", "1.2", "1.2.3-01", "1.2.3+", "1.2.3\n"):
+            self.assertTrue(validate_instance(version, version_schema), version)
         manifest = json.loads((ROOT / "releases" / "0.9.0" / "manifest.json").read_text(encoding="utf-8"))
         paths = {artifact["path"] for artifact in manifest["artifacts"]}
         self.assertTrue(
