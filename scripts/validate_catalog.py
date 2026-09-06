@@ -529,6 +529,28 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             errors.append(f"{observation_path.relative_to(ROOT)}: summary counts do not reconcile with records")
 
 
+def _without_comments_and_fenced_code(text: str) -> str:
+    """Exclude non-rendered comments and literal fenced examples from the contract."""
+
+    text = re.sub(r"<!--.*?(?:-->|\Z)", "\n", text, flags=re.DOTALL)
+    visible: list[str] = []
+    fence: str | None = None
+    for line in text.splitlines(keepends=True):
+        content = line.rstrip("\r\n")
+        if fence is not None:
+            if re.fullmatch(rf" {{0,3}}{re.escape(fence[0])}{{{len(fence)},}}[ \t]*", content):
+                fence = None
+            visible.append("\n")
+            continue
+        opening = re.fullmatch(r" {0,3}(`{3,}|~{3,})(.*)", content)
+        if opening and (opening[1][0] != "`" or "`" not in opening[2]):
+            fence = opening[1]
+            visible.append("\n")
+        else:
+            visible.append(line)
+    return "".join(visible)
+
+
 def validate_current_client_evidence(errors: list[str]) -> None:
     """Keep current documentation tied to its versioned observation matrix."""
 
@@ -550,7 +572,7 @@ def validate_current_client_evidence(errors: list[str]) -> None:
         if not path.is_file():
             errors.append(f"docs/{name}: missing current client evidence documentation")
             continue
-        text = path.read_text(encoding="utf-8")
+        text = _without_comments_and_fenced_code(path.read_text(encoding="utf-8"))
         for heading in headings:
             label = f"docs/{name}: {heading or 'introduction'}"
             if heading is None:

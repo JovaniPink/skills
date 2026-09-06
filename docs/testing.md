@@ -29,7 +29,7 @@ Run Codex's bundled skill validator for every canonical skill and the bundled pl
 
 `evals/cases.json` is a deterministic coverage contract, not a claim that every client model behaves identically. Execute the cases on each supported surface and record observed activation or refusal separately in `docs/manual-smoke-tests.md`.
 
-The current smoke-test introduction, version summary, validation candidate, and client evidence boundary must link to the versioned matrix for the catalog version. `scripts/validate.py` rejects missing links, references to historical matrices in those sections, and a missing or mismatched current matrix. Earlier matrices remain valid historical evidence in their own sections.
+The current smoke-test introduction, version summary, validation candidate, and client evidence boundary must link to the versioned matrix for the catalog version. `scripts/validate.py` rejects missing links, references to historical matrices in those sections, and a missing or mismatched current matrix. Links inside HTML comments or fenced code examples do not satisfy this requirement. Earlier matrices remain valid historical evidence in their own sections.
 
 ## Release gate
 

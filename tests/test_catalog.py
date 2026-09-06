@@ -365,6 +365,18 @@ class CatalogTests(unittest.TestCase):
             with self.subTest(document=name, heading=heading, missing_section=True):
                 changed = original.replace(heading + "\n" + section, "", 1)
                 self.assertTrue(self._current_evidence_errors({name: changed}))
+            for before, after in (
+                ("<!--\n", "\n-->"),
+                ("```markdown\n", "\n```"),
+                ("~~~markdown\n", "\n~~~"),
+                ("````markdown\n```\n", "\n```\n````"),
+                ("<!--\n", ""),
+                ("```markdown\n", ""),
+            ):
+                with self.subTest(document=name, heading=heading, hidden_in=before):
+                    changed = original.replace(section, "\n" + before + section + after + "\n", 1)
+                    errors = self._current_evidence_errors({name: changed})
+                    self.assertTrue(any("must link to" in error for error in errors), errors)
 
     def test_current_evidence_validator_requires_current_matrix_and_documents(self) -> None:
         for name in ("manual-smoke-tests.md", "validation-evidence.md", "client-observations-v0.9.json"):
