@@ -1,10 +1,10 @@
 ---
 name: high-signal-technical-writing
-description: "Edit technical prose for clarity, evidence density, specificity, rhythm, and audience fit while preserving meaning and repository voice. Use when documentation sounds vague, repetitive, promotional, or machine-generic; do not use style heuristics as evidence of authorship."
+description: "Edit technical prose for clarity, evidence density, specificity, rhythm, and audience fit while preserving meaning and repository voice. Use for completion reports, status updates, or documentation that sounds vague, repetitive, promotional, or machine-generic; do not use style heuristics as evidence of authorship."
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-reasoning"
   invocation: "implicit"
   provenance: "clean-room"
@@ -36,3 +36,9 @@ Read [editing checklist](references/editing-checklist.md) for a full revision pa
 ## Output
 
 Return the revised text first. Then list only material meaning-preservation notes, unresolved factual gaps, and optional alternatives.
+
+## Continuity and evidence
+
+Lead with the supported result or current decision. Preserve failed checks, uncertainty, requested detail, and requested work still unfinished. Match depth to the audience; do not impose a word limit or move essential evidence into an inaccessible appendix.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

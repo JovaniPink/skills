@@ -1,6 +1,6 @@
 {
   "$schema": "./packs-schema.json",
-  "catalog_version": "0.10.0",
+  "catalog_version": "0.11.0",
   "budget_warning_characters": 6000,
   "budget_limit_characters": 8000,
   "plugin_packs": [
@@ -96,7 +96,7 @@
         "task-handoff",
         "workflow-retrospective"
       ],
-      "description_characters": 3128,
+      "description_characters": 3171,
       "budget_status": "within-budget"
     },
     {

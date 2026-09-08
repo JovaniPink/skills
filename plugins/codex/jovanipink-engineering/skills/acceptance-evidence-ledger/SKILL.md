@@ -4,7 +4,7 @@ description: "Create or update an acceptance ledger for substantial work that ne
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-engineering"
   invocation: "explicit"
   provenance: "original"
@@ -48,4 +48,10 @@ Confirm the task scope, required outcomes, evidence authorities, owner, and inte
 
 ## Output
 
-Return `Ledger location`, `Scope`, `Gate table`, `Result`, `Reverification`, `Abandonments`, `Unresolved`, and `Next authorized action`.
+Return `Result`, `Ledger location`, `Scope`, and the complete `Gate table`. Include applicable `Reverification`, `Abandonments`, `Unresolved`, and `Next authorized action`.
+
+## Continuity and evidence
+
+Present the calculated result first, followed by the complete ledger. Keep abandoned requirements, stale receipts, blockers, and their consequences visible. Include a next authorized action only when one exists; presentation never changes gate calculation.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

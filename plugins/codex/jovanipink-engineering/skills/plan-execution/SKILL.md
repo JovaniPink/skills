@@ -4,7 +4,7 @@ description: Execute a named, approved implementation plan with checkpoints, val
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-engineering"
   invocation: "explicit"
   provenance: "original"
@@ -38,3 +38,9 @@ Confirm the exact plan, repository, branch, authorized actions, excluded actions
 ## Output
 
 Report `Plan`, `Completed`, `Deviations`, `Validation`, `Unresolved`, `Stopped actions`, and `Next authorized step`.
+
+## Continuity and evidence
+
+Report meaningful changes in verified state, a decision, a failure, or a blocker rather than repeated plan narration. Preserve the approved objective through status requests, side questions, interruptions, and compaction. Apply explicit corrections; replace the objective only when the user changes it. Reuse authorization already established in the task and seek a new decision only for a material change outside that authority.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

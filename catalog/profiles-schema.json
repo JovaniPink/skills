@@ -1,10 +1,18 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["$schema", "catalog_version", "profiles"],
+  "required": [
+    "$schema",
+    "catalog_version",
+    "profiles"
+  ],
   "properties": {
-    "$schema": {"const": "./profiles-schema.json"},
-    "catalog_version": {"const": "0.10.0"},
+    "$schema": {
+      "const": "./profiles-schema.json"
+    },
+    "catalog_version": {
+      "const": "0.11.0"
+    },
     "profiles": {
       "type": "array",
       "minItems": 1,
@@ -24,13 +32,22 @@
           "disposition"
         ],
         "properties": {
-          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-          "purpose": {"type": "string", "minLength": 1},
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
           "skills": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
-            "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            }
           },
           "target_surfaces": {
             "type": "array",
@@ -48,36 +65,87 @@
               ]
             }
           },
-          "applicability": {"type": "string", "minLength": 1},
+          "applicability": {
+            "type": "string",
+            "minLength": 1
+          },
           "exclusions": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
-            "items": {"type": "string", "minLength": 1}
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           },
           "discovery_measurements": {
             "type": "object",
             "minProperties": 1,
             "properties": {
-              "codex": {"$ref": "#/$defs/discoveryMeasurement"},
-              "claude-code": {"$ref": "#/$defs/discoveryMeasurement"},
-              "antigravity-cli": {"$ref": "#/$defs/discoveryMeasurement"},
-              "gemini-cli-enterprise": {"$ref": "#/$defs/discoveryMeasurement"},
-              "antigravity-desktop": {"$ref": "#/$defs/discoveryMeasurement"},
-              "antigravity-sdk": {"$ref": "#/$defs/discoveryMeasurement"},
-              "gemini-managed-agent": {"$ref": "#/$defs/discoveryMeasurement"}
+              "codex": {
+                "$ref": "#/$defs/discoveryMeasurement"
+              },
+              "claude-code": {
+                "$ref": "#/$defs/discoveryMeasurement"
+              },
+              "antigravity-cli": {
+                "$ref": "#/$defs/discoveryMeasurement"
+              },
+              "gemini-cli-enterprise": {
+                "$ref": "#/$defs/discoveryMeasurement"
+              },
+              "antigravity-desktop": {
+                "$ref": "#/$defs/discoveryMeasurement"
+              },
+              "antigravity-sdk": {
+                "$ref": "#/$defs/discoveryMeasurement"
+              },
+              "gemini-managed-agent": {
+                "$ref": "#/$defs/discoveryMeasurement"
+              }
             },
             "additionalProperties": false
           },
-          "source_catalog_version": {"const": "0.10.0"},
+          "source_catalog_version": {
+            "const": "0.11.0"
+          },
           "behavioral_evidence": {
             "type": "object",
-            "required": ["status", "observed_against_version", "observed_at", "evidence_reference"],
+            "required": [
+              "status",
+              "observed_against_version",
+              "observed_at",
+              "evidence_reference"
+            ],
             "properties": {
-              "status": {"enum": ["none", "partial", "verified"]},
-              "observed_against_version": {"type": ["string", "null"], "pattern": "^\\d+\\.\\d+\\.\\d+$"},
-              "observed_at": {"type": ["string", "null"], "format": "date"},
-              "evidence_reference": {"type": ["string", "null"], "pattern": "^docs/[A-Za-z0-9._/-]+$"}
+              "status": {
+                "enum": [
+                  "none",
+                  "partial",
+                  "verified"
+                ]
+              },
+              "observed_against_version": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^\\d+\\.\\d+\\.\\d+$"
+              },
+              "observed_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date"
+              },
+              "evidence_reference": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "pattern": "^docs/[A-Za-z0-9._/-]+$"
+              }
             },
             "additionalProperties": false
           },
@@ -85,17 +153,37 @@
             "type": "object",
             "minProperties": 1,
             "properties": {
-              "codex": {"$ref": "#/$defs/surfaceEvidence"},
-              "claude-code": {"$ref": "#/$defs/surfaceEvidence"},
-              "antigravity-cli": {"$ref": "#/$defs/surfaceEvidence"},
-              "gemini-cli-enterprise": {"$ref": "#/$defs/surfaceEvidence"},
-              "antigravity-desktop": {"$ref": "#/$defs/surfaceEvidence"},
-              "antigravity-sdk": {"$ref": "#/$defs/surfaceEvidence"},
-              "gemini-managed-agent": {"$ref": "#/$defs/surfaceEvidence"}
+              "codex": {
+                "$ref": "#/$defs/surfaceEvidence"
+              },
+              "claude-code": {
+                "$ref": "#/$defs/surfaceEvidence"
+              },
+              "antigravity-cli": {
+                "$ref": "#/$defs/surfaceEvidence"
+              },
+              "gemini-cli-enterprise": {
+                "$ref": "#/$defs/surfaceEvidence"
+              },
+              "antigravity-desktop": {
+                "$ref": "#/$defs/surfaceEvidence"
+              },
+              "antigravity-sdk": {
+                "$ref": "#/$defs/surfaceEvidence"
+              },
+              "gemini-managed-agent": {
+                "$ref": "#/$defs/surfaceEvidence"
+              }
             },
             "additionalProperties": false
           },
-          "disposition": {"enum": ["experimental", "recommended", "retired"]}
+          "disposition": {
+            "enum": [
+              "experimental",
+              "recommended",
+              "retired"
+            ]
+          }
         },
         "additionalProperties": false
       }
@@ -104,23 +192,76 @@
   "$defs": {
     "discoveryMeasurement": {
       "type": "object",
-      "required": ["description_characters", "budget_policy", "observed_listing_state"],
+      "required": [
+        "description_characters",
+        "budget_policy",
+        "observed_listing_state"
+      ],
       "properties": {
-        "description_characters": {"type": "integer", "minimum": 1},
-        "budget_policy": {"type": "string", "minLength": 1},
-        "observed_listing_state": {"enum": ["not_observed", "complete", "shortened", "name_only", "omitted"]}
+        "description_characters": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "budget_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observed_listing_state": {
+          "enum": [
+            "not_observed",
+            "complete",
+            "shortened",
+            "name_only",
+            "omitted"
+          ]
+        }
       },
       "additionalProperties": false
     },
     "surfaceEvidence": {
       "type": "object",
-      "required": ["status", "observed_against_version", "observed_at", "evidence_reference", "reason"],
+      "required": [
+        "status",
+        "observed_against_version",
+        "observed_at",
+        "evidence_reference",
+        "reason"
+      ],
       "properties": {
-        "status": {"enum": ["pass", "observed", "failed", "blocked", "stale"]},
-        "observed_against_version": {"type": ["string", "null"], "minLength": 1},
-        "observed_at": {"type": ["string", "null"], "format": "date"},
-        "evidence_reference": {"type": ["string", "null"], "pattern": "^docs/[A-Za-z0-9._/-]+$"},
-        "reason": {"type": "string", "minLength": 1}
+        "status": {
+          "enum": [
+            "pass",
+            "observed",
+            "failed",
+            "blocked",
+            "stale"
+          ]
+        },
+        "observed_against_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "evidence_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^docs/[A-Za-z0-9._/-]+$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
       },
       "additionalProperties": false
     }

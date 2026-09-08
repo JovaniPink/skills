@@ -4,7 +4,7 @@ description: "Design or revise a portable Agent Skill with precise routing, invo
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-reasoning"
   invocation: "implicit"
   provenance: "clean-room"
@@ -37,3 +37,9 @@ Read [client adapters](references/client-adapters.md) when invocation controls, 
 ## Output
 
 Return `Capability`, `Routing`, `Invocation`, `Canonical files`, `Adapters`, `Provenance`, `Security`, `Evaluations`, `Validation`, and `Observed client limits`.
+
+## Continuity and evidence
+
+Separate required semantic content from optional presentation. Test concise and requested long-form outputs, competing instructions, partial failure, stale handoffs, and interruptions. Keep shared workflow meaning canonical and client-native loading and invocation controls in generated adapters. Do not claim explicit-only support from a slash command alone or distribute an explicit-only workflow to an unverified surface.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

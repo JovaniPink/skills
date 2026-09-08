@@ -4,7 +4,7 @@ description: "Review a completed or paused workflow using supplied artifacts and
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-reasoning"
   invocation: "explicit"
   provenance: "clean-room"
@@ -42,3 +42,9 @@ A retrospective is after-the-fact interpretation. It does not change the origina
 ## Output
 
 Return `Scope`, `Observed timeline`, `What helped`, `What hindered`, `Contributing conditions`, `Evidence limits`, `Improvement experiment`, `Owner and review date`, and `Rejected generalizations`. If a knowledge-lifecycle handoff was requested, add the proposed retrospective ID, subject relationships, findings, unknowns, and limitations without writing or publishing them automatically.
+
+## Continuity and evidence
+
+Review observable communication friction: time spent finding results, repeated discovery after interruption, lost evidence, unnecessary decisions, and corrections needed to resume. Distinguish measured effort from estimates and preference. Compare the current workflow, a small preference change, and a focused skill revision before proposing general adoption.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

@@ -4,7 +4,7 @@ description: Discover and run the repository's real validation gates across supp
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "clean-room"
@@ -36,4 +36,10 @@ Discover the project's contract before running validation. Read [gate discovery]
 
 ## Output
 
-Return a gate table with `Component`, `Command`, `Result`, and `Evidence`, followed by coverage gaps and the overall verdict: `PASS`, `FAIL`, or `INCOMPLETE`.
+Return the overall verdict `PASS`, `FAIL`, or `INCOMPLETE` first, followed by the complete gate table with `Component`, `Command`, `Result`, and `Evidence`, and any coverage gaps.
+
+## Continuity and evidence
+
+Lead with PASS, FAIL, or INCOMPLETE, derived from the required gates. Retain the complete command and evidence table, unavailable checks, and the first actionable failure. A missing required gate cannot become a pass through summarization.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

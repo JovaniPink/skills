@@ -4,7 +4,7 @@ description: Apply focused Swift and SwiftUI engineering judgment after reposito
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-stack-profiles"
   invocation: "implicit"
   provenance: "clean-room"

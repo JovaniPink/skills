@@ -4,7 +4,7 @@ description: Publish an authorized repository change by verifying identity, remo
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-skills"
   invocation: "explicit"
   provenance: "clean-room"
@@ -27,8 +27,14 @@ Perform only the publication actions the user authorized. Repository identity, t
 7. Re-read the remote before pushing when concurrent changes are plausible. Never force-push, rewrite shared history, change visibility, or alter branch protection without explicit authorization.
 8. Push only the intended branch and verify the resulting remote revision.
 9. If authorized, open or update a PR with evidence-bounded claims. Do not merge unless the user separately authorized merge.
-10. Report exact commit, remote branch, PR/check state, and all actions not performed.
+10. Report the verified result, exact commit, remote branch, PR/check state, requested actions left unfinished, and consequential lifecycle limits.
 
 ## Stop conditions
 
 Stop before mutation when identity, target repository, branch, staged scope, secret exposure, history divergence, or requested authority is unclear. A rejected push is not permission to rebase, merge, or force.
+
+## Continuity and evidence
+
+Lead with the verified result at the authorized publication boundary. Preserve exact identity, revision, remote readback, failed checks, requested actions left unfinished, and consequential lifecycle limits. Do not list every unrelated action that was never requested.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

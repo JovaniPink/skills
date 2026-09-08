@@ -1,6 +1,6 @@
 {
   "$schema": "./upstream-reviews-schema.json",
-  "catalog_version": "0.10.0",
+  "catalog_version": "0.11.0",
   "reviewed_on": "2026-09-04",
   "reviews": [
     {
@@ -168,7 +168,10 @@
       "url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
       "status": "reviewed",
       "ownership_check": "Google for Developers is the official publisher of the individual-user transition announcement.",
-      "affected_skills": ["portable-skill-authoring", "google-adk-engineering-profile"],
+      "affected_skills": [
+        "portable-skill-authoring",
+        "google-adk-engineering-profile"
+      ],
       "finding": "Individual free, Google AI Pro, and Google AI Ultra users moved from Gemini CLI to Antigravity CLI, while qualifying enterprise and paid Agent Platform users retain conditional Gemini CLI access.",
       "action": "Use Antigravity CLI as the primary future Google developer-client key, preserve Gemini CLI evidence as historical, and require an intentionally in-scope enterprise license for future Gemini CLI compatibility observations."
     },
@@ -176,7 +179,10 @@
       "url": "https://antigravity.google/docs/skills/",
       "status": "reviewed",
       "ownership_check": "Google Antigravity documentation is the official authority for Antigravity skill discovery and invocation.",
-      "affected_skills": ["portable-skill-authoring", "skill-security-review"],
+      "affected_skills": [
+        "portable-skill-authoring",
+        "skill-security-review"
+      ],
       "finding": "Antigravity documents workspace Agent Skills, progressive loading, implicit discovery, and slash invocation. No reviewed control was found that proves an explicit-only model-invocation policy equivalent to the Codex or Claude projection.",
       "action": "Add a surface-specific discovery slot, block the seven-skill profile because it contains publish-change-safely, and require live evidence before claiming explicit-only parity."
     },
@@ -184,7 +190,10 @@
       "url": "https://www.antigravity.google/docs/cli/plugins/",
       "status": "reviewed",
       "ownership_check": "Google Antigravity documentation is the official authority for its native CLI plugin manifest.",
-      "affected_skills": ["portable-skill-authoring", "skill-security-review"],
+      "affected_skills": [
+        "portable-skill-authoring",
+        "skill-security-review"
+      ],
       "finding": "The documented Antigravity native plugin manifest and MCP configuration filenames differ from the Agent Plugins 1.0 package schema.",
       "action": "Keep Antigravity-native packaging separate and do not claim that a portable Agent Plugins package is accepted without a conformant-client observation."
     },
@@ -192,7 +201,10 @@
       "url": "https://agent-plugins.org/specification",
       "status": "reviewed",
       "ownership_check": "The Agent Plugins specification site is the named authority for the portable Agent Plugins 1.0 package format.",
-      "affected_skills": ["portable-skill-authoring", "skill-security-review"],
+      "affected_skills": [
+        "portable-skill-authoring",
+        "skill-security-review"
+      ],
       "finding": "Agent Plugins 1.0 defines portable packaging around plugin.json and mcp.json but does not establish a client's sandbox, credential, permission, provenance, or installation-trust behavior.",
       "action": "Defer a minimal skills-only proof package until a selected conformant client is tested, and keep packaging claims separate from security and behavior."
     },
@@ -200,7 +212,10 @@
       "url": "https://antigravity.google/docs/cli/headless/",
       "status": "reviewed",
       "ownership_check": "Google Antigravity documentation is the official authority for headless CLI output and result behavior.",
-      "affected_skills": ["agent-evaluation-design", "claim-verification"],
+      "affected_skills": [
+        "agent-evaluation-design",
+        "claim-verification"
+      ],
       "finding": "Headless execution exposes structured output and tool events, and permission denials can be represented inside an otherwise continuing run.",
       "action": "Require terminal-result and tool-event parsing; never grade an Antigravity case from process exit code alone."
     },
@@ -208,7 +223,10 @@
       "url": "https://ai.google.dev/gemini-api/docs/agents",
       "status": "reviewed",
       "ownership_check": "Google AI for Developers is the official authority for Gemini API Managed Agents.",
-      "affected_skills": ["agent-evaluation-design", "agentic-system-security-review"],
+      "affected_skills": [
+        "agent-evaluation-design",
+        "agentic-system-security-review"
+      ],
       "finding": "Managed Agents are hosted sandboxed agent runs with separate tools, source mounting, retention, and a documented range of 100,000 to 3 million tokens per interaction.",
       "action": "Keep Managed Agents out of the initial quantitative pilot; begin with synthetic public cases, explicit tool policy, a preregistered cost ceiling, and retention and environment-deletion records."
     },
@@ -216,7 +234,10 @@
       "url": "https://docs.cloud.google.com/data-agent-kit/overview",
       "status": "reviewed",
       "ownership_check": "Google Cloud documentation is the official authority for Data Agent Kit status and capabilities.",
-      "affected_skills": ["agent-tool-action-boundary-review", "retrieval-grounding-quality-review"],
+      "affected_skills": [
+        "agent-tool-action-boundary-review",
+        "retrieval-grounding-quality-review"
+      ],
       "finding": "Data Agent Kit is a Preview vendor skill and tool layer for Google data services and compatible coding agents.",
       "action": "Treat it as an optional tool/plugin compatibility lane; do not let vendor skills define product semantics, registry authority, deployment approval, or evaluation truth."
     },
@@ -224,7 +245,10 @@
       "url": "https://ai.google.dev/gemini-api/docs/latest-model",
       "status": "reviewed",
       "ownership_check": "Google AI for Developers is the official authority for current Gemini model availability and pricing qualifications.",
-      "affected_skills": ["google-adk-engineering-profile", "agent-evaluation-design"],
+      "affected_skills": [
+        "google-adk-engineering-profile",
+        "agent-evaluation-design"
+      ],
       "finding": "Gemini 3.8 Flash is documented as generally available, with introductory pricing ending December 31, 2026. Model availability, pricing, and effort behavior are volatile execution-envelope facts.",
       "action": "Keep model choice out of static skill instructions, read current release and deprecation records before an experiment, and compare cost per successful case."
     },
@@ -232,7 +256,10 @@
       "url": "https://www.antigravity.google/docs/sdk/overview",
       "status": "reviewed",
       "ownership_check": "Google Antigravity documentation is the official authority for the Antigravity SDK harness.",
-      "affected_skills": ["google-adk-engineering-profile", "agent-evaluation-design"],
+      "affected_skills": [
+        "google-adk-engineering-profile",
+        "agent-evaluation-design"
+      ],
       "finding": "The SDK exposes a programmatic agent harness but remains a distinct runtime surface from the CLI even when implementation components are shared.",
       "action": "Create SDK evidence only in a separate runtime-harness lane after a useful CLI treatment exists."
     },
@@ -240,7 +267,10 @@
       "url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
       "status": "reviewed",
       "ownership_check": "Google for Developers is the official publisher of the Agents CLI lifecycle announcement.",
-      "affected_skills": ["google-adk-engineering-profile", "publish-change-safely"],
+      "affected_skills": [
+        "google-adk-engineering-profile",
+        "publish-change-safely"
+      ],
       "finding": "Agents CLI supports agent evaluation, infrastructure preparation, and deployment lifecycle operations, which carry different authority and evidence requirements from coding-assistant behavior.",
       "action": "Treat it as lifecycle tooling; require explicit RELEASE authority for infra, deploy, and publish operations plus provider readback."
     },
@@ -248,7 +278,11 @@
       "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
       "status": "reviewed",
       "ownership_check": "Google Cloud documentation is the official authority for Gemini Enterprise Agent Platform architecture.",
-      "affected_skills": ["google-adk-engineering-profile", "agent-context-state-memory-design", "agentic-system-security-review"],
+      "affected_skills": [
+        "google-adk-engineering-profile",
+        "agent-context-state-memory-design",
+        "agentic-system-security-review"
+      ],
       "finding": "The platform provides production runtime, identity, governance, memory, evaluation, observability, registry, gateway, and orchestration capabilities beyond a local coding client.",
       "action": "Keep product and runtime claims in their own evidence lane and never blend them with skill behavioral results."
     }

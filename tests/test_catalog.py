@@ -21,6 +21,7 @@ from build_distributions import build, marketplace_documents  # noqa: E402
 from cataloglib import (  # noqa: E402
     EXPLICIT_SKILLS,
     SKILLS,
+    VERSION,
     filter_revoked,
     read_skill_metadata,
     skills_by_plugin,
@@ -412,7 +413,7 @@ class CatalogTests(unittest.TestCase):
             validate_instance(
                 {
                     "$schema": "./profiles-schema.json",
-                    "catalog_version": "0.10.0",
+                    "catalog_version": VERSION,
                     "profiles": [candidate],
                 },
                 schema,
@@ -426,7 +427,7 @@ class CatalogTests(unittest.TestCase):
             validate_instance(
                 {
                     "$schema": "./profiles-schema.json",
-                    "catalog_version": "0.10.0",
+                    "catalog_version": VERSION,
                     "profiles": [missing],
                 },
                 schema,
@@ -441,7 +442,7 @@ class CatalogTests(unittest.TestCase):
             validate_instance(
                 {
                     "$schema": "./profiles-schema.json",
-                    "catalog_version": "0.10.0",
+                    "catalog_version": VERSION,
                     "profiles": [extra],
                 },
                 schema,
@@ -950,7 +951,12 @@ class CatalogTests(unittest.TestCase):
             if path.is_file()
         }
         self.assertEqual(
-            {"SKILL.md", "agents/openai.yaml", "references/ledger-contract.md"},
+            {
+                "SKILL.md",
+                "agents/openai.yaml",
+                "references/ledger-contract.md",
+                "references/continuity-example.md",
+            },
             files,
         )
         text = (skill_root / "SKILL.md").read_text(encoding="utf-8")
@@ -1011,7 +1017,18 @@ class CatalogTests(unittest.TestCase):
                 if path.is_file()
             }
             self.assertEqual(
-                {"SKILL.md", "agents/openai.yaml", f"references/{references[skill]}"},
+                (
+                    {
+                        "SKILL.md",
+                        "agents/openai.yaml",
+                        f"references/{references[skill]}",
+                    }
+                    | (
+                        {"references/continuity-example.md"}
+                        if skill == "agent-evaluation-design"
+                        else set()
+                    )
+                ),
                 files,
             )
             metadata = read_skill_metadata(root)

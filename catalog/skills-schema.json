@@ -1,10 +1,18 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["$schema", "catalog_version", "skills"],
+  "required": [
+    "$schema",
+    "catalog_version",
+    "skills"
+  ],
   "properties": {
-    "$schema": {"const": "./skills-schema.json"},
-    "catalog_version": {"const": "0.10.0"},
+    "$schema": {
+      "const": "./skills-schema.json"
+    },
+    "catalog_version": {
+      "const": "0.11.0"
+    },
     "skills": {
       "type": "array",
       "minItems": 1,
@@ -24,35 +32,105 @@
           "maturity_evidence"
         ],
         "properties": {
-          "skill": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-          "plugin": {"type": "string", "pattern": "^jovanipink-[a-z0-9]+(?:-[a-z0-9]+)*$"},
-          "capability_family": {"enum": ["evidence", "planning", "execution", "review", "operations", "communication", "ai-engineering"]},
+          "skill": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "plugin": {
+            "type": "string",
+            "pattern": "^jovanipink-[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "capability_family": {
+            "enum": [
+              "evidence",
+              "planning",
+              "execution",
+              "review",
+              "operations",
+              "communication",
+              "ai-engineering"
+            ]
+          },
           "lifecycle_stages": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
-            "items": {"enum": ["discover", "frame", "design", "build", "test", "review", "release", "operate", "learn"]}
+            "items": {
+              "enum": [
+                "discover",
+                "frame",
+                "design",
+                "build",
+                "test",
+                "review",
+                "release",
+                "operate",
+                "learn"
+              ]
+            }
           },
           "targets": {
             "type": "array",
             "minItems": 1,
             "uniqueItems": true,
-            "items": {"enum": ["code", "repository", "data", "service", "agent", "model", "organization", "publication"]}
+            "items": {
+              "enum": [
+                "code",
+                "repository",
+                "data",
+                "service",
+                "agent",
+                "model",
+                "organization",
+                "publication"
+              ]
+            }
           },
-          "risk_class": {"enum": ["read-only", "bounded-execution", "network-read", "external-write", "trust-decision"]},
-          "invocation": {"enum": ["implicit", "explicit"]},
-          "maturity": {"enum": ["incubating", "candidate", "field-tested", "accepted", "deprecated", "revoked"]},
+          "risk_class": {
+            "enum": [
+              "read-only",
+              "bounded-execution",
+              "network-read",
+              "external-write",
+              "trust-decision"
+            ]
+          },
+          "invocation": {
+            "enum": [
+              "implicit",
+              "explicit"
+            ]
+          },
+          "maturity": {
+            "enum": [
+              "incubating",
+              "candidate",
+              "field-tested",
+              "accepted",
+              "deprecated",
+              "revoked"
+            ]
+          },
           "composes_with": {
             "type": "array",
             "uniqueItems": true,
-            "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            }
           },
           "conflicts_with": {
             "type": "array",
             "uniqueItems": true,
-            "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            }
           },
-          "maturity_evidence": {"type": "string", "pattern": "^(evals|docs)/[A-Za-z0-9._/-]+$"}
+          "maturity_evidence": {
+            "type": "string",
+            "pattern": "^(evals|docs)/[A-Za-z0-9._/-]+$"
+          }
         },
         "additionalProperties": false
       }

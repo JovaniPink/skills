@@ -1,24 +1,65 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["$schema", "catalog_version", "reviewed_on", "reviews"],
+  "required": [
+    "$schema",
+    "catalog_version",
+    "reviewed_on",
+    "reviews"
+  ],
   "properties": {
-    "$schema": {"const": "./upstream-reviews-schema.json"},
-    "catalog_version": {"const": "0.10.0"},
-    "reviewed_on": {"type": "string", "format": "date"},
+    "$schema": {
+      "const": "./upstream-reviews-schema.json"
+    },
+    "catalog_version": {
+      "const": "0.11.0"
+    },
+    "reviewed_on": {
+      "type": "string",
+      "format": "date"
+    },
     "reviews": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["url", "status", "ownership_check", "affected_skills", "finding", "action"],
+        "required": [
+          "url",
+          "status",
+          "ownership_check",
+          "affected_skills",
+          "finding",
+          "action"
+        ],
         "properties": {
-          "url": {"type": "string", "format": "uri"},
-          "status": {"const": "reviewed"},
-          "ownership_check": {"type": "string", "minLength": 1},
-          "affected_skills": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}},
-          "finding": {"type": "string", "minLength": 1},
-          "action": {"type": "string", "minLength": 1}
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "const": "reviewed"
+          },
+          "ownership_check": {
+            "type": "string",
+            "minLength": 1
+          },
+          "affected_skills": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            }
+          },
+          "finding": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "additionalProperties": false
       }

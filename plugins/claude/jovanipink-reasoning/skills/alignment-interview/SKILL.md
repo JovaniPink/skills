@@ -4,7 +4,7 @@ description: "Establish a shared, decision-ready understanding before implementa
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-reasoning"
   invocation: "implicit"
   provenance: "clean-room"
@@ -18,7 +18,7 @@ Reach decision readiness before implementation starts.
 ## Workflow
 
 1. Inspect the evidence already available in the request, repository, issue, plan, and named documents before asking the user to repeat facts.
-2. State the current understanding as `Goal`, `Users`, `Constraints`, `Known evidence`, `Unknowns`, and `Success criteria`.
+2. Maintain the current understanding as `Goal`, `Users`, `Constraints`, `Known evidence`, `Unknowns`, and `Success criteria`; present only the material change during the interview.
 3. Rank unknowns by how much their answers could change scope, architecture, authority, safety, cost, or acceptance.
 4. Ask one material question at a time. Explain why it matters and recommend a default when current evidence supports one.
 5. Update the shared model after each answer and identify contradictions rather than smoothing them over.
@@ -34,3 +34,9 @@ Reach decision readiness before implementation starts.
 ## Output
 
 Return `Shared understanding`, `Evidence`, `Decisions`, `Assumptions`, `Open questions`, `Readiness`, and `Next authorized action`.
+
+## Continuity and evidence
+
+During the interview, present the material question and only the changed understanding needed to answer it. Preserve the full agreed model for the readiness summary; do not repeat it on every turn. Do not reopen decisions already answered unless new evidence creates a material conflict.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

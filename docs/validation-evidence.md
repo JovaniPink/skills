@@ -1,5 +1,9 @@
 # Validation Evidence
 
+## v0.11 continuity candidate
+
+The candidate contains 77 skills, with 13 targeted workflow changes and original synthetic examples. Native distributions are generated from canonical source. Behavioral acceptance remains unobserved; historical client and pilot records do not establish behavior for this candidate. See [the candidate audit](continuity-candidate.md).
+
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
 ## v0.10 behavioral-evidence candidate

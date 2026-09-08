@@ -4,7 +4,7 @@ description: "Guide a person through configuration steps that require their acco
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-reasoning"
   invocation: "explicit"
   provenance: "clean-room"
@@ -35,4 +35,10 @@ Help a person complete protected configuration without pretending the agent perf
 
 ## Output
 
-Return `Goal`, `Authoritative source`, `Current step`, `Expected result`, `Observed result`, `Security boundary`, `Recovery`, and `Remaining steps`.
+During a step, return `Current step`, `Expected result`, and relevant `Recovery` or `Security boundary`. At a checkpoint or completion, reconcile `Goal`, `Authoritative source`, `Observed result`, and `Remaining steps`, preserving failed and unverified work.
+
+## Continuity and evidence
+
+During configuration, present the current human step, expected result, and relevant recovery or security boundary. Keep the complete state reconciliation for a checkpoint or final response. Preserve failed and unverified steps, and reuse observed completion when it remains current.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.
