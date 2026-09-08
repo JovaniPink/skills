@@ -1,6 +1,6 @@
 # Antigravity setup
 
-Antigravity setup and testing have equal priority with Codex and Claude. It has an offline preview builder now. The preview still needs a loading test in the exact app or CLI you use.
+Antigravity setup and testing have equal priority with Codex and Claude. It has an offline preview builder. A one-skill package passed native install and skill-menu checks in CLI 1.1.26. Use tests and app checks are still incomplete.
 
 ## Check what is there
 
@@ -36,9 +36,11 @@ agy plugin install /absolute/path/to/antigravity-check/plugin
 agy plugin list
 ```
 
-Record the names the client actually shows. Then follow the [shared client checks](../client-support.md) in a fresh task. Verify linked notes and removal before widening the install. Keep personal and product skills separate from this public preview.
+In CLI 1.1.26, the native installer placed the tested preview under `~/.gemini/config/plugins/`, and the menu listed `/jovanipink-antigravity-preview:claim-verification`. Native validation, file hashes, disable/enable, removal, and reinstall checks passed. These results cover one skill and this CLI version.
 
-The general skill guide lists workspace `.agents/skills/` folders and global `~/.gemini/config/skills/` folders. The CLI guide also names its own global directory. Check the receiving client before placing files in either location.
+Record the names and path your client actually shows. Follow the [shared client checks](../client-support.md) in a fresh task. Verify live use and linked notes before widening the install. Keep personal and product skills separate from this public preview.
+
+The general skill guide lists workspace `.agents/skills/` folders and global `~/.gemini/config/skills/` folders. The web CLI guide also names a CLI-specific global directory. The observed native install used the shared folder instead. Let the installer choose its path and verify the result. A running desktop app may still show its previous skill list.
 
 Keep repository rules in the existing `AGENTS.md` files. The installed CLI guide says it reads `AGENTS.md` and `GEMINI.md` from the working directory up to the repository root. Verify that loading in a fresh task before relying on it. Avoid a second copy that could drift.
 

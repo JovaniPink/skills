@@ -21,7 +21,7 @@ claude plugin install jovanipink-skills@jovanipink-skills --scope user
 claude plugin list --json
 ```
 
-For an existing install, refresh the marketplace before updating the plugin. Use `claude plugin marketplace update --help` and `claude plugin update --help` to check the current command form. Save the old version and file hashes first.
+For an existing install, refresh the marketplace before updating the plugin. Use `claude plugin marketplace update --help` and `claude plugin update --help` to check the current command form. Save the old version and file hashes first. Check every installed file after the update. In the observed 2.1.220 update, all seven packs moved to 0.11.0 and their files matched the generated source. The desktop plugin pages also showed the new version; that did not establish behavior in an existing task.
 
 Start a fresh task, then select the full plugin command:
 
@@ -38,6 +38,8 @@ Claude desktop Code mode, Claude.ai, and Cowork each need their own record. Note
 For an account upload, build the separate one-skill ZIP with `python3 scripts/package_claude_ai.py`. Review it before uploading. Do not upload an explicit-only skill until the receiving mode has a verified control that prevents automatic selection.
 
 Personal preferences belong in the user's `CLAUDE.md` for local Code use. Repository guidance uses the checked-in `CLAUDE.md`. Confirm which files loaded; do not assume a local file syncs to a cloud task.
+
+If a live check reports expired sign-in, leave it blocked until sign-in is refreshed. Read the process exit code and error text as well as its final event. In one observed authentication failure, the CLI emitted a `success` subtype with `is_error: true` while exiting with code 1. That is not a passing check.
 
 Follow the [shared client checks](../client-support.md). Remove duplicate copies only after reviewing their source and saving what is needed to restore them.
 

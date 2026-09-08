@@ -1,5 +1,20 @@
 # Manual Cross-Client Smoke Tests
 
+## Local package follow-up, 2026-09-08
+
+This was a setup check, not a behavioral study. Source: `61a269a`; public skill payloads match the 0.11.0 generated packages.
+
+| Check | Observed result | Limit |
+| --- | --- | --- |
+| Codex CLI 0.153.2 | Two stale packs refreshed; all seven installed packs match generated files | Existing-task behavior not retested |
+| Claude Code CLI 2.1.220 | Seven packs updated from 0.9.0 to 0.11.0; all 77 skills and package files match | One synthetic live check stopped on expired authentication; zero model cost reported |
+| Claude desktop 1.46388.4 | Each of seven plugin pages shows 0.11.0, totaling 77 skills | Personal copies remain separate; task behavior and cloud sync not proved |
+| Antigravity CLI 1.1.26 | One-skill preview installed; native validation and file hashes pass; namespaced skill appears in a fresh CLI menu | No model prompt submitted; full-catalog use and explicit-only controls unverified |
+| Antigravity plugin lifecycle | Disable, enable, remove, and reinstall states verified | Removal checked by files and native import list, not a separate post-removal skill-menu session |
+| Running Antigravity desktop | Previous skill list still shown after revisiting settings | Preview loading not established; no app restart performed |
+
+No personal preference was activated. Private paths, backups, account details, and detailed receipts remain outside this public record. Earlier observations below keep their original scope.
+
 ## Current client setup policy
 
 Codex, Claude Code, and Antigravity setup checks can proceed independently. Use the [client support checklist](client-support.md) for each CLI and app. Historical observations below keep their original scope and dates; they do not prove that a current install works.
