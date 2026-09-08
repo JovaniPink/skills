@@ -4,6 +4,8 @@
 
 The candidate contains 77 skills, with 13 targeted workflow changes and original synthetic examples. Native distributions are generated from canonical source. Behavioral acceptance remains unobserved; historical client and pilot records do not establish behavior for this candidate. See [the candidate audit](continuity-candidate.md).
 
+Observed local checks on 2026-09-08: complete deterministic validation passed, all 69 unit tests passed, native distribution and marketplace drift checks passed, strict typing and lint passed, and both workflow syntax checks passed. The 0.11.0 release manifest binds source commit `02e29f9` and exact current artifact hashes. These checks establish local candidate consistency only; no installed-client experiment or publication was performed.
+
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
 ## v0.10 behavioral-evidence candidate

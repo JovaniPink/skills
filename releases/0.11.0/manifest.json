@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.11.0",
-  "source_commit": "48127fb1e350a9b3b1f9ad0b66c9893e764e81f7",
+  "source_commit": "02e29f9a6f9e7e2bf7da958f28fe000075092fcf",
   "created_on": "2026-09-08",
   "artifacts": [
     {
@@ -107,7 +107,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/alignment-interview-0.11.0.zip",
-      "sha256": "2a33c7158efbcdeffbb9c83655764f35ae522abe04f7034b70a844c3eee25a92"
+      "sha256": "0383d58d91d8ce3ab03c15f42d2d21dbf78eb2dc6b9263dc1079440458e4a613"
     },
     {
       "kind": "zip",
@@ -287,7 +287,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/plan-execution-0.11.0.zip",
-      "sha256": "7055b2a9eff5f7b4f3b980d40d797010b1b7263c1f10b31aa7b4fbc952bf5b59"
+      "sha256": "7ed6d3da86893796f849e7188d855362088e9dd7363006f323891f652a0d6ce9"
     },
     {
       "kind": "zip",
@@ -467,7 +467,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-engineering",
-      "sha256": "35b25820c05e44572e3fc5e1802073a8c3807322779e92a7b64b861748122f39"
+      "sha256": "61d5af4c4a8558aa55c43e0ede27ce6d87280be7775a85b7878009333c6b0b58"
     },
     {
       "kind": "tree",
@@ -477,7 +477,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/jovanipink-reasoning",
-      "sha256": "18fc6d7e97c1ac01449e1f76150626231f2cd2d1f2eef0c80664ac6be7fc7483"
+      "sha256": "1de64ebd26863cbdb65fd073c5b5a7495470abb9cc2b23e2cdec59cdc4267224"
     },
     {
       "kind": "tree",
@@ -502,7 +502,7 @@
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-engineering",
-      "sha256": "1ae967b2af60ec520a453c69111542a137e5a252a593ecc7a52a77e31d026488"
+      "sha256": "3fa3091eed2858b9a9f839659227c04161041a2bbd09924f867c00b42cc8c24f"
     },
     {
       "kind": "tree",
@@ -512,7 +512,7 @@
     {
       "kind": "tree",
       "path": "plugins/codex/jovanipink-reasoning",
-      "sha256": "de6b73eb48045b61143e3d1fc87ab41aaa49c3202fef2dc9cbf53575f9934173"
+      "sha256": "3c6b15454ee58034eee72cfd78810d593a73dddc4178212ed8d260f27ffdc721"
     },
     {
       "kind": "tree",
