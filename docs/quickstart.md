@@ -1,8 +1,8 @@
-# Five-Minute Quickstart
+# Quickstart
 
-This quickstart installs one focused plugin from a reviewed local clone. It does not publish a marketplace, change a workspace account, or prove behavior on another client.
+Choose the client you want to use: Codex, Claude Code, or Antigravity. You can prepare and check any of them without waiting for another client.
 
-## Minute 1: Review and clone
+## 1. Get the skills
 
 ```sh
 git clone https://github.com/JovaniPink/skills.git
@@ -10,11 +10,11 @@ cd skills
 git status --short --branch
 ```
 
-For sensitive work, check out a reviewed tag or full commit rather than a mutable branch.
+Choose a reviewed tag or full commit for the version you want to use.
 
-## Minute 2: Validate the clone
+## 2. Check the files
 
-Use PyYAML 6.0.3 from a trusted local environment, or use the reviewed Linux lock described in [Testing and validation](testing.md).
+Use PyYAML 6.0.3 from a trusted Python environment. See [Testing](testing.md) for the full setup.
 
 ```sh
 python3 scripts/check_workflows.py
@@ -22,71 +22,36 @@ python3 scripts/validate.py
 python3 -m unittest discover -s tests -v
 ```
 
-These commands verify the repository structure and generated artifacts. They do not prove installation or activation in a client.
+Passing checks mean the source and packages agree. You still need to check that your client loads them.
 
-## Minute 3: Choose one plugin
+## 3. Choose a pack
 
-Read [Choose Your Skills](choose-your-skills.md). A useful starting point is:
+Start with the skills your task needs. A pack is a group of skills you install together.
 
-- `jovanipink-skills` for research, verification, diagnosis, and public-boundary review;
-- `jovanipink-engineering` for a broad engineering lifecycle;
-- `jovanipink-operations` for requirements, decisions, measurement, and incidents.
-- `jovanipink-agent-platforms` for human-facing Google ADK, agent architecture, tool, security, protocol, and retrieval reviews.
+- `jovanipink-skills`: check claims, research, and find causes of problems.
+- `jovanipink-engineering`: plan, write, test, and review code.
+- `jovanipink-reasoning`: explain code, improve writing, and hand off work.
 
-Avoid installing all plugins by default.
+The [selection guide](choose-your-skills.md) lists the other packs.
 
-## Minute 4: Install in one client
+## 4. Follow your client's setup guide
 
-Codex CLI or the local ChatGPT desktop development path:
+| Client | Guide | Current package |
+| --- | --- | --- |
+| Codex | [Setup and checks](clients/codex.md) | Native plugins |
+| Claude Code | [Setup and checks](clients/claude.md) | Native plugins; separate account ZIPs |
+| Antigravity | [Setup and checks](clients/antigravity.md) | Offline preview; loading check still needed |
 
-```sh
-codex plugin marketplace add /absolute/path/to/skills
-codex plugin add jovanipink-skills@jovanipink-skills
-codex plugin list --json
-```
+First list existing skills and look for old copies. Then review the package before installing it. Use a fresh task for the check.
 
-Claude Code or Claude Desktop local Code sessions:
+Gemini CLI is a separate, conditional enterprise check. It is not the Antigravity CLI. See [Google clients and tools](google-agent-surfaces.md).
 
-```sh
-claude plugin marketplace add /absolute/path/to/skills --scope user
-claude plugin install jovanipink-skills@jovanipink-skills --scope user
-claude plugin list --json
-```
-
-Antigravity CLI is the primary future Google developer-client surface for individuals. Gemini CLI remains a conditional enterprise compatibility surface after Google's transition. Do not install or test either client through this quickstart; follow the [Google agent surface boundaries](google-agent-surfaces.md) and record each exact surface separately.
-
-Start a fresh session after installation.
-
-## Minute 5: Run a read-only check
-
-Try a prompt that does not change external state:
+## 5. Try a small task
 
 ```text
-Verify whether this branch is committed, pushed, reviewed, merged, deployed, and live. Report only the states supported by current evidence. Do not change anything.
+Check this task summary against its evidence. State the supported result first. Keep failed checks, unknowns, and unfinished work visible. Make no changes.
 ```
 
-Confirm whether the client discovered and activated `claim-verification`. Record the exact client version, plugin version, source commit, prompt, result, timestamp, and evidence reference. Do not treat a result on one surface as proof for another.
+Confirm which skill the client used. Open one of its linked notes. Ask a status question, then resume the task and check that the original goal is still clear.
 
-## Explicit-only reminder
-
-Explicit-only skills require direct selection. Direct selection chooses a workflow; it does not authorize every action inside that workflow.
-
-Codex example:
-
-```text
-$jovanipink-skills:publish-change-safely Prepare the publication checks, but do not push or open a pull request.
-```
-
-Claude Code example:
-
-```text
-/jovanipink-skills:publish-change-safely Prepare the publication checks, but do not push or open a pull request.
-```
-
-## Next reading
-
-- [How to Use JovaniPink Skills](README.md)
-- [Skill Cheatsheet](skill-cheatsheet.md)
-- [Taxonomy](taxonomy.md)
-- [Security Model](security-model.md)
-- [Manual Smoke Tests](manual-smoke-tests.md)
+Use the [client checklist](client-support.md) to record the version, files, result, and anything you could not check. Test the CLI and app separately.

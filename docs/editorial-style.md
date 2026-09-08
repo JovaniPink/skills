@@ -26,6 +26,13 @@ Prefer the following project terms:
 
 ## Write for an approachable reader
 
+Aim for an eighth-grade reading level in setup guides and daily-use docs. Keep exact commands and needed technical terms. Explain those terms where they first appear. A reading score is a warning sign to review the text, not a reason to remove facts.
+
+- Lead with what the reader can do or what the check found.
+- Prefer "check" to "validate", "file hash" to "immutable identity", and "app or CLI" to "surface" in everyday guidance.
+- Put advanced details in linked notes after the main steps.
+- Use one action per step and name the expected result.
+
 - Use active voice and concrete nouns.
 - State the requested outcome before supporting details.
 - Explain an acronym the first time it appears unless the audience will clearly know it.

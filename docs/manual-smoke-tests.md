@@ -1,5 +1,9 @@
 # Manual Cross-Client Smoke Tests
 
+## Current client setup policy
+
+Codex, Claude Code, and Antigravity setup checks can proceed independently. Use the [client support checklist](client-support.md) for each CLI and app. Historical observations below keep their original scope and dates; they do not prove that a current install works.
+
 The authoritative row-level evidence is `client-observations.json`, validated by `client-observations-schema.json`. It records exact client versions/builds, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference.
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.

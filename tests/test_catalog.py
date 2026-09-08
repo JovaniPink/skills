@@ -502,7 +502,7 @@ class CatalogTests(unittest.TestCase):
         )
         self.assertEqual("blocked", records["antigravity-cli"]["evidence_status"])
         self.assertEqual(
-            "codex-pilot-useful-treatment", records["antigravity-cli"]["precondition"]
+            "client-specific-install-and-control-checks", records["antigravity-cli"]["precondition"]
         )
         self.assertEqual(
             "conditional-enterprise-compatibility",
@@ -637,7 +637,7 @@ class CatalogTests(unittest.TestCase):
             evidence,
         )
 
-    def test_v10_validation_evidence_matches_current_repository(self) -> None:
+    def test_validation_evidence_records_suite_size_without_requiring_a_pass(self) -> None:
         evidence = (ROOT / "docs" / "validation-evidence.md").read_text(
             encoding="utf-8"
         )
@@ -646,7 +646,7 @@ class CatalogTests(unittest.TestCase):
         ).countTestCases()
         self.assertIn("## v0.10 behavioral-evidence candidate", evidence)
         self.assertIn(
-            f"`python3 -m unittest discover -s tests -v`: PASS - {observed_test_count} regression tests",
+            f"Current test suite: {observed_test_count} regression tests.",
             evidence,
         )
 

@@ -1,5 +1,13 @@
 # Validation Evidence
 
+## Equal client setup candidate
+
+Current test suite: 73 regression tests.
+
+The new offline Antigravity preview builder preserves source files and references, excludes all explicit-only skills, and refuses existing output paths. Codex and Claude distribution bytes are unchanged. Current setup guidance gives the three clients equal priority. Each app and CLI still needs its own loading and use evidence.
+
+Final validation is pending the source-manifest refresh. Historical results below keep their original dates and counts.
+
 ## v0.11 continuity candidate
 
 The candidate contains 77 skills, with 13 targeted workflow changes and original synthetic examples. Native distributions are generated from canonical source. Behavioral acceptance remains unobserved; historical client and pilot records do not establish behavior for this candidate. See [the candidate audit](continuity-candidate.md).

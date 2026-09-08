@@ -1,17 +1,17 @@
 # Google Agent Surfaces
 
-Reviewed: 2026-09-04
+Setup policy updated: 2026-09-08. Older runtime research remains separate.
 
-Google's models, developer clients, hosted harnesses, application frameworks, lifecycle tools, data tools, and production platform are separate evidence surfaces. Canonical skill semantics may be shared, but compatibility and behavioral claims are recorded independently in [`catalog/google-surfaces.json`](../catalog/google-surfaces.json). Cross-lane aggregation is forbidden.
+Check each Google app or tool on its own. A skill that works in Antigravity CLI may still need changes for the desktop app or IDE. Record the results separately in [`catalog/google-surfaces.json`](../catalog/google-surfaces.json). Start with [Antigravity setup](clients/antigravity.md).
 
 ## Surface map
 
 | Surface | Evidence question | Current catalog position |
 | --- | --- | --- |
 | Gemini model | Which exact model and effort minimize cost per successful case? | Execution-envelope variable, not a skill-compatibility claim. Availability and pricing come from current API release and deprecation records. |
-| Antigravity CLI | Does a focused treatment improve a clean local Google coding agent? | Primary future Google behavioral-portability lane, blocked until the Codex pilot identifies a useful treatment. |
+| Antigravity CLI | Does a focused treatment improve a clean local Google coding agent? | Setup and manual tests may proceed now, independently of Codex. Useful behavior remains unverified. |
 | Gemini CLI Enterprise | Does intentionally licensed enterprise access load the projection? | Conditional compatibility only. Gemini CLI 0.56.0 evidence is historical and does not establish this claim. |
-| Antigravity Desktop | Does usefulness survive the visual surface? | Manual observational parity after a useful CLI result. |
+| Antigravity Desktop | Does usefulness survive the visual surface? | Independent manual checks; no CLI result is required to start. |
 | Antigravity SDK | Can the same semantics run safely through Google's Python harness? | Separate runtime-harness lane even if it shares implementation with the CLI. |
 | Gemini Managed Agent | Can a mounted skill improve a hosted sandboxed agent? | Separate synthetic/public hosted lane with a preregistered cost ceiling and retention policy. |
 | Google ADK | Can an immutable bundle load without granting authority? | Separate runtime-compatibility lane owned by `jovanipink-adk`. |
@@ -19,9 +19,9 @@ Google's models, developer clients, hosted harnesses, application frameworks, li
 | Data Agent Kit | Can vendor skills and MCP tools support governed data work? | Preview tool/plugin lane; never product-semantic or evaluation authority. |
 | Gemini Enterprise Agent Platform | Can an application meet production identity, governance, runtime, memory, evaluation, and observability requirements? | Product/runtime evidence, never blended with skill behavior. |
 
-## Antigravity precondition and isolation contract
+## Setup and study checks
 
-No Antigravity runner belongs in the v0.1 lab until the complete Codex pilot identifies a useful focused treatment or a narrower replacement. The eventual host-specific runner must pin the `agy` version and binary digest, use a disposable Linux container or dedicated clean OS user, inject API authentication as a secret, and start without global skills, plugins, MCP servers, memories, prior conversations, or vendor skill packs.
+Antigravity setup, packaging, and manual checks have equal priority with Codex and Claude. The offline preview builder adds no client runner. Any future automated runner needs its own reviewed plan, fixed client version and file hash, isolated test account or container, and scoped authentication. Keep personal skills, memories, conversations, and vendor packs out of controlled studies.
 
 Each paired run must use fresh pinned worktrees, a natural empty configuration home, fixed model and effort, sandboxed scoped permissions, a fixed network policy, and headless JSON or stream-JSON evidence. The grader must parse terminal result status and tool events; process exit code zero is not sufficient evidence of success.
 
@@ -35,9 +35,9 @@ Packaging never establishes installation trust, sandboxing, credential scope, pe
 
 ## Cost, freshness, and authority
 
-Managed Agents are excluded from the first quantitative Google lane because current documentation permits 100,000 to 3 million tokens per interaction. Data Agent Kit is Preview. Neither surface is inferred from Antigravity CLI evidence.
+Hosted agents and vendor data tools need separate tests, cost limits, and data rules. An Antigravity CLI result does not cover them.
 
-Do not hard-code a preferred Gemini model into a portable skill. Record exact model and effort in each execution envelope, check current Gemini API release and deprecation records, and compare cost per successful case. Documentation reviewed for this release reports Gemini 3.8 Flash as generally available with introductory pricing ending December 31, 2026; that observation is volatile and is not a permanent catalog recommendation.
+Do not hard-code a preferred Gemini model into a portable skill. Record exact model and effort in each execution envelope, check current Gemini API release and deprecation records, and compare cost per successful case.
 
 Do not install, authenticate, deploy, publish, or enable provider actions as part of deterministic catalog validation. Agents CLI `infra`, `deploy`, and `publish` commands require explicit RELEASE authority and post-action provider readback. Managed Agent calls require separate credential, cost, retention, environment-deletion, tool, and network authorization.
 

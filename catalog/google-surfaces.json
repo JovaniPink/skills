@@ -10,10 +10,10 @@
       "evidence_status": "blocked",
       "evidence_class": "none",
       "lifecycle_status": "current",
-      "precondition": "codex-pilot-useful-treatment",
+      "precondition": "client-specific-install-and-control-checks",
       "evidence_reference": null,
       "historical_evidence_reference": null,
-      "claim": "No Antigravity runner or behavioral result exists; work is gated on a useful Codex treatment and a clean isolated environment."
+      "claim": "Setup and manual tests have equal priority with other clients. Loading, invocation controls, and useful behavior still need separate evidence for this client."
     },
     {
       "surface": "gemini-cli-enterprise",
@@ -30,14 +30,14 @@
     {
       "surface": "antigravity-desktop",
       "lane": "manual-observational-parity",
-      "question": "Does a useful CLI treatment remain useful on the visual desktop or IDE surface?",
+      "question": "Do skills load and help on this desktop or IDE version?",
       "evidence_status": "blocked",
       "evidence_class": "none",
       "lifecycle_status": "current",
-      "precondition": "useful-antigravity-cli-treatment",
+      "precondition": "client-specific-install-and-control-checks",
       "evidence_reference": null,
       "historical_evidence_reference": null,
-      "claim": "Desktop usefulness requires a separate manual observation and is not inferred from CLI behavior."
+      "claim": "Setup and manual tests have equal priority with other clients. Loading, invocation controls, and useful behavior still need separate evidence for this client."
     },
     {
       "surface": "antigravity-sdk",
