@@ -33,7 +33,7 @@ Reach decision readiness before implementation starts.
 
 ## Output
 
-Return `Shared understanding`, `Evidence`, `Decisions`, `Assumptions`, `Open questions`, `Readiness`, and `Next authorized action`.
+During the interview, return the current material question and changed understanding. At readiness, return `Shared understanding`, `Evidence`, `Decisions`, `Assumptions`, `Open questions`, `Readiness`, and any `Next authorized action`.
 
 ## Continuity and evidence
 

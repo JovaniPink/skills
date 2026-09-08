@@ -37,7 +37,7 @@ Confirm the exact plan, repository, branch, authorized actions, excluded actions
 
 ## Output
 
-Report `Plan`, `Completed`, `Deviations`, `Validation`, `Unresolved`, `Stopped actions`, and `Next authorized step`.
+During execution, report meaningful changes and their implications. At a checkpoint or completion, reconcile `Plan`, `Completed`, `Deviations`, `Validation`, and `Unresolved`. Include requested actions left unfinished and the next authorized step when applicable.
 
 ## Continuity and evidence
 
