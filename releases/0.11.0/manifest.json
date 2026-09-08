@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.11.0",
-  "source_commit": "02e29f9a6f9e7e2bf7da958f28fe000075092fcf",
+  "source_commit": "b16050027dafb87790ffbb1a19377e3d5c3becb4",
   "created_on": "2026-09-08",
   "artifacts": [
     {
@@ -32,7 +32,7 @@
     {
       "kind": "file",
       "path": "catalog/google-surfaces.json",
-      "sha256": "a9267772cdf14b614b8af1dffc4299e3613b146c6a8fbbfff9541b2ac73fb4c9"
+      "sha256": "b7b19fb7f2feff0e5b772806ab8b6df110e2208d86159e32fdcfd399d3a9e4b1"
     },
     {
       "kind": "file",
@@ -42,7 +42,7 @@
     {
       "kind": "file",
       "path": "catalog/profiles.json",
-      "sha256": "878a9c27091496ffa220eca8c40f759792a8a4722f7fd57f59021d43d9e3de3e"
+      "sha256": "07f8f614ddeeba4850d283a5b000cdd8e91663eb474016a18700e84122d36650"
     },
     {
       "kind": "file",

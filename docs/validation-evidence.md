@@ -6,7 +6,7 @@ Current test suite: 73 regression tests.
 
 The new offline Antigravity preview builder preserves source files and references, excludes all explicit-only skills, and refuses existing output paths. Codex and Claude distribution bytes are unchanged. Current setup guidance gives the three clients equal priority. Each app and CLI still needs its own loading and use evidence.
 
-Final validation is pending the source-manifest refresh. Historical results below keep their original dates and counts.
+Observed on 2026-09-08: full deterministic validation passed; all 73 tests passed; generated-file checks, strict typing, lint, public-boundary, and workflow checks passed. Claude Code 2.1.220 accepted the marketplace and all seven native plugin manifests with `--strict`. The refreshed manifest binds source commit `b160500`. These are package and repository checks, not live behavior tests. Historical results below keep their original dates and counts.
 
 ## v0.11 continuity candidate
 

@@ -40,6 +40,8 @@ Record the names the client actually shows. Then follow the [shared client check
 
 The general skill guide lists workspace `.agents/skills/` folders and global `~/.gemini/config/skills/` folders. The CLI guide also names its own global directory. Check the receiving client before placing files in either location.
 
+Keep repository rules in the existing `AGENTS.md` files. The installed CLI guide says it reads `AGENTS.md` and `GEMINI.md` from the working directory up to the repository root. Verify that loading in a fresh task before relying on it. Avoid a second copy that could drift.
+
 Use the app or IDE's own rules page for a reviewed personal preference. Confirm that it loaded. Do not infer CLI rule loading from an IDE result.
 
 Sources: [Antigravity skills](https://antigravity.google/docs/skills/), [CLI plugins](https://antigravity.google/docs/cli/plugins/), [IDE rules](https://antigravity.google/docs/ide/rules/).
