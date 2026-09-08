@@ -17,6 +17,12 @@ A final check found that Antigravity CLI had changed to 1.1.27 without an update
 
 No personal preference was activated. Private paths, backups, account details, and detailed receipts remain outside this public record. Earlier observations below keep their original scope.
 
+## Claude authentication retry, 2026-09-08
+
+After sign-in was refreshed, the same synthetic check succeeded in Claude Code 2.1.220 with `claude-opus-5[1m]`: process exit 0 and `is_error: false`. It read the evidence file and the generated claim-verification skill's linked continuity example. Reported cost was $0.2048085 within a $1 limit. Only Read and Skill were available, with no MCP servers or session persistence.
+
+The response preserved failed checks, uncertainty, and unfinished work. Its opening verdict was PARTIAL even though both component claims were REFUTED. Record successful invocation and reference loading with this quality finding; do not mark complete behavioral acceptance. The earlier authentication failure remains part of the record. This CLI result does not establish Chrome, desktop, or Cowork behavior.
+
 ## Current client setup policy
 
 Codex, Claude Code, and Antigravity setup checks can proceed independently. Use the [client support checklist](client-support.md) for each CLI and app. Historical observations below keep their original scope and dates; they do not prove that a current install works.
