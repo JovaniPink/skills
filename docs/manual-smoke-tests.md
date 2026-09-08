@@ -13,6 +13,8 @@ This was a setup check, not a behavioral study. Source: `61a269a`; public skill 
 | Antigravity plugin lifecycle | Disable, enable, remove, and reinstall states verified | Removal checked by files and native import list, not a separate post-removal skill-menu session |
 | Running Antigravity desktop | Previous skill list still shown after revisiting settings | Preview loading not established; no app restart performed |
 
+A final check found that Antigravity CLI had changed to 1.1.27 without an update command in this task. Native package validation, the import list, and a fresh skill-menu check were repeated successfully on 1.1.27. The disable/enable and removal cycle above remains evidence for 1.1.26 only.
+
 No personal preference was activated. Private paths, backups, account details, and detailed receipts remain outside this public record. Earlier observations below keep their original scope.
 
 ## Current client setup policy
