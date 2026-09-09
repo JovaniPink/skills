@@ -23,6 +23,22 @@ After sign-in was refreshed, the same synthetic check succeeded in Claude Code 2
 
 The response preserved failed checks, uncertainty, and unfinished work. Its opening verdict was PARTIAL even though both component claims were REFUTED. Record successful invocation and reference loading with this quality finding; do not mark complete behavioral acceptance. The earlier authentication failure remains part of the record. This CLI result does not establish Chrome, desktop, or Cowork behavior.
 
+## Web and Antigravity use follow-up, 2026-09-08
+
+These are manual setup and diagnostic checks against the 0.11.0 skill files, not completed communication-study episodes. Historical results above remain intact.
+
+| Check | Observed result | Limit |
+| --- | --- | --- |
+| ChatGPT Work in Safari | Backed up and replaced the older account claim-verification skill with the complete canonical ZIP; after reload, revised instructions and the reference file were readable | One account skill updated; other account copies not upgraded |
+| ChatGPT Work synthetic response | Correct REFUTED verdict; retained the failed check, unfinished fix, missing revision and timestamps, and synthetic evidence boundary | The built-in Try in chat prompt ran before the fixed case was sent; this is not a controlled baseline. The response reported file reads, but separate tool-read evidence was not captured |
+| Claude.ai Chat in Chrome | Backed up and replaced the older account skill; version 0.11.0 and two files shown; visible execution details confirm both file reads | Sonnet 5 High; one skill and one mode tested |
+| Claude desktop account library | The replaced account skill appears at 0.11.0 with its reference file after revisiting Customize | This verifies library refresh, not behavior in a desktop task; the local plugin remains a separate entry |
+| Claude.ai evidence freshness | Initial response said prior passing checks did not need re-verification; a changed-revision follow-up corrected this, preserved history, and required fresh checks while retaining the no-change scope | Keep the initial overstatement as a quality finding; the correction is not a clean first-response pass |
+| Antigravity CLI 1.1.27 print mode | Relative fixture path resolved in the client's scratch folder; exact-path retry was denied; inline synthetic case returned REFUTED and preserved the failed check and unfinished fix | Exit 0 and SUCCESS also occurred with an empty response and denied read; external-file access remains blocked. Exact model was not captured |
+| Antigravity desktop discovery | A fresh empty composer returned no matching results for the installed preview skill | Existing desktop process; CLI discovery does not establish app loading |
+
+No explicit-only workflow was uploaded to these web accounts or Antigravity. No personal preference was activated, broad permission grant added, or release published. Wider web rollout, desktop and IDE loading, Cowork behavior, and the controlled study remain open acceptance work.
+
 ## Current client setup policy
 
 Codex, Claude Code, and Antigravity setup checks can proceed independently. Use the [client support checklist](client-support.md) for each CLI and app. Historical observations below keep their original scope and dates; they do not prove that a current install works.

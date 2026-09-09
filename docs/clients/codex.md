@@ -37,6 +37,10 @@ In Codex desktop, inspect the plugin page and open a fresh test task. Verify the
 
 In ChatGPT Work or web, inspect that surface's own library. Do not treat the CLI list as its install record.
 
+For a web account update, download the old skill first. In **Plugins > Skills**, choose **Create > Upload from your computer** and upload a reviewed ZIP that includes the skill folder and its linked files. If ChatGPT finds the same name, check the named skill before choosing **Replace existing**. Reload the page and inspect both the instructions and each linked file. A success notice alone is not enough.
+
+The observed web editor flattened individually uploaded files. Use the complete archive to keep reference folders intact. The first detail view after replacement also showed stale files and a load error; a page reload showed the saved replacement. These observations cover one skill, not a bulk account update.
+
 Review personal preferences in Codex user instructions separately from the package. Keep repository rules in `AGENTS.md`.
 
 Follow the [shared client checks](../client-support.md) for updates, removal, and evidence. Check native `--help` before an update or uninstall; command forms can change.

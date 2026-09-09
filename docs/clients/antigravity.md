@@ -40,6 +40,10 @@ In CLI 1.1.26, the native installer placed the tested preview under `~/.gemini/c
 
 Record the names and path your client actually shows. Follow the [shared client checks](../client-support.md) in a fresh task. Verify live use and linked notes before widening the install. Keep personal and product skills separate from this public preview.
 
+For a print-mode check, verify where the client looks for files. One observed run used its scratch folder instead of the shell's working directory. A retry with the exact file path was denied because the noninteractive session could not ask for read permission. It exited with code 0 and reported `SUCCESS`, but returned an empty response and a denied action. Treat that as blocked. Do not bypass permissions to make the check pass.
+
+A third check with synthetic facts in the prompt returned the correct verdict. This tested the response, not access to a project file. The running desktop app still returned no match for the preview skill. Keep those findings separate from the CLI menu and install results.
+
 The general skill guide lists workspace `.agents/skills/` folders and global `~/.gemini/config/skills/` folders. The web CLI guide also names a CLI-specific global directory. The observed native install used the shared folder instead. Let the installer choose its path and verify the result. A running desktop app may still show its previous skill list.
 
 Keep repository rules in the existing `AGENTS.md` files. The installed CLI guide says it reads `AGENTS.md` and `GEMINI.md` from the working directory up to the repository root. Verify that loading in a fresh task before relying on it. Avoid a second copy that could drift.

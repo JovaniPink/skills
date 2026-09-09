@@ -37,6 +37,8 @@ Claude desktop Code mode, Claude.ai, and Cowork each need their own record. Note
 
 For an account upload, build the separate one-skill ZIP with `python3 scripts/package_claude_ai.py`. Review it before uploading. Do not upload an explicit-only skill until the receiving mode has a verified control that prevents automatic selection.
 
+To update an existing account skill, open its menu and choose **Download** to save the old copy. Then choose **Replace**, select the reviewed ZIP, and save. Check the scan result, version, file count, and linked files. In the observed web check, claim-verification changed from one file to two files and showed version 0.11.0. A fresh Chat task visibly read both files. This does not prove Cowork or desktop task behavior.
+
 Personal preferences belong in the user's `CLAUDE.md` for local Code use. Repository guidance uses the checked-in `CLAUDE.md`. Confirm which files loaded; do not assume a local file syncs to a cloud task.
 
 If a live check reports expired sign-in, leave it blocked until sign-in is refreshed. Read the process exit code and error text as well as its final event. In one observed authentication failure, the CLI emitted a `success` subtype with `is_error: true` while exiting with code 1. That is not a passing check.
