@@ -2,6 +2,10 @@
 
 Claude Code gets the same source skills and release checks as Codex. Its install and use tests run on their own schedule.
 
+A **Code plugin** is a package installed for Claude Code. An **account upload** is a skill added through Customize in Claude. Check both stores. A successful Code update does not prove that Chat has the same files.
+
+See the [September account repair check](../claude-account-repair-2026-09-08.md) for dated results and remaining app checks.
+
 ## Check what is there
 
 ```sh
@@ -35,9 +39,13 @@ Generated Claude packages omit Codex's `agents/` files. Skills that require dire
 
 Claude desktop Code mode, Claude.ai, and Cowork each need their own record. Note whether the task runs locally or remotely. Check loading, linked files, result files, and resume behavior in each mode you use.
 
-For an account upload, build the separate one-skill ZIP with `python3 scripts/package_claude_ai.py`. Review it before uploading. Do not upload an explicit-only skill until the receiving mode has a verified control that prevents automatic selection.
+For an account upload, build the separate one-skill ZIP with `python3 scripts/package_claude_ai.py`. Review it before uploading. The command prepares all 77 skills; it does not approve every ZIP for every app. Keep a separate upload checklist. The current staged target is 63 skills that allow automatic selection, with 14 explicit-only workflows held. Do not upload an explicit-only skill until the receiving mode has a verified control that prevents automatic selection. A metadata field or working slash command alone does not prove that control.
 
 To update an existing account skill, open its menu and choose **Download** to save the old copy. Then choose **Replace**, select the reviewed ZIP, and save. Check the scan result, version, file count, and linked files. In the observed web check, claim-verification changed from one file to two files and showed version 0.11.0. A fresh Chat task visibly read both files. This does not prove Cowork or desktop task behavior.
+
+Check that each download exists and opens before replacing or disabling its entry. Older uploads may download as `.skill` archives; newer entries may download as one-skill plugin ZIPs. Compare the skill files inside them. Neither the archive name nor a mount path alone proves the install source. Use Replace rather than creating another entry with the same name.
+
+Refresh the web and desktop libraries after an account change. Check both lists before uploading another copy. Use fresh tasks to check the files actually loaded; an old task can retain old instructions. Save file hashes and tool output, then test linked files, result downloads, failed checks, unfinished work, and resumption. Record **prepared**, **installed**, **enabled**, **loaded**, and **behavior-tested** separately.
 
 Personal preferences belong in the user's `CLAUDE.md` for local Code use. Repository guidance uses the checked-in `CLAUDE.md`. Confirm which files loaded; do not assume a local file syncs to a cloud task.
 

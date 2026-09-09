@@ -1,5 +1,7 @@
 # Manual Cross-Client Smoke Tests
 
+Start with the [September 8 Claude account repair](claude-account-repair-2026-09-08.md) for the latest account and CLI checks. The [client support checklist](client-support.md) tracks checks still open. Earlier sections retain their named versions, dates, and failures. They do not prove that a current install works.
+
 ## Local package follow-up, 2026-09-08
 
 This was a setup check, not a behavioral study. Source: `61a269a`; public skill payloads match the 0.11.0 generated packages.
@@ -43,7 +45,7 @@ No explicit-only workflow was uploaded to these web accounts or Antigravity. No 
 
 Codex, Claude Code, and Antigravity setup checks can proceed independently. Use the [client support checklist](client-support.md) for each CLI and app. Historical observations below keep their original scope and dates; they do not prove that a current install works.
 
-The authoritative row-level evidence is `client-observations.json`, validated by `client-observations-schema.json`. It records exact client versions/builds, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference.
+The [original client matrix](client-observations.json) records historical 0.1.0 observations. Versioned matrices describe their named packages. Current manual observations appear in the dated records above. A file check, a successful download, and observed use in a fresh task are separate results.
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
 
