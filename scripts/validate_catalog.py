@@ -680,8 +680,22 @@ def _without_comments_and_fenced_code(text: str) -> str:
     fence: str | None = None
     for line in text.splitlines(keepends=True):
         content = line.rstrip("\r\n")
+        # A code fence may be nested in a quote or list. Strip container markers
+        # only for fence recognition; keep ordinary Markdown unchanged.
+        while True:
+            nested = re.sub(
+                r"^ {0,3}(?:>[ \t]?|(?:[-+*]|[0-9]{1,9}[.)])[ \t]+)",
+                "",
+                content,
+                count=1,
+            )
+            if nested == content:
+                break
+            content = nested
         if fence is not None:
-            if re.fullmatch(rf" {{0,3}}{re.escape(fence[0])}{{{len(fence)},}}[ \t]*", content):
+            if re.fullmatch(
+                rf" {{0,3}}{re.escape(fence[0])}{{{len(fence)},}}[ \t]*", content
+            ):
                 fence = None
             visible.append("\n")
             continue
@@ -701,7 +715,10 @@ def validate_current_client_evidence(errors: list[str]) -> None:
     record = ROOT / "docs" / record_name
     if not record.is_file():
         errors.append(f"docs/{record_name}: missing current client record")
-    elif f"Catalog version: {VERSION}" not in record.read_text(encoding="utf-8").splitlines():
+    elif (
+        f"Catalog version: {VERSION}"
+        not in record.read_text(encoding="utf-8").splitlines()
+    ):
         errors.append(f"docs/{record_name}: catalog version must match {VERSION}")
 
     for name in ("manual-smoke-tests.md", "validation-evidence.md"):
@@ -710,11 +727,17 @@ def validate_current_client_evidence(errors: list[str]) -> None:
             errors.append(f"docs/{name}: missing client evidence entry point")
             continue
         visible = _without_comments_and_fenced_code(path.read_text(encoding="utf-8"))
-        introduction = re.split(r"(?m)^## ", visible, maxsplit=1)[0]
+        introduction = re.split(r"(?m)^ {0,3}#{2,6}(?:[ \t]+|$)", visible, maxsplit=1)[
+            0
+        ]
         # Literal inline examples, escaped brackets, and images are not navigation links.
-        introduction = re.sub(r"(`+)(?!`)(.*?)(?<!`)\1(?!`)", "", introduction, flags=re.DOTALL)
+        introduction = re.sub(
+            r"(`+)(?!`)(.*?)(?<!`)\1(?!`)", "", introduction, flags=re.DOTALL
+        )
         if re.search(r"</?[A-Za-z][^>]*>", introduction):
-            errors.append(f"docs/{name}: use plain Markdown for the evidence entry point")
+            errors.append(
+                f"docs/{name}: use plain Markdown for the evidence entry point"
+            )
             continue
         links = re.findall(r"(?<![\\!])\[[^\]]+\]\(([^)]+)\)", introduction)
         if record_name not in links:
