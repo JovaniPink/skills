@@ -711,7 +711,7 @@ def _without_comments_and_fenced_code(text: str) -> str:
 def validate_current_client_evidence(errors: list[str]) -> None:
     """Require usable links to the current dated client record, retaining history."""
 
-    record_name = "claude-account-repair-2026-09-08.md"
+    record_name = f"client-candidate-v{VERSION}.md"
     record = ROOT / "docs" / record_name
     if not record.is_file():
         errors.append(f"docs/{record_name}: missing current client record")

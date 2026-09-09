@@ -121,7 +121,7 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The 0.11.0 catalog contains 77 skills across seven plugins. Its continuity changes aim to make results easier to find and interrupted work easier to resume. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
+The 0.12.0 candidate contains 78 skills across seven plugins. It adds motion review to the earlier continuity work. See the [current candidate checks](docs/client-candidate-v0.12.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
 
 Claude Code plugins and Claude account uploads are separate installs. Updating the Code plugins does not update the account library used by Chat. See [Claude setup](docs/clients/claude.md) for the upload checks and explicit-only hold.
 

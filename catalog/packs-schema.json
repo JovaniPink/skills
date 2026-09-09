@@ -14,7 +14,7 @@
       "const": "./packs-schema.json"
     },
     "catalog_version": {
-      "const": "0.11.0"
+      "const": "0.12.0"
     },
     "budget_warning_characters": {
       "const": 6000

@@ -1,6 +1,6 @@
 {
   "$schema": "./skills-schema.json",
-  "catalog_version": "0.11.0",
+  "catalog_version": "0.12.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
@@ -759,6 +759,36 @@
         "publish-change-safely"
       ],
       "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "functional-motion-review",
+      "plugin": "jovanipink-engineering",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "design",
+        "test",
+        "review",
+        "learn"
+      ],
+      "targets": [
+        "code",
+        "data",
+        "publication"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "accessibility-review",
+        "performance-scalability-diagnosis",
+        "api-contract-compatibility-review",
+        "authority-boundary-review"
+      ],
+      "conflicts_with": [
+        "accessibility-review",
+        "performance-scalability-diagnosis"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {

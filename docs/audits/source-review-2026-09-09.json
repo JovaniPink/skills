@@ -1,0 +1,1522 @@
+{
+  "reviewed_on": "2026-09-09",
+  "base_source_commit": "8f7d37ce78578a5a4f68239cc448462f2490646c",
+  "inventory": [
+    {
+      "source_url": "https://a2a-protocol.org/v1.0.0/specification/",
+      "previous_marker": {
+        "source_url": "https://a2a-protocol.org/v1.0.0/specification/",
+        "marker_kind": "etag",
+        "marker_value": "\"6a968c05-924e8\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"6a968c05-924e8\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://a2a-protocol.org/v1.0.0/specification/",
+        "https://a2a-protocol.org/v1.0.0/specification/"
+      ],
+      "affected_skills": [
+        "agent-protocol-interoperability-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://adk-labs.github.io/adk-docs/",
+      "previous_marker": {
+        "source_url": "https://adk-labs.github.io/adk-docs/",
+        "marker_kind": "etag",
+        "marker_value": "\"6a98d98c-1f3ad\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"6a98d98c-1f3ad\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://adk-labs.github.io/adk-docs/",
+        "https://adk-labs.github.io/adk-docs/"
+      ],
+      "affected_skills": [
+        "google-adk-engineering-profile"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://adk-labs.github.io/adk-docs/safety/",
+      "previous_marker": {
+        "source_url": "https://adk-labs.github.io/adk-docs/safety/",
+        "marker_kind": "etag",
+        "marker_value": "\"6a98d98c-3c78b\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"6a98d98c-3c78b\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://adk-labs.github.io/adk-docs/safety/",
+        "https://adk-labs.github.io/adk-docs/safety/"
+      ],
+      "affected_skills": [
+        "agent-tool-action-boundary-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://adk-labs.github.io/adk-docs/sessions/",
+      "previous_marker": {
+        "source_url": "https://adk-labs.github.io/adk-docs/sessions/",
+        "marker_kind": "etag",
+        "marker_value": "\"6a98d98c-1d4e6\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"6a98d98c-1d4e6\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://adk-labs.github.io/adk-docs/sessions/",
+        "https://adk-labs.github.io/adk-docs/sessions/"
+      ],
+      "affected_skills": [
+        "agent-context-state-memory-design"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://agent-plugins.org/specification",
+      "previous_marker": {
+        "source_url": "https://agent-plugins.org/specification",
+        "marker_kind": "etag",
+        "marker_value": "\"05a04a63bdecb4816cf2ee5bb19521ba\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"05a04a63bdecb4816cf2ee5bb19521ba\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://agent-plugins.org/specification",
+        "https://agent-plugins.org/specification"
+      ],
+      "affected_skills": [
+        "portable-skill-authoring",
+        "skill-security-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://agentskills.io/specification",
+      "previous_marker": {
+        "source_url": "https://agentskills.io/specification",
+        "marker_kind": "content-sha256",
+        "marker_value": "002a352a9771cb8b0e16e46a164754645a0461c48fad39b32858144d58b77cde"
+      },
+      "current_marker": {
+        "marker_kind": "content-sha256",
+        "marker_value": "2abeaa08393f217d136d4e1e95dc4e68299275409af2f1c56a75264daf238fc0"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://agentskills.io/specification",
+        "https://agentskills.io/specification"
+      ],
+      "affected_skills": [
+        "acceptance-evidence-ledger",
+        "alignment-interview",
+        "authority-boundary-review",
+        "change-adoption-planning",
+        "change-impact-analysis",
+        "claim-verification",
+        "codebase-explanation",
+        "cross-capability-dependency-mapping",
+        "cross-stack-quality-gates",
+        "data-authority-migration-ratification",
+        "decision-evidence-trace",
+        "decision-governance-records",
+        "design-rationale-investigation",
+        "domain-vocabulary-modeling",
+        "guided-configuration",
+        "high-signal-technical-writing",
+        "implementation-planning",
+        "iteration-postlaunch-learning",
+        "kpi-outcome-measurement",
+        "module-interface-design",
+        "plan-execution",
+        "portable-skill-authoring",
+        "prelaunch-readiness",
+        "problem-framing",
+        "production-incident-analysis",
+        "prototype-spike",
+        "public-private-boundary-review",
+        "publish-change-safely",
+        "requirements-synthesis",
+        "research-to-publication-lifecycle",
+        "skill-import-provenance",
+        "skill-security-review",
+        "source-grounded-research",
+        "stakeholder-technical-communication",
+        "systematic-diagnosis",
+        "task-handoff",
+        "test-driven-change",
+        "test-strategy",
+        "value-attribution-evidence-maturity",
+        "workshop-planning-synthesis"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The format still requires a matching name, bounded description, and string-valued metadata. Focused references remain supported. Keep the existing validators and exclude experimental tool grants.",
+      "previous_review": {
+        "url": "https://agentskills.io/specification",
+        "status": "reviewed",
+        "ownership_check": "Agent Skills specification site remains the named open-format authority.",
+        "affected_skills": [
+          "acceptance-evidence-ledger",
+          "alignment-interview",
+          "authority-boundary-review",
+          "change-adoption-planning",
+          "change-impact-analysis",
+          "claim-verification",
+          "codebase-explanation",
+          "cross-capability-dependency-mapping",
+          "cross-stack-quality-gates",
+          "data-authority-migration-ratification",
+          "decision-evidence-trace",
+          "decision-governance-records",
+          "design-rationale-investigation",
+          "domain-vocabulary-modeling",
+          "guided-configuration",
+          "high-signal-technical-writing",
+          "implementation-planning",
+          "iteration-postlaunch-learning",
+          "kpi-outcome-measurement",
+          "module-interface-design",
+          "plan-execution",
+          "portable-skill-authoring",
+          "prelaunch-readiness",
+          "problem-framing",
+          "production-incident-analysis",
+          "prototype-spike",
+          "public-private-boundary-review",
+          "publish-change-safely",
+          "requirements-synthesis",
+          "skill-import-provenance",
+          "skill-security-review",
+          "source-grounded-research",
+          "stakeholder-technical-communication",
+          "systematic-diagnosis",
+          "task-handoff",
+          "test-driven-change",
+          "test-strategy",
+          "value-attribution-evidence-maturity",
+          "workshop-planning-synthesis"
+        ],
+        "finding": "The current page still requires a SKILL.md file with YAML frontmatter, a matching lowercase name of at most 64 characters, a description of at most 1024 characters, and string-valued metadata. It retains optional compatibility metadata, focused relative references, progressive disclosure, and experimental allowed-tools. No current specification change requires a canonical skill change.",
+        "action": "Refresh the reviewed content marker. Keep allowed-tools out of canonical skills, preserve ASCII names, and retain regression coverage for name, description, metadata, and frontmatter limits."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://ai.google.dev/gemini-api/docs/agents",
+      "previous_marker": {
+        "source_url": "https://ai.google.dev/gemini-api/docs/agents",
+        "marker_kind": "last-modified",
+        "marker_value": "Wed, 02 Sep 2026 15:04:03 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Wed, 02 Sep 2026 15:04:03 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://ai.google.dev/gemini-api/docs/agents",
+        "https://ai.google.dev/gemini-api/docs/agents"
+      ],
+      "affected_skills": [
+        "agent-evaluation-design",
+        "agentic-system-security-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "previous_marker": {
+        "source_url": "https://ai.google.dev/gemini-api/docs/latest-model",
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 14:07:13 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 14:07:13 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://ai.google.dev/gemini-api/docs/latest-model",
+        "https://ai.google.dev/gemini-api/docs/latest-model"
+      ],
+      "affected_skills": [
+        "agent-evaluation-design",
+        "google-adk-engineering-profile"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://airc.nist.gov/",
+      "previous_marker": {
+        "source_url": "https://airc.nist.gov/",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "cc26fbfa00000addcf05e4940df00ac82d7998b855af9143e9fc460915d5cea1"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "febb3b13a71e92d55d13ea12f428b1fb0d899b68812ad78e3ac985f4664d78ad"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://airc.nist.gov/",
+        "https://airc.nist.gov/"
+      ],
+      "affected_skills": [
+        "agent-evaluation-design",
+        "source-output-conformance-audit"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "NIST still presents voluntary AI risk resources and test, evaluation, verification, and validation guidance. The page says AI RMF 1.0 is under revision. The evaluation contract makes no certification claim and needs no new rule.",
+      "previous_review": null,
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://antigravity.google/docs/cli/headless/",
+      "previous_marker": {
+        "source_url": "https://antigravity.google/docs/cli/headless/",
+        "marker_kind": "etag",
+        "marker_value": "\"LwgjoQ\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"vJ3VBw\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://antigravity.google/docs/cli/headless/",
+        "https://antigravity.google/docs/cli/headless/"
+      ],
+      "affected_skills": [
+        "agent-evaluation-design",
+        "claim-verification"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "Headless mode documents structured output and separate diagnostics. Terminal status must be checked together with tool failures. Existing evaluation and claim checks already reject exit-code-only success.",
+      "previous_review": {
+        "url": "https://antigravity.google/docs/cli/headless/",
+        "status": "reviewed",
+        "ownership_check": "Google Antigravity documentation is the official authority for headless CLI output and result behavior.",
+        "affected_skills": [
+          "agent-evaluation-design",
+          "claim-verification"
+        ],
+        "finding": "Headless execution exposes structured output and tool events, and permission denials can be represented inside an otherwise continuing run.",
+        "action": "Require terminal-result and tool-event parsing; never grade an Antigravity case from process exit code alone."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://antigravity.google/docs/skills/",
+      "previous_marker": {
+        "source_url": "https://antigravity.google/docs/skills/",
+        "marker_kind": "etag",
+        "marker_value": "\"LwgjoQ\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"vJ3VBw\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://antigravity.google/docs/skills/",
+        "https://antigravity.google/docs/skills/"
+      ],
+      "affected_skills": [
+        "portable-skill-authoring",
+        "skill-security-review"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The general guide documents directory-based skills, implicit selection, and progressive reference loading. It does not establish the required explicit-only control. Keep the hold and verify each installed layout.",
+      "previous_review": {
+        "url": "https://antigravity.google/docs/skills/",
+        "status": "reviewed",
+        "ownership_check": "Google Antigravity documentation is the official authority for Antigravity skill discovery and invocation.",
+        "affected_skills": [
+          "portable-skill-authoring",
+          "skill-security-review"
+        ],
+        "finding": "Antigravity documents workspace Agent Skills, progressive loading, implicit discovery, and slash invocation. No reviewed control was found that proves an explicit-only model-invocation policy equivalent to the Codex or Claude projection.",
+        "action": "Add a surface-specific discovery slot, block the seven-skill profile because it contains publish-change-safely, and require live evidence before claiming explicit-only parity."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://developer.hashicorp.com/terraform/language",
+      "previous_marker": {
+        "source_url": "https://developer.hashicorp.com/terraform/language",
+        "marker_kind": "etag",
+        "marker_value": "\"c84c9f904ebf7141270c9cdbb8febb64\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"16i5j9jqfuj4g2f\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://developer.hashicorp.com/terraform/language",
+        "https://developer.hashicorp.com/terraform/language"
+      ],
+      "affected_skills": [
+        "terraform-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "Terraform still separates configuration, resources, data sources, modules, state, and versioned tools. Repository version discovery and the existing no-apply boundary remain supported.",
+      "previous_review": {
+        "url": "https://developer.hashicorp.com/terraform/language",
+        "status": "reviewed",
+        "ownership_check": "HashiCorp Developer remains the official Terraform language documentation.",
+        "affected_skills": [
+          "terraform-engineering-profile"
+        ],
+        "finding": "The current language page identifies Terraform 1.15 as latest and 1.16 as a release candidate, and it includes resources, data sources, modules, state, stacks, testing, import, and compatibility material. The profile already discovers repository versions and refuses a universal command or apply authority.",
+        "action": "Refresh the source marker. Keep the profile version-neutral and require repository-pinned version discovery."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
+      "previous_marker": {
+        "source_url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "4fd5a7119dd871432ced44375d8155687c31c9190a542fbae0419346b3589209"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "4fd5a7119dd871432ced44375d8155687c31c9190a542fbae0419346b3589209"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
+        "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/"
+      ],
+      "affected_skills": [
+        "google-adk-engineering-profile",
+        "publish-change-safely"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
+      "previous_marker": {
+        "source_url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "42503dd6104e80db2a3debb1afbcb73ea47d08108d8242d1fc4a5ba0af947ce5"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "42503dd6104e80db2a3debb1afbcb73ea47d08108d8242d1fc4a5ba0af947ce5"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
+        "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/"
+      ],
+      "affected_skills": [
+        "google-adk-engineering-profile",
+        "portable-skill-authoring"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://docs.cloud.google.com/data-agent-kit/overview",
+      "previous_marker": {
+        "source_url": "https://docs.cloud.google.com/data-agent-kit/overview",
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 27 Aug 2026 16:37:38 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 22:21:54 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://docs.cloud.google.com/data-agent-kit/overview",
+        "https://docs.cloud.google.com/data-agent-kit/overview"
+      ],
+      "affected_skills": [
+        "agent-tool-action-boundary-review",
+        "retrieval-grounding-quality-review"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "Data Agent Kit remains Preview. It offers an IDE extension and coding-agent plugin, with IAM database and GitHub Actions deployment limitations. Existing tool and retrieval reviews keep vendor capabilities separate from product authority and deployment approval.",
+      "previous_review": {
+        "url": "https://docs.cloud.google.com/data-agent-kit/overview",
+        "status": "reviewed",
+        "ownership_check": "Google Cloud documentation is the official authority for Data Agent Kit status and capabilities.",
+        "affected_skills": [
+          "agent-tool-action-boundary-review",
+          "retrieval-grounding-quality-review"
+        ],
+        "finding": "Data Agent Kit is a Preview vendor skill and tool layer for Google data services and compatible coding agents.",
+        "action": "Treat it as an optional tool/plugin compatibility lane; do not let vendor skills define product semantics, registry authority, deployment approval, or evaluation truth."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
+      "previous_marker": {
+        "source_url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
+        "marker_kind": "last-modified",
+        "marker_value": "Wed, 02 Sep 2026 14:58:04 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 22:21:54 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
+        "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview"
+      ],
+      "affected_skills": [
+        "agent-context-state-memory-design",
+        "agentic-system-security-review",
+        "google-adk-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The platform separates building, managed runtime, identity, sessions, memory, governance, and evaluation. Existing agent reviews retain these distinctions and do not infer hosted support from a local client.",
+      "previous_review": {
+        "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
+        "status": "reviewed",
+        "ownership_check": "Google Cloud documentation is the official authority for Gemini Enterprise Agent Platform architecture.",
+        "affected_skills": [
+          "google-adk-engineering-profile",
+          "agent-context-state-memory-design",
+          "agentic-system-security-review"
+        ],
+        "finding": "The platform provides production runtime, identity, governance, memory, evaluation, observability, registry, gateway, and orchestration capabilities beyond a local coding client.",
+        "action": "Keep product and runtime claims in their own evidence lane and never blend them with skill behavioral results."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
+      "previous_marker": {
+        "source_url": "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
+        "marker_kind": "content-sha256",
+        "marker_value": "c44c52d5951bb6a5690df953455d69caf26df9f13c531d17c10898bd733129f9"
+      },
+      "current_marker": {
+        "marker_kind": "content-sha256",
+        "marker_value": "c44c52d5951bb6a5690df953455d69caf26df9f13c531d17c10898bd733129f9"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md",
+        "https://docs.github.com/en/pull-requests/reference/pull-request-reviews.md"
+      ],
+      "affected_skills": [
+        "code-change-review",
+        "request-code-review",
+        "respond-to-code-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://docs.python.org/3/",
+      "previous_marker": {
+        "source_url": "https://docs.python.org/3/",
+        "marker_kind": "etag",
+        "marker_value": "\"6a9ab0aa-4bea\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"6a9fd467-4bea\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://docs.python.org/3/",
+        "https://docs.python.org/3/"
+      ],
+      "affected_skills": [
+        "python-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The landing page identifies Python 3.14.7 and links newer development and prerelease documentation. The profile discovers the project interpreter and packaging constraints; it does not select the newest version by default.",
+      "previous_review": {
+        "url": "https://docs.python.org/3/",
+        "status": "reviewed",
+        "ownership_check": "The Python Software Foundation remains the publisher of the official Python documentation.",
+        "affected_skills": [
+          "python-engineering-profile"
+        ],
+        "finding": "The floating Python 3 page still resolves to Python 3.14.7 after its August 25 documentation rebuild. It continues to link the language, library, setup, packaging, deprecation, and static typing authorities. The profile already requires discovery of the repository-pinned interpreter and does not assume a universal version or command.",
+        "action": "Refresh the rebuilt page marker. Keep version-sensitive guidance tied to repository evidence; no skill instruction change is required."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://docs.python.org/3/library/unittest.html",
+      "previous_marker": {
+        "source_url": "https://docs.python.org/3/library/unittest.html",
+        "marker_kind": "etag",
+        "marker_value": "\"6a9ab0ab-51851\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"6a9fd467-51851\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://docs.python.org/3/library/unittest.html",
+        "https://docs.python.org/3/library/unittest.html"
+      ],
+      "affected_skills": [
+        "test-quality-review"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "unittest still separates fixtures, cases, runners, observable assertions, discovery, isolation, skips, and expected failures. The framework-neutral test-quality review retains these distinctions.",
+      "previous_review": {
+        "url": "https://docs.python.org/3/library/unittest.html",
+        "status": "reviewed",
+        "ownership_check": "The Python Software Foundation remains the publisher of the unittest reference.",
+        "affected_skills": [
+          "test-quality-review"
+        ],
+        "finding": "The Python 3.14.7 unittest page was rebuilt on August 25. It still grounds tests in self-contained cases, observable assertions, fixtures, isolation, discovery behavior, and explicit skipped or expected-failure states. The test-quality workflow remains framework-neutral and compatible.",
+        "action": "Refresh the rebuilt page marker. No skill instruction change is required."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://docs.spring.io/spring-boot/",
+      "previous_marker": {
+        "source_url": "https://docs.spring.io/spring-boot/",
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 17:45:33 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 17:45:33 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://docs.spring.io/spring-boot/",
+        "https://docs.spring.io/spring-boot/"
+      ],
+      "affected_skills": [
+        "java-spring-engineering-profile"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://experienceleague.adobe.com/en/docs/experience-manager",
+      "previous_marker": {
+        "source_url": "https://experienceleague.adobe.com/en/docs/experience-manager",
+        "marker_kind": "last-modified",
+        "marker_value": "Wed, 02 Sep 2026 14:04:07 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Wed, 02 Sep 2026 14:04:07 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://experienceleague.adobe.com/en/docs/experience-manager",
+        "https://experienceleague.adobe.com/en/docs/experience-manager"
+      ],
+      "affected_skills": [
+        "adobe-aem-engineering-profile"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+      "previous_marker": {
+        "source_url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "00bdaee3c9a40c824f6cb4b71288229efd89fb419f7d5df3011ecea1e0dc4f9c"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "4e9b6fd81b9ab34e2edacab3b9b4963bd402ba18290bafcca81ec5453c691301"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+        "https://genai.owasp.org/initiatives/agentic-security-initiative/"
+      ],
+      "affected_skills": [
+        "agentic-system-security-review"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The initiative now lists governance, agent-control, MCP, and 2026 threat resources. The existing system review covers identity, tools, delegation, memory, supply chain, and stopping without claiming certification.",
+      "previous_review": {
+        "url": "https://genai.owasp.org/initiatives/agentic-security-initiative/",
+        "status": "reviewed",
+        "ownership_check": "The OWASP Gen AI Security Project remains the publisher of the Agentic Security Initiative.",
+        "affected_skills": [
+          "agentic-system-security-review"
+        ],
+        "finding": "The initiative page now highlights additional 2026 governance, Agentic Top 10, MCP server, third-party MCP, and security landscape resources. These expand the supporting resource index but do not replace exact threat evidence, application controls, skill-package review, or system-specific testing.",
+        "action": "Refresh the source marker. Keep the system-wide threat domains, MCP and protocol boundaries, and explicit no-certification language; no skill instruction change is required."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+      "previous_marker": {
+        "source_url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "0927932d57969d789c3cf47555a9d1e981fa8e02f98a38f1a33b3ab261226f51"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "44a36ed5f01b69261088a74ad8cab855ec4de28a1cc146d03a6f534f17808511"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+        "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/"
+      ],
+      "affected_skills": [
+        "retrieval-grounding-quality-review"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The guidance covers access isolation, inversion, poisoning, and changed model behavior. The canonical retrieval review already includes embedding confidentiality, intended behavior, and untrusted retrieved text.",
+      "previous_review": {
+        "url": "https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/",
+        "status": "reviewed",
+        "ownership_check": "The OWASP Gen AI Security Project remains the named publisher of the vector and embedding risk guidance.",
+        "affected_skills": [
+          "retrieval-grounding-quality-review"
+        ],
+        "finding": "The current guidance continues to cover unauthorized access, cross-context leakage, federation conflicts, poisoning, and permission-aware isolation. It also calls out embedding inversion and retrieval-driven behavior changes, which were not explicit in the first workflow draft.",
+        "action": "Add embedding-confidentiality and intended-behavior checks to the retrieval review, keep retrieved content untrusted, and refresh the stable normalized marker."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://git-scm.com/docs/git-merge",
+      "previous_marker": {
+        "source_url": "https://git-scm.com/docs/git-merge",
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 31 Aug 2026 06:42:22 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 31 Aug 2026 06:42:22 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-merge"
+      ],
+      "affected_skills": [
+        "merge-conflict-reconciliation"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://git-scm.com/docs/git-worktree",
+      "previous_marker": {
+        "source_url": "https://git-scm.com/docs/git-worktree",
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 31 Aug 2026 06:42:23 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 31 Aug 2026 06:42:23 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://git-scm.com/docs/git-worktree",
+        "https://git-scm.com/docs/git-worktree"
+      ],
+      "affected_skills": [
+        "finish-development-branch",
+        "worktree-isolation"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://go.dev/doc/",
+      "previous_marker": {
+        "source_url": "https://go.dev/doc/",
+        "marker_kind": "content-sha256",
+        "marker_value": "97b9515232aa1f34c5e46b758005079356d85fbd41a2900572998c65d63c0de1"
+      },
+      "current_marker": {
+        "marker_kind": "content-sha256",
+        "marker_value": "97b9515232aa1f34c5e46b758005079356d85fbd41a2900572998c65d63c0de1"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://go.dev/doc/",
+        "https://go.dev/doc/"
+      ],
+      "affected_skills": [
+        "go-engineering-profile"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+      "previous_marker": {
+        "source_url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "c22b55bdf3a975169cf552994c4a58230a5a12b33dd3f14f74404b0709c9e05f"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "e3909257c1bc82598b102605ef9b0057717507bec84166b6703ac775c409a46c"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+        "https://learn.chatgpt.com/docs/agent-configuration/subagents"
+      ],
+      "affected_skills": [
+        "multi-agent-orchestration"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "Local Codex and ChatGPT Work have distinct delegation triggers, model settings, thread controls, permissions, and custom-agent configuration. The existing client mapping already requires exact app and configuration evidence.",
+      "previous_review": {
+        "url": "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+        "status": "reviewed",
+        "ownership_check": "OpenAI ChatGPT Learn remains the official documentation surface for Codex and ChatGPT subagents.",
+        "affected_skills": [
+          "multi-agent-orchestration"
+        ],
+        "finding": "The current page distinguishes ChatGPT Work from local Codex clients; documents direct or instruction-driven delegation; describes surface-specific thread inspection; allows eligible Ultra sessions to delegate suitable work proactively; and emphasizes independent work, higher token cost, and caution with parallel writes. It now documents inherited permission and sandbox behavior, custom-agent configuration layers, per-agent overrides, MCP and skill configuration, concurrency controls, and legacy configuration aliases in greater detail.",
+        "action": "Update the client mapping to require exact surface, account capability, model, reasoning level, permission mode, custom-agent configuration, registered tools, and version evidence. Preserve the portable authorization, ownership, cost, and reconciliation boundaries, then refresh the marker."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://learn.microsoft.com/en-us/dotnet/",
+      "previous_marker": {
+        "source_url": "https://learn.microsoft.com/en-us/dotnet/",
+        "marker_kind": "etag",
+        "marker_value": "\"DdXLskBEzIYcOHz0ZMWRviDFVfI=\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"+9Cy9ZEQhvz3Ak5iwW35JhC83pM=\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://learn.microsoft.com/en-us/dotnet/",
+        "https://learn.microsoft.com/en-us/dotnet/"
+      ],
+      "affected_skills": [
+        "csharp-dotnet-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The .NET index links SDK, target framework, diagnostics, testing, deployment, and newer-version material. The current profile already discovers global.json, framework targets, package graphs, and platform constraints.",
+      "previous_review": null,
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://opentelemetry.io/docs/concepts/signals/",
+      "previous_marker": {
+        "source_url": "https://opentelemetry.io/docs/concepts/signals/",
+        "marker_kind": "etag",
+        "marker_value": "\"3857cfbd6ef4a1235cbbce4a3d66564b-ssl\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"d244ea8afcd06e4537e7d41a38f4c683-ssl\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://opentelemetry.io/docs/concepts/signals/",
+        "https://opentelemetry.io/docs/concepts/signals/"
+      ],
+      "affected_skills": [
+        "observability-design"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The signal model still lists traces, metrics, logs, and baggage, with events and profiles developing. The observability review does not claim unsupported telemetry or universal availability.",
+      "previous_review": {
+        "url": "https://opentelemetry.io/docs/concepts/signals/",
+        "status": "reviewed",
+        "ownership_check": "The OpenTelemetry project remains the official authority for its signal model.",
+        "affected_skills": [
+          "observability-design"
+        ],
+        "finding": "The current page still identifies traces, metrics, logs, and baggage while describing profiles as developing. The observability workflow uses logs, metrics, traces, correlation context, privacy, and cost controls without claiming unsupported telemetry.",
+        "action": "Refresh the source marker. No skill instruction change is required."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://owasp.org/www-project-application-security-verification-standard/",
+      "previous_marker": {
+        "source_url": "https://owasp.org/www-project-application-security-verification-standard/",
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 16:00:59 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 03 Sep 2026 16:00:59 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://owasp.org/www-project-application-security-verification-standard/",
+        "https://owasp.org/www-project-application-security-verification-standard/"
+      ],
+      "affected_skills": [
+        "application-security-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://slsa.dev/spec/v1.2/provenance",
+      "previous_marker": {
+        "source_url": "https://slsa.dev/spec/v1.2/provenance",
+        "marker_kind": "etag",
+        "marker_value": "\"3d549f2a1bc00c1de09cb51667236f3b-ssl\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"3d549f2a1bc00c1de09cb51667236f3b-ssl\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://slsa.dev/spec/v1.2/provenance",
+        "https://slsa.dev/spec/v1.2/provenance"
+      ],
+      "affected_skills": [
+        "dependency-supply-chain-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+      "previous_marker": {
+        "source_url": "https://sre.google/sre-book/monitoring-distributed-systems/",
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 12 May 2025 07:08:00 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 12 May 2025 07:08:00 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://sre.google/sre-book/monitoring-distributed-systems/",
+        "https://sre.google/sre-book/monitoring-distributed-systems/"
+      ],
+      "affected_skills": [
+        "data-migration-readiness",
+        "operational-readiness-review",
+        "performance-scalability-diagnosis"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://sre.google/sre-book/postmortem-culture/",
+      "previous_marker": {
+        "source_url": "https://sre.google/sre-book/postmortem-culture/",
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 01 Sep 2025 09:58:00 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 01 Sep 2025 09:58:00 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://sre.google/sre-book/postmortem-culture/",
+        "https://sre.google/sre-book/postmortem-culture/"
+      ],
+      "affected_skills": [
+        "workflow-retrospective"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_intro",
+      "previous_marker": {
+        "source_url": "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_intro",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "1b70c9bbd7bce3b4ace5456859a433131b196c9d6a7c1b3b6029086368171f43"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "8b203e9484a172f876b5de5e36a6e9f74cf7f1b3601ae3b341654da0ad59a7f8"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_intro",
+        "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_intro"
+      ],
+      "affected_skills": [
+        "salesforce-apex-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "Apex fundamentals preserve multitenant limits, transactional behavior, API versioning, and hosted execution. The profile already separates local checks from org-backed operations and permissions.",
+      "previous_review": null,
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://www.antigravity.google/docs/cli/plugins/",
+      "previous_marker": {
+        "source_url": "https://www.antigravity.google/docs/cli/plugins/",
+        "marker_kind": "etag",
+        "marker_value": "\"LwgjoQ\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"vJ3VBw\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.antigravity.google/docs/cli/plugins/",
+        "https://www.antigravity.google/docs/cli/plugins/"
+      ],
+      "affected_skills": [
+        "portable-skill-authoring",
+        "skill-security-review"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The CLI guide documents its own plugin manifest and a CLI-specific global path. That differs from the general guide and the previously observed native path. Retain the native installer check and do not flatten references or infer explicit-only enforcement.",
+      "previous_review": {
+        "url": "https://www.antigravity.google/docs/cli/plugins/",
+        "status": "reviewed",
+        "ownership_check": "Google Antigravity documentation is the official authority for its native CLI plugin manifest.",
+        "affected_skills": [
+          "portable-skill-authoring",
+          "skill-security-review"
+        ],
+        "finding": "The documented Antigravity native plugin manifest and MCP configuration filenames differ from the Agent Plugins 1.0 package schema.",
+        "action": "Keep Antigravity-native packaging separate and do not claim that a portable Agent Plugins package is accepted without a conformant-client observation."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://www.antigravity.google/docs/sdk/overview",
+      "previous_marker": {
+        "source_url": "https://www.antigravity.google/docs/sdk/overview",
+        "marker_kind": "etag",
+        "marker_value": "\"LwgjoQ\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"vJ3VBw\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.antigravity.google/docs/sdk/overview",
+        "https://www.antigravity.google/docs/sdk/overview"
+      ],
+      "affected_skills": [
+        "agent-evaluation-design",
+        "google-adk-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The SDK remains a programmatic runtime with its own lifecycle and tools. Existing Google guidance keeps SDK, managed APIs, local CLI, and deployment evidence separate; no runtime implementation is added.",
+      "previous_review": {
+        "url": "https://www.antigravity.google/docs/sdk/overview",
+        "status": "reviewed",
+        "ownership_check": "Google Antigravity documentation is the official authority for the Antigravity SDK harness.",
+        "affected_skills": [
+          "google-adk-engineering-profile",
+          "agent-evaluation-design"
+        ],
+        "finding": "The SDK exposes a programmatic agent harness but remains a distinct runtime surface from the CLI even when implementation components are shared.",
+        "action": "Create SDK evidence only in a separate runtime-harness lane after a useful CLI treatment exists."
+      },
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://www.drupal.org/docs/develop",
+      "previous_marker": {
+        "source_url": "https://www.drupal.org/docs/develop",
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "13bfe24b015480a0d02592004ad32f5623f40baee0e502f08af5689df6cdbd5b"
+      },
+      "current_marker": {
+        "marker_kind": "normalized-content-sha256",
+        "marker_value": "431f724b09d2bfa7d57fcc5c2c96ddc1c03dd20b3fa3097e6b0c33ac52ac29ca"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.drupal.org/docs/develop",
+        "https://www.drupal.org/docs/develop"
+      ],
+      "affected_skills": [
+        "php-drupal-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The Drupal index includes Composer, Drush, PHPStan, security, testing, and performance resources; it labels older coding standards obsolete. Existing checks use project versions and current authorities rather than an obsolete universal standard.",
+      "previous_review": null,
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://www.postgresql.org/docs/current/",
+      "previous_marker": {
+        "source_url": "https://www.postgresql.org/docs/current/",
+        "marker_kind": "content-sha256",
+        "marker_value": "8ec5a1859e79a2554671192efde6ca54df6f432d18bdda49d716f0095b32daed"
+      },
+      "current_marker": {
+        "marker_kind": "content-sha256",
+        "marker_value": "8ec5a1859e79a2554671192efde6ca54df6f432d18bdda49d716f0095b32daed"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.postgresql.org/docs/current/",
+        "https://www.postgresql.org/docs/current/"
+      ],
+      "affected_skills": [
+        "postgresql-sql-engineering-profile"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://www.rfc-editor.org/rfc/rfc9110.txt",
+      "previous_marker": {
+        "source_url": "https://www.rfc-editor.org/rfc/rfc9110.txt",
+        "marker_kind": "content-sha256",
+        "marker_value": "21c1cdce6ab0e5509b04d84a28000836c7a087cf786efe6f04877ebfff47232a"
+      },
+      "current_marker": {
+        "marker_kind": "content-sha256",
+        "marker_value": "21c1cdce6ab0e5509b04d84a28000836c7a087cf786efe6f04877ebfff47232a"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.rfc-editor.org/rfc/rfc9110.txt",
+        "https://www.rfc-editor.org/rfc/rfc9110.txt"
+      ],
+      "affected_skills": [
+        "api-contract-compatibility-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://www.swift.org/documentation/",
+      "previous_marker": {
+        "source_url": "https://www.swift.org/documentation/",
+        "marker_kind": "etag",
+        "marker_value": "\"1d9-65a941fd55c00\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"209-65af18c8e0600\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.swift.org/documentation/",
+        "https://www.swift.org/documentation/"
+      ],
+      "affected_skills": [
+        "swift-swiftui-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "instruction change needed",
+      "finding": "The old URL is an HTML redirect to docs.swift.org/latest/documentation/. The destination was read in a browser because raw HTML contains only an application shell. It lists Swift 6.4 beta, libraries, testing, package tools, and platform guides. Update the focused authority link; keep repository-pinned toolchain and observed macOS requirements.",
+      "previous_review": null,
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://www.typescriptlang.org/docs/",
+      "previous_marker": {
+        "source_url": "https://www.typescriptlang.org/docs/",
+        "marker_kind": "etag",
+        "marker_value": "\"6a9576f1-29a5d\""
+      },
+      "current_marker": {
+        "marker_kind": "etag",
+        "marker_value": "\"6aa04fb2-29a5d\""
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.typescriptlang.org/docs/",
+        "https://www.typescriptlang.org/docs/"
+      ],
+      "affected_skills": [
+        "typescript-javascript-engineering-profile"
+      ],
+      "fingerprint_changed": true,
+      "reviewed_on": "2026-09-09",
+      "disposition": "current instructions still supported",
+      "finding": "The TypeScript index includes modules, JSX, declaration files, compiler configuration, and newer-release material. The profile already discovers the installed compiler, runtime, module format, and lockfile. Do not infer an upgrade from the documentation index.",
+      "previous_review": null,
+      "historical_content_available": false
+    },
+    {
+      "source_url": "https://www.w3.org/TR/WCAG22/",
+      "previous_marker": {
+        "source_url": "https://www.w3.org/TR/WCAG22/",
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 12 Dec 2024 10:36:22 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Thu, 12 Dec 2024 10:36:22 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.w3.org/TR/WCAG22/",
+        "https://www.w3.org/TR/WCAG22/"
+      ],
+      "affected_skills": [
+        "accessibility-review",
+        "functional-motion-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    },
+    {
+      "source_url": "https://www.w3.org/TR/prov-n/",
+      "previous_marker": {
+        "source_url": "https://www.w3.org/TR/prov-n/",
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 02 Oct 2017 10:47:12 GMT"
+      },
+      "current_marker": {
+        "marker_kind": "last-modified",
+        "marker_value": "Mon, 02 Oct 2017 10:47:12 GMT"
+      },
+      "read_count": 2,
+      "stable": true,
+      "http_statuses": [
+        200,
+        200
+      ],
+      "http_final_urls": [
+        "https://www.w3.org/TR/prov-n/",
+        "https://www.w3.org/TR/prov-n/"
+      ],
+      "affected_skills": [
+        "context-reliability-review"
+      ],
+      "fingerprint_changed": false,
+      "reviewed_on": null,
+      "disposition": "unchanged marker; previous review age retained"
+    }
+  ],
+  "added_authorities": [
+    {
+      "source_url": "https://docs.swift.org/latest/documentation/",
+      "marker_kind": "etag",
+      "marker_value": "\"f07-659e1dd4404c0\"",
+      "stable": true,
+      "reviewed_on": "2026-09-09"
+    },
+    {
+      "source_url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+      "marker_kind": "last-modified",
+      "marker_value": "Thu, 03 Sep 2026 15:17:59 GMT",
+      "stable": true,
+      "reviewed_on": "2026-09-09"
+    },
+    {
+      "source_url": "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+      "marker_kind": "last-modified",
+      "marker_value": "Thu, 03 Sep 2026 15:17:59 GMT",
+      "stable": true,
+      "reviewed_on": "2026-09-09"
+    }
+  ]
+}

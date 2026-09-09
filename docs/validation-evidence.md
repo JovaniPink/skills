@@ -1,8 +1,10 @@
 # Validation Evidence
 
-Start with the [September 8 Claude account repair](claude-account-repair-2026-09-08.md) for the latest account and CLI checks. The [client support checklist](client-support.md) tracks checks still open. Earlier sections retain their named versions, dates, and failures. They do not prove that a current install works.
+See the [current 0.12.0 candidate checks](client-candidate-v0.12.0.md). Older observations below retain their original package versions.
 
-Current test suite: 80 regression tests.
+Start with the [September 8 Claude account repair](claude-account-repair-2026-09-08.md) for the historical 0.11 account and CLI checks. The [client support checklist](client-support.md) tracks checks still open. Earlier sections retain their named versions, dates, and failures. They do not prove that a current install works.
+
+Current test suite: 83 regression tests.
 
 ## Equal client setup candidate
 

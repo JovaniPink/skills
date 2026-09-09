@@ -4,7 +4,7 @@ description: Diagnose a defect, failure, regression, or confusing behavior by re
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "original"

@@ -10,7 +10,7 @@ from typing import TypedDict
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.11.0"
+VERSION = "0.12.0"
 CATALOG_NAME = "jovanipink-skills"
 PLUGIN_CATEGORY = "Developer Tools"
 

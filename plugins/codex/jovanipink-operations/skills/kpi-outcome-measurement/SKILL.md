@@ -4,7 +4,7 @@ description: Design or review outcome measurement with precise definitions, unit
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
