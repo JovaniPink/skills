@@ -2,6 +2,8 @@
 
 Use the generated Codex plugin for terminal or desktop code work. Check ChatGPT Work and web separately. They may have different loading and file access.
 
+Check the [current candidate record](../client-candidate-v0.12.0.md) before enabling an update. The 0.12.0 engineering pack is held after an original motion safety case failed. Correct files on disk do not clear that hold.
+
 ## Check what is there
 
 ```sh
@@ -44,5 +46,7 @@ The observed web editor flattened individually uploaded files. Use the complete 
 Review personal preferences in Codex user instructions separately from the package. Keep repository rules in `AGENTS.md`.
 
 Follow the [shared client checks](../client-support.md) for updates, removal, and evidence. Check native `--help` before an update or uninstall; command forms can change.
+
+If a check fails, stop that pack's update batch. Turn it off in plugin settings, or restore the saved reviewed package through the native install route. Check the resulting state in a fresh test task. Keep the other packs and active user tasks intact.
 
 Sources: [OpenAI skill guide](https://learn.chatgpt.com/docs/build-skills), [OpenAI plugin guide](https://developers.openai.com/plugins/build/plugins).

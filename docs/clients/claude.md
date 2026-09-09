@@ -6,6 +6,8 @@ A **Code plugin** is a package installed for Claude Code. An **account upload** 
 
 See the [September account repair check](../claude-account-repair-2026-09-08.md) for dated results and remaining app checks.
 
+Read the [current candidate record](../client-candidate-v0.12.0.md) before enabling an update. It records the 0.12.0 account replacements and the active Code engineering hold. The older checks below keep their original dates and versions.
+
 ## Check what is there
 
 ```sh
@@ -41,7 +43,18 @@ Claude desktop Code mode, Claude.ai, and Cowork each need their own record. Note
 
 For an account upload, build the separate one-skill ZIP with `python3 scripts/package_claude_ai.py`. Review it before uploading. The command prepares all 78 skills; it does not approve every ZIP for every app. Keep a separate upload checklist. The current staged target is 64 skills that allow automatic selection, with 14 explicit-only workflows held. Do not upload an explicit-only skill until the receiving mode has a verified control that prevents automatic selection. A metadata field or working slash command alone does not prove that control.
 
-To update an existing account skill, open its menu and choose **Download** to save the old copy. Then choose **Replace**, select the reviewed ZIP, and save. Check the scan result, version, file count, and linked files. In the observed web check, claim-verification changed from one file to two files and showed version 0.11.0. A fresh Chat task visibly read both files. This does not prove Cowork or desktop task behavior.
+To update an existing account skill:
+
+1. Open the skill's detail page. Use its menu to download the old copy. Check that the file opens.
+2. Choose **Replace** from that same menu. The replacement page has a **browse** button for the reviewed ZIP.
+3. Choose **Save**. The app runs its scan during the save. Stop if it shows a failure or warning.
+4. Refresh the detail page. Wait for **Contents** to load, then check the version, file count, and linked files. The first view can show cached text.
+5. Download the saved entry. Compare every file inside it with the approved package.
+6. On failure, stop that batch. Use **Replace** with the saved old file, or turn off **Enable skill**. Check the restored version or disabled state before continuing.
+
+Do not retry a save just because navigation stopped. Inspect the entry first. In the September 9 check, one save left the old version unchanged; a later retry worked. Other page transitions completed the save before a navigation error. Those entries did not need another replacement.
+
+In the earlier 0.11 web check, claim-verification changed from one file to two files. A fresh Chat task visibly read both files. This does not prove current Cowork or desktop task behavior.
 
 Check that each download exists and opens before replacing or disabling its entry. Older uploads may download as `.skill` archives; newer entries may download as one-skill plugin ZIPs. Compare the skill files inside them. Neither the archive name nor a mount path alone proves the install source. Use Replace rather than creating another entry with the same name.
 
