@@ -4,7 +4,7 @@ description: "Coordinate an explicitly requested source-to-publication learning 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-skills"
   invocation: "explicit"
   provenance: "original"

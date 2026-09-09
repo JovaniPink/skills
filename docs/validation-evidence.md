@@ -1,5 +1,19 @@
 # Validation Evidence
 
+## Equal client setup candidate
+
+Current test suite: 73 regression tests.
+
+The new offline Antigravity preview builder preserves source files and references, excludes all explicit-only skills, and refuses existing output paths. Codex and Claude distribution bytes are unchanged. Current setup guidance gives the three clients equal priority. Each app and CLI still needs its own loading and use evidence.
+
+Observed on 2026-09-08: full deterministic validation passed; all 73 tests passed; generated-file checks, strict typing, lint, public-boundary, and workflow checks passed. Claude Code 2.1.220 accepted the marketplace and all seven native plugin manifests with `--strict`. The refreshed manifest binds source commit `b160500`. These are package and repository checks, not live behavior tests. Historical results below keep their original dates and counts.
+
+## v0.11 continuity candidate
+
+The candidate contains 77 skills, with 13 targeted workflow changes and original synthetic examples. Native distributions are generated from canonical source. Behavioral acceptance remains unobserved; historical client and pilot records do not establish behavior for this candidate. See [the candidate audit](continuity-candidate.md).
+
+Observed local checks on 2026-09-08: complete deterministic validation passed, all 69 unit tests passed, native distribution and marketplace drift checks passed, strict typing and lint passed, and both workflow syntax checks passed. The 0.11.0 release manifest binds source commit `02e29f9` and exact current artifact hashes. These checks establish local candidate consistency only; no installed-client experiment or publication was performed.
+
 This file records observed outcomes for catalog release candidates. Validators do not rewrite it automatically.
 
 ## v0.10 behavioral-evidence candidate

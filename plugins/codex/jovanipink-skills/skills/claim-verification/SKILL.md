@@ -4,7 +4,7 @@ description: Verify claims that work is complete, broken, missing, merged, deplo
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "clean-room"
@@ -38,9 +38,10 @@ Turn each material claim into a falsifiable statement, then verify it against th
 
 ## Output
 
-Return a compact claim table with `Claim`, `Verdict`, `Authority`, and `Evidence`, followed by:
+Return the supported verdict first, then a claim table with `Claim`, `Verdict`, `Authority`, and `Evidence`. Include confirmed work to preserve, actual gaps, unresolved evidence, and the next justified action only where applicable.
 
-- **Do not redo**: confirmed work
-- **Actual gaps**: refuted or partial claims
-- **Unresolved**: unverifiable claims and the evidence needed
-- **Next action**: narrowest justified remediation
+## Continuity and evidence
+
+State the supported verdict before the claim table. Preserve authority, exact evidence, and freshness for each claim. Omit empty gap categories and do not invent remediation when every requested claim is confirmed.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

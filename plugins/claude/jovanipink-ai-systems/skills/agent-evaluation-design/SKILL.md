@@ -4,7 +4,7 @@ description: Design an evaluation contract for an AI agent, model-assisted workf
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-ai-systems"
   invocation: "implicit"
   provenance: "original"
@@ -42,3 +42,9 @@ Identify the system version, decision owner, intended users, operating environme
 ## Output
 
 Return an evaluation contract with `Decision`, `System under evaluation`, `Population and cases`, `Baseline`, `Configurations`, `Oracles and graders`, `Error taxonomy`, `Metrics`, `Thresholds`, `Human review`, `Cost and latency`, `Execution authority`, and `Limitations`.
+
+## Continuity and evidence
+
+Declare planned case, arm, and repetition coverage before collection. Bind every result to a unique study, case, arm, repetition, client, source, instructions, and execution envelope; reject duplicate or mismatched identities rather than overwriting. Check coverage and evidence integrity before outcome scoring. Keep failed execution, missing evidence, deterministic diagnostics, and pending human review distinct. Isolate treatment setup from task grading and protect the test contract independently.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

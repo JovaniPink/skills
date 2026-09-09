@@ -4,7 +4,7 @@ description: "Prepare a precise handoff for continuing work in another session, 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-reasoning"
   invocation: "explicit"
   provenance: "clean-room"
@@ -34,4 +34,10 @@ Create a compact, verifiable continuation record without transferring hidden rea
 
 ## Output
 
-Return `Objective`, `Exact state`, `Completed`, `In progress`, `Decisions`, `Evidence`, `Changed artifacts`, `Validation`, `Blockers`, `Authority boundary`, and `Next verification steps`.
+Lead with `Continuation point` and `Next verification or action`, then return `Objective`, `Exact state`, `Completed`, `In progress`, `Decisions`, `Evidence`, `Changed artifacts`, `Validation`, `Blockers`, `Authority boundary`, and `Next verification steps`.
+
+## Continuity and evidence
+
+Lead with the continuation point and next verification or executable action. Retain the objective, exact revision and working state, changed artifacts, decisions, unresolved work, evidence references and freshness, existing authorization, and stop conditions. Use a compact record when sufficient and a fuller record when requested or needed. Reverify stale evidence before dependent action; do not repeat work already proved current.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

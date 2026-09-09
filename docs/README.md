@@ -1,10 +1,10 @@
 # How to Use JovaniPink Skills
 
-JovaniPink Skills is a public catalog of reusable workflows for Codex, ChatGPT, Claude Code, Claude Desktop, and Claude.ai. Antigravity CLI is the next planned Google developer-client observation surface after the Codex pilot; Gemini CLI is retained only as historical evidence and a conditional enterprise compatibility surface. The canonical skills follow the open Agent Skills format. Generated plugin packages adapt the same source for each client.
+Codex, Claude Code, and Antigravity have equal priority for setup, documentation, and testing. The same source skills feed their packages. Each app and CLI needs its own checks before we call it tested. See the [client support guide](client-support.md) for current package limits and a checklist for each client.
 
 This guide explains how to choose, install, invoke, verify, update, and remove the skills safely.
 
-Use the [five-minute quickstart](quickstart.md) for a local start. Use [Choose Your Skills](choose-your-skills.md) and the [skill cheatsheet](skill-cheatsheet.md) for selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 76-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
+Use the [five-minute quickstart](quickstart.md) for a local start. Use [Choose Your Skills](choose-your-skills.md) and the [skill cheatsheet](skill-cheatsheet.md) for selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 77-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
 
 ## Start with the security boundary
 
@@ -51,6 +51,12 @@ cd skills
 ```
 
 For higher risk work, review and check out a specific commit or release tag before installation. A mutable branch such as `main` can change after review.
+
+## Choose your client
+
+Follow the focused guides for [Codex](clients/codex.md), [Claude](clients/claude.md), or [Antigravity](clients/antigravity.md). Each covers the current package, local checks, and app limits. Antigravity setup does not wait on a Codex study. Its preview excludes skills that require direct selection until that control is verified.
+
+The sections below keep the full Codex and Claude command reference.
 
 ## Install for Codex CLI and ChatGPT desktop
 

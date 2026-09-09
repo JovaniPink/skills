@@ -22,6 +22,10 @@ The Codex copy retains `agents/openai.yaml` and rewrites its direct-invocation p
 
 Plugins are packaging routes, not the complete taxonomy. `catalog/skills.json` adds capability, lifecycle, target, risk, invocation, maturity, companion, and routing-conflict facets. `catalog/packs.json` measures plugin and recipe discovery-description sizes.
 
+## Antigravity preview
+
+`scripts/build_antigravity.py` prepares a new review folder from the same source. It keeps skill text and references, omits Codex metadata, and excludes every explicit-only skill. A separate `bundle.json` records file hashes and the unverified loading state. It adds no runner and changes no installed client. See [Antigravity setup](clients/antigravity.md).
+
 ## Invocation classes
 
 Implicit skills are read-only or diagnostic by default. They may activate when their descriptions clearly match the user's task. Explicit-only skills coordinate side effects or trust decisions and require the user to name the skill. Native adapters encode the distinction, while the workflow text still states its authorization boundary.

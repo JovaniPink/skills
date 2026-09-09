@@ -1,6 +1,6 @@
 {
   "$schema": "./profiles-schema.json",
-  "catalog_version": "0.10.0",
+  "catalog_version": "0.11.0",
   "profiles": [
     {
       "id": "delivery-typescript-experimental",
@@ -42,7 +42,7 @@
           "observed_listing_state": "not_observed"
         }
       },
-      "source_catalog_version": "0.10.0",
+      "source_catalog_version": "0.11.0",
       "behavioral_evidence": {
         "status": "none",
         "observed_against_version": null,
@@ -62,14 +62,14 @@
           "observed_against_version": null,
           "observed_at": null,
           "evidence_reference": null,
-          "reason": "Claude portability work begins only after the Codex pilot identifies a useful focused treatment."
+          "reason": "Setup and manual tests may proceed independently; no completed behavioral study exists for this client."
         },
         "antigravity-cli": {
           "status": "blocked",
           "observed_against_version": null,
           "observed_at": null,
           "evidence_reference": null,
-          "reason": "The Codex pilot is incomplete, and Antigravity has no verified implicit-invocation disable control for publish-change-safely."
+          "reason": "Setup may proceed independently. This profile remains blocked because publish-change-safely lacks a verified automatic-selection disable control."
         }
       },
       "disposition": "experimental"

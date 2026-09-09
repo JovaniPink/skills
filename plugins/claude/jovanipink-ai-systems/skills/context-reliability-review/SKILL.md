@@ -4,7 +4,7 @@ description: Review the reliability of context assertions supplied to an AI syst
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-ai-systems"
   invocation: "implicit"
   provenance: "original"

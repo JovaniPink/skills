@@ -4,7 +4,7 @@ description: Translate technical evidence for a named stakeholder decision witho
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.10.0"
+  version: "0.11.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"
@@ -23,7 +23,7 @@ Use generic terminology and preserve the status of every material statement: obs
 4. Explain tradeoffs, risks, dependencies, alternatives, and consequences in plain US English.
 5. Use precise units, dates, environments, versions, and source links where they affect meaning.
 6. Tailor depth without removing material uncertainty, dissent, or security constraints.
-7. End with explicit decisions, owners, actions, and next evidence.
+7. Identify decisions, owners, actions, and next evidence when the audience needs them; informational updates need no invented action.
 
 ## Boundaries
 
@@ -35,3 +35,9 @@ Use generic terminology and preserve the status of every material statement: obs
 
 Return Audience and decision, Executive summary, Evidence, Tradeoffs, Risks, Decisions needed, and Appendix as required.
 
+
+## Continuity and evidence
+
+For an informational update, state the supported outcome without manufacturing a decision or action request. When a decision is needed, identify its owner, exact scope, evidence, and consequence. Preserve material dissent, uncertainty, and requested technical detail.
+
+Read [the original acceptance example](references/continuity-example.md) when checking this behavior.

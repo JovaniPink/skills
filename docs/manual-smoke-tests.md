@@ -1,5 +1,48 @@
 # Manual Cross-Client Smoke Tests
 
+## Local package follow-up, 2026-09-08
+
+This was a setup check, not a behavioral study. Source: `61a269a`; public skill payloads match the 0.11.0 generated packages.
+
+| Check | Observed result | Limit |
+| --- | --- | --- |
+| Codex CLI 0.153.2 | Two stale packs refreshed; all seven installed packs match generated files | Existing-task behavior not retested |
+| Claude Code CLI 2.1.220 | Seven packs updated from 0.9.0 to 0.11.0; all 77 skills and package files match | One synthetic live check stopped on expired authentication; zero model cost reported |
+| Claude desktop 1.46388.4 | Each of seven plugin pages shows 0.11.0, totaling 77 skills | Personal copies remain separate; task behavior and cloud sync not proved |
+| Antigravity CLI 1.1.26 | One-skill preview installed; native validation and file hashes pass; namespaced skill appears in a fresh CLI menu | No model prompt submitted; full-catalog use and explicit-only controls unverified |
+| Antigravity plugin lifecycle | Disable, enable, remove, and reinstall states verified | Removal checked by files and native import list, not a separate post-removal skill-menu session |
+| Running Antigravity desktop | Previous skill list still shown after revisiting settings | Preview loading not established; no app restart performed |
+
+A final check found that Antigravity CLI had changed to 1.1.27 without an update command in this task. Native package validation, the import list, and a fresh skill-menu check were repeated successfully on 1.1.27. The disable/enable and removal cycle above remains evidence for 1.1.26 only.
+
+No personal preference was activated. Private paths, backups, account details, and detailed receipts remain outside this public record. Earlier observations below keep their original scope.
+
+## Claude authentication retry, 2026-09-08
+
+After sign-in was refreshed, the same synthetic check succeeded in Claude Code 2.1.220 with `claude-opus-5[1m]`: process exit 0 and `is_error: false`. It read the evidence file and the generated claim-verification skill's linked continuity example. Reported cost was $0.2048085 within a $1 limit. Only Read and Skill were available, with no MCP servers or session persistence.
+
+The response preserved failed checks, uncertainty, and unfinished work. Its opening verdict was PARTIAL even though both component claims were REFUTED. Record successful invocation and reference loading with this quality finding; do not mark complete behavioral acceptance. The earlier authentication failure remains part of the record. This CLI result does not establish Chrome, desktop, or Cowork behavior.
+
+## Web and Antigravity use follow-up, 2026-09-08
+
+These are manual setup and diagnostic checks against the 0.11.0 skill files, not completed communication-study episodes. Historical results above remain intact.
+
+| Check | Observed result | Limit |
+| --- | --- | --- |
+| ChatGPT Work in Safari | Backed up and replaced the older account claim-verification skill with the complete canonical ZIP; after reload, revised instructions and the reference file were readable | One account skill updated; other account copies not upgraded |
+| ChatGPT Work synthetic response | Correct REFUTED verdict; retained the failed check, unfinished fix, missing revision and timestamps, and synthetic evidence boundary | The built-in Try in chat prompt ran before the fixed case was sent; this is not a controlled baseline. The response reported file reads, but separate tool-read evidence was not captured |
+| Claude.ai Chat in Chrome | Backed up and replaced the older account skill; version 0.11.0 and two files shown; visible execution details confirm both file reads | Sonnet 5 High; one skill and one mode tested |
+| Claude desktop account library | The replaced account skill appears at 0.11.0 with its reference file after revisiting Customize | This verifies library refresh, not behavior in a desktop task; the local plugin remains a separate entry |
+| Claude.ai evidence freshness | Initial response said prior passing checks did not need re-verification; a changed-revision follow-up corrected this, preserved history, and required fresh checks while retaining the no-change scope | Keep the initial overstatement as a quality finding; the correction is not a clean first-response pass |
+| Antigravity CLI 1.1.27 print mode | Relative fixture path resolved in the client's scratch folder; exact-path retry was denied; inline synthetic case returned REFUTED and preserved the failed check and unfinished fix | Exit 0 and SUCCESS also occurred with an empty response and denied read; external-file access remains blocked. Exact model was not captured |
+| Antigravity desktop discovery | A fresh empty composer returned no matching results for the installed preview skill | Existing desktop process; CLI discovery does not establish app loading |
+
+No explicit-only workflow was uploaded to these web accounts or Antigravity. No personal preference was activated, broad permission grant added, or release published. Wider web rollout, desktop and IDE loading, Cowork behavior, and the controlled study remain open acceptance work.
+
+## Current client setup policy
+
+Codex, Claude Code, and Antigravity setup checks can proceed independently. Use the [client support checklist](client-support.md) for each CLI and app. Historical observations below keep their original scope and dates; they do not prove that a current install works.
+
 The authoritative row-level evidence is `client-observations.json`, validated by `client-observations-schema.json`. It records exact client versions/builds, tested source commit, artifact SHA-256, prompt, expected and observed activation, resource behavior, result, timestamp, operator, and sanitized evidence reference.
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
