@@ -1,6 +1,6 @@
 {
   "$schema": "./evidence-schema.json",
-  "catalog_version": "0.11.0",
+  "catalog_version": "0.12.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
@@ -334,6 +334,17 @@
     },
     {
       "skill": "finish-development-branch",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "functional-motion-review",
       "workflow_maturity": "candidate",
       "workflow_maturity_evidence": "evals/cases.json",
       "behavioral_evidence": {

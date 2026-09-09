@@ -4,7 +4,7 @@ description: Design risk-proportionate test coverage across unit, integration, c
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "original"

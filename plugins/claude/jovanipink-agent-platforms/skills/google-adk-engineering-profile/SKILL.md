@@ -4,7 +4,7 @@ description: Review or design a Google Agent Development Kit system using exact 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-agent-platforms"
   invocation: "implicit"
   provenance: "clean-room"

@@ -1,6 +1,6 @@
 # JovaniPink Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 77 portable agent skills organized into seven focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The JovaniPink Skills catalog contains 78 portable agent skills organized into seven focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
@@ -21,13 +21,13 @@ The counts, groupings, and invocation policies below are reconciled against the 
 | Plugin | Skill count | Explicit-only skills |
 | --- | ---: | --- |
 | `jovanipink-skills` | 11 | `publish-change-safely`, `research-to-publication-lifecycle`, `skill-import-provenance` |
-| `jovanipink-engineering` | 24 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
+| `jovanipink-engineering` | 25 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
 | `jovanipink-stack-profiles` | 11 | None |
 | `jovanipink-operations` | 11 | None |
 | `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
 | `jovanipink-ai-systems` | 3 | None |
 | `jovanipink-agent-platforms` | 6 | None |
-| **Total** | **77** | **14 skills** |
+| **Total** | **78** | **14 skills** |
 
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
 
@@ -104,7 +104,7 @@ Reproduces and narrows a defect, regression, failure, or confusing behavior to e
 
 ## Engineering skills: jovanipink-engineering
 
-The engineering plugin contains 24 skills covering the software lifecycle, engineering quality, architecture, review, and controlled execution.
+The engineering plugin contains 25 skills covering the software lifecycle, engineering quality, architecture, review, and controlled execution.
 
 ### acceptance-evidence-ledger
 
@@ -141,6 +141,10 @@ Reviews software dependencies and build inputs for provenance, integrity, mainte
 Invocation: `explicit-only`.
 
 Reconciles a development branch and presents evidence-based choices for creating a PR, merging, retaining the branch, or cleaning it up. It does not assume authority to push, merge, delete, or abandon work.
+
+### functional-motion-review
+
+Checks whether motion helps a reader task while preserving evidence labels, static content, keyboard behavior, and user control. It separates WCAG requirements from stricter catalog preferences. It does not implement animation or add analytics.
 
 ### implementation-planning
 

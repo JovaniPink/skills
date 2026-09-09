@@ -13,14 +13,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import validate_catalog  # noqa: E402
+from cataloglib import VERSION  # noqa: E402
 from schema_validation import validate_instance  # noqa: E402
 
-RECORD = "claude-account-repair-2026-09-08.md"
+RECORD = f"client-candidate-v{VERSION}.md"
 
 
 class CurrentEvidenceTests(unittest.TestCase):
     def check_docs(
-        self, content: str, record: str = "Catalog version: 0.11.0\n"
+        self, content: str, record: str = f"Catalog version: {VERSION}\n"
     ) -> list[str]:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -33,6 +34,26 @@ class CurrentEvidenceTests(unittest.TestCase):
             with patch.object(validate_catalog, "ROOT", root):
                 validate_catalog.validate_current_client_evidence(errors)
             return errors
+
+    def test_new_candidate_does_not_relabel_historical_record(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            docs = root / "docs"
+            docs.mkdir()
+            historical = docs / "claude-account-repair-2026-09-08.md"
+            original = "Catalog version: 0.11.0\nObserved account repair.\n"
+            historical.write_text(original, encoding="utf-8")
+            current = "client-candidate-v0.12.0.md"
+            (docs / current).write_text("Catalog version: 0.12.0\n", encoding="utf-8")
+            for name in ("manual-smoke-tests.md", "validation-evidence.md"):
+                (docs / name).write_text(f"# Checks\n\n[Current]({current})\n", encoding="utf-8")
+            errors: list[str] = []
+            with patch.object(validate_catalog, "ROOT", root), patch.object(
+                validate_catalog, "VERSION", "0.12.0"
+            ):
+                validate_catalog.validate_current_client_evidence(errors)
+            self.assertEqual([], errors)
+            self.assertEqual(original, historical.read_text(encoding="utf-8"))
 
     def test_current_records_have_visible_entry_points(self) -> None:
         errors: list[str] = []
@@ -100,6 +121,34 @@ class CurrentEvidenceTests(unittest.TestCase):
                 errors: list[str] = []
                 validate_catalog.validate_current_client_evidence(errors)
                 self.assertTrue(errors)
+
+    def test_motion_preserves_original_cases_and_adds_focused_checks(self) -> None:
+        original = json.loads((ROOT / "tests/fixtures/motion-original-cases.json").read_text())
+        cases = json.loads((ROOT / "evals/cases.json").read_text())
+        motion = next(item for item in cases["skills"] if item["skill"] == original["skill"])
+        for group, count in (("positive", 3), ("near_miss", 3), ("safety", 4), ("output_rubric", 3)):
+            self.assertEqual(original[group], motion[group][:count])
+        self.assertEqual((5, 3, 5), tuple(len(motion[group]) for group in ("positive", "near_miss", "safety")))
+        self.assertEqual("blocked", motion["baseline_comparison"]["status"])
+
+    def test_source_review_does_not_refresh_unreviewed_markers(self) -> None:
+        audit = json.loads((ROOT / "docs/audits/source-review-2026-09-09.json").read_text())
+        pins = json.loads((ROOT / "catalog/upstream-pins.json").read_text())
+        by_url = {item["source_url"]: item for item in pins["sources"]}
+        self.assertEqual(43, len(audit["inventory"]))
+        self.assertEqual(20, sum(item["fingerprint_changed"] for item in audit["inventory"]))
+        self.assertEqual(46, len(by_url))
+        self.assertLess(pins["reviewed_on"], audit["reviewed_on"])
+        for item in audit["inventory"]:
+            if not item["fingerprint_changed"]:
+                self.assertIsNone(item["reviewed_on"])
+                self.assertEqual(item["previous_marker"], by_url[item["source_url"]])
+            else:
+                self.assertIn(item["disposition"], ("current instructions still supported", "instruction change needed"))
+                self.assertTrue(item["affected_skills"])
+                self.assertFalse(item["historical_content_available"])
+                for key in ("marker_kind", "marker_value"):
+                    self.assertEqual(item["current_marker"][key], by_url[item["source_url"]][key])
 
     def test_shared_schema_accepts_all_historical_manifests(self) -> None:
         schema = json.loads((ROOT / "releases/manifest-schema.json").read_text())

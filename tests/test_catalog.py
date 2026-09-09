@@ -685,6 +685,17 @@ class CatalogTests(unittest.TestCase):
             "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
             "https://docs.cloud.google.com/gemini-enterprise-agent-platform/overview",
         }
+        expected.update({
+            "https://airc.nist.gov/",
+            "https://learn.microsoft.com/en-us/dotnet/",
+            "https://trailhead.salesforce.com/content/learn/modules/apex_database/apex_database_intro",
+            "https://www.drupal.org/docs/develop",
+            "https://www.swift.org/documentation/",
+            "https://www.typescriptlang.org/docs/",
+            "https://docs.swift.org/latest/documentation/",
+            "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+            "https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html",
+        })
         records = {record["url"]: record for record in catalog["reviews"]}
         self.assertEqual(expected, set(records))
         for record in records.values():
@@ -921,7 +932,7 @@ class CatalogTests(unittest.TestCase):
         )
 
     def test_v07_acceptance_ledger_contract(self) -> None:
-        self.assertEqual(24, len(skills_by_plugin()["jovanipink-engineering"]))
+        self.assertEqual(25, len(skills_by_plugin()["jovanipink-engineering"]))
         self.assertIn("acceptance-evidence-ledger", EXPLICIT_SKILLS)
 
         expanded_profiles = {
@@ -1046,7 +1057,7 @@ class CatalogTests(unittest.TestCase):
             "google-adk-engineering-profile": "adk-version-boundaries.md",
             "retrieval-grounding-quality-review": "retrieval-evidence-matrix.md",
         }
-        self.assertEqual(77, len(SKILLS))
+        self.assertEqual(78, len(SKILLS))
         self.assertEqual(7, len(skills_by_plugin()))
         self.assertEqual(
             set(new_skills), set(skills_by_plugin()["jovanipink-agent-platforms"])

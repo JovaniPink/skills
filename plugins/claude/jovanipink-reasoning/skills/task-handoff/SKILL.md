@@ -4,7 +4,7 @@ description: "Prepare a precise handoff for continuing work in another session, 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-reasoning"
   invocation: "explicit"
   provenance: "clean-room"

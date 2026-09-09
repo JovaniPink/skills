@@ -1,6 +1,6 @@
 # JovaniPink Skills Cheatsheet
 
-Use this page to find a skill quickly. The catalog contains 77 skills across seven plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+Use this page to find a skill quickly. The catalog contains 78 skills across seven plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
 ## Invocation legend
 
@@ -48,6 +48,7 @@ Use this plugin for the software lifecycle, application quality, architecture, r
 | `data-migration-readiness` | Reviews migration authority, sequencing, compatibility, reconciliation, rollback, and operational evidence. | Implicit |
 | `dependency-supply-chain-review` | Reviews dependencies, lockfiles, registries, CI actions, artifacts, provenance, and compromise risk. | Implicit |
 | `finish-development-branch` | Presents evidence-based pull request, merge, retention, and cleanup choices for a development branch. | Explicit-only |
+| `functional-motion-review` | Checks whether motion clarifies a reader task while preserving evidence, accessibility, and user control. | Implicit |
 | `implementation-planning` | Produces a decision-complete plan with interfaces, steps, tests, rollout controls, and stopping conditions. | Implicit |
 | `merge-conflict-reconciliation` | Reconciles merge, rebase, or cherry-pick conflicts while preserving both sides' intent. | Explicit-only |
 | `module-interface-design` | Designs smaller, clearer, and more stable module boundaries, vocabulary, and contracts. | Implicit |

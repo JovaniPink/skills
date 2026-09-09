@@ -4,7 +4,7 @@ description: "Analyze the blast radius of a proposed or completed change across 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-reasoning"
   invocation: "implicit"
   provenance: "clean-room"

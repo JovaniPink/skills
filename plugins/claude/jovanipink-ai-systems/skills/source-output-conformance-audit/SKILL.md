@@ -4,7 +4,7 @@ description: Audit whether exact source identity and expected values survive par
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-ai-systems"
   invocation: "implicit"
   provenance: "original"

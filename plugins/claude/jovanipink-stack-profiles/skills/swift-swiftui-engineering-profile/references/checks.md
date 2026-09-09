@@ -1,6 +1,6 @@
 # Focused checks
 
-Primary documentation: [official Swift and SwiftUI Engineering Profile reference](https://www.swift.org/documentation/). Verify version-sensitive behavior against the repository's pinned toolchain.
+Primary documentation: [official Swift and SwiftUI Engineering Profile reference](https://docs.swift.org/latest/documentation/). Verify version-sensitive behavior against the repository's pinned toolchain.
 
 ## Discovery
 

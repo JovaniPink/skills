@@ -4,7 +4,7 @@ description: Reconcile a development branch and present evidence-based options f
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.11.0"
+  version: "0.12.0"
   plugin: "jovanipink-engineering"
   invocation: "explicit"
   provenance: "original"
