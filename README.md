@@ -8,7 +8,7 @@ Start with the [five-minute quickstart](docs/quickstart.md) or [How to use Jovan
 
 ## Catalog
 
-Plugins are distribution units. Skill-level profiles are activation and discovery units. The catalog keeps both because installing a plugin and exposing every skill in that plugin are different decisions.
+A plugin bundles related skills for installation. A profile selects the skills to use for a task. Installing a plugin and enabling all its skills are separate choices.
 
 ### `jovanipink-skills`
 
@@ -121,4 +121,8 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The v0.10 candidate contains 77 skills across seven focused plugins. It records workflow maturity separately from behavioral evidence, client compatibility, and runtime eligibility, and includes an experimental seven-skill Delivery TypeScript activation profile. No valid behavioral result currently supports the profile; the corrected isolated Codex pilot remains pending. Automated validation, Codex behavior, Work/Desktop observations, Claude portability, and ADK runtime compatibility remain separate evidence lanes.
+The 0.11.0 catalog contains 77 skills across seven plugins. Its continuity changes aim to make results easier to find and interrupted work easier to resume. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
+
+Claude Code plugins and Claude account uploads are separate installs. Updating the Code plugins does not update the account library used by Chat. See [Claude setup](docs/clients/claude.md) for the upload checks and explicit-only hold.
+
+The experimental seven-skill Delivery TypeScript profile still has no valid behavioral result. Its corrected Codex pilot and the communication study remain pending. Neither establishes compatibility with other clients or ADK runtimes.

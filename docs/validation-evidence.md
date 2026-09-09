@@ -1,8 +1,12 @@
 # Validation Evidence
 
+Start with the [September 8 Claude account repair](claude-account-repair-2026-09-08.md) for the latest account and CLI checks. The [client support checklist](client-support.md) tracks checks still open. Earlier sections retain their named versions, dates, and failures. They do not prove that a current install works.
+
+Current test suite: 80 regression tests.
+
 ## Equal client setup candidate
 
-Current test suite: 73 regression tests.
+The setup candidate had 73 regression tests.
 
 The new offline Antigravity preview builder preserves source files and references, excludes all explicit-only skills, and refuses existing output paths. Codex and Claude distribution bytes are unchanged. Current setup guidance gives the three clients equal priority. Each app and CLI still needs its own loading and use evidence.
 
