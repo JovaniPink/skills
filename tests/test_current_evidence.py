@@ -48,7 +48,13 @@ class CurrentEvidenceTests(unittest.TestCase):
             f"<!-- {link}",
             f"```markdown\n{link}\n```",
             f"~~~\n{link}\n~~~",
+            f"> ~~~\n> {link}\n> ~~~",
+            f"- ~~~\n  {link}\n  ~~~",
+            f"> - ~~~~\n>   {link}\n>   ~~~~",
             f"```\n{link}",
+            f"~~~\n> ~~~\n{link}\n~~~",
+            f"~~~\n- ~~~\n{link}\n~~~",
+            f"> ~~~\n> > ~~~\n> {link}\n> ~~~",
             f"````\n```\n{link}\n```\n````",
             f"<pre>{link}</pre>",
             f"<div hidden>{link}</div>",
@@ -64,9 +70,18 @@ class CurrentEvidenceTests(unittest.TestCase):
                 self.assertTrue(self.check_docs("# Checks\n\n" + hidden))
 
     def test_link_only_in_historical_section_cannot_pass(self) -> None:
-        self.assertTrue(
-            self.check_docs(f"# Checks\n\n## Historical\n\n[Record]({RECORD})")
-        )
+        for heading in (
+            "## Historical",
+            " ## Historical",
+            "  ## Historical",
+            "   ## Historical",
+            "##\tHistorical",
+            "### Historical",
+        ):
+            with self.subTest(heading=heading):
+                self.assertTrue(
+                    self.check_docs(f"# Checks\n\n{heading}\n\n[Record]({RECORD})")
+                )
 
     def test_historical_records_remain_valid_in_their_own_section(self) -> None:
         self.assertEqual(
