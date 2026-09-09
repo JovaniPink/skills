@@ -713,6 +713,9 @@ def validate_current_client_evidence(errors: list[str]) -> None:
         introduction = re.split(r"(?m)^## ", visible, maxsplit=1)[0]
         # Literal inline examples, escaped brackets, and images are not navigation links.
         introduction = re.sub(r"(`+)(?!`)(.*?)(?<!`)\1(?!`)", "", introduction, flags=re.DOTALL)
+        if re.search(r"</?[A-Za-z][^>]*>", introduction):
+            errors.append(f"docs/{name}: use plain Markdown for the evidence entry point")
+            continue
         links = re.findall(r"(?<![\\!])\[[^\]]+\]\(([^)]+)\)", introduction)
         if record_name not in links:
             errors.append(f"docs/{name}: introduction must link to {record_name}")

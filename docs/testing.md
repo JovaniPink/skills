@@ -39,6 +39,6 @@ A release requires green automated checks, clean generated trees, all required t
 
 ## Current evidence links
 
-The introductions to the manual checks and validation evidence must link to the current dated client record. The validator checks that record's catalog version. Links hidden in comments or code examples do not count. Historical matrices stay in their own sections; do not relabel them as current observations. Update the record, its entry points, and the validator together when a new dated record becomes current.
+The introductions to the manual checks and validation evidence must link to the current dated client record. The validator checks that record's catalog version. Use plain Markdown in those introductions. Links hidden in comments, code examples, or raw HTML do not count. Historical matrices stay in their own sections; do not relabel them as current observations. Update the record, its entry points, and the validator together when a new dated record becomes current.
 
 The shared release-manifest schema accepts semantic versions for retained releases. Tests reject leading zeros, invalid prerelease values, and trailing newlines. A new candidate must not invalidate a historical manifest.

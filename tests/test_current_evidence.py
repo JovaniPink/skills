@@ -50,6 +50,8 @@ class CurrentEvidenceTests(unittest.TestCase):
             f"~~~\n{link}\n~~~",
             f"```\n{link}",
             f"````\n```\n{link}\n```\n````",
+            f"<pre>{link}</pre>",
+            f"<div hidden>{link}</div>",
             f"`{link}`",
             f"``{link}``",
             f"    {link}",
