@@ -673,35 +673,35 @@ def validate_auxiliary_records(errors: list[str]) -> None:
 
 
 def _without_comments_and_fenced_code(text: str) -> str:
-    """Exclude non-rendered comments and literal fenced examples from the contract."""
+    """Exclude comments and literal examples, preserving fence container identity."""
 
     text = re.sub(r"<!--.*?(?:-->|\Z)", "\n", text, flags=re.DOTALL)
     visible: list[str] = []
     fence: str | None = None
+    container_pattern = ""
     for line in text.splitlines(keepends=True):
         content = line.rstrip("\r\n")
-        # A code fence may be nested in a quote or list. Strip container markers
-        # only for fence recognition; keep ordinary Markdown unchanged.
-        while True:
-            nested = re.sub(
-                r"^ {0,3}(?:>[ \t]?|(?:[-+*]|[0-9]{1,9}[.)])[ \t]+)",
-                "",
-                content,
-                count=1,
-            )
-            if nested == content:
-                break
-            content = nested
         if fence is not None:
-            if re.fullmatch(
-                rf" {{0,3}}{re.escape(fence[0])}{{{len(fence)},}}[ \t]*", content
-            ):
+            # Inside code, only the opening fence's containers have meaning.
+            inherited = re.match(container_pattern, content)
+            candidate = content[inherited.end():] if inherited else ""
+            if re.fullmatch(rf" {{0,3}}{re.escape(fence[0])}{{{len(fence)},}}[ \t]*", candidate):
                 fence = None
             visible.append("\n")
             continue
+        containers: list[str] = []
+        while True:
+            marker = re.match(r"^ {0,3}(>[ \t]?|(?:[-+*]|[0-9]{1,9}[.)])[ \t]+)", content)
+            if marker is None:
+                break
+            prefix = marker[0]
+            # Lists continue with indentation; quotes retain their marker.
+            containers.append(re.escape(prefix) if marker[1].startswith(">") else rf" {{{len(prefix)}}}")
+            content = content[marker.end():]
         opening = re.fullmatch(r" {0,3}(`{3,}|~{3,})(.*)", content)
         if opening and (opening[1][0] != "`" or "`" not in opening[2]):
             fence = opening[1]
+            container_pattern = "^" + "".join(containers)
             visible.append("\n")
         else:
             visible.append("\n" if line.startswith(("    ", "\t")) else line)
