@@ -1309,7 +1309,7 @@
         "W3C WCAG 2.2 interaction-animation guidance",
         "Jovani-owned evidence-led presentation requirements and local pilot observations"
       ],
-      "local_changes": "Original read-only review of reader tasks, evidence authority, local motion roles and intensity, static fallback, interruption, performance receipts, and comprehension evidence. The 0.12.0 revision adds a directly linked original reference, supported-result-first reporting, US spelling, and distinct WCAG levels and applicability. The 0.13.0 revision states where the finding must appear, returns named output sections, and names a test-local observation or separately consented study as the substitute when comprehension evidence is missing.",
+      "local_changes": "Original read-only review of reader tasks, evidence authority, local motion roles and intensity, static fallback, interruption, performance receipts, and comprehension evidence. The 0.12.0 revision adds a directly linked original reference, supported-result-first reporting, US spelling, and distinct WCAG levels and applicability. The 0.13.0 revision states where the finding must appear, returns named output sections, and names a test-local observation or separately consented study as the substitute when comprehension evidence is missing. The 0.14.0 revision widens the trigger so a request to fake live data, gate content behind an animation callback, or present modeled results as observed reaches this review.",
       "security_review": "APPROVE: instruction-only read-only candidate; no scripts, hooks, dependencies, agents, permissions, analytics, recruitment, publication, or deployment.",
       "rereview_triggers": [
         "motion or evidence guidance changes",

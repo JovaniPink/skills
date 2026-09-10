@@ -4,7 +4,7 @@ description: Review whether a service or application is operationally ready for 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.13.0"
+  version: "0.14.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
