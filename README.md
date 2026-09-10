@@ -106,13 +106,13 @@ OpenAI documents plugin-bundled skills for Chat and Work on ChatGPT web, desktop
 
 Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketplace and install the focused plugins you need. Generated explicit-only skills add `disable-model-invocation: true`. Direct plugin invocation uses Claude's namespace, for example `/jovanipink-skills:claim-verification`.
 
-The install command names the plugin and the marketplace as `plugin@marketplace`. Both are called `jovanipink-skills` for that one pack, so `jovanipink-skills@jovanipink-skills` is correct rather than a repeated word. See [Claude setup](docs/clients/claude.md) for the exact commands.
+The install command uses the form `plugin@marketplace`. One pack and the marketplace share the name `jovanipink-skills`. So `jovanipink-skills@jovanipink-skills` is correct, not a repeated word. See [Claude setup](docs/clients/claude.md) for the exact commands.
 
-The `jovanipink-engineering` pack is held on the Codex and Claude Code command lines after a live motion-review failure. Install the other six packs first, and read the [current candidate checks](docs/client-candidate-v0.13.0.md) before enabling it.
+The `jovanipink-engineering` pack is held on the Codex and Claude Code command lines. A live motion review failed there. Install the other six packs first. Read the [current candidate checks](docs/client-candidate-v0.13.0.md) before you enable it.
 
 ### Claude.ai
 
-Run `python3 scripts/package_claude_ai.py`. Upload an individual ZIP from `dist/claude-ai/`; each archive contains one correctly nested skill directory. The 14 explicit-only workflows are held: do not upload one until the receiving mode has a verified control that prevents automatic selection. A metadata field or a working slash command alone does not prove that control.
+Run `python3 scripts/package_claude_ai.py`. Upload an individual ZIP from `dist/claude-ai/`; each archive contains one correctly nested skill directory. The 14 explicit-only workflows are held. Do not upload one until the receiving mode has a verified control that stops automatic selection. A metadata field or a working slash command does not prove that control.
 
 See [client-surface research](docs/client-surface-research.md) for the official distribution distinctions and current observed limitations.
 
@@ -126,7 +126,7 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The 0.13.0 candidate contains 78 skills across seven plugins. It states where a motion finding must appear, names the substitute for missing comprehension evidence, and separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.13.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
+The 0.13.0 candidate contains 78 skills across seven plugins. It states where a motion finding must appear. It names what to propose when comprehension evidence is missing. It also separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.13.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
 
 Claude Code plugins and Claude account uploads are separate installs. Updating the Code plugins does not update the account library used by Chat. See [Claude setup](docs/clients/claude.md) for the upload checks and explicit-only hold.
 
