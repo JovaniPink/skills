@@ -10,7 +10,7 @@ This release answers the routing gap that the [0.13.0 command-line observation](
 
 The description now names the three unsafe patterns as reasons to select the skill: making fixture or sample data appear live, gating readable content behind an animation callback, and presenting modeled results as observed outcomes. It still excludes routine styling, ordinary animation implementation, and engagement claims, so the three near-miss cases should keep routing as they did.
 
-Writing that description does not establish that selection changed. Only a fresh command-line run can show that.
+Writing that description did not establish that selection changed. The command-line run recorded below did, on Claude Code only.
 
 Source binding, manifest commit, and merge commit are pending.
 
@@ -35,7 +35,9 @@ Engineering now uses 6,665 description characters, up from 6,482. The longer mot
 
 ## Holds carried forward
 
-The Codex and Claude Code engineering packs stay held. The 0.13.0 run showed the result-first defect did not repeat and the reference loaded, but two safety cases failed on selection. That is the failure this release targets, and a targeted description change is not evidence that it worked.
+The Codex engineering pack stays held. Nothing in this release has been observed on Codex, and a Claude Code result does not transfer.
+
+The Claude Code engineering pack is a decision for its owner rather than an automatic lift. The blocking defect from 0.13.0 is resolved: both safety cases now select the motion review and refuse, and no near-miss overtriggered. Requirement 6 below is not fully met, because two of ten replies opened with an evidence gap instead of a finding. The pack is enabled on this machine for the run recorded below. Decide whether that partial result clears the hold before treating it as cleared.
 
 The Antigravity preview stays disabled. Its failure was invented evidence, which nothing in this release addresses.
 
