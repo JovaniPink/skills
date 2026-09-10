@@ -4,7 +4,7 @@ description: Review API, event, schema, and client changes for backward, forward
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.14.0"
+  version: "0.15.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -33,4 +33,4 @@ Use current primary guidance as a review baseline, then report only what the ava
 
 ## Output
 
-Return Contract inventory, Compatibility findings, Consumer risk, Test matrix, Rollout, Deprecation, and Unresolved authority.
+Return Contract inventory, Compatibility findings, Consumer risk, Test matrix, Rollout, Deprecation, and Unresolved authority. Grade each finding `none`, `note`, `warning`, or `error`, and order the list with the most severe first. Mark each finding `new`, `unchanged`, `updated`, or `absent` against the pinned base revision.

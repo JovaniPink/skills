@@ -1,6 +1,6 @@
 {
   "$schema": "./upstream-pins-schema.json",
-  "catalog_version": "0.14.0",
+  "catalog_version": "0.15.0",
   "reviewed_on": "2026-09-04",
   "max_review_age_days": 90,
   "sources": [
@@ -90,6 +90,11 @@
       "marker_value": "c44c52d5951bb6a5690df953455d69caf26df9f13c531d17c10898bd733129f9"
     },
     {
+      "source_url": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/sarif-v2.1.0.html",
+      "marker_kind": "last-modified",
+      "marker_value": "Sun, 05 Apr 2026 14:01:15 GMT"
+    },
+    {
       "source_url": "https://docs.python.org/3/",
       "marker_kind": "etag",
       "marker_value": "\"6a9fd467-4bea\""
@@ -103,6 +108,11 @@
       "source_url": "https://docs.spring.io/spring-boot/",
       "marker_kind": "last-modified",
       "marker_value": "Thu, 03 Sep 2026 17:45:33 GMT"
+    },
+    {
+      "source_url": "https://docs.swift.org/latest/documentation/",
+      "marker_kind": "etag",
+      "marker_value": "\"f07-659e1dd4404c0\""
     },
     {
       "source_url": "https://experienceleague.adobe.com/en/docs/experience-manager",
@@ -218,11 +228,6 @@
       "source_url": "https://www.w3.org/TR/prov-n/",
       "marker_kind": "last-modified",
       "marker_value": "Mon, 02 Oct 2017 10:47:12 GMT"
-    },
-    {
-      "source_url": "https://docs.swift.org/latest/documentation/",
-      "marker_kind": "etag",
-      "marker_value": "\"f07-659e1dd4404c0\""
     },
     {
       "source_url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",

@@ -4,7 +4,7 @@ description: Guide feature and defect work through red, green, and refactor evid
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.14.0"
+  version: "0.15.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "original"

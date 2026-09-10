@@ -1,0 +1,6 @@
+interface:
+  display_name: "Finding Consolidation"
+  short_description: "Merge review findings into one owned, ranked list"
+  default_prompt: "Use $jovanipink-skills:finding-consolidation to merge these review findings into one ranked list with a single owner per root cause."
+policy:
+  allow_implicit_invocation: true

@@ -46,6 +46,7 @@ PRIMARY_AUTHORITY_HOSTS = frozenset(
         "airc.nist.gov",
         "developer.hashicorp.com",
         "developer.salesforce.com",
+        "docs.oasis-open.org",
         "docs.oracle.com",
         "docs.github.com",
         "docs.python.org",

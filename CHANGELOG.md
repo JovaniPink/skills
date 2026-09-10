@@ -4,6 +4,24 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.15.0] - 2026-09-10
+
+### Added
+
+- `finding-consolidation` merges findings from several completed reviews into one ranked list with a single owner for each root cause.
+- A shared severity scale and finding state, adopted in seven review skills, with an adoption table that records which skills use them.
+
+### Changed
+
+- Seven review skills grade findings on one scale instead of naming a severity no document defined.
+- Skills that review a system or a package report severity alone, because no pinned change exists to compare a finding against.
+
+### Security
+
+- `public-private-boundary-review` keeps its own dispositions; converting them would replace a required reader action with a severity.
+- Consolidation reads reported findings and asserts no verdict, re-runs no review, and claims no coverage that a source review did not establish.
+- The consolidator ships beside the skills whose output it consumes, so its input format is authored rather than observed.
+
 ## [0.14.0] - 2026-09-10
 
 ### Changed

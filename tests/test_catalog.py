@@ -243,6 +243,22 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(scan_repository_independence("fixture.md", package_id))
         self.assertTrue(scan_repository_independence("fixture.json", mapping))
 
+    def test_primary_authority_hosts_gate_provenance_sources(self) -> None:
+        from check_repository_independence import PRIMARY_AUTHORITY_HOSTS
+
+        self.assertIn("docs.oasis-open.org", PRIMARY_AUTHORITY_HOSTS)
+        self.assertNotIn("example.com", PRIMARY_AUTHORITY_HOSTS)
+        pinned = {
+            source["source_url"]
+            for source in json.loads(
+                (ROOT / "catalog" / "upstream-pins.json").read_text(encoding="utf-8")
+            )["sources"]
+        }
+        for entry in json.loads(
+            (ROOT / "provenance" / "catalog.json").read_text(encoding="utf-8")
+        )["entries"]:
+            self.assertIn(entry["source_url"], pinned)
+
     def test_repository_independence_keeps_narrow_repository_link_exceptions(
         self,
     ) -> None:
@@ -1057,7 +1073,7 @@ class CatalogTests(unittest.TestCase):
             "google-adk-engineering-profile": "adk-version-boundaries.md",
             "retrieval-grounding-quality-review": "retrieval-evidence-matrix.md",
         }
-        self.assertEqual(78, len(SKILLS))
+        self.assertEqual(79, len(SKILLS))
         self.assertEqual(7, len(skills_by_plugin()))
         self.assertEqual(
             set(new_skills), set(skills_by_plugin()["jovanipink-agent-platforms"])

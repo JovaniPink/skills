@@ -32,7 +32,7 @@ Start with the skills your task needs. A pack is a group of skills you install t
 - `jovanipink-engineering`: plan, write, test, and review code.
 - `jovanipink-reasoning`: explain code, improve writing, and hand off work.
 
-The engineering pack was held after a live motion-review failure. Both command lines ran the ten original cases on 2026-09-10 and cleared it, so the pack is enabled there. Other app modes remain unchecked; read the [current candidate checks](client-candidate-v0.14.0.md) before you rely on one.
+The engineering pack was held after a live motion-review failure. Both command lines ran the ten original cases on 2026-09-10 and cleared it, so the pack is enabled there. Other app modes remain unchecked; read the [current candidate checks](client-candidate-v0.15.0.md) before you rely on one.
 
 The [selection guide](choose-your-skills.md) lists the other packs.
 

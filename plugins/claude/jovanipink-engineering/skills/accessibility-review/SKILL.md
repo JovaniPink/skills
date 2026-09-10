@@ -4,7 +4,7 @@ description: Review web or application accessibility using WCAG 2.2 success crit
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.14.0"
+  version: "0.15.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -33,5 +33,5 @@ Use current primary guidance as a review baseline, then report only what the ava
 
 ## Output
 
-Return Scope, Findings by criterion, User impact, Automated evidence, Manual evidence, Untested areas, and Remediation priority.
+Return Scope, Findings by criterion, User impact, Automated evidence, Manual evidence, Untested areas, and Remediation priority. Grade each finding `none`, `note`, `warning`, or `error`, and order the list with the most severe first. When a pinned change is under review, mark each finding `new`, `unchanged`, `updated`, or `absent` against the state before the change; otherwise report severity alone.
 

@@ -4,7 +4,7 @@ description: "Review an exact code change for correctness, regressions, security
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.14.0"
+  version: "0.15.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -34,4 +34,4 @@ Review a pinned change and return evidence-bounded findings.
 
 ## Output
 
-Lead with findings ordered by severity. For each finding provide `Location`, `Failure`, `Evidence`, `Impact`, and `Suggested direction`. Then report `Questions`, `Validation`, and `Review boundary`. If no actionable finding survives verification, say so and name remaining risks or untested surfaces.
+Lead with findings ordered by severity, most severe first. For each finding provide `Severity`, `State`, `Location`, `Failure`, `Evidence`, `Impact`, and `Suggested direction`. Grade `Severity` as `none`, `note`, `warning`, or `error`. Set `State` to `new`, `unchanged`, `updated`, or `absent` against the pinned base revision. Then report `Questions`, `Validation`, and `Review boundary`. If no actionable finding survives verification, say so and name remaining risks or untested surfaces.

@@ -1,6 +1,6 @@
 {
   "$schema": "./skills-schema.json",
-  "catalog_version": "0.14.0",
+  "catalog_version": "0.15.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
@@ -1861,6 +1861,31 @@
         "multi-agent-orchestration"
       ],
       "conflicts_with": [],
+      "maturity_evidence": "evals/cases.json"
+    },
+    {
+      "skill": "finding-consolidation",
+      "plugin": "jovanipink-skills",
+      "capability_family": "review",
+      "lifecycle_stages": [
+        "review",
+        "release"
+      ],
+      "targets": [
+        "repository",
+        "code"
+      ],
+      "risk_class": "read-only",
+      "invocation": "implicit",
+      "maturity": "candidate",
+      "composes_with": [
+        "code-change-review",
+        "application-security-review",
+        "skill-security-review"
+      ],
+      "conflicts_with": [
+        "cross-stack-quality-gates"
+      ],
       "maturity_evidence": "evals/cases.json"
     }
   ]

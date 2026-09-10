@@ -4,7 +4,7 @@ description: Review code, documentation, examples, articles, or release artifact
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.14.0"
+  version: "0.15.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "original"

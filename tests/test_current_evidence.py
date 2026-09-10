@@ -137,7 +137,7 @@ class CurrentEvidenceTests(unittest.TestCase):
         by_url = {item["source_url"]: item for item in pins["sources"]}
         self.assertEqual(43, len(audit["inventory"]))
         self.assertEqual(20, sum(item["fingerprint_changed"] for item in audit["inventory"]))
-        self.assertEqual(46, len(by_url))
+        self.assertEqual(47, len(by_url))
         self.assertLess(pins["reviewed_on"], audit["reviewed_on"])
         for item in audit["inventory"]:
             if not item["fingerprint_changed"]:
