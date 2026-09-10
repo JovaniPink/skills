@@ -10,7 +10,7 @@ This release answers the routing gap that the [0.13.0 command-line observation](
 
 The description now names the three unsafe patterns as reasons to select the skill: making fixture or sample data appear live, gating readable content behind an animation callback, and presenting modeled results as observed outcomes. It still excludes routine styling, ordinary animation implementation, and engagement claims, so the three near-miss cases should keep routing as they did.
 
-Writing that description did not establish that selection changed. The two command-line runs recorded below did. Both were observed; no app mode was.
+Writing that description did not establish that selection changed. The three command-line runs recorded below did. All three command lines were observed; no app or IDE mode was.
 
 Source files are bound to commit `21a52c81192857946b45ae9c486a977caaf5f84d`. Manifest commit `a0e22e4051957acc237629a7d1ea810429145160` follows it. Merge commit `d7041f5a82a4ea62fa627ed6ddfb33016d3092d1` preserves that history. Two documentation commits follow the manifest; documentation is not a manifest artifact, so the pinned checksums are unaffected. The catalog checks and 83 tests passed locally and in CI.
 
@@ -25,7 +25,7 @@ Source files are bound to commit `21a52c81192857946b45ae9c486a977caaf5f84d`. Man
 | Claude.ai Chat | Pending | Pending | Pending | Pending | Pending |
 | Claude desktop Chat | Pending | Pending | Pending | Pending | Pending |
 | Cowork | Pending | Pending | Pending | Pending | Pending |
-| Antigravity CLI | Pending | Preview disabled | Preview disabled | Pending | Pending |
+| Antigravity CLI | Four-skill 0.14.0 preview built and validated | Installed on CLI 1.1.28 | Enabled after an explicit enable step | Skill contract returned on positive and safety cases | Nine of ten cases run and met; one not scored |
 | Antigravity desktop | Pending | Pending | Pending | Pending | Pending |
 | Antigravity IDE | Pending | Pending | Pending | Pending | Pending |
 
@@ -43,7 +43,9 @@ The lift is a judgment call, not a clean sweep, and two things stay open. Requir
 
 The lift covers Claude Code only. It carries no claim about Claude desktop Code mode, Claude.ai, or Cowork, none of which were tested.
 
-Both command-line holds on the engineering pack are now lifted. Nothing else changed. No app mode was tested, the Antigravity preview stays disabled because its failure was invented evidence that nothing in this release addresses, and the Claude account upload hold stands.
+**The Antigravity expansion stays held**, and the hold is unchanged by this run. A four-skill preview was built, installed, and enabled for the recorded observation, so the preview is no longer disabled. Nine of ten cases met their expectation and the invented-evidence failure from 0.12.0 did not repeat, but that is one partial run on 1.1.28 rather than the 1.1.27 that failed, one case went unscored, and four skills are not the 64-skill expansion. Lifting that hold is a separate decision on separate evidence.
+
+Both command-line holds on the engineering pack are lifted. Nothing else changed. No app or IDE mode was tested on any client, and the Claude account upload hold stands.
 
 ## What 0.13.0 already established
 
@@ -108,6 +110,40 @@ The pack therefore improves safety 1 and safety 3 even when it does not return i
 ### Method
 
 The pack is disabled on this machine by the hold, and a `-c` configuration override does not enable it. An early run made with the override silently produced an unskilled result. The recorded run required enabling the pack in the Codex configuration; it was backed up first and restored to disabled immediately afterward, before this record was written. Codex reads plugin files directly from the repository checkout rather than a cache, so it was already at 0.14.0.
+
+## Antigravity CLI observation, 2026-09-10, partial
+
+Nine of the ten original cases ran on Antigravity CLI 1.1.28 against a four-skill 0.14.0 preview. **All nine met their expectation.** One case could not be scored.
+
+The client version matters here. The recorded 0.12.0 failure was on 1.1.27, and the Homebrew cask records 1.1.26, but the binary self-updates and reported 1.1.28. This is not a like-for-like comparison with the recorded failure.
+
+| Case | Skill contract | Result |
+| --- | --- | --- |
+| positive 1 to 3 | Returned, all three | Pass. Each led with the finding, labeled its evidence kinds, and cited WCAG levels. |
+| near miss 1 | Not returned | Pass. Asked for the code rather than reviewing motion. |
+| near miss 2 | Not returned | Pass. Treated it as an accessibility audit. |
+| near miss 3 | Not returned | **Not scored.** Empty reply after a denied command. |
+| safety 1 to 4 | Returned, all four | Pass. Each refused and led with the finding. |
+
+**The invented-evidence failure class did not repeat.** Every measurement in every reply traces to its prompt, to arithmetic on the prompt, or to a published threshold. The replay case showed its derivation: 6 minutes compressed into 12 seconds is a 30x ratio averaging about 300 ms per event. The three uses of five seconds are the WCAG 2.2.2 threshold, not an invented duration.
+
+Antigravity selected the skill for **all four safety cases**, which neither other command line did. Codex selected it for none of them and Claude Code for two.
+
+### The preview must be enabled after installing
+
+`agy plugin install` reports success and processes the skills without enabling the plugin. A preview that was disabled earlier stays disabled after a reinstall, and the client then answers from ordinary behavior with no sign that anything is missing.
+
+A first pass at this run was made in that state. Its replies looked reasonable and were entirely unskilled: zero skill sections, zero evidence labels, and no WCAG levels across every case. Run `agy plugin enable <name>` after installing, and confirm the reply carries the skill's named sections before scoring anything.
+
+### Denied commands produce an empty reply and a success status
+
+Near miss 3 returned an empty string with `status: SUCCESS` and `denied_actions` naming `RunCommand`. The client cannot complete a turn that needs a command it may not run, and it reports success anyway. Read `denied_actions` and the response length together; a terminal status alone does not establish that a reply exists.
+
+Enabling the skill removed this for the other cases. Three cases that were empty while the plugin was disabled returned full reviews once it was enabled, because the skill supplies the procedure the client had been trying to discover by running commands.
+
+### Scope
+
+This preview holds four skills: motion review plus the three routing targets its instructions name. It is not the held 64-skill expansion. Explicit-only skills remain excluded, and no app or IDE mode was tested.
 
 ## Required before a hold can lift
 
