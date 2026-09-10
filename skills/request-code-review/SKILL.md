@@ -4,7 +4,7 @@ description: Prepare an evidence-bounded code review packet and, only when separ
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.12.0"
+  version: "0.13.0"
   plugin: "jovanipink-engineering"
   invocation: "explicit"
   provenance: "clean-room"
@@ -13,7 +13,7 @@ metadata:
 
 # Request Code Review
 
-Give reviewers a precise packet that separates proposed code from checks, decisions, deployment, and merge authority.
+Give reviewers a precise packet that separates proposed code from checks, decisions, deployment, and merge authority. `publish-change-safely` owns the commit, the push, and the pull request record. This workflow owns the reviewer-facing content and its authorized delivery. When a request also asks to publish the change, route the commit and push to `publish-change-safely` and keep the packet here.
 
 ## Workflow
 

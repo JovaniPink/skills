@@ -39,7 +39,7 @@ Maturity is an evidence claim, not a writing-quality score.
 | `deprecated` | The skill remains available during a documented migration period. |
 | `revoked` | Packaging and marketplace advertisement are disabled because the skill is unsafe or invalid. |
 
-The v0.9 catalog uses `candidate` until exact-package client observations and controlled installed-versus-baseline comparisons support stronger claims. A generated package or passing schema does not make a skill field-tested.
+Every skill in the current catalog uses `candidate` until exact-package client observations and controlled installed-versus-baseline comparisons support stronger claims. A generated package or passing schema does not make a skill field-tested.
 
 ## Risk classes
 

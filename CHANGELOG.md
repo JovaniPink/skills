@@ -4,6 +4,59 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-09-10
+
+### Added
+
+- A named substitute for missing comprehension evidence in motion review: a test-local observation against the existing build, or a separately consented study with a named owner.
+- Routing disambiguation between `publish-change-safely` and `request-code-review`, with a safety case for a combined push-and-review request.
+- Engineering-pack hold notices in the readme, quickstart, and selection guides, plus a `functional-motion-review` row in the readme engineering table.
+- Backfilled changelog entries for the 0.9.0, 0.11.0, and 0.12.0 releases.
+
+### Changed
+
+- Motion review states where the supported finding must appear and returns named output sections, so a reply cannot open with file paths.
+- The pack discovery guardrail is documented as a repository rule of Codex origin rather than a portable client limit.
+- Maturity, release, and selection guidance no longer anchor to superseded version numbers.
+
+### Security
+
+- The Codex and Claude Code engineering packs remain held. Changed skill text does not lift a hold without observed client behavior.
+- The 14 explicit-only workflows remain held for Claude account uploads until a receiving mode has a verified control that prevents automatic selection.
+- The Antigravity motion preview stays disabled; its invented-evidence failure is not addressed by this release.
+
+## [0.12.0] - 2026-09-09
+
+### Added
+
+- `functional-motion-review` for evidence-led motion assessment, with a focused reference that separates WCAG levels from catalog preferences.
+- A reviewed source inventory covering 46 tracked authorities, including the relocated Swift documentation.
+- Evidence-link checks that reject nested code, raw HTML, and historical-only links to the current client record.
+
+### Changed
+
+- The catalog grew to 78 skills across seven plugins.
+
+### Security
+
+- The Codex and Claude Code engineering packs were held after original motion cases failed on both command lines.
+- The Antigravity two-skill preview was disabled after its answer invented duration and automation evidence.
+
+## [0.11.0] - 2026-09-08
+
+### Added
+
+- Per-client setup guides for Codex, Claude, and Antigravity, with a combined client-support record.
+- A focused continuity reference for the 13 skills that must separate an interim progress update from a checkpoint report.
+
+### Changed
+
+- Progress updates and checkpoint reports are distinguished so an interim note is not read as an acceptance record.
+
+### Security
+
+- Installed client packages are checked file by file. A matching version number alone does not establish installed content.
+
 ## [0.10.0] - 2026-09-04
 
 ### Added
@@ -24,6 +77,25 @@ All notable changes use this file. The project follows semantic versioning after
 - Raw traces, private prompts, product case IDs, exact private failures, and product architecture remain outside the public catalog.
 - Client behavior and ADK runtime compatibility are recorded in separate evidence lanes.
 - PyYAML and its type information are exact-versioned, SHA-256 locked for the Linux CI runner, and reconciled with reviewed dependency provenance.
+
+## [0.9.0] - 2026-08-30
+
+### Added
+
+- Optional `jovanipink-agent-platforms` plugin with agent context, tool boundary, protocol, security, retrieval, and Google ADK workflows.
+- `research-to-publication-lifecycle` for connecting sources, forecasts, outcomes, evaluations, and public-safe findings.
+- A strict evidence taxonomy with capability, lifecycle, target, risk, invocation, and maturity facets.
+- Deterministic local validation for GitHub Actions workflow syntax.
+- Strict typing across scripts and tests, with locked provenance for reviewed CI tools.
+
+### Changed
+
+- Catalog skill counts were reconciled against the canonical source and the generated client trees.
+
+### Security
+
+- v0.9 acceptance remained blocked. Local package installation does not establish web, desktop, API, or managed-agent behavior.
+- Exact-version observations record passes, failures, and authority or authentication blockers separately instead of implying parity.
 
 ## [0.8.0] - 2026-08-23
 

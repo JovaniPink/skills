@@ -42,6 +42,7 @@ A plugin bundles related skills for installation. A profile selects the skills t
 | `finish-development-branch` | Present integration, retention, and cleanup options without implicit actions | Explicit-only |
 | `multi-agent-orchestration` | Coordinate authorized independent tasks with ownership and reconciliation | Explicit-only |
 | `code-change-review` | Review an exact diff for verified actionable defects | Implicit |
+| `functional-motion-review` | Check whether motion clarifies a reader task while preserving evidence and control | Implicit |
 | `module-interface-design` | Design smaller stable contracts from callers and invariants | Implicit |
 | `prototype-spike` | Test one uncertainty with isolated bounded implementation | Explicit-only |
 | `merge-conflict-reconciliation` | Reconcile Git conflicts while preserving abort and action gates | Explicit-only |
@@ -97,17 +98,21 @@ The Linux CI runner installs its reviewed workflow, type, and lint tools from `r
 
 ### Codex CLI and ChatGPT desktop
 
-Add this repository as a marketplace, then install the focused plugins you need. The Codex distribution uses `agents/openai.yaml`; explicit-only skills set `policy.allow_implicit_invocation: false`. Installed plugin skills are namespaced, so direct invocation uses forms such as `$jovanipink-engineering:plan-execution`.
+Add this repository as a marketplace, then install the focused plugins you need. The Codex distribution uses `agents/openai.yaml`; explicit-only skills set `policy.allow_implicit_invocation: false`. Installed plugin skills are namespaced, so direct invocation uses forms such as `$jovanipink-skills:claim-verification`.
 
 OpenAI documents plugin-bundled skills for Chat and Work on ChatGPT web, desktop, and mobile, plus Codex in the ChatGPT desktop app and Codex CLI. A repository marketplace added through the CLI is the local desktop testing path; it does not by itself install the plugin into a ChatGPT web account. Workspace or directory installation and publication are separate administrative actions. See the [OpenAI skills documentation](https://learn.chatgpt.com/docs/build-skills) and [OpenAI plugin documentation](https://developers.openai.com/plugins/build/plugins).
 
 ### Claude Code and desktop
 
-Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketplace and install the focused plugins you need. Generated explicit-only skills add `disable-model-invocation: true`. Direct plugin invocation uses Claude's namespace, for example `/jovanipink-engineering:plan-execution`.
+Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketplace and install the focused plugins you need. Generated explicit-only skills add `disable-model-invocation: true`. Direct plugin invocation uses Claude's namespace, for example `/jovanipink-skills:claim-verification`.
+
+The install command names the plugin and the marketplace as `plugin@marketplace`. Both are called `jovanipink-skills` for that one pack, so `jovanipink-skills@jovanipink-skills` is correct rather than a repeated word. See [Claude setup](docs/clients/claude.md) for the exact commands.
+
+The `jovanipink-engineering` pack is held on the Codex and Claude Code command lines after a live motion-review failure. Install the other six packs first, and read the [current candidate checks](docs/client-candidate-v0.13.0.md) before enabling it.
 
 ### Claude.ai
 
-Run `python3 scripts/package_claude_ai.py`. Upload an individual ZIP from `dist/claude-ai/`; each archive contains one correctly nested skill directory.
+Run `python3 scripts/package_claude_ai.py`. Upload an individual ZIP from `dist/claude-ai/`; each archive contains one correctly nested skill directory. The 14 explicit-only workflows are held: do not upload one until the receiving mode has a verified control that prevents automatic selection. A metadata field or a working slash command alone does not prove that control.
 
 See [client-surface research](docs/client-surface-research.md) for the official distribution distinctions and current observed limitations.
 
@@ -121,7 +126,7 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The 0.12.0 candidate contains 78 skills across seven plugins. It adds motion review to the earlier continuity work. See the [current candidate checks](docs/client-candidate-v0.12.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
+The 0.13.0 candidate contains 78 skills across seven plugins. It states where a motion finding must appear, names the substitute for missing comprehension evidence, and separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.13.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
 
 Claude Code plugins and Claude account uploads are separate installs. Updating the Code plugins does not update the account library used by Chat. See [Claude setup](docs/clients/claude.md) for the upload checks and explicit-only hold.
 
