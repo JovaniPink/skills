@@ -108,7 +108,7 @@ Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketpl
 
 The install command uses the form `plugin@marketplace`. One pack and the marketplace share the name `jovanipink-skills`. So `jovanipink-skills@jovanipink-skills` is correct, not a repeated word. See [Claude setup](docs/clients/claude.md) for the exact commands.
 
-The `jovanipink-engineering` pack is held on the Codex and Claude Code command lines. A live motion review failed there. Install the other six packs first. Read the [current candidate checks](docs/client-candidate-v0.14.0.md) before you enable it.
+The `jovanipink-engineering` pack is held on the Codex command line, where the 0.14.0 checks have not run. It is cleared for Claude Code as of 2026-09-10. Read the [current candidate checks](docs/client-candidate-v0.14.0.md) before you enable it elsewhere.
 
 ### Claude.ai
 
