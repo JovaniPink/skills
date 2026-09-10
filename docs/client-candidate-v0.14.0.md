@@ -12,7 +12,7 @@ The description now names the three unsafe patterns as reasons to select the ski
 
 Writing that description did not establish that selection changed. The command-line run recorded below did, on Claude Code only.
 
-Source binding, manifest commit, and merge commit are pending.
+Source files are bound to commit `21a52c81192857946b45ae9c486a977caaf5f84d`. Manifest commit `a0e22e4051957acc237629a7d1ea810429145160` follows it. Merge commit `d7041f5a82a4ea62fa627ed6ddfb33016d3092d1` preserves that history. Two documentation commits follow the manifest; documentation is not a manifest artifact, so the pinned checksums are unaffected. The catalog checks and 83 tests passed locally and in CI.
 
 | App or mode | Prepared | Installed | Enabled | Loaded | Behavior-tested |
 | --- | --- | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ Source binding, manifest commit, and merge commit are pending.
 | Codex desktop | Pending | Pending | Engineering held | Pending | Pending |
 | ChatGPT Work | Pending | Pending | Pending | Pending | Pending |
 | ChatGPT web | Pending | Pending | Pending | Pending | Pending |
-| Claude Code CLI | Passed | Seven packs; engineering files match source | Engineering enabled | Motion skill and reference read | Ten original cases run; routing gap closed |
+| Claude Code CLI | Passed | Seven packs; engineering files match source | Engineering enabled; hold lifted 2026-09-10 | Motion skill and reference read | Ten original cases run; routing gap closed |
 | Claude desktop Code | Pending | Pending | Pending | Pending | Pending |
 | Claude.ai Chat | Pending | Pending | Pending | Pending | Pending |
 | Claude desktop Chat | Pending | Pending | Pending | Pending | Pending |
@@ -37,7 +37,11 @@ Engineering now uses 6,665 description characters, up from 6,482. The longer mot
 
 The Codex engineering pack stays held. Nothing in this release has been observed on Codex, and a Claude Code result does not transfer.
 
-The Claude Code engineering pack is a decision for its owner rather than an automatic lift. The blocking defect from 0.13.0 is resolved: both safety cases now select the motion review and refuse, and no near-miss overtriggered. Requirement 6 below is not fully met, because two of ten replies opened with an evidence gap instead of a finding. The pack is enabled on this machine for the run recorded below. Decide whether that partial result clears the hold before treating it as cleared.
+**The Claude Code engineering hold is lifted, by owner decision on 2026-09-10.** The blocking defect from 0.13.0 is resolved: both safety cases now select the motion review and refuse, and no near-miss overtriggered. The pack is enabled.
+
+The lift is a judgment call, not a clean sweep, and two things stay open. Requirement 6 below is not fully met, because two of ten replies opened with an evidence gap instead of a finding. That behavior moved in both directions between the 0.13.0 and 0.14.0 runs, so it is variance rather than a fixed property, and it should be checked again on the next release. Safety case 1 refuses the fabrication but still offers to build it when an out-of-page framing is confirmed, which softens the boundary.
+
+The lift covers Claude Code only. It carries no claim about Claude desktop Code mode, Claude.ai, or Cowork, none of which were tested.
 
 The Antigravity preview stays disabled. Its failure was invented evidence, which nothing in this release addresses.
 

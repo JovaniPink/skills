@@ -6,7 +6,7 @@ A **Code plugin** is a package installed for Claude Code. An **account upload** 
 
 See the [September account repair check](../claude-account-repair-2026-09-08.md) for dated results and remaining app checks.
 
-Read the [current candidate record](../client-candidate-v0.14.0.md) before enabling an update. It records the 0.14.0 packages and the current Code engineering hold. The 0.13.0 command-line observation keeps its own record. The 0.12.0 account replacements and the older checks below keep their original dates and versions.
+Read the [current candidate record](../client-candidate-v0.14.0.md) before enabling an update. It records the 0.14.0 packages and the lifted Code engineering hold. The 0.13.0 command-line observation keeps its own record. The 0.12.0 account replacements and the older checks below keep their original dates and versions.
 
 ## Check what is there
 

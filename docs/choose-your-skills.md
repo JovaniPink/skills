@@ -18,7 +18,7 @@ Plugin measurements live in [`catalog/packs.json`](../catalog/packs.json). Skill
 | Evaluate AI behavior, context reliability, or source conformance | `jovanipink-ai-systems` |
 | Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `jovanipink-agent-platforms` |
 
-The engineering plugin is held on the Codex and Claude Code command lines. A live motion review failed there. Read the [current candidate checks](client-candidate-v0.14.0.md) before you enable it.
+The engineering plugin is cleared for Claude Code as of 2026-09-10. It stays held on Codex, where the 0.14.0 checks have not run. Read the [current candidate checks](client-candidate-v0.14.0.md) before you enable it on Codex.
 
 The engineering plugin is also above the 6,000-character warning line. That line is a repository guardrail for pack size. No client publishes it as a limit. Install the pack when its broad lifecycle coverage is useful. For a narrow task, pick the one skill you need and leave unrelated plugins off.
 
