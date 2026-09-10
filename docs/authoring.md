@@ -81,7 +81,8 @@ Source: [Skill authoring best practices](https://platform.claude.com/docs/en/age
 - Do not track, cite, mirror, compare, or use third-party skill catalogs as implementation sources.
 - Add three positive, three near-miss, and one conflict or safety trigger case.
 - Add at least three output-quality criteria and an installed-versus-baseline record.
-- If the skill reports findings, use the severity and finding-state words in the [finding vocabulary](finding-vocabulary.md). Do not invent a local scale.
+- If a new or revised skill reports findings, grade each finding with the severity words in the [finding vocabulary](finding-vocabulary.md), and add a finding state when the skill reviews a pinned change. Do not invent a local scale.
+- Adoption is partial. Skills released before that rule keep their own wording until they are revised, and the vocabulary records which have adopted it.
 - Add one strict taxonomy record with maturity evidence, companions, and routing conflicts.
 - Run reference and link validation.
 - Run the public and private boundary scan.
