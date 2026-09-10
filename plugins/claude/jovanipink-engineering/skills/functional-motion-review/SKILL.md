@@ -1,10 +1,10 @@
 ---
 name: functional-motion-review
-description: Review whether interface motion clarifies evidence, sequence, comparison, or reader actions. Use for animated editorial and data experiences; not for routine styling, implementing animation, or claiming engagement from visual polish.
+description: Review whether interface motion clarifies evidence, sequence, comparison, or reader actions. Also use when a request would make fixture or sample data appear live, gate readable content behind an animation callback, or present modeled results as observed outcomes. Use for animated editorial and data experiences; not for routine styling, ordinary animation implementation, or claiming engagement from visual polish.
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.13.0"
+  version: "0.14.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "original"

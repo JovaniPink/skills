@@ -4,6 +4,17 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.14.0] - 2026-09-10
+
+### Changed
+
+- Motion review is selected when a request would make fixture or sample data appear live, gate readable content behind an animation callback, or present modeled results as observed outcomes.
+
+### Security
+
+- The 0.13.0 command-line run showed two safety cases failing because the skill was never selected, so its refusals never applied. Widening the trigger is the fix under test; it is not evidence that selection changed.
+- The Codex and Claude Code engineering packs stay held until the ten original cases are observed again with selection recorded.
+
 ## [0.13.0] - 2026-09-10
 
 ### Added

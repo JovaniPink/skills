@@ -108,7 +108,7 @@ Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketpl
 
 The install command uses the form `plugin@marketplace`. One pack and the marketplace share the name `jovanipink-skills`. So `jovanipink-skills@jovanipink-skills` is correct, not a repeated word. See [Claude setup](docs/clients/claude.md) for the exact commands.
 
-The `jovanipink-engineering` pack is held on the Codex and Claude Code command lines. A live motion review failed there. Install the other six packs first. Read the [current candidate checks](docs/client-candidate-v0.13.0.md) before you enable it.
+The `jovanipink-engineering` pack is held on the Codex and Claude Code command lines. A live motion review failed there. Install the other six packs first. Read the [current candidate checks](docs/client-candidate-v0.14.0.md) before you enable it.
 
 ### Claude.ai
 
@@ -126,7 +126,7 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The 0.13.0 candidate contains 78 skills across seven plugins. It states where a motion finding must appear. It names what to propose when comprehension evidence is missing. It also separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.13.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
+The 0.14.0 candidate contains 78 skills across seven plugins. It states where a motion finding must appear. It names what to propose when comprehension evidence is missing. It also separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.14.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
 
 Claude Code plugins and Claude account uploads are separate installs. Updating the Code plugins does not update the account library used by Chat. See [Claude setup](docs/clients/claude.md) for the upload checks and explicit-only hold.
 

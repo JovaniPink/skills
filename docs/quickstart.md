@@ -32,7 +32,7 @@ Start with the skills your task needs. A pack is a group of skills you install t
 - `jovanipink-engineering`: plan, write, test, and review code. Held on the Codex and Claude Code command lines; see the note below.
 - `jovanipink-reasoning`: explain code, improve writing, and hand off work.
 
-The engineering pack is held after a live motion-review failure on both command lines. Start with `jovanipink-skills` or `jovanipink-reasoning`, and read the [current candidate checks](client-candidate-v0.13.0.md) before you enable engineering.
+The engineering pack is held after a live motion-review failure on both command lines. Start with `jovanipink-skills` or `jovanipink-reasoning`, and read the [current candidate checks](client-candidate-v0.14.0.md) before you enable engineering.
 
 The [selection guide](choose-your-skills.md) lists the other packs.
 
