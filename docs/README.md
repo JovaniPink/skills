@@ -316,6 +316,7 @@ Useful repository documents:
 - [Agent platform boundaries](agent-platform-boundaries.md)
 - [Google ADK](google-adk.md)
 - [Authoring guide](authoring.md)
+- [Finding vocabulary](finding-vocabulary.md)
 - [Editorial style](editorial-style.md)
 - [Testing guide](testing.md)
 - [Provenance policy](provenance.md)
