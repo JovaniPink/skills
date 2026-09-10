@@ -1,6 +1,6 @@
 {
   "$schema": "./packs-schema.json",
-  "catalog_version": "0.14.0",
+  "catalog_version": "0.15.0",
   "budget_warning_characters": 6000,
   "budget_limit_characters": 8000,
   "plugin_packs": [
@@ -107,6 +107,7 @@
         "authority-boundary-review",
         "claim-verification",
         "cross-stack-quality-gates",
+        "finding-consolidation",
         "prelaunch-readiness",
         "public-private-boundary-review",
         "publish-change-safely",
@@ -116,7 +117,7 @@
         "source-grounded-research",
         "systematic-diagnosis"
       ],
-      "description_characters": 2952,
+      "description_characters": 3319,
       "budget_status": "within-budget"
     },
     {

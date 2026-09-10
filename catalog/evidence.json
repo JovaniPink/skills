@@ -1,6 +1,6 @@
 {
   "$schema": "./evidence-schema.json",
-  "catalog_version": "0.14.0",
+  "catalog_version": "0.15.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
@@ -851,6 +851,17 @@
     },
     {
       "skill": "worktree-isolation",
+      "workflow_maturity": "candidate",
+      "workflow_maturity_evidence": "evals/cases.json",
+      "behavioral_evidence": {
+        "status": "none",
+        "verified_against_version": null,
+        "observed_at": null
+      },
+      "runtime_eligibility": "not_applicable"
+    },
+    {
+      "skill": "finding-consolidation",
       "workflow_maturity": "candidate",
       "workflow_maturity_evidence": "evals/cases.json",
       "behavioral_evidence": {

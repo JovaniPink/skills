@@ -4,7 +4,7 @@ description: Review software dependencies and build supply-chain evidence for pr
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.14.0"
+  version: "0.15.0"
   plugin: "jovanipink-engineering"
   invocation: "implicit"
   provenance: "clean-room"
@@ -33,4 +33,4 @@ Use current primary guidance as a review baseline, then report only what the ava
 
 ## Output
 
-Return Inventory, Provenance evidence, Findings, Reachability, Build risks, Recommended controls, and Claim limits.
+Return Inventory, Provenance evidence, Findings, Reachability, Build risks, Recommended controls, and Claim limits. Grade each finding `none`, `note`, `warning`, or `error`, and order the list with the most severe first. No change is pinned in this review, so do not assign a finding state.

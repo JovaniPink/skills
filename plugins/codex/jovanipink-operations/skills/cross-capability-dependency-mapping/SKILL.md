@@ -4,7 +4,7 @@ description: Map dependencies across products, teams, data, platforms, decisions
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.14.0"
+  version: "0.15.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

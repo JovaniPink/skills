@@ -77,13 +77,13 @@ Adoption is partial and tracked here. A skill released before this vocabulary ke
 
 | Skill | Adopted |
 | --- | --- |
-| `code-change-review` | No |
-| `accessibility-review` | No |
-| `application-security-review` | No |
-| `api-contract-compatibility-review` | No |
-| `dependency-supply-chain-review` | No |
-| `test-quality-review` | No |
-| `skill-security-review` | No |
+| `code-change-review` | Yes, 0.15.0 |
+| `accessibility-review` | Yes, 0.15.0 |
+| `application-security-review` | Yes, 0.15.0 |
+| `api-contract-compatibility-review` | Yes, 0.15.0 |
+| `dependency-supply-chain-review` | Yes, 0.15.0 |
+| `test-quality-review` | Yes, 0.15.0 |
+| `skill-security-review` | Yes, 0.15.0 |
 | `functional-motion-review` | Deferred |
 | `agentic-system-security-review` | No |
 | `retrieval-grounding-quality-review` | No |

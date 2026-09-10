@@ -1,5 +1,5 @@
 {
   "$schema": "./revocations-schema.json",
-  "catalog_version": "0.14.0",
+  "catalog_version": "0.15.0",
   "entries": []
 }

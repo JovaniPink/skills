@@ -1,6 +1,6 @@
 # JovaniPink Skills Cheatsheet
 
-Use this page to find a skill quickly. The catalog contains 78 skills across seven plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+Use this page to find a skill quickly. The catalog contains 79 skills across seven plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
 ## Invocation legend
 
@@ -25,6 +25,7 @@ Use this plugin for verification, research, diagnosis, authority boundaries, pub
 | `authority-boundary-review` | Maps authoritative stores, writers, readers, projections, custody, and reconciliation paths. | Implicit |
 | `claim-verification` | Checks whether claims such as complete, fixed, merged, deployed, or live have current evidence. | Implicit |
 | `cross-stack-quality-gates` | Discovers and runs the validation commands defined by the repository instead of assuming universal commands. | Implicit |
+| `finding-consolidation` | Merges findings from several completed reviews into one owned, ranked list. | Implicit |
 | `prelaunch-readiness` | Reviews repository, provider, deployment, and live evidence before a public launch. | Implicit |
 | `public-private-boundary-review` | Finds secrets, private details, proprietary material, and unsupported public claims before publication. | Implicit |
 | `publish-change-safely` | Verifies identity, repository, remote, branch, diff, checks, push, and pull request state. | Explicit-only |

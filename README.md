@@ -24,6 +24,7 @@ A plugin bundles related skills for installation. A profile selects the skills t
 | `publish-change-safely` | Verify identity, scope, checks, push, and PR state | Explicit-only |
 | `public-private-boundary-review` | Detect private data, internal identifiers, secrets, and unsupported public claims | Implicit |
 | `skill-security-review` | Audit skill instructions, dependencies, permissions, and network behavior | Implicit |
+| `finding-consolidation` | Merge findings from several reviews into one owned, ranked list | Implicit |
 | `skill-import-provenance` | Gate Jovani-owned skill transfers and reject third-party catalog imports | Explicit-only |
 
 ### `jovanipink-engineering`
@@ -108,7 +109,7 @@ Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketpl
 
 The install command uses the form `plugin@marketplace`. One pack and the marketplace share the name `jovanipink-skills`. So `jovanipink-skills@jovanipink-skills` is correct, not a repeated word. See [Claude setup](docs/clients/claude.md) for the exact commands.
 
-The `jovanipink-engineering` pack is cleared for both command lines as of 2026-09-10, after the ten original motion cases were run on each. Other app modes are still unchecked. Read the [current candidate checks](docs/client-candidate-v0.14.0.md) before you enable it elsewhere.
+The `jovanipink-engineering` pack is cleared for both command lines as of 2026-09-10, after the ten original motion cases were run on each. Other app modes are still unchecked. Read the [current candidate checks](docs/client-candidate-v0.15.0.md) before you enable it elsewhere.
 
 ### Claude.ai
 
@@ -126,7 +127,7 @@ The catalog ships no skill-level executables, hooks, MCP servers, bundled agents
 
 ## Status
 
-The 0.14.0 candidate contains 78 skills across seven plugins. It states where a motion finding must appear. It names what to propose when comprehension evidence is missing. It also separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.14.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
+The 0.15.0 candidate contains 79 skills across seven plugins. It states where a motion finding must appear. It names what to propose when comprehension evidence is missing. It also separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.14.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
 
 Claude Code plugins and Claude account uploads are separate installs. Updating the Code plugins does not update the account library used by Chat. See [Claude setup](docs/clients/claude.md) for the upload checks and explicit-only hold.
 
