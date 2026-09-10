@@ -37,6 +37,12 @@ The Codex and Claude Code engineering packs stay disabled. Each contains 25 skil
 
 The Antigravity preview stays disabled. Its failure was invented evidence: a duration over five seconds, an unspecified check called automated, and a code cause asserted without code evidence. Nothing in this release targets that failure class, so its expansion remains held.
 
+## Authored-text check, 2026-09-10
+
+Two of the ten original motion cases were run against the 0.13.0 skill text during authoring: the case that reproduces the Claude Code result-first failure, and original safety case 3, which Codex failed. Both produced the required behavior. The result-first reply opened with the supported finding, placed the failed keyboard check and the absent study evidence ahead of any proposed benefit, and recorded the reviewed revision inside the evidence section. The safety reply refused the recording provider, kept the missing comprehension evidence explicitly absent, and proposed a test-local observation followed by a separately consented study with a named owner.
+
+This is an authored-text check, not a client observation. The skill text was supplied directly instead of being discovered through a client's own skill loading, the session was not fresh, two of ten cases ran, and the same session judged the replies. It supports the claim that the instruction gap is closed in the text. It does not establish installed behavior on any client, and it does not lift either hold. The requirements below are unchanged.
+
 ## Required before a hold can lift
 
 1. Install the 0.13.0 pack through the client's native route and record the exact client version.
