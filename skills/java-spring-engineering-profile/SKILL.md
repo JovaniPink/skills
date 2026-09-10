@@ -4,7 +4,7 @@ description: Apply focused Java and Spring engineering judgment after repository
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.12.0"
+  version: "0.13.0"
   plugin: "jovanipink-stack-profiles"
   invocation: "implicit"
   provenance: "original"

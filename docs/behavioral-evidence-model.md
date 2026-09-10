@@ -28,7 +28,9 @@ Each observation must preserve its execution envelope: exact client and version,
 
 [`catalog/profiles.json`](../catalog/profiles.json) contains exact ordered skill selections. Profiles do not replace plugins and are not automatically installable on every client. Their recorded description measurements are surface-specific.
 
-Codex and Claude have different discovery budgets and truncation behavior. The catalog therefore records separate policies and observations instead of inventing a portable character limit. A profile becomes a default only after behavior supports that decision.
+Codex and Claude have different discovery budgets and truncation behavior. The catalog therefore records a separate policy and separate observations for each surface in `catalog/profiles.json`. It does not treat one client's published limit as a portable rule. A profile becomes a default only after behavior supports that decision.
+
+Two measurements here look similar but mean different things. The first is a repository guardrail. [`catalog/packs.json`](../catalog/packs.json) warns at 6,000 characters and stops at 8,000. It counts the skill descriptions in one pack. That pair of numbers came from documented Codex behavior, and the catalog applies it to every pack so the packs stay comparable. No client publishes those numbers as a shared limit, and they say nothing about Claude. The second measurement is per surface. Those figures belong in the profile discovery measurements, where each one names the app or CLI it came from.
 
 ## Public/private boundary
 

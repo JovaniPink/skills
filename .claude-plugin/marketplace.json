@@ -10,43 +10,43 @@
       "name": "jovanipink-agent-platforms",
       "source": "./plugins/claude/jovanipink-agent-platforms",
       "description": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
-      "version": "0.12.0"
+      "version": "0.13.0"
     },
     {
       "name": "jovanipink-ai-systems",
       "source": "./plugins/claude/jovanipink-ai-systems",
       "description": "Optional AI evaluation, context reliability, and source-to-output conformance workflows.",
-      "version": "0.12.0"
+      "version": "0.13.0"
     },
     {
       "name": "jovanipink-engineering",
       "source": "./plugins/claude/jovanipink-engineering",
       "description": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
-      "version": "0.12.0"
+      "version": "0.13.0"
     },
     {
       "name": "jovanipink-operations",
       "source": "./plugins/claude/jovanipink-operations",
       "description": "Portable requirements, decision, measurement, adoption, and incident workflows.",
-      "version": "0.12.0"
+      "version": "0.13.0"
     },
     {
       "name": "jovanipink-reasoning",
       "source": "./plugins/claude/jovanipink-reasoning",
       "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
-      "version": "0.12.0"
+      "version": "0.13.0"
     },
     {
       "name": "jovanipink-skills",
       "source": "./plugins/claude/jovanipink-skills",
       "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
-      "version": "0.12.0"
+      "version": "0.13.0"
     },
     {
       "name": "jovanipink-stack-profiles",
       "source": "./plugins/claude/jovanipink-stack-profiles",
       "description": "Optional language and infrastructure engineering profiles.",
-      "version": "0.12.0"
+      "version": "0.13.0"
     }
   ]
 }

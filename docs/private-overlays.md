@@ -19,6 +19,8 @@ python3 scripts/sync_private_overlay.py --repo path/to/private-repository --chec
 
 The synchronizer writes only `.agents/skills/` and `.claude/skills/` inside the named repository. It does not publish, install, push, or grant tool permissions.
 
+An overlay always lives inside the product repository that owns the private facts. The separate `skills-private` repository holds only the policy and the validator. It stores no skills, and it is never a synchronizer target. Point `--repo` at the product repository, not at the policy repository.
+
 ## Fictional example
 
 Assume a fictional warehouse service named Northwind Relay. Its public workflow can use `authority-boundary-review` to ask which system owns an order and which systems are projections. Its private overlay may identify `Order Ledger A` as the current authority, name an internal reconciliation report, and state who may ratify a writer change. Those private names and contracts remain in Northwind Relay's repository; the public skill contains none of them.

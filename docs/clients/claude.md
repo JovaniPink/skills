@@ -6,7 +6,7 @@ A **Code plugin** is a package installed for Claude Code. An **account upload** 
 
 See the [September account repair check](../claude-account-repair-2026-09-08.md) for dated results and remaining app checks.
 
-Read the [current candidate record](../client-candidate-v0.12.0.md) before enabling an update. It records the 0.12.0 account replacements and the active Code engineering hold. The older checks below keep their original dates and versions.
+Read the [current candidate record](../client-candidate-v0.13.0.md) before enabling an update. It records the 0.13.0 packages and the still-active Code engineering hold. The 0.12.0 account replacements and the older checks below keep their original dates and versions.
 
 ## Check what is there
 
@@ -26,6 +26,8 @@ claude plugin marketplace add /absolute/path/to/skills --scope user
 claude plugin install jovanipink-skills@jovanipink-skills --scope user
 claude plugin list --json
 ```
+
+The install argument is `plugin@marketplace`. The marketplace here is named `jovanipink-skills`, and one of its seven packs carries that same name, so `jovanipink-skills@jovanipink-skills` is correct rather than a typo. Every other pack reads as `jovanipink-engineering@jovanipink-skills` and follows the same shape.
 
 For an existing install, refresh the marketplace before updating the plugin. Use `claude plugin marketplace update --help` and `claude plugin update --help` to check the current command form. Save the old version and file hashes first. Check every installed file after the update. In the observed 2.1.220 update, all seven packs moved to 0.11.0 and their files matched the generated source. The desktop plugin pages also showed the new version; that did not establish behavior in an existing task.
 

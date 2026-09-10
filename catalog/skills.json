@@ -1,6 +1,6 @@
 {
   "$schema": "./skills-schema.json",
-  "catalog_version": "0.12.0",
+  "catalog_version": "0.13.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
@@ -1315,9 +1315,12 @@
       "maturity": "candidate",
       "composes_with": [
         "public-private-boundary-review",
-        "cross-stack-quality-gates"
+        "cross-stack-quality-gates",
+        "request-code-review"
       ],
-      "conflicts_with": [],
+      "conflicts_with": [
+        "request-code-review"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {
@@ -1360,9 +1363,12 @@
       "maturity": "candidate",
       "composes_with": [
         "code-change-review",
-        "claim-verification"
+        "claim-verification",
+        "publish-change-safely"
       ],
-      "conflicts_with": [],
+      "conflicts_with": [
+        "publish-change-safely"
+      ],
       "maturity_evidence": "evals/cases.json"
     },
     {

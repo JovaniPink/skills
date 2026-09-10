@@ -4,7 +4,7 @@ description: Assess claimed value, benefit, savings, risk reduction, or outcome 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.12.0"
+  version: "0.13.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

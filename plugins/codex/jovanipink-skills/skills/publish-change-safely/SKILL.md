@@ -4,7 +4,7 @@ description: Publish an authorized repository change by verifying identity, remo
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.12.0"
+  version: "0.13.0"
   plugin: "jovanipink-skills"
   invocation: "explicit"
   provenance: "clean-room"
@@ -13,7 +13,7 @@ metadata:
 
 # Publish Change Safely
 
-Perform only the publication actions the user authorized. Repository identity, transport identity, review state, merge, deployment, and live behavior are separate facts.
+Perform only the publication actions the user authorized while keeping neighboring scopes clear. `request-code-review` builds the reviewer-facing packet: scope, checks, risks, and review focus. This workflow moves the change to the remote: commit, push, and the pull request record. When one request covers both, publish here first, then hand the packet to `request-code-review`. Repository identity, transport identity, review state, merge, deployment, and live behavior are separate facts.
 
 ## Workflow
 
