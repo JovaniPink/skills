@@ -1,6 +1,6 @@
 # Manual Cross-Client Smoke Tests
 
-See the [current 0.15.0 candidate checks](client-candidate-v0.15.0.md). Older observations below retain their original package versions.
+See the [current 0.16.0 candidate checks](client-candidate-v0.16.0.md). Older observations below retain their original package versions.
 
 Start with the [September 8 Claude account repair](claude-account-repair-2026-09-08.md) for the latest account and CLI checks. The [client support checklist](client-support.md) tracks checks still open. Earlier sections retain their named versions, dates, and failures. They do not prove that a current install works.
 
@@ -47,9 +47,19 @@ No explicit-only workflow was uploaded to these web accounts or Antigravity. No 
 
 Codex, Claude Code, and Antigravity setup checks can proceed independently. Use the [client support checklist](client-support.md) for each CLI and app. Historical observations below keep their original scope and dates; they do not prove that a current install works.
 
-The [original client matrix](client-observations.json) records historical 0.1.0 observations. Versioned matrices describe their named packages. Current manual observations appear in the dated records above. A file check, a successful download, and observed use in a fresh task are separate results.
+The [original client matrix](client-observations-v0.1.json) records historical 0.1.0 observations. Versioned matrices describe their named packages. Current manual observations appear in the dated records above. A file check, a successful download, and observed use in a fresh task are separate results.
 
 No surface is presumed equivalent to another. A successful CLI test is not Desktop evidence; manifest validation is not discovery evidence; archive acceptance is not invocation evidence.
+
+## Current v0.13 to v0.15 summary
+
+Structured records for these releases are restored in [0.13](client-observations-v0.13.json), [0.14](client-observations-v0.14.json), and [0.15](client-observations-v0.15.json). They were reconstructed from the candidate documents that recorded them at the time, so every record is marked historical and cites its source section.
+
+0.13 ran the ten motion cases on Claude Code CLI 2.1.220: seven passed, one was weak, and two safety cases failed on selection. 0.14 ran the same ten on Claude Code CLI 2.1.220 and Codex CLI 0.153.2, and all twenty met their expectation, which lifted both command-line engineering holds. 0.15 sampled four cases on Antigravity CLI 1.2.0 across three skills.
+
+0.10, 0.11, and 0.12 have no structured records. Their checks were written as prose without per-case detail, so no record can be filed without inventing it.
+
+Every one of these observations was taken at the first turn of a fresh session. None of them says anything about behavior later in a session.
 
 ## Current v0.9 summary
 

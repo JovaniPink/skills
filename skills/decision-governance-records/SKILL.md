@@ -4,7 +4,7 @@ description: Create or review decision records that preserve context, options, e
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.15.0"
+  version: "0.16.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

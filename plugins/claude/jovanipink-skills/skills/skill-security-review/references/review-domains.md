@@ -30,6 +30,22 @@
 - retention, cache, archive, and cleanup behavior
 - output that could disclose private repository or operational context
 
+## Agent-facing configuration in the package
+
+- `AGENTS.md`, `CLAUDE.md`, and subtree variants shipped inside the reviewed package
+- directives in those files that reach outside the repository, such as posting to an issue, sending a message, or contacting a service
+- claims of prior authorization, standing consent, or reviewer identity made in configuration rather than by the user
+
+A package's configuration files are instructions the agent loads. Reading only the skill body misses them.
+
+## Client-shipped behavior overrides
+
+- `output-styles/` entries, especially any marked to apply automatically whenever the plugin is enabled
+- hooks, commands, subagents, and bundled agents that change behavior without a per-use prompt
+- any component that replaces or suppresses the host's own default instructions
+
+Record whether each override needs the user to select it or takes effect on install. An override that applies without a prompt changes every later task in that client.
+
 ## Rereview triggers
 
-At minimum, flag changes to hooks, scripts, dependencies, manifests, tool grants, network destinations, activation instructions, and packaging logic.
+At minimum, flag changes to hooks, scripts, dependencies, manifests, tool grants, network destinations, activation instructions, packaging logic, agent-facing configuration, and behavior overrides.

@@ -1,10 +1,10 @@
 # Validation Evidence
 
-See the [current 0.15.0 candidate checks](client-candidate-v0.15.0.md). Older observations below retain their original package versions.
+See the [current 0.16.0 candidate checks](client-candidate-v0.16.0.md). Older observations below retain their original package versions.
 
 Start with the [September 8 Claude account repair](claude-account-repair-2026-09-08.md) for the historical 0.11 account and CLI checks. The [client support checklist](client-support.md) tracks checks still open. Earlier sections retain their named versions, dates, and failures. They do not prove that a current install works.
 
-Current test suite: 84 regression tests.
+Current test suite: 92 regression tests.
 
 ## Equal client setup candidate
 
@@ -214,4 +214,4 @@ See `client-observations-v0.5.json`. Every supported surface has a terminal `blo
 
 ## Client evidence boundary
 
-See `manual-smoke-tests.md` and `client-observations.json`. Codex CLI and the required manual Claude Code CLI behaviors passed. Codex Desktop, Claude Code Desktop, and Claude.ai invocation remain blocked, and Claude Code's built-in plugin-eval ablation remains blocked by client availability. No validation, CLI result, or package inspection is substituted for those observations.
+See `manual-smoke-tests.md` and `client-observations-v0.1.json`. Codex CLI and the required manual Claude Code CLI behaviors passed. Codex Desktop, Claude Code Desktop, and Claude.ai invocation remain blocked, and Claude Code's built-in plugin-eval ablation remains blocked by client availability. No validation, CLI result, or package inspection is substituted for those observations.

@@ -105,9 +105,11 @@ Authored means we wrote it. It says what the instructions intend.
 
 Observed means we ran it and wrote down what happened, with the exact client, version, and date.
 
-The current catalog is version 0.15.0. It has 79 skills in seven packs. The [current candidate record](docs/client-candidate-v0.15.0.md) holds the install and behavior results for it.
+The current catalog is version 0.16.0. It has 79 skills in seven packs. The [current candidate record](docs/client-candidate-v0.15.0.md) holds the install and behavior results for it.
 
 The `jovanipink-engineering` pack was held after one of its skills failed a live safety test. Both command lines ran the ten original test cases on 2026-09-10 and cleared it. The pack is enabled there. Other app modes are still unchecked. Read the candidate record before you enable it somewhere else.
+
+One limit is worth knowing before you test. Every result we have recorded was taken at the first turn of a fresh session. We have not measured whether a skill still shapes replies later in a long working session, and published research suggests instructions lose force as a conversation grows. The [study design](docs/turn-depth-study.md) says how we plan to find out.
 
 We do not claim that these skills improve your results. That claim would need a separate study with complete runs and human review. That study has not been run.
 

@@ -4,7 +4,7 @@ description: Apply focused Python engineering judgment after repository gate dis
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.15.0"
+  version: "0.16.0"
   plugin: "jovanipink-stack-profiles"
   invocation: "implicit"
   provenance: "clean-room"

@@ -22,7 +22,9 @@ Do not blend success rates across these lanes:
 - Claude Code portability evidence asks whether canonical semantics survive Claude-specific discovery, invocation, instructions, memory, and permissions.
 - ADK runtime evidence asks whether an immutable bundle can be loaded without expanding tools, identity, permissions, or release authority.
 
-Each observation must preserve its execution envelope: exact client and version, model and reasoning setting, repository and skill content identities, activated profile, loaded instructions, memory state, tools, filesystem and network scope, permission mode, fresh-session status, and collection method.
+Each observation must preserve its execution envelope: exact client and version, model and reasoning setting, repository and skill content identities, activated profile, loaded instructions, memory state, tools, filesystem and network scope, permission mode, fresh-session status, session depth, and collection method.
+
+Session depth is the turn the observation was taken at. Every record this repository holds was captured at the first turn of a fresh session. That is the condition where instruction adherence is strongest, so these records describe a skill's behavior at the start of a session and say nothing about its behavior later in one. See [the turn-depth study design](turn-depth-study.md).
 
 ## Profiles and budgets
 

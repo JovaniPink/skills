@@ -20,7 +20,7 @@ Pack sizes live in [`catalog/packs.json`](../catalog/packs.json). Profiles and t
 | Evaluate AI behavior, context reliability, or source conformance | `jovanipink-ai-systems` |
 | Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `jovanipink-agent-platforms` |
 
-The engineering pack is cleared for both command lines as of 2026-09-10. We have not checked the other app modes. Read the [current candidate checks](client-candidate-v0.15.0.md) before you rely on one.
+The engineering pack is cleared for both command lines as of 2026-09-10. We have not checked the other app modes. Read the [current candidate checks](client-candidate-v0.16.0.md) before you rely on one.
 
 The engineering pack is over the 6,000-character warning line. That line is our own guardrail. No client publishes it as a limit. Install the pack when you want the whole lifecycle. For a narrow task, pick the one skill you need and leave the other packs off.
 
