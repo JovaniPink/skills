@@ -23,7 +23,7 @@ Source binding, manifest commit, and merge commit are pending.
 | Claude.ai Chat | Pending | Pending | Pending | Pending | Pending |
 | Claude desktop Chat | Pending | Pending | Pending | Pending | Pending |
 | Cowork | Pending | Pending | Pending | Pending | Pending |
-| Antigravity CLI (1.2.0, 5-skill preview) | Done | Done | Done | Done | Done |
+| Antigravity CLI (1.2.0, 65 eligible skills) | Done | Done | Done | Done | Done |
 | Antigravity desktop | Pending | Pending | Pending | Pending | Pending |
 | Antigravity IDE | Pending | Pending | Pending | Pending | Pending |
 
@@ -33,7 +33,7 @@ All 14 explicit-only skills remain excluded from Antigravity and from any receiv
 
 ## Holds carried forward
 
-Both command-line engineering holds were lifted at 0.14.0 and stay lifted. The Antigravity expansion stays held. No app or IDE mode has been tested on any client.
+Both command-line engineering holds were lifted at 0.14.0 and stay lifted. The Antigravity CLI expansion hold is lifted for all 65 eligible implicit skills following 1.2.0 resolution of the non-interactive permission blocker, live verification of the 0.15.0 SARIF finding vocabulary, and live verification of finding-consolidation. The 14 explicit-only skills remain excluded. No app or IDE mode has been tested on any client.
 
 ## A stated limit of this release
 
