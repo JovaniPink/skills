@@ -6,7 +6,7 @@ A **Code plugin** is a package installed for Claude Code. An **account upload** 
 
 See the [September account repair check](../claude-account-repair-2026-09-08.md) for dated results and remaining app checks.
 
-Read the [current candidate record](../client-candidate-v0.15.0.md) before enabling an update. It records the 0.14.0 packages and the lifted Code engineering hold. The 0.13.0 command-line observation keeps its own record. The 0.12.0 account replacements and the older checks below keep their original dates and versions.
+Read the [current candidate record](../client-candidate-v0.15.0.md) before enabling an update. It records the 0.15.0 packages and the lifted Code engineering hold. The 0.13.0 command-line observation keeps its own record. The 0.12.0 account replacements and the older checks below keep their original dates and versions.
 
 ## Check what is there
 
@@ -43,7 +43,7 @@ Generated Claude packages omit Codex's `agents/` files. Skills that require dire
 
 Claude desktop Code mode, Claude.ai, and Cowork each need their own record. Note whether the task runs locally or remotely. Check loading, linked files, result files, and resume behavior in each mode you use.
 
-For an account upload, build the separate one-skill ZIP with `python3 scripts/package_claude_ai.py`. Review it before uploading. The command prepares all 78 skills; it does not approve every ZIP for every app. Keep a separate upload checklist. The current staged target is 64 skills that allow automatic selection, with 14 explicit-only workflows held. Do not upload an explicit-only skill until the receiving mode has a verified control that prevents automatic selection. A metadata field or working slash command alone does not prove that control.
+For an account upload, build the separate one-skill ZIP with `python3 scripts/package_claude_ai.py`. Review it before uploading. The command prepares all 79 skills; it does not approve every ZIP for every app. Keep a separate upload checklist. The current staged target is 65 skills that allow automatic selection, with 14 explicit-only workflows held. Do not upload an explicit-only skill until the receiving mode has a verified control that prevents automatic selection. A metadata field or working slash command alone does not prove that control.
 
 To update an existing account skill:
 

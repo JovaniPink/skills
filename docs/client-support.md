@@ -8,8 +8,8 @@ Equal priority does not mean every feature already works everywhere. We record w
 
 | Client | What we prepare | Where to start |
 | --- | --- | --- |
-| Codex | Native plugins with all 78 skills | [Codex setup](clients/codex.md) |
-| Claude Code | Native plugins with all 78 skills; separate ZIP files for account uploads | [Claude setup](clients/claude.md) |
+| Codex | Native plugins with all 79 skills | [Codex setup](clients/codex.md) |
+| Claude Code | Native plugins with all 79 skills; separate ZIP files for account uploads | [Claude setup](clients/claude.md) |
 | Antigravity | An offline preview of selected skills; skills that require direct selection are left out | [Antigravity setup](clients/antigravity.md) |
 
 A plugin is a group of skills. A skill is a set of instructions for a kind of task. A CLI is an app you use by typing commands in a terminal.

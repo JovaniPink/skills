@@ -1,134 +1,144 @@
 # JovaniPink Skills
 
-Reusable skills for coding, research, writing, and reviews. Codex, Claude Code, and Antigravity have equal priority for setup and testing. We build native Codex and Claude packages and an offline Antigravity preview. See [client support](docs/client-support.md) for what is ready and what still needs testing. The source uses the open [Agent Skills format](https://agentskills.io/specification).
+This repository holds 79 Agent Skills for AI coding assistants.
 
-This repository is an independent MIT-licensed work. It does not redistribute proprietary skill text. Public skills remain separate from private, repository-local overlays.
+A skill is a short set of written instructions for one kind of task. Reviewing a code change is one kind of task. Checking whether a claim has evidence is another. Your assistant reads the matching skill and follows its steps.
 
-Start with the [five-minute quickstart](docs/quickstart.md) or [How to use JovaniPink Skills](docs/README.md). Use [Choose Your Skills](docs/choose-your-skills.md), the [skill cheatsheet](docs/skill-cheatsheet.md), or the [skill catalog reader guide](docs/skill-catalog-reader-guide.md) for selection. The [taxonomy](docs/taxonomy.md) explains capability, lifecycle, target, risk, invocation, and maturity facets. The [behavioral evidence model](docs/behavioral-evidence-model.md) separates workflow maturity, observed client behavior, and runtime eligibility. The [daily agent operating model](docs/daily-agent-operating-model.md) explains how to choose a client and pass work between tasks. The [Google agent surfaces](docs/google-agent-surfaces.md) record keeps Antigravity, Gemini enterprise compatibility, hosted agents, ADK, and lifecycle tooling in separate lanes.
+A skill is only text. It installs no programs and grants no new permissions. It changes how your assistant works through a task, not what it is allowed to do.
 
-## Catalog
+## Install one pack
 
-A plugin bundles related skills for installation. A profile selects the skills to use for a task. Installing a plugin and enabling all its skills are separate choices.
+A pack is a group of related skills you install together. There are seven. Start with one.
 
-### `jovanipink-skills`
-
-| Skill | Purpose | Invocation |
-| --- | --- | --- |
-| `claim-verification` | Test material claims against current authority-class evidence | Implicit |
-| `source-grounded-research` | Research with primary sources, dates, provenance, and uncertainty | Implicit |
-| `research-to-publication-lifecycle` | Connect sources, forecasts, outcomes, evaluations, retrospectives, and public-safe findings | Explicit-only |
-| `systematic-diagnosis` | Establish a causal diagnosis without silently fixing the system | Implicit |
-| `authority-boundary-review` | Map authoritative stores, projections, writers, readers, and contracts | Implicit |
-| `cross-stack-quality-gates` | Discover and run safe repository-defined gates across supported application, language, data, and infrastructure stacks | Implicit |
-| `prelaunch-readiness` | Audit web, service, and application launch readiness | Implicit |
-| `publish-change-safely` | Verify identity, scope, checks, push, and PR state | Explicit-only |
-| `public-private-boundary-review` | Detect private data, internal identifiers, secrets, and unsupported public claims | Implicit |
-| `skill-security-review` | Audit skill instructions, dependencies, permissions, and network behavior | Implicit |
-| `finding-consolidation` | Merge findings from several reviews into one owned, ranked list | Implicit |
-| `skill-import-provenance` | Gate Jovani-owned skill transfers and reject third-party catalog imports | Explicit-only |
-
-### `jovanipink-engineering`
-
-| Skill | Purpose | Invocation |
-| --- | --- | --- |
-| `acceptance-evidence-ledger` | Track substantial work against current evidence, freshness, blockers, and visible abandonments | Explicit-only |
-| `problem-framing` | Establish outcomes, evidence, constraints, unknowns, and success before implementation | Implicit |
-| `implementation-planning` | Produce decision-complete plans with interfaces, tests, rollout, and stopping conditions | Implicit |
-| `plan-execution` | Execute an approved plan with checkpoints and deviation controls | Explicit-only |
-| `test-driven-change` | Capture red, green, refactor, and exception evidence | Implicit |
-| `test-strategy` | Select risk-proportionate test layers and evidence | Implicit |
-| `worktree-isolation` | Assess dirty and concurrent work before authorized worktree changes | Implicit |
-| `request-code-review` | Prepare and, only when authorized, send a bounded review request | Explicit-only |
-| `respond-to-code-review` | Verify feedback before accepting, rejecting, or deferring it | Implicit |
-| `finish-development-branch` | Present integration, retention, and cleanup options without implicit actions | Explicit-only |
-| `multi-agent-orchestration` | Coordinate authorized independent tasks with ownership and reconciliation | Explicit-only |
-| `code-change-review` | Review an exact diff for verified actionable defects | Implicit |
-| `functional-motion-review` | Check whether motion clarifies a reader task while preserving evidence and control | Implicit |
-| `module-interface-design` | Design smaller stable contracts from callers and invariants | Implicit |
-| `prototype-spike` | Test one uncertainty with isolated bounded implementation | Explicit-only |
-| `merge-conflict-reconciliation` | Reconcile Git conflicts while preserving abort and action gates | Explicit-only |
-
-Engineering quality reviews in the same plugin cover application security, dependency supply chain, observability, performance and scalability, data migration readiness, API compatibility, test quality, accessibility, and operational readiness. These are implicit, read-only reviews and do not claim compliance or authorize production actions.
-
-### `jovanipink-stack-profiles`
-
-Optional profiles provide focused engineering guidance for Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform. `cross-stack-quality-gates` remains the command-discovery orchestrator and uses a profile only when installed and applicable.
-
-### `jovanipink-operations`
-
-Eleven generic operating workflows cover requirements, governance records, workshops, outcome measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incident analysis, and data-authority migration ratification. They preserve observed, proposed, ratified, rejected, unresolved, measured, estimated, and causal claim states.
-
-### `jovanipink-reasoning`
-
-Eleven focused workflows cover alignment interviews, domain vocabulary, codebase mechanics, design rationale, change impact, high-signal technical writing, privacy-conscious decision traces, portable skill authoring, guided configuration, task handoffs, and workflow retrospectives. The plugin is optional so these broad reasoning descriptions do not crowd every engineering session.
-
-### `jovanipink-ai-systems`
-
-Three optional AI-reliability workflows cover agent evaluation design, assertion-level context reliability, and exact source-to-output conformance. They are independently authored from Jovani-owned practice with NIST TEVV resources and W3C PROV used only as primary correctness authorities. The plugin launches no external evaluation and contains no private context, hooks, scripts, dependencies, bundled agents, or broad tool grants.
-
-### `jovanipink-agent-platforms`
-
-Six optional human-facing workflows cover Google ADK engineering, agent context and memory, tool and action boundaries, protocol interoperability, agentic-system security, and retrieval-grounding quality. They help people review agent systems through ChatGPT, Codex, Claude, and Antigravity CLI; Gemini CLI is a conditional enterprise compatibility surface after Google's individual-user transition. They are not runtime skill bundles, do not register tools, and do not authorize authentication, infrastructure, release, or deployment.
-
-## Repository model
-
-- `skills/` is the only authoring source.
-- `plugins/codex/<plugin>/` and `plugins/claude/<plugin>/` are generated and committed.
-- `incubator/` is intentionally undiscoverable unfinished work.
-- `evals/` contains trigger and safety cases.
-- `provenance/catalog.json` records primary format or correctness authorities and the Jovani-authored implementation boundary for every skill.
-- `scripts/` contains standard-library-only generation, packaging, and catalog validation, plus a locked PyYAML gate for GitHub Actions workflow syntax.
-- `catalog/` contains strict taxonomy, pack, recipe, profile, compatibility, behavioral-evidence, deprecation, revocation, upstream-review, and upstream-pinning records.
-- `releases/` contains exact-source release manifests and artifact checksums.
-
-Do not hand-edit generated plugin trees. Change the canonical skill, then run:
+For Claude Code:
 
 ```sh
-python3 scripts/build_distributions.py
-python3 scripts/package_claude_ai.py
-python3 scripts/check_workflows.py
-python3 -m mypy --strict scripts tests
-python3 -m ruff check scripts tests
-python3 scripts/validate.py
-python3 -m unittest discover -s tests -v
+claude plugin marketplace add JovaniPink/skills --scope user
+claude plugin install jovanipink-skills@jovanipink-skills --scope user
+claude plugin list --json
 ```
 
-The Linux CI runner installs its reviewed workflow, type, and lint tools from `requirements-ci-linux.txt`. Other platforms should use PyYAML 6.0.3, types-PyYAML 6.0.12.20260815, mypy 1.20.2, and Ruff 0.15.12 from a trusted local environment; the Linux-only wheel lock is not a portable development environment.
+For Codex:
 
-## Installation surfaces
+```sh
+codex plugin marketplace add JovaniPink/skills
+codex plugin add jovanipink-skills@jovanipink-skills
+codex plugin list --json
+```
 
-### Codex CLI and ChatGPT desktop
+The install name has the form `plugin@marketplace`. A marketplace is a place your client looks for packs. This repository is the marketplace, and it is named `jovanipink-skills`. One pack carries that same name. So `jovanipink-skills@jovanipink-skills` is correct, not a repeated word. Every other pack reads like `jovanipink-engineering@jovanipink-skills`.
 
-Add this repository as a marketplace, then install the focused plugins you need. The Codex distribution uses `agents/openai.yaml`; explicit-only skills set `policy.allow_implicit_invocation: false`. Installed plugin skills are namespaced, so direct invocation uses forms such as `$jovanipink-skills:claim-verification`.
+Antigravity uses an offline preview instead. See [Antigravity setup](docs/clients/antigravity.md).
 
-OpenAI documents plugin-bundled skills for Chat and Work on ChatGPT web, desktop, and mobile, plus Codex in the ChatGPT desktop app and Codex CLI. A repository marketplace added through the CLI is the local desktop testing path; it does not by itself install the plugin into a ChatGPT web account. Workspace or directory installation and publication are separate administrative actions. See the [OpenAI skills documentation](https://learn.chatgpt.com/docs/build-skills) and [OpenAI plugin documentation](https://developers.openai.com/plugins/build/plugins).
+Now start a fresh task and name a skill:
 
-### Claude Code and desktop
+```text
+/jovanipink-skills:claim-verification Check which completion claims have evidence. Make no changes.
+```
 
-Add the repository's `.claude-plugin/marketplace.json` as a self-hosted marketplace and install the focused plugins you need. Generated explicit-only skills add `disable-model-invocation: true`. Direct plugin invocation uses Claude's namespace, for example `/jovanipink-skills:claim-verification`.
+Codex uses `$` in place of `/`.
 
-The install command uses the form `plugin@marketplace`. One pack and the marketplace share the name `jovanipink-skills`. So `jovanipink-skills@jovanipink-skills` is correct, not a repeated word. See [Claude setup](docs/clients/claude.md) for the exact commands.
+For work where the risk is high, clone the repository first. Read the source, check out a reviewed revision, then add your local folder as the marketplace. The [five-minute quickstart](docs/quickstart.md) walks through that path.
 
-The `jovanipink-engineering` pack is cleared for both command lines as of 2026-09-10, after the ten original motion cases were run on each. Other app modes are still unchecked. Read the [current candidate checks](docs/client-candidate-v0.15.0.md) before you enable it elsewhere.
+## What these skills do for you
 
-### Claude.ai
+Each skill slows the assistant down where answers usually go wrong. It has to name its evidence. It has to keep failed checks and unknowns visible. It has to stop at any action you did not approve.
 
-Run `python3 scripts/package_claude_ai.py`. Upload an individual ZIP from `dist/claude-ai/`; each archive contains one correctly nested skill directory. The 14 explicit-only workflows are held. Do not upload one until the receiving mode has a verified control that stops automatic selection. A metadata field or a working slash command does not prove that control.
+A few examples:
 
-See [client-surface research](docs/client-surface-research.md) for the official distribution distinctions and current observed limitations.
+- `claim-verification` tests whether done, fixed, merged, or deployed is backed by evidence.
+- `systematic-diagnosis` finds a cause instead of quietly changing your code.
+- `code-change-review` reviews one exact diff and grades each finding.
+- `source-grounded-research` keeps sources, dates, and uncertainty attached to the answer.
 
-Client behavior can change independently. See [manual smoke tests](docs/manual-smoke-tests.md) for observed-versus-pending evidence instead of assuming parity.
+These are authored instructions, not measured benefits. We wrote the skills to produce those habits. We have not run a study that shows they improve your results.
 
-Private product or organization facts use the repo-local overlay model described in [Private overlays](docs/private-overlays.md); they never enter the public catalog.
+## The seven packs
 
-## Security and contribution policy
+Install the smallest pack that covers your work.
 
-The catalog ships no skill-level executables, hooks, MCP servers, bundled agents, or broad tool grants. Skills coordinate judgment; scripts and host permissions enforce deterministic requirements. CI uses immutable commit pins for third-party Actions and validation rejects mutable replacements. Read [SECURITY.md](SECURITY.md), [the security model](docs/security-model.md), and [the authoring guide](docs/authoring.md) before contributing.
+| Pack | Use it for |
+| --- | --- |
+| `jovanipink-skills` | Verify claims, research, diagnose problems, review what is safe to publish |
+| `jovanipink-engineering` | Frame, plan, test, and review code changes |
+| `jovanipink-reasoning` | Explain code, improve writing, hand off work |
+| `jovanipink-operations` | Requirements, decisions, measurement, adoption, incidents |
+| `jovanipink-stack-profiles` | Language and platform guidance, such as Python, Go, and Terraform |
+| `jovanipink-ai-systems` | Evaluate AI behavior, context reliability, and source-to-output checks |
+| `jovanipink-agent-platforms` | Review agent architecture, tools, protocols, and retrieval |
 
-## Status
+The [skill cheatsheet](docs/skill-cheatsheet.md) lists all 79 skills with one line each. [Choose Your Skills](docs/choose-your-skills.md) helps you pick. The [skill catalog reader guide](docs/skill-catalog-reader-guide.md) explains every skill in full.
 
-The 0.15.0 candidate contains 79 skills across seven plugins. It states where a motion finding must appear. It names what to propose when comprehension evidence is missing. It also separates publication from review requests. See the [current candidate checks](docs/client-candidate-v0.14.0.md) for source review and installation states. These are authored changes, not measured benefits. Package checks, installed versions, and observed behavior are recorded separately for each app and CLI.
+## How a skill gets picked
 
-Claude Code plugins and Claude account uploads are separate installs. Updating the Code plugins does not update the account library used by Chat. See [Claude setup](docs/clients/claude.md) for the upload checks and explicit-only hold.
+Every skill is marked implicit or explicit-only.
 
-The experimental seven-skill Delivery TypeScript profile still has no valid behavioral result. Its corrected Codex pilot and the communication study remain pending. Neither establishes compatibility with other clients or ADK runtimes.
+Implicit means your client may pick the skill on its own when your request matches it. You can still name it directly. 65 skills are implicit.
+
+Explicit-only means the skill stays off until you name it. Naming it does not authorize a push, merge, deletion, release, or deployment. You still approve those yourself. 14 skills are explicit-only.
+
+The cheatsheet shows the marking for each skill. The [glossary](docs/glossary.md) defines the other terms used here.
+
+## What each client can do today
+
+Codex, Claude Code, and Antigravity get equal attention here. Equal attention does not mean every feature works everywhere yet.
+
+| Client | What we ship | Setup guide |
+| --- | --- | --- |
+| Codex CLI and ChatGPT desktop | Native packs with all 79 skills | [Codex setup](docs/clients/codex.md) |
+| Claude Code | Native packs with all 79 skills, plus separate ZIP files for account uploads | [Claude setup](docs/clients/claude.md) |
+| Antigravity | An offline preview of the implicit skills; explicit-only skills are left out | [Antigravity setup](docs/clients/antigravity.md) |
+
+Claude Code packs and Claude account uploads are two separate installs. Updating your Code packs does not update the skill library that Chat uses. Check both.
+
+For Claude.ai, build one-skill ZIP files from a local clone with `python3 scripts/package_claude_ai.py`. Upload them one at a time from `dist/claude-ai/`.
+
+The 14 explicit-only skills are on hold for Claude.ai uploads. A hold means the files are ready, but we decided not to ship them yet, because a check we named has not passed. The missing check here is a control that stops Claude.ai from picking the skill on its own. A metadata field does not prove that control. Neither does a working slash command.
+
+Client behavior changes on its own schedule. The [client support checklist](docs/client-support.md) lists what to test in each app and CLI. A result in one app does not carry to another.
+
+## Evidence and status
+
+This project keeps two words apart.
+
+Authored means we wrote it. It says what the instructions intend.
+
+Observed means we ran it and wrote down what happened, with the exact client, version, and date.
+
+The current catalog is version 0.15.0. It has 79 skills in seven packs. The [current candidate record](docs/client-candidate-v0.15.0.md) holds the install and behavior results for it.
+
+The `jovanipink-engineering` pack was held after one of its skills failed a live safety test. Both command lines ran the ten original test cases on 2026-09-10 and cleared it. The pack is enabled there. Other app modes are still unchecked. Read the candidate record before you enable it somewhere else.
+
+We do not claim that these skills improve your results. That claim would need a separate study with complete runs and human review. That study has not been run.
+
+## Safety
+
+The catalog ships instructions and reference notes. It ships no skill-level programs, hooks, MCP servers, bundled agents, or broad tool grants. Nothing installs or runs on its own.
+
+This matters because a skill you install can shape every later task. Keeping it to text means you can read the whole thing before you trust it. It also means your client's own permission rules stay in charge.
+
+A skill can recommend an action. Your permissions, your tests, and your approval decide whether it happens.
+
+Read the [security policy](SECURITY.md) and the [security model](docs/security-model.md) before you use the catalog for sensitive work.
+
+## License and origin
+
+This is an independent work under the [MIT license](LICENSE). It does not copy or redistribute anyone else's skill text. The skills are written from the author's own practice and from primary sources, such as standards and official platform documentation.
+
+Private product facts stay out of this catalog. [Private overlays](docs/private-overlays.md) explains how they are kept apart.
+
+The source format is the open [Agent Skills format](https://agentskills.io/specification).
+
+## Contribute or build it yourself
+
+Skills are authored in `skills/`. The `plugins/` folders are generated, so do not edit them by hand.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before you open a pull request. [Repository architecture](docs/architecture.md) describes the folder layout. [Testing](docs/testing.md) lists the exact build and check commands, plus the tool versions they need. The [editorial style guide](docs/editorial-style.md) covers the writing rules.
+
+## Where to go next
+
+- [Five-minute quickstart](docs/quickstart.md): install and test one skill
+- [Glossary](docs/glossary.md): what the terms mean
+- [Skill cheatsheet](docs/skill-cheatsheet.md): all 79 skills at a glance
+- [Client support checklist](docs/client-support.md): what to test in each app and CLI
+- [How to use JovaniPink Skills](docs/README.md): the full guide

@@ -1,17 +1,31 @@
 # Security Policy
 
-## Supported version
+## Which version is supported
 
-Only the latest tagged release is supported. Before the first release, report issues against the current default branch.
+Only the latest tagged release is supported. There is no tagged release yet, so report issues against the current default branch.
 
-## Reporting
+## How to report a problem
 
-Do not open a public issue containing credentials, private repository names, customer data, internal infrastructure identifiers, or reproducible exploit details. Contact the repository owner privately through the security-reporting channel listed on their public profile.
+Do not open a public issue that contains any of these:
 
-Include the affected skill or script, revision, client surface, observed behavior, impact, and the smallest safe reproduction. Remove live secrets and personal data.
+- credentials
+- private repository names
+- customer data
+- internal infrastructure identifiers
+- working exploit steps
 
-## Catalog boundary
+Contact the repository owner privately instead. The security-reporting channel is listed on their public profile.
 
-The catalog intentionally ships no skill-level executables, hooks, MCP servers, installation scripts, or broad tool grants. Repository scripts use the Python standard library for deterministic validation and packaging. A skill may recommend an action, but host permissions and explicit user authorization remain authoritative.
+In your report, name the skill or script, the revision, and the client you used. Say what you saw, what it affects, and the smallest safe way to reproduce it. Take out live secrets and personal data first.
 
-See [docs/security-model.md](docs/security-model.md) for the threat model and review criteria.
+## What this catalog ships
+
+The catalog ships instructions and reference notes. It ships no skill-level programs, hooks, MCP servers, install scripts, or broad tool grants.
+
+This matters because a skill you install can shape every later task. Keeping it to text means you can read the whole thing before you trust it.
+
+Repository scripts use only the Python standard library. They check and package files. They do not reach the network.
+
+A skill can recommend an action. Your client's permissions and your own approval decide whether it happens. A skill cannot grant itself a tool or a permission.
+
+Read the [security model](docs/security-model.md) for the threat model and the review criteria.

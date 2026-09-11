@@ -4,7 +4,7 @@ Codex, Claude Code, and Antigravity have equal priority for setup, documentation
 
 This guide explains how to choose, install, invoke, verify, update, and remove the skills safely.
 
-Use the [five-minute quickstart](quickstart.md) for a local start. Use [Choose Your Skills](choose-your-skills.md) and the [skill cheatsheet](skill-cheatsheet.md) for selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 78-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
+Use the [five-minute quickstart](quickstart.md) for a local start. Use [Choose Your Skills](choose-your-skills.md) and the [skill cheatsheet](skill-cheatsheet.md) for selection. Read the [skill catalog reader guide](skill-catalog-reader-guide.md) for the complete 79-skill inventory, verified plugin grouping, explicit-only map, and client-specific selection boundaries.
 
 ## Start with the security boundary
 
@@ -36,7 +36,7 @@ Install the smallest plugin that covers the work.
 | `jovanipink-stack-profiles` | Focused Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
 | `jovanipink-operations` | Requirements, decisions, workshops, measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incidents, and data authority decisions |
 | `jovanipink-reasoning` | Alignment, domain vocabulary, code explanation, design rationale, change impact, technical writing, decision traces, portable skill authoring, guided configuration, task handoff, and workflow retrospectives |
-| `jovanipink-ai-systems` | AI evaluation contracts, context reliability, and exact source-to-output conformance |
+| `jovanipink-ai-systems` | AI evaluation contracts, context reliability, and exact source-to-output conformance. Written from the author's own practice, with NIST test, evaluation, verification, and validation (TEVV) resources and the W3C PROV provenance standard used only as correctness authorities |
 | `jovanipink-agent-platforms` | Google ADK architecture, agent context, tool boundaries, protocols, agentic security, and retrieval grounding |
 
 Installing every plugin at once increases the amount of skill description text loaded by a client. It can also increase trigger collisions. Start with one plugin and add another only when the work needs it.
@@ -310,6 +310,7 @@ Use this workflow:
 
 Useful repository documents:
 
+- [Glossary](glossary.md)
 - [Architecture](architecture.md)
 - [Taxonomy](taxonomy.md)
 - [Choose your skills](choose-your-skills.md)
@@ -322,6 +323,8 @@ Useful repository documents:
 - [Provenance policy](provenance.md)
 - [Release process](release-process.md)
 - [Validation evidence](validation-evidence.md)
+- [Behavioral evidence model](behavioral-evidence-model.md)
+- [Daily agent operating model](daily-agent-operating-model.md)
 
 ## Keep private facts in private overlays
 
