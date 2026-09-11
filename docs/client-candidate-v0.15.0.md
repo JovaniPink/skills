@@ -10,7 +10,7 @@ Seven skills now grade each finding `none`, `note`, `warning`, or `error`. Those
 
 `finding-consolidation` merges findings that several completed reviews already produced. It assigns one owner per root cause, regrades onto the one scale, ranks by reader impact, and discloses what it held back. It reads findings; it does not run a review.
 
-Source binding, manifest commit, and merge commit are pending.
+Source files are bound to commit `60dac45`. Manifest commit `b85a9a3` follows it. Merge commit `b2a6703` preserves that history.
 
 | App or mode | Prepared | Installed | Enabled | Loaded | Behavior-tested |
 | --- | --- | --- | --- | --- | --- |
@@ -39,7 +39,7 @@ Both command-line engineering holds were lifted at 0.14.0 and stay lifted. The A
 
 `finding-consolidation` ships in the same release as the seven skills whose output it consumes. Previously, no adopting skill had been observed emitting a severity on a real client, so the consolidator's input format was authored rather than observed.
 
-This limit is partially discharged: on Antigravity CLI 1.2.0, `code-change-review` was observed emitting the four SARIF severity grades (`error`, `warning`, `note`) and state (`new`) on a pinned diff. However, the remaining six adopting skills (`accessibility-review`, `application-security-review`, `api-contract-compatibility-review`, `dependency-supply-chain-review`, `test-quality-review`, `skill-security-review`) remain unobserved on a live client.
+This limit is partially discharged: on Antigravity CLI 1.2.0, `code-change-review` was observed emitting three of the four SARIF severity grades (`error`, `warning`, `note`) and state (`new`) on a pinned diff. However, the remaining six adopting skills (`accessibility-review`, `application-security-review`, `api-contract-compatibility-review`, `dependency-supply-chain-review`, `test-quality-review`, `skill-security-review`) remain unobserved on a live client.
 
 ## Required before behavior can be claimed
 
