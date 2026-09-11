@@ -10,7 +10,13 @@ cd skills
 git status --short --branch
 ```
 
-Choose a reviewed tag or full commit for the version you want to use.
+Check out the reviewed tag so your copy cannot move under you:
+
+```sh
+git checkout v0.16.0
+```
+
+A full commit works too. Try not to test from the default branch, because it changes.
 
 ## 2. Check the files
 
