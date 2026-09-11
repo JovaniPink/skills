@@ -2,7 +2,7 @@
 
 Antigravity setup and testing have equal priority with Codex and Claude. It has an offline preview builder. A one-skill package passed native install and skill-menu checks in CLI 1.1.26; package and menu checks were repeated on 1.1.27. Use tests and app checks are still incomplete.
 
-The [0.12.0 candidate record](../client-candidate-v0.12.0.md) adds a two-skill check on CLI 1.1.27. The motion reference and fixture loaded, but the answer invented evidence. The [0.14.0 record](../client-candidate-v0.14.0.md) adds a four-skill check on CLI 1.1.28. Nine of ten cases met their expectation and no reply invented evidence. That is one partial run on a different version, so the 64-skill expansion remains held.
+The [0.12.0 candidate record](../client-candidate-v0.12.0.md) adds a two-skill check on CLI 1.1.27. The motion reference and fixture loaded, but the answer invented evidence. The [0.14.0 record](../client-candidate-v0.14.0.md) adds a four-skill check on CLI 1.1.28. Nine of ten cases met their expectation and no reply invented evidence. That is one partial run on a different version, so the 64-skill expansion remains held. The [0.15.0 candidate record](../client-candidate-v0.15.0.md) adds a five-skill check on CLI 1.2.0 (`accessibility-review`, `code-change-review`, `functional-motion-review`, `performance-scalability-diagnosis`, and `finding-consolidation`). Near-miss case 3 passed with `--dangerously-skip-permissions`, routing cleanly to `performance-scalability-diagnosis`. The 0.15.0 SARIF finding vocabulary was observed live on `code-change-review`, and `finding-consolidation` passed both multi-review merging and single-review refusal.
 
 ## Check what is there
 
@@ -57,9 +57,9 @@ This matters because an unskilled reply looks reasonable. In a 1.1.28 check, ten
 
 Enabling also changed permission behavior. Three cases returned an empty reply while the preview was disabled, because the client kept trying to run a command to find files that were not there. With the skill enabled, those same cases answered from the skill's procedure and needed no command.
 
-Check the version with `agy --version`, not with the package manager. The Homebrew cask recorded 1.1.26 while the binary had updated itself to 1.1.28. Record the version the binary reports.
+Check the version with `agy --version`, not with the package manager. The Homebrew cask recorded 1.1.26 while the binary had updated itself through 1.1.28 to 1.2.0 via its auto-update mechanism. Record the version the binary reports.
 
-For a print-mode check, verify where the client looks for files. One observed run used its scratch folder instead of the shell's working directory. A retry with the exact file path was denied because the noninteractive session could not ask for read permission. It exited with code 0 and reported `SUCCESS`, but returned an empty response and a denied action. Treat that as blocked. Do not bypass permissions to make the check pass.
+For a print-mode check, verify where the client looks for files. One observed run used its scratch folder instead of the shell's working directory. In non-interactive print mode (`-p`), tool approval prompts can cause command evaluations to abort with a denied action if interactive input cannot be gathered. Passing `--dangerously-skip-permissions` enables non-interactive evaluation runs to complete tool reasoning without permission refusal. Do not bypass permissions outside testing.
 
 A third check with synthetic facts in the prompt returned the correct verdict. This tested the response, not access to a project file. The running desktop app still returned no match for the preview skill. Keep those findings separate from the CLI menu and install results.
 

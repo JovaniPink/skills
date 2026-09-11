@@ -23,7 +23,7 @@ Source binding, manifest commit, and merge commit are pending.
 | Claude.ai Chat | Pending | Pending | Pending | Pending | Pending |
 | Claude desktop Chat | Pending | Pending | Pending | Pending | Pending |
 | Cowork | Pending | Pending | Pending | Pending | Pending |
-| Antigravity CLI | Pending | Pending | Pending | Pending | Pending |
+| Antigravity CLI (1.2.0, 5-skill preview) | Done | Done | Done | Done | Done |
 | Antigravity desktop | Pending | Pending | Pending | Pending | Pending |
 | Antigravity IDE | Pending | Pending | Pending | Pending | Pending |
 
@@ -51,6 +51,28 @@ That is a deliberate choice, and it has a cost: if a later client observation fa
 6. Record the full execution envelope: client and version, model and reasoning setting, skill content identity, loaded instructions, tools, permission mode, and fresh-session status.
 
 A pass on one client does not establish another. These checks do not complete the separate 108-episode benefit study.
+
+## Antigravity CLI 1.2.0 observation (5-skill preview)
+
+Tested on 2026-09-10 against Antigravity CLI 1.2.0 (`agy`), self-updated past 1.1.26 Homebrew cask metadata. The 5-skill preview (`accessibility-review`, `code-change-review`, `finding-consolidation`, `functional-motion-review`, `performance-scalability-diagnosis`) was built with `scripts/build_antigravity.py` into `dist/antigravity-eval-0.15.0/plugin`, installed via `agy plugin install`, and enabled with `agy plugin enable jovanipink-antigravity-preview`.
+
+### Observations:
+1. **Permission resolution on near-miss case 3 (`functional-motion-review-near-miss-3`)**:
+   - Prompt: "Diagnose server query latency without interactive presentation; use performance-scalability-diagnosis."
+   - Executed with `agy --dangerously-skip-permissions --print`.
+   - Result: Completed successfully (exit 0). Selected and executed `performance-scalability-diagnosis`, emitting all named output sections (`## Hypotheses`, `## Measurements`, `## Causal Diagnosis`, `## Capacity Estimate`, `## Next Experiment`). This resolves the 0.14.0 unscored near-miss case where non-interactive permission was denied.
+
+2. **0.15.0 finding vocabulary adoption check (`code-change-review`)**:
+   - Tested positive case 1 against a pinned Go authentication session diff.
+   - Result: Completed with exit 0. Emitted `## Findings` with findings ordered by severity (`error`, `warning`, `note`), all matching SARIF severity values, and marked `State: new` against the base revision. Emitted `## Questions`, `## Validation`, and `## Review Boundary`.
+
+3. **`finding-consolidation` (Skill #79) multi-review consolidation**:
+   - Tested positive case 1 (merging 3 review inputs across `application-security-review`, `code-change-review`, `accessibility-review` with an overlapping auth vulnerability).
+   - Result: Completed with exit 0. Grouped the overlapping defect under a single owner (`application-security-review`), preserved both locations, resolved the severity disagreement (`warning` vs `error`) to `error` with stated justification in `## Disagreements`, preserved `accessibility-review` finding as a separate owned item, and disclosed `## Sources`, `## Held Back: None`, and `## Uncovered Scope`.
+
+4. **`finding-consolidation` single-review near-miss check (`finding-consolidation-near-miss-3`)**:
+   - Prompt: "Only one review has run so far. Summarize its findings."
+   - Result: Refused multi-source consolidation explicitly ("multi-source consolidation is not applicable (which requires two or more completed reviews)"), adhering to precondition boundaries and summarizing the single review.
 
 ## History
 
