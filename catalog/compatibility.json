@@ -1,10 +1,10 @@
 {
   "$schema": "./compatibility-schema.json",
-  "catalog_version": "0.15.0",
+  "catalog_version": "0.16.0",
   "records": [
     {
       "plugin_version": "0.1.0",
-      "evidence_path": "docs/client-observations.json",
+      "evidence_path": "docs/client-observations-v0.1.json",
       "acceptance_status": "blocked",
       "claim": "Observed v0.1 rows are surface-specific; the release did not establish full cross-client acceptance."
     },

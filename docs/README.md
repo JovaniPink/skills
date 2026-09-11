@@ -311,6 +311,7 @@ Use this workflow:
 Useful repository documents:
 
 - [Glossary](glossary.md)
+- [Turn-depth study design](turn-depth-study.md)
 - [Architecture](architecture.md)
 - [Taxonomy](taxonomy.md)
 - [Choose your skills](choose-your-skills.md)

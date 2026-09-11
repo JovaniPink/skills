@@ -4,7 +4,7 @@ description: Review provenance before transferring Jovani-owned skill material b
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.15.0"
+  version: "0.16.0"
   plugin: "jovanipink-skills"
   invocation: "explicit"
   provenance: "clean-room"

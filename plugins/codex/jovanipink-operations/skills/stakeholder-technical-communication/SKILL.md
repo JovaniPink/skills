@@ -4,7 +4,7 @@ description: Translate technical evidence for a named stakeholder decision witho
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.15.0"
+  version: "0.16.0"
   plugin: "jovanipink-operations"
   invocation: "implicit"
   provenance: "original"

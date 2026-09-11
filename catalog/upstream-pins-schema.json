@@ -13,7 +13,7 @@
       "const": "./upstream-pins-schema.json"
     },
     "catalog_version": {
-      "const": "0.15.0"
+      "const": "0.16.0"
     },
     "reviewed_on": {
       "type": "string",

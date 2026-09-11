@@ -109,7 +109,7 @@ class CurrentEvidenceTests(unittest.TestCase):
             [],
             self.check_docs(
                 f"# Checks\n\n[Current]({RECORD})\n\n## History\n"
-                "[Old matrix](client-observations.json)\n"
+                "[Old matrix](client-observations-v0.1.json)\n"
             ),
         )
 
@@ -166,3 +166,144 @@ class CurrentEvidenceTests(unittest.TestCase):
             self.assertEqual([], validate_instance(version, schema), version)
         for version in ("v0.9.0", "01.2.3", "1.2", "1.2.3-01", "1.2.3+", "1.2.3\n"):
             self.assertTrue(validate_instance(version, schema), version)
+
+
+OBSERVATION_SCHEMA = json.loads(
+    (ROOT / "docs" / "client-observations-schema.json").read_text(encoding="utf-8")
+)
+
+
+def observation(**overrides: object) -> dict[str, object]:
+    """Build one syntactically complete observation record for rule testing."""
+
+    record: dict[str, object] = {
+        "case_id": "TEST-CASE-1",
+        "surface": "Claude Code CLI",
+        "client_version": "2.1.220",
+        "client_build": "not reported by client",
+        "catalog_version": "0.15.0",
+        "plugin_version": "0.15.0",
+        "source_commit": "0" * 40,
+        "artifact": "generated Claude plugin tree",
+        "package_sha256": "0" * 64,
+        "prompt": "Check which completion claims have evidence.",
+        "expected_activation": "implicit",
+        "observed_activation": "activated",
+        "resource_loading": "loaded",
+        "invocation_behavior": "The skill was selected and its reference was read.",
+        "output_summary": "The reply carried the skill's named sections.",
+        "result": "pass",
+        "observed_at": "2026-09-10T12:00:00Z",
+        "operator": "Jovani Pink with Claude",
+        "evidence_reference": "docs/client-candidate-v0.15.0.md",
+        "session_depth": "fresh_single_turn",
+    }
+    record.update(overrides)
+    return record
+
+
+class ObservationDepthTests(unittest.TestCase):
+    """Every observation must say how deep in a session it was taken."""
+
+    def test_existing_matrices_still_validate_unchanged(self) -> None:
+        paths = sorted(
+            path
+            for path in (ROOT / "docs").glob("client-observations*.json")
+            if path.name != "client-observations-schema.json"
+        )
+        self.assertGreaterEqual(len(paths), 9)
+        for path in paths:
+            with self.subTest(path=path.name):
+                matrix = json.loads(path.read_text(encoding="utf-8"))
+                self.assertEqual([], validate_instance(matrix, OBSERVATION_SCHEMA))
+
+    def test_recent_records_must_declare_session_depth(self) -> None:
+        missing = observation()
+        del missing["session_depth"]
+        self.assertTrue(
+            validate_catalog.observation_record_errors(missing, "case", "0.15.0")
+        )
+        self.assertEqual(
+            [], validate_catalog.observation_record_errors(observation(), "case", "0.15.0")
+        )
+
+    def test_older_matrices_are_not_required_to_declare_depth(self) -> None:
+        older = observation(catalog_version="0.9.0")
+        del older["session_depth"]
+        self.assertEqual(
+            [], validate_catalog.observation_record_errors(older, "case", "0.9.0")
+        )
+
+    def test_unrecorded_depth_needs_historical_scope(self) -> None:
+        self.assertTrue(
+            validate_catalog.observation_record_errors(
+                observation(session_depth="not_recorded"), "case", "0.15.0"
+            )
+        )
+        self.assertEqual(
+            [],
+            validate_catalog.observation_record_errors(
+                observation(session_depth="not_recorded", evidence_scope="historical"),
+                "case",
+                "0.15.0",
+            ),
+        )
+
+    def test_continued_sessions_must_record_the_turn_index(self) -> None:
+        for record in (
+            observation(session_depth="continued_session"),
+            observation(session_depth="continued_session", turn_index=1),
+            observation(session_depth="fresh_multi_turn"),
+        ):
+            with self.subTest(record=record.get("turn_index")):
+                self.assertTrue(
+                    validate_catalog.observation_record_errors(record, "case", "0.15.0")
+                )
+        self.assertEqual(
+            [],
+            validate_catalog.observation_record_errors(
+                observation(session_depth="continued_session", turn_index=14),
+                "case",
+                "0.15.0",
+            ),
+        )
+
+    def test_a_date_without_a_clock_time_is_only_historical(self) -> None:
+        self.assertTrue(
+            validate_catalog.observation_record_errors(
+                observation(observed_at="2026-09-10"), "case", "0.15.0"
+            )
+        )
+        self.assertEqual(
+            [],
+            validate_catalog.observation_record_errors(
+                observation(observed_at="2026-09-10", evidence_scope="historical"),
+                "case",
+                "0.15.0",
+            ),
+        )
+
+    def test_observation_moments_must_be_real_calendar_dates(self) -> None:
+        schema = OBSERVATION_SCHEMA["properties"]["records"]["items"]["properties"][
+            "observed_at"
+        ]
+        for value in ("2026-09-10", "2026-09-10T12:00:00Z"):
+            self.assertEqual([], validate_instance(value, schema), value)
+        for value in ("2026-9-10", "2026-09-10T", "2026-09-10T12:00:00Z\n"):
+            self.assertTrue(validate_instance(value, schema), value)
+        self.assertTrue(
+            validate_catalog.observation_record_errors(
+                observation(observed_at="2026-02-30", evidence_scope="historical"),
+                "case",
+                "0.15.0",
+            )
+        )
+
+    def test_declared_surfaces_must_match_the_records(self) -> None:
+        for path in sorted((ROOT / "docs").glob("client-observations-v*.json")):
+            with self.subTest(path=path.name):
+                matrix = json.loads(path.read_text(encoding="utf-8"))
+                self.assertEqual(
+                    sorted({record["surface"] for record in matrix["records"]}),
+                    sorted(matrix["surfaces_covered"]),
+                )

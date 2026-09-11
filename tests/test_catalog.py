@@ -1217,30 +1217,9 @@ class CatalogTests(unittest.TestCase):
                 len(records), len({record["case_id"] for record in records})
             )
             self.assertNotIn("not_run", {record["result"] for record in records})
-            expected_surfaces = {
-                "Codex CLI",
-                "Codex Desktop",
-                "Claude Code CLI",
-                "Claude Code Desktop",
-                "Claude.ai",
-            }
-            if matrix["catalog_version"] not in {"0.1.0", "0.2.0", "0.3.0"}:
-                expected_surfaces.add("ChatGPT Web")
-            if matrix["catalog_version"] == "0.8.0":
-                expected_surfaces.remove("Codex Desktop")
-                expected_surfaces.add("ChatGPT Desktop")
-            if matrix["catalog_version"] == "0.9.0":
-                expected_surfaces.update(
-                    {
-                        "ChatGPT Desktop",
-                        "Gemini CLI",
-                        "OpenAI Skills API",
-                        "Anthropic Skills API",
-                        "Anthropic Managed Agents",
-                    }
-                )
             self.assertEqual(
-                expected_surfaces, {record["surface"] for record in records}
+                set(matrix["surfaces_covered"]),
+                {record["surface"] for record in records},
             )
 
     def test_v04_records_chatgpt_web_as_a_distinct_surface(self) -> None:

@@ -4,7 +4,7 @@ description: Merge findings from several completed reviews into one ranked list 
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.15.0"
+  version: "0.16.0"
   plugin: "jovanipink-skills"
   invocation: "implicit"
   provenance: "original"

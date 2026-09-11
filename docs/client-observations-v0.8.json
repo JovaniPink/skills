@@ -5,6 +5,14 @@
   "plugin_version": "0.8.0",
   "tested_source_commit": "a2aff9b4bf70fd50adf3b8a389b5cb0f7a190c6f",
   "acceptance_status": "blocked",
+  "surfaces_covered": [
+    "ChatGPT Desktop",
+    "ChatGPT Web",
+    "Claude Code CLI",
+    "Claude Code Desktop",
+    "Claude.ai",
+    "Codex CLI"
+  ],
   "summary": {
     "total": 42,
     "pass": 0,

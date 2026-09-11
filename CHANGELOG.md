@@ -4,6 +4,26 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+## [0.16.0] - 2026-09-11
+
+### Added
+
+- Structured client observations for 0.13, 0.14, and 0.15, restored from the candidate documents that recorded them. Machine-checked recording had stopped after 0.9.
+- `session_depth` and `turn_index` on observation records, so every observation states how far into a session it was taken.
+- `surfaces_covered` on each observation matrix, replacing a hardcoded six-surface expectation that rejected any partial matrix.
+- A written turn-depth study design, and HOLD-TURN-DEPTH, which bars describing any skill as governing a working session until that study runs.
+- Two review domains in `skill-security-review`: agent-facing configuration shipped inside a reviewed package, and client-shipped behavior overrides such as output styles that apply without asking.
+
+### Changed
+
+- `observed_at` accepts a date without a clock time, but only on historical evidence, and is now checked as a real calendar date with a true end anchor.
+- `docs/client-observations.json` is renamed `docs/client-observations-v0.1.json`. Its old name read as the current store while holding the oldest records.
+
+### Security
+
+- The ships-nothing list now names output styles. A plugin may ship one that applies as soon as it is enabled, replacing the user's own setting with no prompt. This catalog ships none; each pack contains a `skills` folder and nothing else.
+
+
 ## [0.15.0] - 2026-09-10
 
 ### Added

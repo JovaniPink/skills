@@ -5,6 +5,13 @@
   "plugin_version": "0.3.0",
   "tested_source_commit": "8bd7c5d3f8497ad0207be31689e5a0198bbf2b7a",
   "acceptance_status": "blocked",
+  "surfaces_covered": [
+    "Claude Code CLI",
+    "Claude Code Desktop",
+    "Claude.ai",
+    "Codex CLI",
+    "Codex Desktop"
+  ],
   "summary": {
     "total": 34,
     "pass": 0,

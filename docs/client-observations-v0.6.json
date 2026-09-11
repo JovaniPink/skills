@@ -5,7 +5,22 @@
   "plugin_version": "0.6.0",
   "tested_source_commit": "759b3bf9bfca9967144b02d18f0678e3b509e2b3",
   "acceptance_status": "blocked",
-  "summary": {"total": 17, "pass": 10, "fail": 0, "blocked": 7, "not_supported": 0, "not_run": 0},
+  "surfaces_covered": [
+    "ChatGPT Web",
+    "Claude Code CLI",
+    "Claude Code Desktop",
+    "Claude.ai",
+    "Codex CLI",
+    "Codex Desktop"
+  ],
+  "summary": {
+    "total": 17,
+    "pass": 10,
+    "fail": 0,
+    "blocked": 7,
+    "not_supported": 0,
+    "not_run": 0
+  },
   "records": [
     {
       "case_id": "V06-CODEX-CLI-UPDATE",

@@ -8,6 +8,7 @@ import json
 import re
 import subprocess
 import zipfile
+from datetime import datetime
 from pathlib import Path, PurePosixPath
 
 from cataloglib import (
@@ -98,6 +99,66 @@ def _validate_links(path: Path, text: str, errors: list[str]) -> None:
         if not resolved.exists():
             errors.append(f"{path.relative_to(ROOT)}: broken local link: {target}")
 
+
+SESSION_DEPTH_REQUIRED_FROM = (0, 10, 0)
+CONTINUED_SESSION_DEPTHS = {"fresh_multi_turn", "continued_session"}
+
+
+def _release_order(version: object) -> tuple[int, ...] | None:
+    """Return a comparable release tuple, or None when the value is not a release."""
+
+    if not isinstance(version, str) or re.fullmatch(r"\d+\.\d+\.\d+", version) is None:
+        return None
+    return tuple(int(part) for part in version.split("."))
+
+
+def _is_a_real_moment(value: str) -> bool:
+    """Accept a UTC timestamp or a bare calendar date that actually exists."""
+
+    for layout in ("%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d"):
+        try:
+            datetime.strptime(value, layout)
+        except ValueError:
+            continue
+        return True
+    return False
+
+
+def observation_record_errors(
+    record: dict[str, object], label: str, matrix_version: object
+) -> list[str]:
+    """Require every observation to say how deep in a session it was taken."""
+
+    errors: list[str] = []
+    order = _release_order(matrix_version)
+    historical = record.get("evidence_scope") == "historical"
+    depth = record.get("session_depth")
+    turn = record.get("turn_index")
+
+    if depth is None:
+        if order is not None and order >= SESSION_DEPTH_REQUIRED_FROM:
+            errors.append(f"{label}: session depth must be declared at catalog {matrix_version}")
+    elif depth == "not_recorded":
+        if not historical:
+            errors.append(f"{label}: session depth may stay unrecorded only on historical evidence")
+        if turn is not None:
+            errors.append(f"{label}: an unrecorded session depth cannot carry a turn index")
+    elif depth == "fresh_single_turn":
+        if turn is not None and turn != 1:
+            errors.append(f"{label}: a fresh single-turn session must have turn index 1")
+    elif depth in CONTINUED_SESSION_DEPTHS:
+        if not isinstance(turn, int):
+            errors.append(f"{label}: a continued session must record the turn index that produced it")
+        elif turn < 2:
+            errors.append(f"{label}: a continued session must have a turn index above the first turn")
+
+    observed_at = record.get("observed_at")
+    if isinstance(observed_at, str):
+        if not _is_a_real_moment(observed_at):
+            errors.append(f"{label}: observed_at is not a real calendar moment: {observed_at}")
+        elif "T" not in observed_at and not historical:
+            errors.append(f"{label}: a date without a clock time is allowed only on historical evidence")
+    return errors
 
 def immutable_action_reference_errors(text: str, label: str) -> list[str]:
     """Reject mutable third-party GitHub Action references without parsing YAML."""
@@ -615,24 +676,19 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             for record in records
             if isinstance(record, dict) and isinstance((surface := record.get("surface")), str)
         }
-        expected_surfaces = {"Codex CLI", "Codex Desktop", "Claude Code CLI", "Claude Code Desktop", "Claude.ai"}
-        if observations.get("catalog_version") not in {"0.1.0", "0.2.0", "0.3.0"}:
-            expected_surfaces.add("ChatGPT Web")
-        if observations.get("catalog_version") == "0.8.0":
-            expected_surfaces.remove("Codex Desktop")
-            expected_surfaces.add("ChatGPT Desktop")
-        if observations.get("catalog_version") == "0.9.0":
-            expected_surfaces.update(
-                {
-                    "ChatGPT Desktop",
-                    "Gemini CLI",
-                    "OpenAI Skills API",
-                    "Anthropic Skills API",
-                    "Anthropic Managed Agents",
-                }
-            )
+        declared = observations.get("surfaces_covered")
+        expected_surfaces = set(declared) if isinstance(declared, list) else set()
         if surfaces != expected_surfaces:
-            errors.append(f"{observation_path.relative_to(ROOT)}: expected surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
+            errors.append(f"{observation_path.relative_to(ROOT)}: declared surfaces {sorted(expected_surfaces)}, found {sorted(surfaces)}")
+        for record in records:
+            if isinstance(record, dict):
+                errors.extend(
+                    observation_record_errors(
+                        record,
+                        f"{observation_path.relative_to(ROOT)}: {record.get('case_id')}",
+                        observations.get("catalog_version"),
+                    )
+                )
         for record in records:
             if isinstance(record, dict) and record.get("surface") == "Gemini CLI":
                 if record.get("evidence_scope") != "historical":

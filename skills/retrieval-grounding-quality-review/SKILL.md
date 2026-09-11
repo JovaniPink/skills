@@ -4,7 +4,7 @@ description: Review whether an agent retrieval and grounding system selects auth
 license: MIT
 metadata:
   author: "Jovani Pink"
-  version: "0.15.0"
+  version: "0.16.0"
   plugin: "jovanipink-agent-platforms"
   invocation: "implicit"
   provenance: "clean-room"

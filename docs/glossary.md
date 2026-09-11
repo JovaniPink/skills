@@ -6,7 +6,7 @@ Plain definitions for the words this catalog uses. They are in alphabetical orde
 
 **Authored.** Something we wrote. An authored claim says what the instructions intend. It does not say what any client did.
 
-**Candidate.** A dated record for one catalog version. It lists what is prepared, installed, enabled, loaded, and behavior-tested in each app and CLI. See the [current candidate record](client-candidate-v0.15.0.md).
+**Candidate.** A dated record for one catalog version. It lists what is prepared, installed, enabled, loaded, and behavior-tested in each app and CLI. See the [current candidate record](client-candidate-v0.16.0.md).
 
 **Catalog.** All 79 skills in this repository, plus the records that describe them.
 
@@ -34,6 +34,8 @@ Plain definitions for the words this catalog uses. They are in alphabetical orde
 
 **Observed.** Something we ran and wrote down, with the exact client, version, date, and result. Observed evidence never carries from one app to another.
 
+**Output style.** A client setting that changes tone and format for every reply. A skill is different: it loads instructions for one kind of task. Anthropic draws the same line, and its built-in Concise style needs Claude Code v2.1.237 or later. Every observation in this repository was taken on 2.1.220, before that existed. This catalog ships no output styles.
+
 **Pack.** A group of related skills you install together. Clients also call this a plugin. There are seven packs.
 
 **Plugin.** The client's word for a pack. Installing a pack and enabling each of its skills are separate choices.
@@ -43,6 +45,8 @@ Plain definitions for the words this catalog uses. They are in alphabetical orde
 **Provenance.** The record of where a skill's content came from. It holds the source, its license, the review date, and what was changed. Every skill has an entry in `provenance/catalog.json`. See the [provenance policy](provenance.md).
 
 **Recipe.** A suggested set of skills for one kind of work. A recipe is advice. It is not something you install.
+
+**Session depth.** How far into a conversation an observation was taken. Every record here comes from the first turn of a fresh session, which is where instructions are followed most closely. See [the turn-depth study design](turn-depth-study.md).
 
 **Skill.** A short set of written instructions for one kind of task. Your client reads the skill and follows its steps. A skill is text. It adds no programs, tools, or permissions.
 

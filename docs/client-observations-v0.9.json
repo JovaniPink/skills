@@ -5,6 +5,19 @@
   "plugin_version": "0.9.0",
   "tested_source_commit": "24998cdfd16ce0b87ad0883c9919c24d058f89ce",
   "acceptance_status": "blocked",
+  "surfaces_covered": [
+    "Anthropic Managed Agents",
+    "Anthropic Skills API",
+    "ChatGPT Desktop",
+    "ChatGPT Web",
+    "Claude Code CLI",
+    "Claude Code Desktop",
+    "Claude.ai",
+    "Codex CLI",
+    "Codex Desktop",
+    "Gemini CLI",
+    "OpenAI Skills API"
+  ],
   "summary": {
     "total": 16,
     "pass": 6,
