@@ -1,12 +1,14 @@
 # Choose Your Skills
 
-Start with the smallest exact skill selection that covers the current decision. Plugins distribute skills; profiles select which skills should be activated or exposed for a bounded kind of work.
+Install the smallest set of skills that covers the work in front of you. A pack is a group of skills you install together. A profile names which skills to turn on for one kind of work.
 
-Clients discover skills from their names and descriptions before loading full instructions. Installing unrelated skills spends discovery space and can create routing collisions. OpenAI documents an initial Codex skill-list budget of 2 percent of the context window, or 8,000 characters when the context size is unknown. This catalog warns at 6,000 characters because system instructions and unrelated installed skills also use context.
+Install less than you think you need. Before your client picks a skill, it reads the name and short description of every skill you have installed. Skills you do not need take up that room and make a wrong pick more likely.
 
-Plugin measurements live in [`catalog/packs.json`](../catalog/packs.json). Skill-level activation profiles and their per-surface measurements live in [`catalog/profiles.json`](../catalog/profiles.json). The measurements include canonical discovery descriptions, not the full instruction bodies.
+OpenAI gives Codex a skill-list budget of 2 percent of the context window, or 8,000 characters when the size is unknown. This catalog warns at 6,000, because your own instructions share that room.
 
-## Pick one plugin first
+Pack sizes live in [`catalog/packs.json`](../catalog/packs.json). Profiles and their sizes for each client live in [`catalog/profiles.json`](../catalog/profiles.json). These sizes count only the short descriptions a client reads to pick a skill. They do not count the full instructions.
+
+## Pick one pack first
 
 | Need | Start with |
 | --- | --- |
@@ -18,19 +20,19 @@ Plugin measurements live in [`catalog/packs.json`](../catalog/packs.json). Skill
 | Evaluate AI behavior, context reliability, or source conformance | `jovanipink-ai-systems` |
 | Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `jovanipink-agent-platforms` |
 
-The engineering plugin is cleared for both command lines as of 2026-09-10. Other app modes remain unchecked. Read the [current candidate checks](client-candidate-v0.15.0.md) before you rely on one.
+The engineering pack is cleared for both command lines as of 2026-09-10. We have not checked the other app modes. Read the [current candidate checks](client-candidate-v0.15.0.md) before you rely on one.
 
-The engineering plugin is also above the 6,000-character warning line. That line is a repository guardrail for pack size. No client publishes it as a limit. Install the pack when its broad lifecycle coverage is useful. For a narrow task, pick the one skill you need and leave unrelated plugins off.
+The engineering pack is over the 6,000-character warning line. That line is our own guardrail. No client publishes it as a limit. Install the pack when you want the whole lifecycle. For a narrow task, pick the one skill you need and leave the other packs off.
 
 ## Experimental activation profile
 
-`delivery-typescript-experimental` selects seven exact capabilities for a bounded TypeScript delivery task. It exists to support baseline-versus-treatment experiments; it is not a default recommendation and must not be described as behaviorally verified until reviewed receipts support that claim.
+`delivery-typescript-experimental` turns on seven named skills for one small TypeScript delivery task. It exists so we can compare a run that uses them against a run that does not. It is not a recommendation. Do not call it tested in a live client until reviewed records say so.
 
-Profile budgets are surface-specific. Codex observations record its current initial skill-list behavior, including shortening or omission. Claude Code observations separately record its listing budget, per-entry truncation, overrides, and retained descriptions. No single portable character ceiling is asserted.
+Each client has its own budget. We record what Codex does with its first skill list, including where it shortens or drops an entry. We record Claude Code's budget, cut-off, and overrides on their own. We do not claim one character limit that holds everywhere.
 
 ## Small recipes
 
-Recipes are suggested combinations, not separate installable products. Do not assume a client can install only a recipe unless that exact behavior has been observed for that client.
+A recipe is a suggested set of skills. It is not something you install. Do not assume a client can install a recipe by itself unless we have watched it do that.
 
 | Work | Skills |
 | --- | --- |
@@ -46,23 +48,23 @@ Recipes are suggested combinations, not separate installable products. Do not as
 | Connect research to evaluated public findings | `research-to-publication-lifecycle`, `source-grounded-research`, `workflow-retrospective` |
 | Learn after launch | `iteration-postlaunch-learning`, `kpi-outcome-measurement`, `production-incident-analysis` |
 
-All recommended recipes are measured and must remain below 8,000 discovery-description characters. The validator rejects stale measurements and over-limit recipes.
+We measure every recipe on this page. Each one has to stay under 8,000 characters of description text. The validator fails if a measurement is out of date or a recipe runs over.
 
 ## Add a stack profile only when the repository needs it
 
-Use `cross-stack-quality-gates` to discover the repository's actual commands. Add the matching stack profile when you need language or platform judgment. A profile does not replace repository scripts, wrappers, lockfiles, CI, or platform evidence.
+Use `cross-stack-quality-gates` to find the commands a repository really uses. Add the matching stack profile when you need judgment about that language or platform. A profile does not replace the repository's own scripts, lockfiles, CI, or platform records.
 
-## Add agent-platform skills only for agent-system work
+## Add agent-platform skills only for agent work
 
-The `jovanipink-agent-platforms` plugin is for people designing or reviewing agent systems through ChatGPT, Codex, Claude, or Antigravity CLI. Gemini CLI is a conditional enterprise compatibility surface after Google's individual-user transition. The plugin is not a runtime bundle for a SaaS agent.
+Use `jovanipink-agent-platforms` when you are designing or reviewing an agent system in ChatGPT, Codex, Claude, or Antigravity CLI. Gemini CLI is an enterprise-only compatibility surface after Google's transition of individual users to Antigravity CLI. This pack is not a runtime bundle for a hosted agent.
 
 Read [Google agent surfaces](google-agent-surfaces.md), [Google ADK](google-adk.md), and [Agent platform boundaries](agent-platform-boundaries.md) before using those workflows in a Google agent project.
 
-## Check invocation and maturity
+## Check how a skill gets picked, and how mature it is
 
-An explicit-only skill requires direct selection. Direct selection chooses the workflow but does not grant permission to push, merge, publish, deploy, delete, or write to an external system.
+You have to pick an explicit-only skill yourself. Picking it starts the workflow. It does not grant permission to push, merge, publish, deploy, delete, or write to an outside system.
 
-Use [`catalog/skills.json`](../catalog/skills.json) to check invocation, risk, maturity, companions, and routing conflicts. Use [`catalog/evidence.json`](../catalog/evidence.json) for the orthogonal behavioral, client, and runtime state. Candidate workflow maturity and missing behavioral evidence are different claims.
+Use [`catalog/skills.json`](../catalog/skills.json) to check how a skill gets picked, how risky it is, how mature it is, what pairs well with it, and where it may collide with another skill. Use [`catalog/evidence.json`](../catalog/evidence.json) for what we have actually seen in a live client. These are two different claims. A workflow can be mature and still have no live record.
 
 ## Primary resources
 

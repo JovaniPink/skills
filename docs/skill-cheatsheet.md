@@ -1,24 +1,26 @@
 # JovaniPink Skills Cheatsheet
 
-Use this page to find a skill quickly. The catalog contains 79 skills across seven plugins. For installation and client details, read [How to Use JovaniPink Skills](README.md). For fuller explanations, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+Use this page to find a skill fast. The catalog contains 79 skills in seven packs. Each row names one skill, says what it does, and says how it gets picked.
 
-## Invocation legend
+The [glossary](glossary.md) defines the words on this page. To install a pack, read [How to Use JovaniPink Skills](README.md). For a longer write-up of each skill, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
-- `Implicit`: The client may select the skill when the request clearly matches its description. You can still select it directly when the client supports direct selection.
-- `Explicit-only`: The skill must be selected directly. Selecting it does not authorize push, merge, deletion, publication, deployment, credential use, or another protected action.
+## How skills get picked
 
-Common direct-selection forms:
+- `Implicit`: the client may pick this skill on its own when your request matches what it does. You can also pick it yourself.
+- `Explicit-only`: you have to pick this skill yourself. Picking it does not grant permission to push, merge, delete, publish, deploy, or use a credential. Those still need your approval.
+
+Here is how you pick a skill yourself in each client.
 
 | Client | Form |
 | --- | --- |
 | ChatGPT | Type `@`, then select the installed skill. |
 | Codex | Use `$plugin-name:skill-name`. |
 | Claude Code | Use `/plugin-name:skill-name`. |
-| Claude.ai | Use a matching request. Direct explicit-only behavior is not claimed for this surface. |
+| Claude.ai | Ask in plain words. We have not confirmed that you can pick an explicit-only skill here. |
 
 ## Core: jovanipink-skills
 
-Use this plugin for verification, research, diagnosis, authority boundaries, publication safety, and agent-package security.
+Use this pack to check claims, research a question, find the cause of a problem, map who owns what data, and review what is safe to publish.
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
@@ -37,7 +39,7 @@ Use this plugin for verification, research, diagnosis, authority boundaries, pub
 
 ## Engineering: jovanipink-engineering
 
-Use this plugin for the software lifecycle, application quality, architecture, review, testing, and controlled execution.
+Use this pack to plan, build, test, review, and finish code work.
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
@@ -69,7 +71,7 @@ Use this plugin for the software lifecycle, application quality, architecture, r
 
 ## Stack profiles: jovanipink-stack-profiles
 
-Use these optional profiles after repository commands and toolchains have been discovered.
+Add one of these only after you know the commands and tools the repository actually uses.
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
@@ -87,7 +89,7 @@ Use these optional profiles after repository commands and toolchains have been d
 
 ## Operations: jovanipink-operations
 
-Use this plugin for requirements, governance, measurement, adoption, incidents, and stakeholder decisions.
+Use this pack for requirements, decisions, measurement, adoption, and incidents.
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
@@ -105,7 +107,7 @@ Use this plugin for requirements, governance, measurement, adoption, incidents, 
 
 ## Reasoning: jovanipink-reasoning
 
-Use this plugin for alignment, explanation, impact analysis, technical writing, configuration, and continuity.
+Use this pack to agree on scope, explain code, weigh the impact of a change, write clearly, and hand work off.
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
@@ -123,7 +125,7 @@ Use this plugin for alignment, explanation, impact analysis, technical writing, 
 
 ## AI systems: jovanipink-ai-systems
 
-Use this optional plugin for AI evaluation contracts, assertion-level context reliability, and exact source-to-readback conformance.
+Use this pack to test how an AI system behaves, check whether its context is reliable, and confirm that its output matches its sources.
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |
@@ -133,7 +135,7 @@ Use this optional plugin for AI evaluation contracts, assertion-level context re
 
 ## Agent platforms: jovanipink-agent-platforms
 
-Use this optional plugin when people are designing or reviewing agent systems. It is not a runtime skill bundle and does not grant tools or deployment authority.
+Use this pack when you are designing or reviewing an agent system. It is not a runtime bundle. It grants no tools and no deployment authority.
 
 | Skill | What it does | Invocation |
 | --- | --- | --- |

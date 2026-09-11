@@ -57,3 +57,13 @@ Check this task summary against its evidence. State the supported result first. 
 Confirm which skill the client used. Open one of its linked notes. Ask a status question, then resume the task and check that the original goal is still clear.
 
 Use the [client checklist](client-support.md) to record the version, files, result, and anything you could not check. Test the CLI and app separately.
+
+## If it does not work
+
+Check these in order.
+
+1. The pack is installed. Run your client's plugin list command and look for it by name.
+2. The pack is enabled. Installing does not always enable. Some clients report a successful install and leave the pack off.
+3. The reply carries the skill's own named sections. This is the one that catches people.
+
+A reasonable-sounding answer is not proof that a skill loaded. In one recorded check, ten cases ran against a pack that was installed but disabled. Every reply read well, and not one contained the skill's named sections. Before you judge a skill, confirm its shape appears in the output.
