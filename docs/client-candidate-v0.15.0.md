@@ -23,7 +23,7 @@ Source binding, manifest commit, and merge commit are pending.
 | Claude.ai Chat | Pending | Pending | Pending | Pending | Pending |
 | Claude desktop Chat | Pending | Pending | Pending | Pending | Pending |
 | Cowork | Pending | Pending | Pending | Pending | Pending |
-| Antigravity CLI (1.2.0, 65 eligible skills) | Done | Done | Done | Done | Done |
+| Antigravity CLI | Full 65-skill bundle and 5-skill preview built | Installed on CLI 1.2.0 | Enabled after explicit enable step | Skill contracts returned on positive and near-miss cases | Sampled 5 of 65 skills; 4 cases met expectation |
 | Antigravity desktop | Pending | Pending | Pending | Pending | Pending |
 | Antigravity IDE | Pending | Pending | Pending | Pending | Pending |
 
@@ -33,13 +33,13 @@ All 14 explicit-only skills remain excluded from Antigravity and from any receiv
 
 ## Holds carried forward
 
-Both command-line engineering holds were lifted at 0.14.0 and stay lifted. The Antigravity CLI expansion hold is lifted for all 65 eligible implicit skills following 1.2.0 resolution of the non-interactive permission blocker, live verification of the 0.15.0 SARIF finding vocabulary, and live verification of finding-consolidation. The 14 explicit-only skills remain excluded. No app or IDE mode has been tested on any client.
+Both command-line engineering holds were lifted at 0.14.0 and stay lifted. The Antigravity CLI expansion is installed and enabled across all 65 eligible implicit skills on CLI 1.2.0 (with 14 explicit-only skills excluded), but behavioral testing is sampled across five skills; full 65-skill behavioral expansion remains bounded to sampled evidence. No app or IDE mode has been tested on any client.
 
-## A stated limit of this release
+## A stated limit of this release (partially discharged)
 
-`finding-consolidation` ships in the same release as the seven skills whose output it consumes. No adopting skill has yet been observed emitting a severity on a real client, so the consolidator's input format is authored rather than observed.
+`finding-consolidation` ships in the same release as the seven skills whose output it consumes. Previously, no adopting skill had been observed emitting a severity on a real client, so the consolidator's input format was authored rather than observed.
 
-That is a deliberate choice, and it has a cost: if a later client observation fails, the wording change and the new skill cannot be separated by bisecting this release. Record which of the two produced a failure by testing an adopting skill on its own before testing consolidation.
+This limit is partially discharged: on Antigravity CLI 1.2.0, `code-change-review` was observed emitting the four SARIF severity grades (`error`, `warning`, `note`) and state (`new`) on a pinned diff. However, the remaining six adopting skills (`accessibility-review`, `application-security-review`, `api-contract-compatibility-review`, `dependency-supply-chain-review`, `test-quality-review`, `skill-security-review`) remain unobserved on a live client.
 
 ## Required before behavior can be claimed
 
@@ -54,13 +54,13 @@ A pass on one client does not establish another. These checks do not complete th
 
 ## Antigravity CLI 1.2.0 observation (5-skill preview)
 
-Tested on 2026-09-10 against Antigravity CLI 1.2.0 (`agy`), self-updated past 1.1.26 Homebrew cask metadata. The 5-skill preview (`accessibility-review`, `code-change-review`, `finding-consolidation`, `functional-motion-review`, `performance-scalability-diagnosis`) was built with `scripts/build_antigravity.py` into `dist/antigravity-eval-0.15.0/plugin`, installed via `agy plugin install`, and enabled with `agy plugin enable jovanipink-antigravity-preview`.
+Tested on 2026-09-10 against Antigravity CLI 1.2.0 (`agy`), self-updated past 1.1.26 Homebrew cask metadata. The 5-skill evaluation preview was built with `scripts/build_antigravity.py` into `dist/antigravity-eval-0.15.0/plugin` for targeted observation. Subsequently, the full 65-skill bundle was built into `dist/antigravity-v0.15.0-full/plugin`, installed via `agy plugin install`, and enabled with `agy plugin enable jovanipink-antigravity-preview` (65 skills verified installed, 14 explicit-only excluded).
 
 ### Observations:
-1. **Permission resolution on near-miss case 3 (`functional-motion-review-near-miss-3`)**:
+1. **Diagnostic routing check on near-miss case 3 (`functional-motion-review-near-miss-3`)**:
    - Prompt: "Diagnose server query latency without interactive presentation; use performance-scalability-diagnosis."
-   - Executed with `agy --dangerously-skip-permissions --print`.
-   - Result: Completed successfully (exit 0). Selected and executed `performance-scalability-diagnosis`, emitting all named output sections (`## Hypotheses`, `## Measurements`, `## Causal Diagnosis`, `## Capacity Estimate`, `## Next Experiment`). This resolves the 0.14.0 unscored near-miss case where non-interactive permission was denied.
+   - Executed under diagnostic test conditions with `agy --dangerously-skip-permissions --print` to isolate routing logic from non-interactive permission prompt refusal.
+   - Result: Completed successfully (exit 0). Selected and executed `performance-scalability-diagnosis`, emitting all named output sections (`## Hypotheses`, `## Measurements`, `## Causal Diagnosis`, `## Capacity Estimate`, `## Next Experiment`). This confirms that the model routes correctly to `performance-scalability-diagnosis`, while standard unbypassed non-interactive execution remains blocked on command permission prompts per the catalog safety rule.
 
 2. **0.15.0 finding vocabulary adoption check (`code-change-review`)**:
    - Tested positive case 1 against a pinned Go authentication session diff.
