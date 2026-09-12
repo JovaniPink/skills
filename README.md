@@ -6,6 +6,8 @@ A skill is a short set of written instructions for one kind of task. Reviewing a
 
 A skill is only text. It installs no programs and grants no new permissions. It changes how your assistant works through a task, not what it is allowed to do.
 
+[Getting started article](https://jovanipink.com/posts/getting-started-with-jovanipink-skills): try one skill with a small evidence exercise.
+
 ## Install one pack
 
 A pack is a group of related skills you install together. There are seven. Start with one.
@@ -105,7 +107,7 @@ Authored means we wrote it. It says what the instructions intend.
 
 Observed means we ran it and wrote down what happened, with the exact client, version, and date.
 
-The current catalog is version 0.16.0. It has 79 skills in seven packs. The [current candidate record](docs/client-candidate-v0.15.0.md) holds the install and behavior results for it.
+The current catalog is version 0.16.0. It has 79 skills in seven packs. The [current candidate record](docs/client-candidate-v0.16.0.md) holds the install and behavior results for it.
 
 The `jovanipink-engineering` pack was held after one of its skills failed a live safety test. Both command lines ran the ten original test cases on 2026-09-10 and cleared it. The pack is enabled there. Other app modes are still unchecked. Read the candidate record before you enable it somewhere else.
 
