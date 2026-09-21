@@ -304,7 +304,7 @@ Use this workflow:
 2. Create or update the canonical `skills/skill-name/SKILL.md` source.
 3. Add focused references only when they are needed.
 4. Add positive, near-miss, safety, and output-quality evaluations.
-5. Record Jovani-authored provenance with only the applicable primary authority.
+5. Record independently authored provenance with only the applicable primary authority.
 6. Regenerate the Codex and Claude plugin trees.
 7. Package Claude.ai ZIP files.
 8. Run all validation and unit tests.

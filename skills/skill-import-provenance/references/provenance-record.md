@@ -1,6 +1,6 @@
 # Provenance record
 
-Record one entry for every authorized transfer of Jovani-owned skill material. Do not create a tracked source record for a third-party skill catalog.
+Record one entry for every authorized transfer of owned original skill material. Do not create a tracked source record for a third-party skill catalog.
 
 ```json
 {
@@ -9,7 +9,7 @@ Record one entry for every authorized transfer of Jovani-owned skill material. D
   "implementation_method": "original | clean-room",
   "source_url": "primary format, interoperability, or correctness authority",
   "pinned_revision": "immutable revision or explained retrieval receipt",
-  "upstream_license": "format-authority status and confirmation that workflow behavior is Jovani-authored",
+  "upstream_license": "format-authority status and confirmation that workflow behavior is independently authored",
   "reviewed_on": "YYYY-MM-DD",
   "reviewed_material": ["paths or artifact identifiers"],
   "local_changes": "material differences",

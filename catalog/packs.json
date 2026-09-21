@@ -161,11 +161,11 @@
         "source-grounded-research",
         "systematic-diagnosis"
       ],
-      "description_characters": 3319,
+      "description_characters": 3321,
       "budget_status": "within-budget",
       "discovery_estimates": {
-        "codex": 4467,
-        "claude": 4479
+        "codex": 4469,
+        "claude": 4481
       }
     },
     {

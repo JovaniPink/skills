@@ -936,7 +936,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual("v0.7", tracks["acceptance-evidence-ledger"]["target_release"])
         self.assertEqual("released", tracks["portable-skill-authoring"]["status"])
         self.assertEqual(
-            "measured-reasoning", tracks["portable-skill-authoring"]["plugin"]
+            "jovanipink-reasoning", tracks["portable-skill-authoring"]["plugin"]
         )
         self.assertEqual(
             ["portable-skill-authoring"], tracks["portable-skill-authoring"]["skills"]
@@ -948,7 +948,7 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual("released", tracks["ai-reliability-foundations"]["status"])
         self.assertEqual("v0.8", tracks["ai-reliability-foundations"]["target_release"])
         self.assertEqual(
-            "measured-ai-systems", tracks["ai-reliability-foundations"]["plugin"]
+            "jovanipink-ai-systems", tracks["ai-reliability-foundations"]["plugin"]
         )
 
     def test_v07_acceptance_ledger_contract(self) -> None:

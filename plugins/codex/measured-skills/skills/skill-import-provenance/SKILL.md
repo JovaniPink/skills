@@ -1,6 +1,6 @@
 ---
 name: skill-import-provenance
-description: Review provenance before transferring Jovani-owned skill material between authorized repositories or distributions. Invoke explicitly for an owned-source transfer or a decision about whether proposed external skill material must be rejected; third-party skill catalogs are never implementation sources.
+description: Review provenance before transferring owned original skill material between authorized repositories or distributions. Invoke explicitly for an owned-source transfer or a decision about whether proposed external skill material must be rejected; third-party skill catalogs are never implementation sources.
 license: MIT
 metadata:
   author: "Measured Studios"
@@ -13,7 +13,7 @@ metadata:
 
 # Skill Import Provenance
 
-Keep Jovani-owned work and primary authorities separate from external rejection evidence. Read [provenance record](references/provenance-record.md) before proposing an owned-source transfer.
+Keep owned original work and primary authorities separate from external rejection evidence. Read [provenance record](references/provenance-record.md) before proposing an owned-source transfer.
 
 ## Workflow
 

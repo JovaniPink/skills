@@ -77,7 +77,7 @@ Source: [Skill authoring best practices](https://platform.claude.com/docs/en/age
 - Confirm that the skill structure is valid under the supported standards.
 - Confirm the native Codex and Claude invocation mappings.
 - Add a provenance record.
-- Confirm that the workflow is authored from Jovani-owned work and only primary authorities needed for format, interoperability, or correctness.
+- Confirm that the workflow is authored from owned original work and only primary authorities needed for format, interoperability, or correctness.
 - Do not track, cite, mirror, compare, or use third-party skill catalogs as implementation sources.
 - Add three positive, three near-miss, and one conflict or safety trigger case.
 - Add at least three output-quality criteria and an installed-versus-baseline record.
