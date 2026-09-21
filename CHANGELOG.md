@@ -4,6 +4,16 @@ All notable changes use this file. The project follows semantic versioning after
 
 ## [Unreleased]
 
+### 0.17.0 candidate
+
+- Rename the offering to Measured Skills by Measured Studios; retain source ownership and historical attribution.
+- Split engineering into build, review, and delivery while preserving all 79 skills and invocation controls.
+- Add selected-skill native exports, identifier migration records, and discovery estimates including names and relative paths.
+- Refine planning, module design, and TDD around architecture and behaviorally complete vertical slices.
+- Index historical motion observations without asserting current behavior or comparative benefit.
+- Reconcile PR 44 findings; defer the policy-only repository's prohibited pre-commit hook.
+- Keep client acceptance, comparative runs, the normal-work pilot, and default promotion unverified.
+
 ## [0.16.0] - 2026-09-11
 
 ### Added

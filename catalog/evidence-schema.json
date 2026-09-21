@@ -11,7 +11,7 @@
       "const": "./evidence-schema.json"
     },
     "catalog_version": {
-      "const": "0.16.0"
+      "const": "0.17.0"
     },
     "skills": {
       "type": "array",
@@ -82,6 +82,52 @@
               "released",
               "revoked"
             ]
+          },
+          "historical_observations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "record_file",
+                "case_id",
+                "client_version",
+                "surface",
+                "observed_at",
+                "catalog_version",
+                "limit"
+              ],
+              "properties": {
+                "record_file": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "case_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "client_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "surface": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "observed_at": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "catalog_version": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "limit": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": false
+            }
           }
         },
         "additionalProperties": false

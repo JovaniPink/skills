@@ -23,18 +23,18 @@ Replace the example path with your local checkout. These commands change your in
 
 ```sh
 claude plugin marketplace add /absolute/path/to/skills --scope user
-claude plugin install jovanipink-skills@jovanipink-skills --scope user
+claude plugin install measured-skills@measured-skills --scope user
 claude plugin list --json
 ```
 
-The install argument is `plugin@marketplace`. The marketplace here is named `jovanipink-skills`, and one of its seven packs carries that same name, so `jovanipink-skills@jovanipink-skills` is correct rather than a typo. Every other pack reads as `jovanipink-engineering@jovanipink-skills` and follows the same shape.
+The install argument is `plugin@marketplace`. The marketplace here is named `measured-skills`, and one of its seven packs carries that same name, so `measured-skills@measured-skills` is correct rather than a typo. Every other pack reads as `measured-engineering-build@measured-skills` and follows the same shape.
 
 For an existing install, refresh the marketplace before updating the plugin. Use `claude plugin marketplace update --help` and `claude plugin update --help` to check the current command form. Save the old version and file hashes first. Check every installed file after the update. In the observed 2.1.220 update, all seven packs moved to 0.11.0 and their files matched the generated source. The desktop plugin pages also showed the new version; that did not establish behavior in an existing task.
 
 Start a fresh task, then select the full plugin command:
 
 ```text
-/jovanipink-skills:claim-verification Check which completion claims have evidence. Make no changes.
+/measured-skills:claim-verification Check which completion claims have evidence. Make no changes.
 ```
 
 Generated Claude packages omit Codex's `agents/` files. Skills that require direct selection get `disable-model-invocation: true`. Check both direct selection and a related prompt that should leave the skill inactive.

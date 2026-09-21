@@ -16,9 +16,9 @@ name: example-skill
 description: What the skill does and the concrete situations that should activate it.
 license: MIT
 metadata:
-  author: "Jovani Pink"
+  author: "Measured Studios"
   version: "0.9.0"
-  plugin: "jovanipink-skills"
+  plugin: "measured-skills"
   invocation: "implicit"
   provenance: "original"
   risk_class: "read-only"
@@ -40,7 +40,7 @@ policy:
   allow_implicit_invocation: true
 ```
 
-The canonical default prompt must mention the skill with `$skill-name`. Set the policy to `false` for explicit-only skills. Generation rewrites that prompt to `$jovanipink-skills:skill-name` for the installed plugin namespace.
+The canonical default prompt must mention the skill with `$skill-name`. Set the policy to `false` for explicit-only skills. Generation rewrites that prompt to `$measured-skills:skill-name` for the installed plugin namespace.
 
 ## Workflow rules
 

@@ -1,12 +1,12 @@
 {
   "$schema": "./packs-schema.json",
-  "catalog_version": "0.16.0",
+  "catalog_version": "0.17.0",
   "budget_warning_characters": 6000,
   "budget_limit_characters": 8000,
   "plugin_packs": [
     {
-      "plugin": "jovanipink-agent-platforms",
-      "purpose": "Human-facing agent architecture, security, tools, context, protocols, retrieval, and Google ADK review.",
+      "plugin": "measured-agent-platforms",
+      "purpose": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
       "skills": [
         "agent-context-state-memory-design",
         "agent-protocol-interoperability-review",
@@ -16,55 +16,91 @@
         "retrieval-grounding-quality-review"
       ],
       "description_characters": 2309,
-      "budget_status": "within-budget"
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 3053,
+        "claude": 3059
+      }
     },
     {
-      "plugin": "jovanipink-ai-systems",
-      "purpose": "AI evaluation, context reliability, and source-to-output conformance.",
+      "plugin": "measured-ai-systems",
+      "purpose": "Optional AI evaluation, context reliability, and source-to-output conformance workflows.",
       "skills": [
         "agent-evaluation-design",
         "context-reliability-review",
         "source-output-conformance-audit"
       ],
       "description_characters": 1130,
-      "budget_status": "within-budget"
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 1449,
+        "claude": 1452
+      }
     },
     {
-      "plugin": "jovanipink-engineering",
-      "purpose": "Planning, implementation, testing, review, Git, and operational engineering.",
+      "plugin": "measured-engineering-build",
+      "purpose": "Frame outcomes, design interfaces, plan vertical slices, and test behavior.",
+      "skills": [
+        "implementation-planning",
+        "module-interface-design",
+        "problem-framing",
+        "test-driven-change",
+        "test-strategy"
+      ],
+      "description_characters": 1301,
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 1785,
+        "claude": 1790
+      }
+    },
+    {
+      "plugin": "measured-engineering-delivery",
+      "purpose": "Coordinate bounded execution, isolated work, review handoffs, and delivery evidence.",
       "skills": [
         "acceptance-evidence-ledger",
+        "finish-development-branch",
+        "merge-conflict-reconciliation",
+        "multi-agent-orchestration",
+        "plan-execution",
+        "prototype-spike",
+        "request-code-review",
+        "respond-to-code-review",
+        "worktree-isolation"
+      ],
+      "description_characters": 2415,
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 3368,
+        "claude": 3377
+      }
+    },
+    {
+      "plugin": "measured-engineering-review",
+      "purpose": "Review correctness, compatibility, security, operations, and test quality.",
+      "skills": [
         "accessibility-review",
         "api-contract-compatibility-review",
         "application-security-review",
         "code-change-review",
         "data-migration-readiness",
         "dependency-supply-chain-review",
-        "finish-development-branch",
         "functional-motion-review",
-        "implementation-planning",
-        "merge-conflict-reconciliation",
-        "module-interface-design",
-        "multi-agent-orchestration",
         "observability-design",
         "operational-readiness-review",
         "performance-scalability-diagnosis",
-        "plan-execution",
-        "problem-framing",
-        "prototype-spike",
-        "request-code-review",
-        "respond-to-code-review",
-        "test-driven-change",
-        "test-quality-review",
-        "test-strategy",
-        "worktree-isolation"
+        "test-quality-review"
       ],
-      "description_characters": 6665,
-      "budget_status": "warning"
+      "description_characters": 2750,
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 3973,
+        "claude": 3984
+      }
     },
     {
-      "plugin": "jovanipink-operations",
-      "purpose": "Requirements, decisions, measurement, adoption, workshops, and incident learning.",
+      "plugin": "measured-operations",
+      "purpose": "Portable requirements, decision, measurement, adoption, and incident workflows.",
       "skills": [
         "change-adoption-planning",
         "cross-capability-dependency-mapping",
@@ -79,11 +115,15 @@
         "workshop-planning-synthesis"
       ],
       "description_characters": 2570,
-      "budget_status": "within-budget"
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 3797,
+        "claude": 3808
+      }
     },
     {
-      "plugin": "jovanipink-reasoning",
-      "purpose": "Alignment, explanation, impact analysis, writing, continuity, and skill authoring.",
+      "plugin": "measured-reasoning",
+      "purpose": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
       "skills": [
         "alignment-interview",
         "change-impact-analysis",
@@ -98,11 +138,15 @@
         "workflow-retrospective"
       ],
       "description_characters": 3171,
-      "budget_status": "within-budget"
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 4237,
+        "claude": 4248
+      }
     },
     {
-      "plugin": "jovanipink-skills",
-      "purpose": "Evidence, diagnosis, quality gates, publication safety, and skill security.",
+      "plugin": "measured-skills",
+      "purpose": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
       "skills": [
         "authority-boundary-review",
         "claim-verification",
@@ -118,11 +162,15 @@
         "systematic-diagnosis"
       ],
       "description_characters": 3319,
-      "budget_status": "within-budget"
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 4467,
+        "claude": 4479
+      }
     },
     {
-      "plugin": "jovanipink-stack-profiles",
-      "purpose": "Optional stack-specific engineering judgment after repository discovery.",
+      "plugin": "measured-stack-profiles",
+      "purpose": "Optional language and infrastructure engineering profiles.",
       "skills": [
         "adobe-aem-engineering-profile",
         "csharp-dotnet-engineering-profile",
@@ -137,7 +185,11 @@
         "typescript-javascript-engineering-profile"
       ],
       "description_characters": 2683,
-      "budget_status": "within-budget"
+      "budget_status": "within-budget",
+      "discovery_estimates": {
+        "codex": 3996,
+        "claude": 4007
+      }
     }
   ],
   "recipes": [

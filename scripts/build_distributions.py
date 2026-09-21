@@ -69,7 +69,7 @@ def marketplace_documents() -> tuple[CodexMarketplace, ClaudeMarketplace]:
 
     codex: CodexMarketplace = {
         "name": CATALOG_NAME,
-        "interface": {"displayName": "JovaniPink Skills Catalog"},
+        "interface": {"displayName": "Measured Skills Catalog"},
         "plugins": [
             {
                 "name": plugin,
@@ -89,7 +89,7 @@ def marketplace_documents() -> tuple[CodexMarketplace, ClaudeMarketplace]:
     claude: ClaudeMarketplace = {
         "name": CATALOG_NAME,
         "description": "Portable workflow skills for software, research, and operations.",
-        "owner": {"name": "Jovani Pink", "url": "https://jovanipink.com"},
+        "owner": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
         "plugins": [
             {
                 "name": plugin,
@@ -171,8 +171,8 @@ def build(output_root: Path, write_marketplaces: bool = False) -> tuple[dict[str
             "name": plugin,
             "version": VERSION,
             "description": spec["description"],
-            "author": {"name": "Jovani Pink", "url": "https://jovanipink.com"},
-            "homepage": "https://github.com/JovaniPink/skills",
+            "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
+            "homepage": "https://measuredstudios.com/skills",
             "repository": "https://github.com/JovaniPink/skills",
             "license": "MIT",
             "skills": "./skills/",
@@ -180,7 +180,7 @@ def build(output_root: Path, write_marketplaces: bool = False) -> tuple[dict[str
                 "displayName": spec["display_name"],
                 "shortDescription": spec["short_description"],
                 "longDescription": spec["description"],
-                "developerName": "Jovani Pink",
+                "developerName": "Measured Studios",
                 "category": PLUGIN_CATEGORY,
                 "capabilities": ["Skills"],
                 "defaultPrompt": [
@@ -195,8 +195,8 @@ def build(output_root: Path, write_marketplaces: bool = False) -> tuple[dict[str
             "name": plugin,
             "version": VERSION,
             "description": spec["description"],
-            "author": {"name": "Jovani Pink", "url": "https://jovanipink.com"},
-            "homepage": "https://github.com/JovaniPink/skills",
+            "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
+            "homepage": "https://measuredstudios.com/skills",
             "repository": "https://github.com/JovaniPink/skills",
             "license": "MIT",
             "keywords": spec["keywords"],

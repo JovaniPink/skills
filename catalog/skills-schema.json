@@ -11,7 +11,7 @@
       "const": "./skills-schema.json"
     },
     "catalog_version": {
-      "const": "0.16.0"
+      "const": "0.17.0"
     },
     "skills": {
       "type": "array",
@@ -38,7 +38,7 @@
           },
           "plugin": {
             "type": "string",
-            "pattern": "^jovanipink-[a-z0-9]+(?:-[a-z0-9]+)*$"
+            "pattern": "^measured-[a-z0-9]+(?:-[a-z0-9]+)*$"
           },
           "capability_family": {
             "enum": [

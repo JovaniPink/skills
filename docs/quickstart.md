@@ -34,9 +34,11 @@ Passing checks mean the source and packages agree. You still need to check that 
 
 Start with the skills your task needs. A pack is a group of skills you install together.
 
-- `jovanipink-skills`: check claims, research, and find causes of problems.
-- `jovanipink-engineering`: plan, write, test, and review code.
-- `jovanipink-reasoning`: explain code, improve writing, and hand off work.
+- `measured-skills`: check claims, research, and find causes of problems.
+- `measured-engineering-build`: frame, design, plan, and test a vertical slice.
+- `measured-engineering-review`: review correctness and risk.
+- `measured-engineering-delivery`: coordinate bounded execution and delivery.
+- `measured-reasoning`: explain code, improve writing, and hand off work.
 
 The engineering pack was held after a live motion-review failure. Both command lines ran the ten original cases on 2026-09-10 and cleared it, so the pack is enabled there. Other app modes remain unchecked; read the [current candidate checks](client-candidate-v0.16.0.md) before you rely on one.
 

@@ -18,6 +18,7 @@ from cataloglib import (
     ROOT,
     SKILLS,
     VERSION,
+    discovery_estimate,
     read_skill_metadata,
     skills_by_plugin,
     split_frontmatter,
@@ -275,7 +276,7 @@ def validate_canonical(errors: list[str]) -> None:
         expected = {
             "name": skill,
             "license": "MIT",
-            "author": "Jovani Pink",
+            "author": "Measured Studios",
             "version": VERSION,
             "invocation": expected_invocation,
         }
@@ -499,6 +500,9 @@ def validate_auxiliary_records(errors: list[str]) -> None:
             )
             if record.get("description_characters") != expected_size:
                 errors.append(f"catalog/packs.json: {plugin} description size is stale")
+            for client in ("codex", "claude"):
+                if record.get("discovery_estimates", {}).get(client) != discovery_estimate(expected_skills, client):
+                    errors.append(f"catalog/packs.json: {plugin} {client} discovery estimate is stale")
             expected_status = "over-limit" if expected_size > 8000 else "warning" if expected_size >= 6000 else "within-budget"
             if record.get("budget_status") != expected_status:
                 errors.append(f"catalog/packs.json: {plugin} budget status is stale")

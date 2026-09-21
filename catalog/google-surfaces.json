@@ -1,6 +1,6 @@
 {
   "$schema": "./google-surfaces-schema.json",
-  "catalog_version": "0.16.0",
+  "catalog_version": "0.17.0",
   "cross_lane_aggregation": "forbidden",
   "records": [
     {
@@ -70,7 +70,7 @@
       "evidence_status": "blocked",
       "evidence_class": "documentation",
       "lifecycle_status": "experimental",
-      "precondition": "separate-jovanipink-adk-evaluation",
+      "precondition": "separate-measured-adk-evaluation",
       "evidence_reference": "docs/google-adk.md",
       "historical_evidence_reference": null,
       "claim": "Public documentation is not an ADK runtime pass; runtime evidence remains owned by the separate ADK repository."

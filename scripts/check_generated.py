@@ -13,10 +13,13 @@ from cataloglib import ROOT, directory_hashes, skills_by_plugin
 
 def check() -> list[str]:
     errors: list[str] = []
-    with tempfile.TemporaryDirectory(prefix="jovanipink-skills-") as temporary:
+    with tempfile.TemporaryDirectory(prefix="measured-skills-") as temporary:
         output_root = Path(temporary) / "plugins"
         build(output_root, write_marketplaces=False)
         for client in ("codex", "claude"):
+            actual_plugins = {path.name for path in (ROOT / "plugins" / client).iterdir() if path.is_dir()}
+            if actual_plugins != set(skills_by_plugin()):
+                errors.append(f"{client}: unexpected or missing plugin directories")
             for plugin in skills_by_plugin():
                 expected_hashes = directory_hashes(output_root / client / plugin)
                 actual_hashes = directory_hashes(ROOT / "plugins" / client / plugin)

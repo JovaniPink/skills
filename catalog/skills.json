@@ -1,10 +1,10 @@
 {
   "$schema": "./skills-schema.json",
-  "catalog_version": "0.16.0",
+  "catalog_version": "0.17.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
-      "plugin": "jovanipink-agent-platforms",
+      "plugin": "measured-agent-platforms",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "design",
@@ -32,7 +32,7 @@
     },
     {
       "skill": "agent-protocol-interoperability-review",
-      "plugin": "jovanipink-agent-platforms",
+      "plugin": "measured-agent-platforms",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "design",
@@ -58,7 +58,7 @@
     },
     {
       "skill": "agent-tool-action-boundary-review",
-      "plugin": "jovanipink-agent-platforms",
+      "plugin": "measured-agent-platforms",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "design",
@@ -86,7 +86,7 @@
     },
     {
       "skill": "agentic-system-security-review",
-      "plugin": "jovanipink-agent-platforms",
+      "plugin": "measured-agent-platforms",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "design",
@@ -117,7 +117,7 @@
     },
     {
       "skill": "google-adk-engineering-profile",
-      "plugin": "jovanipink-agent-platforms",
+      "plugin": "measured-agent-platforms",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "discover",
@@ -145,7 +145,7 @@
     },
     {
       "skill": "retrieval-grounding-quality-review",
-      "plugin": "jovanipink-agent-platforms",
+      "plugin": "measured-agent-platforms",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "design",
@@ -174,7 +174,7 @@
     },
     {
       "skill": "acceptance-evidence-ledger",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "test",
@@ -197,7 +197,7 @@
     },
     {
       "skill": "accessibility-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "review",
@@ -219,7 +219,7 @@
     },
     {
       "skill": "adobe-aem-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -243,7 +243,7 @@
     },
     {
       "skill": "agent-evaluation-design",
-      "plugin": "jovanipink-ai-systems",
+      "plugin": "measured-ai-systems",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "design",
@@ -268,7 +268,7 @@
     },
     {
       "skill": "alignment-interview",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "planning",
       "lifecycle_stages": [
         "discover",
@@ -290,7 +290,7 @@
     },
     {
       "skill": "api-contract-compatibility-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "design",
@@ -314,7 +314,7 @@
     },
     {
       "skill": "application-security-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "design",
@@ -339,7 +339,7 @@
     },
     {
       "skill": "authority-boundary-review",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "discover",
@@ -364,7 +364,7 @@
     },
     {
       "skill": "change-adoption-planning",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "planning",
       "lifecycle_stages": [
         "design",
@@ -387,7 +387,7 @@
     },
     {
       "skill": "change-impact-analysis",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "review",
       "lifecycle_stages": [
         "design",
@@ -411,7 +411,7 @@
     },
     {
       "skill": "claim-verification",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "review",
@@ -435,7 +435,7 @@
     },
     {
       "skill": "code-change-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "review"
@@ -456,7 +456,7 @@
     },
     {
       "skill": "codebase-explanation",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "communication",
       "lifecycle_stages": [
         "discover"
@@ -478,7 +478,7 @@
     },
     {
       "skill": "context-reliability-review",
-      "plugin": "jovanipink-ai-systems",
+      "plugin": "measured-ai-systems",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "design",
@@ -503,7 +503,7 @@
     },
     {
       "skill": "cross-capability-dependency-mapping",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "planning",
       "lifecycle_stages": [
         "discover",
@@ -527,7 +527,7 @@
     },
     {
       "skill": "cross-stack-quality-gates",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "execution",
       "lifecycle_stages": [
         "test",
@@ -552,7 +552,7 @@
     },
     {
       "skill": "csharp-dotnet-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -576,7 +576,7 @@
     },
     {
       "skill": "data-authority-migration-ratification",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "planning",
       "lifecycle_stages": [
         "design",
@@ -599,7 +599,7 @@
     },
     {
       "skill": "data-migration-readiness",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "design",
@@ -622,7 +622,7 @@
     },
     {
       "skill": "decision-evidence-trace",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "communication",
       "lifecycle_stages": [
         "build",
@@ -645,7 +645,7 @@
     },
     {
       "skill": "decision-governance-records",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "communication",
       "lifecycle_stages": [
         "frame",
@@ -669,7 +669,7 @@
     },
     {
       "skill": "dependency-supply-chain-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "review",
@@ -693,7 +693,7 @@
     },
     {
       "skill": "design-rationale-investigation",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "discover",
@@ -718,7 +718,7 @@
     },
     {
       "skill": "domain-vocabulary-modeling",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "planning",
       "lifecycle_stages": [
         "discover",
@@ -742,7 +742,7 @@
     },
     {
       "skill": "finish-development-branch",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "execution",
       "lifecycle_stages": [
         "review",
@@ -763,7 +763,7 @@
     },
     {
       "skill": "functional-motion-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "design",
@@ -793,7 +793,7 @@
     },
     {
       "skill": "go-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -817,7 +817,7 @@
     },
     {
       "skill": "guided-configuration",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "execution",
       "lifecycle_stages": [
         "build",
@@ -838,7 +838,7 @@
     },
     {
       "skill": "high-signal-technical-writing",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "communication",
       "lifecycle_stages": [
         "review"
@@ -859,7 +859,7 @@
     },
     {
       "skill": "implementation-planning",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-build",
       "capability_family": "planning",
       "lifecycle_stages": [
         "design",
@@ -884,7 +884,7 @@
     },
     {
       "skill": "iteration-postlaunch-learning",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "operations",
       "lifecycle_stages": [
         "operate",
@@ -906,7 +906,7 @@
     },
     {
       "skill": "java-spring-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -930,7 +930,7 @@
     },
     {
       "skill": "kpi-outcome-measurement",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "operations",
       "lifecycle_stages": [
         "design",
@@ -954,7 +954,7 @@
     },
     {
       "skill": "merge-conflict-reconciliation",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "execution",
       "lifecycle_stages": [
         "build",
@@ -977,7 +977,7 @@
     },
     {
       "skill": "module-interface-design",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-build",
       "capability_family": "planning",
       "lifecycle_stages": [
         "design",
@@ -999,7 +999,7 @@
     },
     {
       "skill": "multi-agent-orchestration",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "execution",
       "lifecycle_stages": [
         "build",
@@ -1022,7 +1022,7 @@
     },
     {
       "skill": "observability-design",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "operations",
       "lifecycle_stages": [
         "design",
@@ -1045,7 +1045,7 @@
     },
     {
       "skill": "operational-readiness-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "operations",
       "lifecycle_stages": [
         "review",
@@ -1068,7 +1068,7 @@
     },
     {
       "skill": "performance-scalability-diagnosis",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "operations",
       "lifecycle_stages": [
         "test",
@@ -1091,7 +1091,7 @@
     },
     {
       "skill": "php-drupal-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1115,7 +1115,7 @@
     },
     {
       "skill": "plan-execution",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "execution",
       "lifecycle_stages": [
         "build",
@@ -1139,7 +1139,7 @@
     },
     {
       "skill": "portable-skill-authoring",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "ai-engineering",
       "lifecycle_stages": [
         "design",
@@ -1163,7 +1163,7 @@
     },
     {
       "skill": "postgresql-sql-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1187,7 +1187,7 @@
     },
     {
       "skill": "prelaunch-readiness",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "review",
       "lifecycle_stages": [
         "test",
@@ -1210,7 +1210,7 @@
     },
     {
       "skill": "problem-framing",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-build",
       "capability_family": "planning",
       "lifecycle_stages": [
         "discover",
@@ -1233,7 +1233,7 @@
     },
     {
       "skill": "production-incident-analysis",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "operations",
       "lifecycle_stages": [
         "operate",
@@ -1255,7 +1255,7 @@
     },
     {
       "skill": "prototype-spike",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "execution",
       "lifecycle_stages": [
         "design",
@@ -1278,7 +1278,7 @@
     },
     {
       "skill": "public-private-boundary-review",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "review",
       "lifecycle_stages": [
         "review",
@@ -1300,7 +1300,7 @@
     },
     {
       "skill": "publish-change-safely",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "execution",
       "lifecycle_stages": [
         "review",
@@ -1325,7 +1325,7 @@
     },
     {
       "skill": "python-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1349,7 +1349,7 @@
     },
     {
       "skill": "request-code-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "execution",
       "lifecycle_stages": [
         "review"
@@ -1373,7 +1373,7 @@
     },
     {
       "skill": "requirements-synthesis",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "planning",
       "lifecycle_stages": [
         "discover",
@@ -1396,7 +1396,7 @@
     },
     {
       "skill": "respond-to-code-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "review",
       "lifecycle_stages": [
         "review",
@@ -1419,7 +1419,7 @@
     },
     {
       "skill": "research-to-publication-lifecycle",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "discover",
@@ -1449,7 +1449,7 @@
     },
     {
       "skill": "salesforce-apex-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1473,7 +1473,7 @@
     },
     {
       "skill": "skill-import-provenance",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1496,7 +1496,7 @@
     },
     {
       "skill": "skill-security-review",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "review",
       "lifecycle_stages": [
         "review",
@@ -1520,7 +1520,7 @@
     },
     {
       "skill": "source-grounded-research",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "discover",
@@ -1542,7 +1542,7 @@
     },
     {
       "skill": "source-output-conformance-audit",
-      "plugin": "jovanipink-ai-systems",
+      "plugin": "measured-ai-systems",
       "capability_family": "evidence",
       "lifecycle_stages": [
         "test",
@@ -1566,7 +1566,7 @@
     },
     {
       "skill": "stakeholder-technical-communication",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "communication",
       "lifecycle_stages": [
         "review",
@@ -1589,7 +1589,7 @@
     },
     {
       "skill": "swift-swiftui-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1613,7 +1613,7 @@
     },
     {
       "skill": "systematic-diagnosis",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1636,7 +1636,7 @@
     },
     {
       "skill": "task-handoff",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "execution",
       "lifecycle_stages": [
         "review",
@@ -1658,7 +1658,7 @@
     },
     {
       "skill": "terraform-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1682,7 +1682,7 @@
     },
     {
       "skill": "test-driven-change",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-build",
       "capability_family": "execution",
       "lifecycle_stages": [
         "build",
@@ -1704,7 +1704,7 @@
     },
     {
       "skill": "test-quality-review",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-review",
       "capability_family": "review",
       "lifecycle_stages": [
         "test",
@@ -1729,7 +1729,7 @@
     },
     {
       "skill": "test-strategy",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-build",
       "capability_family": "planning",
       "lifecycle_stages": [
         "design",
@@ -1753,7 +1753,7 @@
     },
     {
       "skill": "typescript-javascript-engineering-profile",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "capability_family": "review",
       "lifecycle_stages": [
         "discover",
@@ -1777,7 +1777,7 @@
     },
     {
       "skill": "value-attribution-evidence-maturity",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "operations",
       "lifecycle_stages": [
         "review",
@@ -1800,7 +1800,7 @@
     },
     {
       "skill": "workflow-retrospective",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "capability_family": "communication",
       "lifecycle_stages": [
         "review",
@@ -1822,7 +1822,7 @@
     },
     {
       "skill": "workshop-planning-synthesis",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "capability_family": "planning",
       "lifecycle_stages": [
         "frame",
@@ -1844,7 +1844,7 @@
     },
     {
       "skill": "worktree-isolation",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering-delivery",
       "capability_family": "execution",
       "lifecycle_stages": [
         "design",
@@ -1865,7 +1865,7 @@
     },
     {
       "skill": "finding-consolidation",
-      "plugin": "jovanipink-skills",
+      "plugin": "measured-skills",
       "capability_family": "review",
       "lifecycle_stages": [
         "review",

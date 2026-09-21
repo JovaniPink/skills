@@ -12,15 +12,17 @@ Pack sizes live in [`catalog/packs.json`](../catalog/packs.json). Profiles and t
 
 | Need | Start with |
 | --- | --- |
-| Verify claims, research, diagnose, or review public exposure | `jovanipink-skills` |
-| Plan, implement, test, review, or finish engineering work | `jovanipink-engineering` |
-| Apply stack-specific judgment after repository discovery | `jovanipink-stack-profiles` |
-| Work on requirements, decisions, measurement, adoption, or incidents | `jovanipink-operations` |
-| Improve alignment, explanation, writing, continuity, or skill authoring | `jovanipink-reasoning` |
-| Evaluate AI behavior, context reliability, or source conformance | `jovanipink-ai-systems` |
-| Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `jovanipink-agent-platforms` |
+| Verify claims, research, diagnose, or review public exposure | `measured-skills` |
+| Frame, design, plan, and test a slice | `measured-engineering-build` |
+| Review correctness and risk | `measured-engineering-review` |
+| Coordinate execution and delivery | `measured-engineering-delivery` |
+| Apply stack-specific judgment after repository discovery | `measured-stack-profiles` |
+| Work on requirements, decisions, measurement, adoption, or incidents | `measured-operations` |
+| Improve alignment, explanation, writing, continuity, or skill authoring | `measured-reasoning` |
+| Evaluate AI behavior, context reliability, or source conformance | `measured-ai-systems` |
+| Review an agent architecture, Google ADK design, tool boundary, protocol, security model, or retrieval system | `measured-agent-platforms` |
 
-The engineering pack is cleared for both command lines as of 2026-09-10. We have not checked the other app modes. Read the [current candidate checks](client-candidate-v0.16.0.md) before you rely on one.
+Read the [current candidate checks](client-candidate-v0.17.0.md) before relying on a renamed pack. Historical checks are not current installation or behavior proof.
 
 The engineering pack is over the 6,000-character warning line. That line is our own guardrail. No client publishes it as a limit. Install the pack when you want the whole lifecycle. For a narrow task, pick the one skill you need and leave the other packs off.
 
@@ -56,7 +58,7 @@ Use `cross-stack-quality-gates` to find the commands a repository really uses. A
 
 ## Add agent-platform skills only for agent work
 
-Use `jovanipink-agent-platforms` when you are designing or reviewing an agent system in ChatGPT, Codex, Claude, or Antigravity CLI. Gemini CLI is an enterprise-only compatibility surface after Google's transition of individual users to Antigravity CLI. This pack is not a runtime bundle for a hosted agent.
+Use `measured-agent-platforms` when you are designing or reviewing an agent system in ChatGPT, Codex, Claude, or Antigravity CLI. Gemini CLI is an enterprise-only compatibility surface after Google's transition of individual users to Antigravity CLI. This pack is not a runtime bundle for a hosted agent.
 
 Read [Google agent surfaces](google-agent-surfaces.md), [Google ADK](google-adk.md), and [Agent platform boundaries](agent-platform-boundaries.md) before using those workflows in a Google agent project.
 

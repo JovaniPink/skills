@@ -6,7 +6,7 @@
     {
       "id": "engineering-lifecycle",
       "target_release": "v0.2",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering",
       "status": "released",
       "skills": [
         "problem-framing",
@@ -30,7 +30,7 @@
     {
       "id": "engineering-quality",
       "target_release": "v0.3",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering",
       "status": "released",
       "skills": [
         "application-security-review",
@@ -52,7 +52,7 @@
     {
       "id": "confirmed-stack-profiles",
       "target_release": "v0.3",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "status": "released",
       "skills": [
         "go-engineering-profile",
@@ -71,7 +71,7 @@
     {
       "id": "professional-stack-expansion",
       "target_release": "v0.7",
-      "plugin": "jovanipink-stack-profiles",
+      "plugin": "measured-stack-profiles",
       "status": "released",
       "skills": [
         "adobe-aem-engineering-profile",
@@ -91,7 +91,7 @@
     {
       "id": "operating-workflows",
       "target_release": "v0.4",
-      "plugin": "jovanipink-operations",
+      "plugin": "measured-operations",
       "status": "released",
       "skills": [
         "requirements-synthesis",
@@ -115,7 +115,7 @@
     {
       "id": "portable-skill-authoring",
       "target_release": "v0.5",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "status": "released",
       "skills": [
         "portable-skill-authoring"
@@ -130,7 +130,7 @@
     {
       "id": "engineering-depth-and-continuity",
       "target_release": "v0.6",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering",
       "status": "released",
       "skills": [
         "code-change-review",
@@ -148,7 +148,7 @@
     {
       "id": "reasoning-continuity",
       "target_release": "v0.6",
-      "plugin": "jovanipink-reasoning",
+      "plugin": "measured-reasoning",
       "status": "released",
       "skills": [
         "guided-configuration",
@@ -165,7 +165,7 @@
     {
       "id": "acceptance-evidence-ledger",
       "target_release": "v0.7",
-      "plugin": "jovanipink-engineering",
+      "plugin": "measured-engineering",
       "status": "released",
       "skills": [
         "acceptance-evidence-ledger"
@@ -181,7 +181,7 @@
     {
       "id": "ai-reliability-foundations",
       "target_release": "v0.8",
-      "plugin": "jovanipink-ai-systems",
+      "plugin": "measured-ai-systems",
       "status": "released",
       "skills": [
         "agent-evaluation-design",
@@ -200,7 +200,7 @@
     {
       "id": "agent-platform-foundations",
       "target_release": "v0.9",
-      "plugin": "jovanipink-agent-platforms",
+      "plugin": "measured-agent-platforms",
       "status": "incubating",
       "skills": [
         "google-adk-engineering-profile",

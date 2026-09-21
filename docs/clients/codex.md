@@ -21,14 +21,14 @@ Replace the example path with your local checkout. These commands change your in
 
 ```sh
 codex plugin marketplace add /absolute/path/to/skills
-codex plugin add jovanipink-skills@jovanipink-skills
+codex plugin add measured-skills@measured-skills
 codex plugin list --json
 ```
 
 Open a fresh task after the install. Select a skill by its full plugin name:
 
 ```text
-$jovanipink-skills:claim-verification Check which completion claims have evidence. Make no changes.
+$measured-skills:claim-verification Check which completion claims have evidence. Make no changes.
 ```
 
 For skills that require direct selection, the generated `agents/openai.yaml` sets `allow_implicit_invocation: false`. Test that behavior before relying on it.

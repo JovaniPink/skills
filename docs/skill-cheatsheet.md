@@ -1,8 +1,8 @@
-# JovaniPink Skills Cheatsheet
+# Measured Skills Cheatsheet
 
 Use this page to find a skill fast. The catalog contains 79 skills in seven packs. Each row names one skill, says what it does, and says how it gets picked.
 
-The [glossary](glossary.md) defines the words on this page. To install a pack, read [How to Use JovaniPink Skills](README.md). For a longer write-up of each skill, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
+The [glossary](glossary.md) defines the words on this page. To install a pack, read [How to Use Measured Skills](README.md). For a longer write-up of each skill, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
 ## How skills get picked
 
@@ -18,7 +18,7 @@ Here is how you pick a skill yourself in each client.
 | Claude Code | Use `/plugin-name:skill-name`. |
 | Claude.ai | Ask in plain words. We have not confirmed that you can pick an explicit-only skill here. |
 
-## Core: jovanipink-skills
+## Core: measured-skills
 
 Use this pack to check claims, research a question, find the cause of a problem, map who owns what data, and review what is safe to publish.
 
@@ -37,39 +37,47 @@ Use this pack to check claims, research a question, find the cause of a problem,
 | `source-grounded-research` | Researches current questions with primary sources, URLs, dates, provenance, and uncertainty. | Implicit |
 | `systematic-diagnosis` | Reproduces and narrows a defect to establish a causal boundary without silently implementing a fix. | Implicit |
 
-## Engineering: jovanipink-engineering
+## Engineering build: measured-engineering-build
 
-Use this pack to plan, build, test, review, and finish code work.
-
-| Skill | What it does | Invocation |
+| Skill | Purpose | Invocation |
 | --- | --- | --- |
-| `acceptance-evidence-ledger` | Tracks substantial work against current evidence, freshness, blockers, and visible abandonments. | Explicit-only |
+| `implementation-planning` | Produces a decision-complete plan with interfaces, steps, tests, rollout controls, and stopping conditions. | Implicit |
+| `module-interface-design` | Designs smaller, clearer, and more stable module boundaries, vocabulary, and contracts. | Implicit |
+| `problem-framing` | Defines users, outcomes, evidence, constraints, unknowns, options, and measurable success before implementation. | Implicit |
+| `test-driven-change` | Guides behavioral changes through red, green, refactor, and documented exception evidence. | Implicit |
+| `test-strategy` | Selects risk-proportionate unit, integration, contract, end-to-end, property, migration, and manual tests. | Implicit |
+
+## Engineering review: measured-engineering-review
+
+| Skill | Purpose | Invocation |
+| --- | --- | --- |
 | `accessibility-review` | Reviews semantics, keyboard use, assistive technology needs, and visual presentation against WCAG 2.2. | Implicit |
 | `api-contract-compatibility-review` | Checks API, event, schema, and client changes for backward, forward, and rollout compatibility. | Implicit |
 | `application-security-review` | Reviews authentication, authorization, input handling, data protection, sessions, configuration, and abuse risks. | Implicit |
 | `code-change-review` | Reviews an exact diff for correctness, regressions, security, compatibility, test quality, and maintainability. | Implicit |
 | `data-migration-readiness` | Reviews migration authority, sequencing, compatibility, reconciliation, rollback, and operational evidence. | Implicit |
 | `dependency-supply-chain-review` | Reviews dependencies, lockfiles, registries, CI actions, artifacts, provenance, and compromise risk. | Implicit |
-| `finish-development-branch` | Presents evidence-based pull request, merge, retention, and cleanup choices for a development branch. | Explicit-only |
 | `functional-motion-review` | Checks whether motion clarifies a reader task while preserving evidence, accessibility, and user control. | Implicit |
-| `implementation-planning` | Produces a decision-complete plan with interfaces, steps, tests, rollout controls, and stopping conditions. | Implicit |
-| `merge-conflict-reconciliation` | Reconciles merge, rebase, or cherry-pick conflicts while preserving both sides' intent. | Explicit-only |
-| `module-interface-design` | Designs smaller, clearer, and more stable module boundaries, vocabulary, and contracts. | Implicit |
-| `multi-agent-orchestration` | Coordinates authorized, independent tasks with ownership, evidence contracts, cost awareness, and reconciliation. | Explicit-only |
 | `observability-design` | Designs logs, metrics, traces, alerts, and user-impact signals around operational decisions. | Implicit |
 | `operational-readiness-review` | Reviews monitoring, capacity, failure handling, runbooks, recovery, incidents, and support ownership. | Implicit |
 | `performance-scalability-diagnosis` | Diagnoses latency, throughput, resource use, contention, and capacity problems from measurements. | Implicit |
+| `test-quality-review` | Checks whether tests have meaningful assertions, defect sensitivity, isolation, determinism, and risk coverage. | Implicit |
+
+## Engineering delivery: measured-engineering-delivery
+
+| Skill | Purpose | Invocation |
+| --- | --- | --- |
+| `acceptance-evidence-ledger` | Tracks substantial work against current evidence, freshness, blockers, and visible abandonments. | Explicit-only |
+| `finish-development-branch` | Presents evidence-based pull request, merge, retention, and cleanup choices for a development branch. | Explicit-only |
+| `merge-conflict-reconciliation` | Reconciles merge, rebase, or cherry-pick conflicts while preserving both sides' intent. | Explicit-only |
+| `multi-agent-orchestration` | Coordinates authorized, independent tasks with ownership, evidence contracts, cost awareness, and reconciliation. | Explicit-only |
 | `plan-execution` | Executes a named approved plan with checkpoints, validation, deviation tracking, and stopping boundaries. | Explicit-only |
-| `problem-framing` | Defines users, outcomes, evidence, constraints, unknowns, options, and measurable success before implementation. | Implicit |
 | `prototype-spike` | Builds a bounded disposable experiment to answer one technical uncertainty. | Explicit-only |
 | `request-code-review` | Prepares an evidence-bounded review packet and sends it only with separate authorization. | Explicit-only |
 | `respond-to-code-review` | Verifies review feedback against current code, tests, contracts, and authority before acting on it. | Implicit |
-| `test-driven-change` | Guides behavioral changes through red, green, refactor, and documented exception evidence. | Implicit |
-| `test-quality-review` | Checks whether tests have meaningful assertions, defect sensitivity, isolation, determinism, and risk coverage. | Implicit |
-| `test-strategy` | Selects risk-proportionate unit, integration, contract, end-to-end, property, migration, and manual tests. | Implicit |
 | `worktree-isolation` | Assesses whether dirty or concurrent Git work should be isolated before worktree changes are authorized. | Implicit |
 
-## Stack profiles: jovanipink-stack-profiles
+## Stack profiles: measured-stack-profiles
 
 Add one of these only after you know the commands and tools the repository actually uses.
 
@@ -87,7 +95,7 @@ Add one of these only after you know the commands and tools the repository actua
 | `terraform-engineering-profile` | Adds focused guidance for modules, providers, state, plans, upgrades, and infrastructure review. | Implicit |
 | `typescript-javascript-engineering-profile` | Adds focused guidance for type safety, asynchronous behavior, tests, dependencies, and browser or Node builds. | Implicit |
 
-## Operations: jovanipink-operations
+## Operations: measured-operations
 
 Use this pack for requirements, decisions, measurement, adoption, and incidents.
 
@@ -105,7 +113,7 @@ Use this pack for requirements, decisions, measurement, adoption, and incidents.
 | `value-attribution-evidence-maturity` | Distinguishes observations, estimates, contribution, attribution, and causal value claims. | Implicit |
 | `workshop-planning-synthesis` | Plans decision-focused workshops and records evidence, decisions, actions, and unresolved questions. | Implicit |
 
-## Reasoning: jovanipink-reasoning
+## Reasoning: measured-reasoning
 
 Use this pack to agree on scope, explain code, weigh the impact of a change, write clearly, and hand work off.
 
@@ -123,7 +131,7 @@ Use this pack to agree on scope, explain code, weigh the impact of a change, wri
 | `task-handoff` | Creates a continuation record with revisions, evidence, decisions, blockers, and authority boundaries. | Explicit-only |
 | `workflow-retrospective` | Reviews completed work to identify what helped, what failed, and which bounded improvement to test next. | Explicit-only |
 
-## AI systems: jovanipink-ai-systems
+## AI systems: measured-ai-systems
 
 Use this pack to test how an AI system behaves, check whether its context is reliable, and confirm that its output matches its sources.
 
@@ -133,7 +141,7 @@ Use this pack to test how an AI system behaves, check whether its context is rel
 | `context-reliability-review` | Reviews context assertions for provenance, authority, time, freshness, permissions, conflict, supersession, and revocation. | Implicit |
 | `source-output-conformance-audit` | Audits exact source identity through extraction, validation, isolated persistence, and readback with mutation-sensitive evidence. | Implicit |
 
-## Agent platforms: jovanipink-agent-platforms
+## Agent platforms: measured-agent-platforms
 
 Use this pack when you are designing or reviewing an agent system. It is not a runtime bundle. It grants no tools and no deployment authority.
 

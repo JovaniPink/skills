@@ -1,10 +1,10 @@
 {
   "$schema": "./profiles-schema.json",
-  "catalog_version": "0.16.0",
+  "catalog_version": "0.17.0",
   "profiles": [
     {
       "id": "delivery-typescript-experimental",
-      "purpose": "Test whether seven delivery and TypeScript capabilities outperform normal Codex without Jovani skills.",
+      "purpose": "Test whether seven delivery and TypeScript capabilities outperform normal Codex without custom skills.",
       "skills": [
         "problem-framing",
         "implementation-planning",
@@ -42,7 +42,7 @@
           "observed_listing_state": "not_observed"
         }
       },
-      "source_catalog_version": "0.16.0",
+      "source_catalog_version": "0.17.0",
       "behavioral_evidence": {
         "status": "none",
         "observed_against_version": null,
@@ -70,6 +70,65 @@
           "observed_at": null,
           "evidence_reference": null,
           "reason": "Setup may proceed independently. This profile remains blocked because publish-change-safely lacks a verified automatic-selection disable control."
+        }
+      },
+      "disposition": "experimental"
+    },
+    {
+      "id": "build-typescript-experimental",
+      "purpose": "Compare focused architecture and vertical-slice work with all-pack and no-custom-skill setups.",
+      "skills": [
+        "problem-framing",
+        "module-interface-design",
+        "implementation-planning",
+        "test-strategy",
+        "test-driven-change",
+        "cross-stack-quality-gates",
+        "typescript-javascript-engineering-profile"
+      ],
+      "target_surfaces": [
+        "codex",
+        "claude-code"
+      ],
+      "applicability": "Bounded TypeScript repository work that spans framing, implementation, testing, review, and reviewable delivery.",
+      "exclusions": [
+        "Production deployment or provider mutation.",
+        "A task that needs only one directly invoked skill.",
+        "A claim of client support without exact-surface behavioral evidence."
+      ],
+      "discovery_measurements": {
+        "codex": {
+          "description_characters": 1806,
+          "budget_policy": "Measure against the current Codex initial skill-list policy for the tested client and model.",
+          "observed_listing_state": "not_observed"
+        },
+        "claude-code": {
+          "description_characters": 1806,
+          "budget_policy": "Measure against the tested Claude Code model's skill-list budget and per-entry truncation behavior.",
+          "observed_listing_state": "not_observed"
+        }
+      },
+      "source_catalog_version": "0.17.0",
+      "behavioral_evidence": {
+        "status": "none",
+        "observed_against_version": null,
+        "observed_at": null,
+        "evidence_reference": null
+      },
+      "surface_evidence": {
+        "codex": {
+          "status": "blocked",
+          "observed_against_version": null,
+          "observed_at": null,
+          "evidence_reference": null,
+          "reason": "Candidate selection only; no fresh installed inventory or comparative run has been recorded."
+        },
+        "claude-code": {
+          "status": "blocked",
+          "observed_against_version": null,
+          "observed_at": null,
+          "evidence_reference": null,
+          "reason": "Candidate selection only; no fresh installed inventory or comparative run has been recorded."
         }
       },
       "disposition": "experimental"
