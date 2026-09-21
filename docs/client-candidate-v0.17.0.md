@@ -8,7 +8,11 @@ This candidate retains 79 skills and splits engineering into build, review, and 
 
 ## Evidence boundaries
 
-Native adapters and package checks do not prove client discovery, behavioral benefit, or sustained-session adherence. No new 0.17.0 client behavior is claimed here. Prior [0.16.0 evidence](client-candidate-v0.16.0.md) retains its original identity and limits. Explicit-only and turn-depth holds remain in effect on unverified surfaces.
+Native adapters and package checks do not prove client discovery, behavioral benefit, or sustained-session adherence. Prior [0.16.0 evidence](client-candidate-v0.16.0.md) retains its original identity and limits. Explicit-only and turn-depth holds remain in effect on unverified surfaces.
+
+On 2026-09-21, a fresh Codex CLI 0.154.0 read-only session using the existing gpt-5.6-sol model at medium effort listed all seven focused native project skills. User configuration was excluded for that check. Unrelated global Clerk skills remained visible and were misclassified by the response as legacy skills, so the response is not a complete inventory oracle. This checks the standalone projection, not installation of the renamed plugin. No implementation task, controlled comparison, or default promotion followed from it.
+
+A fresh Claude Code 2.1.220 check using the staged build plugin and two project skills stopped before inference with HTTP 401: its OAuth token was expired. No discovery or behavioral pass is inferred. Marketplace and build-plugin native structural validation passed separately.
 
 ## PR 44 disposition
 
@@ -22,6 +26,6 @@ The [independent review](https://github.com/JovaniPink/skills/pull/44) proposes 
 | Motion routing length | Addressed | Canonical description shortened; full safety meaning remains in the workflow. Fresh activation requires rechecking. |
 | Engineering pack size | Addressed | Three packs; focused activation is tested separately from packaging. |
 | Offline security claim | Addressed | SECURITY.md distinguishes offline packaging from opt-in network checks and host tool permissions. |
-| Behavioral evidence gap | Partial | Historical observations remain separately dated; unsupported current skill and comparison records stay unobserved. |
+| Behavioral evidence gap | Addressed for recoverable records | Ledger entries index 24 existing historical records across four skills, preserving dates, client versions, and source case IDs. Current skill and comparison records stay unobserved. |
 
 No release tag, marketplace update, deployment, or global-default promotion follows from preparing this candidate.

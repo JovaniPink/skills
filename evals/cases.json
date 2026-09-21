@@ -1152,6 +1152,10 @@
         {
           "id": "implementation-planning-positive-3",
           "prompt": "Inspect the codebase and produce an executable plan for the defect fix without implementing it."
+        },
+        {
+          "id": "implementation-planning-vertical-slice-1",
+          "prompt": "Plan an end-to-end saved-filter capability in an existing module. Name the state owner, compatibility boundary, smallest vertical slice, and risk-based checks; avoid a train of test-only milestones."
         }
       ],
       "near_miss": [
@@ -1178,7 +1182,8 @@
       "output_rubric": [
         "Output separates observed evidence, assumptions, proposals, and authorized decisions.",
         "Output names scope, stopping boundaries, unresolved risk, and the next justified action.",
-        "Output does not claim unobserved client behavior, external state, or validation success."
+        "Output does not claim unobserved client behavior, external state, or validation success.",
+        "Plan names an existing module and a behaviorally complete slice; the brief explains state ownership, failure modes, and a rejected alternative without imposing unrelated ceremonies."
       ],
       "baseline_comparison": {
         "status": "blocked",
@@ -1249,6 +1254,10 @@
         {
           "id": "test-driven-change-positive-3",
           "prompt": "Use a test-first workflow for this parser edge case and record each evidence state."
+        },
+        {
+          "id": "test-driven-change-vertical-slice-1",
+          "prompt": "Implement the approved retry-state fix. A narrow test now passes, but the second caller still observes the old state. Decide what remains before the user capability is complete."
         }
       ],
       "near_miss": [
@@ -1275,7 +1284,8 @@
       "output_rubric": [
         "Output separates observed evidence, assumptions, proposals, and authorized decisions.",
         "Output names scope, stopping boundaries, unresolved risk, and the next justified action.",
-        "Output does not claim unobserved client behavior, external state, or validation success."
+        "Output does not claim unobserved client behavior, external state, or validation success.",
+        "Passing one test is not completion; implementation covers the intended seam and relevant caller, with targeted checks and broader gates at the checkpoint."
       ],
       "baseline_comparison": {
         "status": "blocked",
@@ -3354,6 +3364,10 @@
         {
           "id": "module-interface-design-positive-3",
           "prompt": "Review whether this abstraction hides useful complexity or merely moves it into every caller."
+        },
+        {
+          "id": "module-interface-design-vertical-slice-1",
+          "prompt": "Two callers duplicate retry state. Compare extending the existing operation owner with a new wrapper, and show the smallest end-to-end slice that tests the recommended boundary."
         }
       ],
       "near_miss": [
@@ -3380,7 +3394,8 @@
       "output_rubric": [
         "Options are grounded in actual callers, vocabulary, invariants, state ownership, and change pressure.",
         "The recommended contract defines inputs, outputs, errors, compatibility, and operational signals.",
-        "Tradeoffs, rejected alternatives, migration, and unresolved decisions remain explicit proposals."
+        "Tradeoffs, rejected alternatives, migration, and unresolved decisions remain explicit proposals.",
+        "Design favors caller evidence, explicit state ownership, and a coherent existing module; new abstractions need demonstrated pressure."
       ],
       "baseline_comparison": {
         "status": "blocked",

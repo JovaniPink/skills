@@ -14,7 +14,7 @@ Measured Skills is maintained by Measured Studios. The homepage is https://measu
 | jovanipink-ai-systems | measured-ai-systems |
 | jovanipink-agent-platforms | measured-agent-platforms |
 
-This is a breaking pre-1.0 identity change. Skill names remain stable; plugin-qualified invocations change. There are no installed compatibility aliases. Historical attribution, source URLs, observations, and retained 0.16.0 artifacts are not rewritten as current evidence.
+This is a breaking pre-1.0 identity change. Skill names remain stable; plugin-qualified invocations change. There are no installed compatibility aliases. Historical attribution, source URLs, observations, and retained 0.16.0 artifacts are not rewritten as current evidence. The existing `v0.16.0` tag resolves to `89728f930540e5cfc9de01bb1526de324fe647c8`; that immutable source and its archives remain the rollback reference, not the new working distribution.
 
 ## Upgrade and rollback
 
