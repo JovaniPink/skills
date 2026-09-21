@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.17.0",
-  "source_commit": "29e22b957a9f8390a7d3f27e4247d86c0991d8f3",
+  "source_commit": "83bf0a6d296c3c09f16fc100d4cfc3f5a6b3bb13",
   "created_on": "2026-09-21",
   "artifacts": [
     {
@@ -27,7 +27,7 @@
     {
       "kind": "file",
       "path": "catalog/evidence.json",
-      "sha256": "ee836ed5b73238c0bde8d41d383ef1ef572751ab3122dc763d31888085eec4eb"
+      "sha256": "c0ba09633c8b4a9e266f1363ab428e004dfccd24d9cdad9c6b1573fa2236bf47"
     },
     {
       "kind": "file",
@@ -37,7 +37,7 @@
     {
       "kind": "file",
       "path": "catalog/packs.json",
-      "sha256": "8383a70bbe932f22f035ca92b2fee0489f01d9c5d1fa35c9b7589ceb6f536493"
+      "sha256": "f1d64d5b8a5ab127413199e81a9f0e188044232c59fde86007f83aa818439e96"
     },
     {
       "kind": "file",
@@ -382,7 +382,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/skill-import-provenance-0.17.0.zip",
-      "sha256": "85e6f136c0695ce232d1a2596ab842ff38325df053229a5d4800916f126d9d37"
+      "sha256": "753571bdaa4ff64ba4042f25247156f17a5382e0af9c83d3a10ed68aec45028c"
     },
     {
       "kind": "zip",
@@ -467,7 +467,7 @@
     {
       "kind": "file",
       "path": "evals/cases.json",
-      "sha256": "aadbf6f5371514f43340371ae96362fa12b67471e95dd1915ea48f26e9ad2ab3"
+      "sha256": "20edc9a226964120127a7ecb844250db7c02c60dada789a03ec19cb1ce82850b"
     },
     {
       "kind": "tree",
@@ -507,7 +507,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/measured-skills",
-      "sha256": "d4ac25384936ce7bb1776badc145cce0e0c1db3ba4ba3b1a721d537ca53222b1"
+      "sha256": "a5e5025b6ccf3163e1202f83a95905b36ca34c974d15d8d8379c777a444654b3"
     },
     {
       "kind": "tree",
@@ -552,7 +552,7 @@
     {
       "kind": "tree",
       "path": "plugins/codex/measured-skills",
-      "sha256": "25858ae0b84d79f72cb8f85fe8b0fb94deccf523e6833d679a6b96c2f1ca1207"
+      "sha256": "8bbe278e25037cc8da3fdfaebd1048025d59abc9ac00541bbad61a5992d5cdc5"
     },
     {
       "kind": "tree",
