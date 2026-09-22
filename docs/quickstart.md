@@ -40,7 +40,7 @@ Start with the skills your task needs. A pack is a group of skills you install t
 - `measured-engineering-delivery`: coordinate bounded execution and delivery.
 - `measured-reasoning`: explain code, improve writing, and hand off work.
 
-The engineering pack was held after a live motion-review failure. Both command lines ran the ten original cases on 2026-09-10 and cleared it, so the pack is enabled there. Other app modes remain unchecked; read the [current candidate checks](client-candidate-v0.16.0.md) before you rely on one.
+Read the [current candidate checks](client-candidate-v0.17.0.md) before you rely on a renamed pack. Before 0.17.0, one engineering pack held all of this work. It was held after a live motion-review failure, and both command lines cleared it on 2026-09-10. That result stays in the [0.16.0 record](client-candidate-v0.16.0.md). It does not carry over to the three new engineering packs.
 
 The [selection guide](choose-your-skills.md) lists the other packs.
 

@@ -2,7 +2,7 @@
 
 Use the generated Codex plugin for terminal or desktop code work. Check ChatGPT Work and web separately. They may have different loading and file access.
 
-Check the [current candidate record](../client-candidate-v0.16.0.md) before enabling an update. The engineering pack was held from 0.12.0, when an original motion safety case failed. The hold was lifted on 2026-09-10 after all ten original cases met their expectation on CLI 0.153.2 at 0.14.0. Codex reads plugin files straight from the repository checkout rather than a cache, so the checked-out version is the installed version.
+Check the [current candidate record](../client-candidate-v0.17.0.md) before enabling an update. The former engineering pack was held from 0.12.0, when an original motion safety case failed. That hold was lifted on 2026-09-10 after all ten original cases met their expectation on CLI 0.153.2 at 0.14.0. The [0.16.0 record](../client-candidate-v0.16.0.md) keeps that history. It does not carry over to the three packs that replaced the former pack. Codex reads plugin files straight from the repository checkout rather than a cache, so the checked-out version is the installed version.
 
 ## Check what is there
 

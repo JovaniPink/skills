@@ -24,7 +24,7 @@ Pack sizes live in [`catalog/packs.json`](../catalog/packs.json). Profiles and t
 
 Read the [current candidate checks](client-candidate-v0.17.0.md) before relying on a renamed pack. Historical checks are not current installation or behavior proof.
 
-The engineering pack is over the 6,000-character warning line. That line is our own guardrail. No client publishes it as a limit. Install the pack when you want the whole lifecycle. For a narrow task, pick the one skill you need and leave the other packs off.
+Each of the three engineering packs is under the 6,000-character warning line. That line is our own guardrail. No client publishes it as a limit. Installed together, the three packs' descriptions total 6,466 characters, which is over it. Counting skill names and paths too, the catalog estimates all three at 9,126 characters for Codex, above the 8,000 Codex uses when the context size is unknown. Install only the engineering packs your task needs. For a narrow task, pick the one skill you need and leave the other packs off.
 
 ## Experimental activation profile
 

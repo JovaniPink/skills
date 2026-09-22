@@ -6,7 +6,7 @@ Plain definitions for the words this catalog uses. They are in alphabetical orde
 
 **Authored.** Something we wrote. An authored claim says what the instructions intend. It does not say what any client did.
 
-**Candidate.** A dated record for one catalog version. It lists what is prepared, installed, enabled, loaded, and behavior-tested in each app and CLI. See the [current candidate record](client-candidate-v0.16.0.md).
+**Candidate.** A dated record for one catalog version. It lists what is prepared, installed, enabled, loaded, and behavior-tested in each app and CLI. See the [current candidate record](client-candidate-v0.17.0.md).
 
 **Catalog.** All 79 skills in this repository, plus the records that describe them.
 

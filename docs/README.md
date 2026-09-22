@@ -79,6 +79,8 @@ Install one or more focused plugins:
 ```sh
 codex plugin add measured-skills@measured-skills
 codex plugin add measured-engineering-build@measured-skills
+codex plugin add measured-engineering-review@measured-skills
+codex plugin add measured-engineering-delivery@measured-skills
 codex plugin add measured-stack-profiles@measured-skills
 codex plugin add measured-operations@measured-skills
 codex plugin add measured-reasoning@measured-skills
@@ -120,6 +122,8 @@ Install the focused plugins you need:
 ```sh
 claude plugin install measured-skills@measured-skills --scope user
 claude plugin install measured-engineering-build@measured-skills --scope user
+claude plugin install measured-engineering-review@measured-skills --scope user
+claude plugin install measured-engineering-delivery@measured-skills --scope user
 claude plugin install measured-stack-profiles@measured-skills --scope user
 claude plugin install measured-operations@measured-skills --scope user
 claude plugin install measured-reasoning@measured-skills --scope user
