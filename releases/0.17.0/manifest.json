@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.17.0",
-  "source_commit": "1873cead5fb89cfb3c3ce99c5d81416717fc91cc",
+  "source_commit": "dceeaf1b33b97f7f8541abcfee1f094b115a8ea4",
   "created_on": "2026-09-22",
   "artifacts": [
     {
@@ -407,7 +407,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/swift-swiftui-engineering-profile-0.17.0.zip",
-      "sha256": "801d7ffdf32ee8e942f31bef89e47fcb3d81d5f2511f0fa19d03eef0575e3942"
+      "sha256": "4bd2e21b98f7ffb35e5ad2564b477054f8b6b034dbe1a1580cfd2e61b1dc8f41"
     },
     {
       "kind": "zip",
@@ -512,7 +512,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/measured-stack-profiles",
-      "sha256": "f5bf4596bf5cfef3ae7623505cdfc46a43c89f0451461f8479bccb2236b78ce5"
+      "sha256": "0c8a1d9c4efb1d880db3c95cc8d8862b63439e08e633c4c3d783150c23560cd3"
     },
     {
       "kind": "tree",
@@ -557,7 +557,7 @@
     {
       "kind": "tree",
       "path": "plugins/codex/measured-stack-profiles",
-      "sha256": "2a6999d35ad5d45b5f6e2faa65c26c6d8fe2e923d6fa583ae9e4f7d52b5c0c81"
+      "sha256": "024750dbd5d41437362809fa37311004175072e8097833d44e8eac32f91e035e"
     },
     {
       "kind": "file",
