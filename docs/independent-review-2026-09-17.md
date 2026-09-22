@@ -4,9 +4,9 @@ Reviewed by: an outside Claude Code session, not a catalog maintainer.
 
 Scope: the public skills catalog, and the skills-private policy repo.
 
-Reconciled 2026-09-21: this is a historical review of 0.16.0, not current release acceptance. See [0.17.0 dispositions](client-candidate-v0.17.0.md#pr-44-disposition).
+> Maintainer note, 2026-09-21: this is a historical review of 0.16.0, not current release acceptance. The review text below is unchanged. Maintainer corrections are listed at the end, and the 0.17.0 dispositions are in the [0.17.0 candidate record](client-candidate-v0.17.0.md#pr-44-disposition).
 
-Result: the main safety rule works as intended. Two gaps were reported; the suggestions below were not implemented by this review. One doc line overclaims. One structural change is suggested.
+Result: the main safety rule works as intended. Two real gaps were found and are fixed below. One doc line overclaims. One structural change is suggested.
 
 ## 1. The cross-platform gate works
 
@@ -22,7 +22,7 @@ No fix is needed here. This is written down so it stays a known pass, not someth
 
 `catalog/packs.json` sets a character budget for each pack, based only on the total length of each skill's `description` field. Codex's own docs say its skill list also counts the skill name and the file path, not just the description.
 
-The `jovanipink-engineering` pack has 6,665 description characters. The original review incorrectly treated 8,000 characters as a universal Codex limit; it is a documented fallback when model context size is unavailable. Once name and path length are added, this pack may go over the limit. If a pack goes over the limit, Codex's own docs say it may drop whole skills from the list, not just shorten their text. That is a worse outcome than a shortened description.
+The `jovanipink-engineering` pack is already at 6,665 of Codex's 8,000 character limit, counting description text alone. Once name and path length are added, this pack may go over the limit. If a pack goes over the limit, Codex's own docs say it may drop whole skills from the list, not just shorten their text. That is a worse outcome than a shortened description.
 
 Fix: add skill name length and an estimated file path length to the budget check in `scripts/validate_catalog.py`, next to the existing description length check.
 
@@ -32,17 +32,17 @@ The skills-private repo has one job: keep private product facts out of git. Its 
 
 But nothing runs this check automatically before a commit is made. The README says to run it by hand before committing. That depends on memory.
 
-The validator enforces a fixed policy-only tree, not comprehensive secret detection. Adding a hook would require revisiting the repository's explicit no-hooks policy. By the time a person notices a forgotten check, the commit may already exist. A git pre-commit hook would run the check before the commit is created, which is the point that actually matters here.
+For a repo whose only job is keeping secrets out of git history, this is the wrong point to catch a mistake. By the time a person notices a forgotten check, the commit may already exist. A git pre-commit hook would run the check before the commit is created, which is the point that actually matters here.
 
 Fix: add `scripts/validate.py` as a pre-commit hook in skills-private, so it runs on every commit attempt, not only when remembered.
 
 ## 4. One skill is using a lot of the description budget
 
-`functional-motion-review`'s description is about 416 characters. The average description in its pack is about 267 characters. This contributes to the pack's description total; the review did not establish that it is the main cause of discovery pressure. This is already stated in `docs/client-candidate-v0.14.0.md`, but it is worth repeating here next to the budget math above.
+`functional-motion-review`'s description is about 416 characters. The average description in its pack is about 267 characters. This one skill's longer description is the main reason `jovanipink-engineering` is close to its character limit. This is already stated in `docs/client-candidate-v0.14.0.md`, but it is worth repeating here next to the budget math above.
 
 ## 5. Suggestion: split the jovanipink-engineering pack
 
-This pack has 25 skills. Fourteen skills across the whole catalog are explicit-only. That is an invocation restriction, not a grant of authority. Seven live in this pack; the others include both design and review capabilities, not only read-only reviews.
+This pack has 25 skills. Fourteen skills across the whole catalog are explicit-only, meaning higher authority, since they can change files, merge branches, or run other agents. Seven of those fourteen live in this one pack, next to 18 skills that are plain read-only reviews.
 
 Splitting this pack into two would help in two ways. First, it would bring both new packs under the character budget with room to spare, matching the other six packs. Second, it would let a person install just the read-only reviews without also installing plan execution, merge conflict handling, and multi-agent work they may not want yet.
 
@@ -57,3 +57,13 @@ The line in `SECURITY.md` should say the pull request checks never reach the net
 `catalog/evidence.json` marks every one of the 79 skills with `behavioral_evidence.status: "none"`. But real, dated pass and fail results already exist in plain text for at least three skills, including the `functional-motion-review` re-test described in `docs/client-candidate-v0.14.0.md`.
 
 This may be on purpose, matching the catalog's own rule that a pass on one client does not prove a pass on another. If it is on purpose, that is a fair choice. If it is not on purpose, the ledger should be updated to match the real, already-written evidence, so a reader checking only the ledger does not miss it.
+
+## Maintainer reconciliation, 2026-09-21
+
+Catalog maintainers added this section. The review text above is unchanged. These notes correct it.
+
+- **Result.** Two gaps were reported, not fixed. This review did not implement its own suggestions.
+- **Section 2.** The review treats 8,000 characters as a universal Codex limit. It is a documented fallback that applies when the model context size is unavailable.
+- **Section 3.** The skills-private validator enforces a fixed policy-only tree. It is not comprehensive secret detection. Adding a hook would require revisiting that repository's explicit no-hooks policy.
+- **Section 4.** The long `functional-motion-review` description adds to the pack's description total. The review did not establish that it is the main cause of discovery pressure.
+- **Section 5.** Explicit-only is an invocation restriction, not a grant of authority. The pack's other 18 skills include design work as well as reviews, so they are not all read-only reviews.
