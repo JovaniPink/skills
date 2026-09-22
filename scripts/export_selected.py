@@ -32,7 +32,7 @@ def export(output: Path, client: str, selected: list[str]) -> None:
             if item.is_symlink():
                 raise ValueError("symlinks are not permitted in selected exports")
             if item.suffix == ".md":
-                for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", item.read_text()):
+                for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", item.read_text(encoding="utf-8")):
                     target = target.split("#", 1)[0].strip("<>")
                     if not target or "://" in target or target.startswith("mailto:"):
                         continue
@@ -57,7 +57,7 @@ def export(output: Path, client: str, selected: list[str]) -> None:
         "installation": "not_installed",
         "behavior": "not_observed",
     }
-    (output / "export-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    (output / "export-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> int:
