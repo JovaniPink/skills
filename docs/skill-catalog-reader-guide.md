@@ -9,7 +9,7 @@ This guide explains what each plugin is for, what every skill does, and how expl
 The nine plugins separate broad workflow categories so you can install only what you need:
 
 1. `measured-skills` contains the core verification, research, diagnosis, security, and publication workflows.
-2. `measured-engineering-build` contains problem-framing, module-interface-design, implementation-planning, and test-strategy and test-driven-change workflows.
+2. `measured-engineering-build` contains problem framing, module and interface design, implementation planning, test strategy, and test-driven change workflows.
 3. `measured-engineering-review` contains accessibility, API-compatibility, application-security, code-change, data-migration, dependency, motion, observability, operational-readiness, performance, and test-quality review workflows.
 4. `measured-engineering-delivery` contains branch, merge-conflict, multi-agent, plan-execution, prototype, and code-review request and response workflows.
 5. `measured-stack-profiles` adds focused guidance for specific programming languages and infrastructure tools.
@@ -42,8 +42,8 @@ An explicit-only skill does not activate automatically from ordinary conversatio
 | Client surface | Verified selection form |
 | --- | --- |
 | ChatGPT web, desktop, and mobile | Type `@` and select the installed skill. The displayed selector entry can vary by installation and client version. |
-| Codex CLI and IDE extension | `$measured-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
-| Claude Code CLI and the Code area in Claude Desktop | `/measured-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
+| Codex CLI and IDE extension | `$measured-engineering-delivery:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
+| Claude Code CLI and the Code area in Claude Desktop | `/measured-engineering-delivery:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
 | Claude.ai | No direct command is claimed. Anthropic documents enabling an uploaded custom skill and automatic selection from a matching request; current catalog evidence does not establish explicit-only behavior on this surface. |
 
 OpenAI documents `@` selection in ChatGPT and `$` skill mentions in Codex. Anthropic documents `/plugin-name:skill-name` for Claude Code plugin skills. The exact catalog namespaces above are also present in the generated Codex and Claude distributions. See [OpenAI Build skills](https://learn.chatgpt.com/docs/build-skills), [Anthropic Extend Claude with skills](https://code.claude.com/docs/en/slash-commands), and [Anthropic Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
@@ -54,7 +54,7 @@ Direct invocation selects the workflow. It does not authorize every action menti
 
 ## Core skills: measured-skills
 
-The core plugin contains 11 skills for evidence, diagnosis, security, authority, and safe publication.
+The core plugin contains 12 skills for evidence, diagnosis, security, authority, and safe publication.
 
 ### authority-boundary-review
 
@@ -136,7 +136,7 @@ Designs risk-proportionate coverage across unit, integration, contract, end-to-e
 
 ## Engineering review: measured-engineering-review
 
-The engineering-review plugin contains 11 skills for accessibility, API-compatibility, application-security, code-change, data-migration, dependency, motion, observability, operational-readiness, performance, and test-quality review.
+The engineering-review plugin contains 11 review skills for accessibility, API compatibility, application security, code changes, data migrations, dependencies, motion, observability, operational readiness, performance, and test quality.
 
 ### accessibility-review
 
