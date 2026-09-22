@@ -1,8 +1,8 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.17.0",
-  "source_commit": "83bf0a6d296c3c09f16fc100d4cfc3f5a6b3bb13",
-  "created_on": "2026-09-21",
+  "source_commit": "6fb7fc3da33b2adc91a215c1ec2b0f8f04750540",
+  "created_on": "2026-09-22",
   "artifacts": [
     {
       "kind": "file",
@@ -32,7 +32,7 @@
     {
       "kind": "file",
       "path": "catalog/google-surfaces.json",
-      "sha256": "5f456985d17184c9fc3988c4e3ab1cd3e62f1ab8c9bde90a486ace47651ad75e"
+      "sha256": "f09433afae9a7950eaa153875b05e2ee21eae20b32c85ccd36cce59f54b17ac4"
     },
     {
       "kind": "file",
@@ -382,7 +382,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/skill-import-provenance-0.17.0.zip",
-      "sha256": "753571bdaa4ff64ba4042f25247156f17a5382e0af9c83d3a10ed68aec45028c"
+      "sha256": "1badc6106b7282b74f7e955e9e57568cbaa7bc39723ed0c89f7b2dfbf36c6a76"
     },
     {
       "kind": "zip",
@@ -507,7 +507,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/measured-skills",
-      "sha256": "a5e5025b6ccf3163e1202f83a95905b36ca34c974d15d8d8379c777a444654b3"
+      "sha256": "31bfac3907cb7659988d2fdc36b75fecc3d86f8d0c928aa531a2225e1a3fea1a"
     },
     {
       "kind": "tree",
@@ -552,7 +552,7 @@
     {
       "kind": "tree",
       "path": "plugins/codex/measured-skills",
-      "sha256": "8bbe278e25037cc8da3fdfaebd1048025d59abc9ac00541bbad61a5992d5cdc5"
+      "sha256": "48051aee11862f2d8cd507091171f36189479d14a74832362f329d4b820ebc5c"
     },
     {
       "kind": "tree",
