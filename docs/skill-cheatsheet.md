@@ -32,7 +32,7 @@ Use this pack to check claims, research a question, find the cause of a problem,
 | `public-private-boundary-review` | Finds secrets, private details, proprietary material, and unsupported public claims before publication. | Implicit |
 | `publish-change-safely` | Verifies identity, repository, remote, branch, diff, checks, push, and pull request state. | Explicit-only |
 | `research-to-publication-lifecycle` | Connects research, forecasts, observations, evaluations, retrospectives, corrections, and public-safe findings. | Explicit-only |
-| `skill-import-provenance` | Gates Jovani-owned skill transfers and rejects third-party catalog material as an implementation source. | Explicit-only |
+| `skill-import-provenance` | Gates owned original skill transfers and rejects third-party catalog material as an implementation source. | Explicit-only |
 | `skill-security-review` | Audits skills and plugins for unsafe instructions, permissions, dependencies, hooks, and data exposure. | Implicit |
 | `source-grounded-research` | Researches current questions with primary sources, URLs, dates, provenance, and uncertainty. | Implicit |
 | `systematic-diagnosis` | Reproduces and narrows a defect to establish a causal boundary without silently implementing a fix. | Implicit |

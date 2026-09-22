@@ -96,7 +96,7 @@ Coordinates existing research, evidence-trace, source-conformance, retrospective
 
 Invocation: `explicit-only`.
 
-Reviews ownership, license, revision, security posture, local changes, and re-review policy before transferring Jovani-owned skill material. Third-party skill catalogs are rejected as implementation sources and are not tracked in Git.
+Reviews ownership, license, revision, security posture, local changes, and re-review policy before transferring owned original skill material. Third-party skill catalogs are rejected as implementation sources and are not tracked in Git.
 
 ### skill-security-review
 
