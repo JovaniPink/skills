@@ -19,7 +19,7 @@ Use this profile only after repository discovery identifies the stack. Read [foc
 
 Read only the reference that matches the code under review:
 
-- [SwiftUI data flow and modern APIs](references/swiftui.md): state ownership, Observation, the Xcode 27 `@State` macro, silent deprecations, view tasks, and identity.
+- [SwiftUI data flow and modern APIs](references/swiftui.md): state ownership, Observation, the Xcode 27 `@State` macro, silent deprecations, and view tasks.
 - [SwiftData](references/swiftdata.md): CloudKit-compatible models, unique constraints, predicate pitfalls, model concurrency, and migrations.
 - [Swift concurrency](references/concurrency.md): per-module default isolation, where `nonisolated async` code runs, `@concurrent`, reentrancy, and cancellation.
 - [Swift Testing](references/swift-testing.md): parallel runs, suites, expectations, parameterized tests, and isolation.

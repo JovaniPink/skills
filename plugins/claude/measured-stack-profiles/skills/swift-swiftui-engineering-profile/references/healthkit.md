@@ -9,7 +9,7 @@ Authorities: [Setting up HealthKit](https://developer.apple.com/documentation/he
 - The target has the HealthKit capability. [documented]
 - `NSHealthShareUsageDescription` (read) and `NSHealthUpdateUsageDescription` (write) are set. A missing key crashes the app when it requests access. [documented]
 - Xcode adds `healthkit` to required device capabilities. Remove it when HealthKit is optional, or the App Store hides the app from devices without it. [documented]
-- Call `HKHealthStore.isHealthDataAvailable()` before any other HealthKit call. It returns false on macOS and on iPad before iPadOS 17. [documented]
+- Call `HKHealthStore.isHealthDataAvailable()` before any other HealthKit call. It returns false on macOS and on iPad before iPadOS 17. [documented] An unsigned command-line tool without the HealthKit entitlement also got false on macOS 27.0. [verified for that case only]
 - Create one long-lived `HKHealthStore`. [documented]
 
 ## Ask just in time
