@@ -1,20 +1,22 @@
 # Measured Skills Catalog: A Reader Guide
 
-The Measured Skills catalog contains 79 portable agent skills organized into seven focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The Measured Skills catalog contains 79 portable agent skills organized into nine focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
 ## How the catalog is organized
 
-The seven plugins separate broad workflow categories so you can install only what you need:
+The nine plugins separate broad workflow categories so you can install only what you need:
 
 1. `measured-skills` contains the core verification, research, diagnosis, security, and publication workflows.
-2. `measured-engineering` contains software planning, implementation, review, testing, architecture, and operational-quality workflows.
-3. `measured-stack-profiles` adds focused guidance for specific programming languages and infrastructure tools.
-4. `measured-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
-5. `measured-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
-6. `measured-ai-systems` contains optional AI evaluation, context reliability, and source-to-output conformance workflows.
-7. `measured-agent-platforms` contains human-facing Google ADK, agent architecture, tool, protocol, security, and retrieval workflows.
+2. `measured-engineering-build` contains problem-framing, module-interface-design, implementation-planning, and test-strategy and test-driven-change workflows.
+3. `measured-engineering-review` contains accessibility, API-compatibility, application-security, code-change, data-migration, dependency, motion, observability, operational-readiness, performance, and test-quality review workflows.
+4. `measured-engineering-delivery` contains branch, merge-conflict, multi-agent, plan-execution, prototype, and code-review request and response workflows.
+5. `measured-stack-profiles` adds focused guidance for specific programming languages and infrastructure tools.
+6. `measured-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
+7. `measured-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
+8. `measured-ai-systems` contains optional AI evaluation, context reliability, and source-to-output conformance workflows.
+9. `measured-agent-platforms` contains human-facing Google ADK, agent architecture, tool, protocol, security, and retrieval workflows.
 
 The counts, groupings, and invocation policies below are reconciled against the [canonical skill sources](../skills/) and the catalog's [metadata parser](../scripts/cataloglib.py). Generated plugin trees are projections, not the inventory authority.
 

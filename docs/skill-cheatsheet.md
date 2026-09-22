@@ -1,6 +1,6 @@
 # Measured Skills Cheatsheet
 
-Use this page to find a skill fast. The catalog contains 79 skills in seven packs. Each row names one skill, says what it does, and says how it gets picked.
+Use this page to find a skill fast. The catalog contains 79 skills in nine packs. Each row names one skill, says what it does, and says how it gets picked.
 
 The [glossary](glossary.md) defines the words on this page. To install a pack, read [How to Use Measured Skills](README.md). For a longer write-up of each skill, read the [Skill Catalog Reader Guide](skill-catalog-reader-guide.md).
 
