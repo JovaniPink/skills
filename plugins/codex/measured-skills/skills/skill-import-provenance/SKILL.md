@@ -19,7 +19,7 @@ Keep owned original work and primary authorities separate from external rejectio
 
 1. Resolve the exact owned source, revision, artifact, author, license, destination, and authority for the proposed transfer.
 2. If the source is a third-party skill catalog, stop. Do not track, cite, mirror, adapt, vendor, or use it as an implementation source. Any authorized investigation stays outside Git and can influence rejection boundaries only.
-3. Confirm that Jovani owns or has separately documented authority for every transferred file and that the license permits the destination use.
+3. Confirm ownership, or separately documented authority, for every transferred file, and confirm that the license permits the destination use.
 4. Inventory the exact files proposed for transfer and their dependencies, scripts, assets, hooks, and network behavior.
 5. Run or obtain a security review appropriate to the package's influence and execution surface.
 6. Choose one capability disposition used throughout the catalog:

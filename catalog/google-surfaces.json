@@ -70,7 +70,7 @@
       "evidence_status": "blocked",
       "evidence_class": "documentation",
       "lifecycle_status": "experimental",
-      "precondition": "separate-measured-adk-evaluation",
+      "precondition": "separate-jovanipink-adk-evaluation",
       "evidence_reference": "docs/google-adk.md",
       "historical_evidence_reference": null,
       "claim": "Public documentation is not an ADK runtime pass; runtime evidence remains owned by the separate ADK repository."
