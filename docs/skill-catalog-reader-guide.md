@@ -112,6 +112,8 @@ Reproduces and narrows a defect, regression, failure, or confusing behavior to e
 
 ## Engineering build: measured-engineering-build
 
+The engineering-build plugin contains 5 skills for problem framing, module and interface design, implementation planning, and test-driven change.
+
 ### implementation-planning
 
 Produces a decision-complete implementation plan grounded in repository and platform evidence. A plan includes interfaces, ordered steps, tests, rollout controls, checkpoints, stopping conditions, and unresolved decisions.
@@ -133,6 +135,8 @@ Guides feature and defect work through red, green, and refactor evidence. It als
 Designs risk-proportionate coverage across unit, integration, contract, end-to-end, property, migration, and manual testing. It explains why each layer is or is not needed.
 
 ## Engineering review: measured-engineering-review
+
+The engineering-review plugin contains 11 skills for accessibility, API-compatibility, application-security, code-change, data-migration, dependency, motion, observability, operational-readiness, performance, and test-quality review.
 
 ### accessibility-review
 
@@ -179,6 +183,8 @@ Diagnoses latency, throughput, resource use, contention, and capacity problems u
 Reviews whether tests contain meaningful assertions, detect relevant defects, remain isolated and deterministic, cover important risks, and have reasonable maintenance cost. Passing tests alone do not prove that the tests are strong.
 
 ## Engineering delivery: measured-engineering-delivery
+
+The engineering-delivery plugin contains 9 skills for branch completion, merge-conflict reconciliation, multi-agent orchestration, plan execution, prototyping, and code-review requests and responses.
 
 ### acceptance-evidence-ledger
 
