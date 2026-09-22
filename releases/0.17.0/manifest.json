@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.17.0",
-  "source_commit": "6fb7fc3da33b2adc91a215c1ec2b0f8f04750540",
+  "source_commit": "13016f09184c4aa869bbcb3e4f9979d960aed365",
   "created_on": "2026-09-22",
   "artifacts": [
     {
@@ -37,7 +37,7 @@
     {
       "kind": "file",
       "path": "catalog/packs.json",
-      "sha256": "f1d64d5b8a5ab127413199e81a9f0e188044232c59fde86007f83aa818439e96"
+      "sha256": "dccf2dbeee74096f5504af6dabe94b44b8ddb3d3c0654ee20af23ffe66f3dba8"
     },
     {
       "kind": "file",
@@ -407,7 +407,7 @@
     {
       "kind": "zip",
       "path": "dist/claude-ai/swift-swiftui-engineering-profile-0.17.0.zip",
-      "sha256": "5d0a803c61b0f9e830274c9ac6c5d4737edca43f4819abf9f0174ed636d58bcb"
+      "sha256": "977494a6b3e567287fb294c102c2b27bfda02f2c8a8dd3266a8664d39677bee6"
     },
     {
       "kind": "zip",
@@ -467,7 +467,7 @@
     {
       "kind": "file",
       "path": "evals/cases.json",
-      "sha256": "20edc9a226964120127a7ecb844250db7c02c60dada789a03ec19cb1ce82850b"
+      "sha256": "a5b9cf4ad2a60c0b42e7366954831d5134d3e678d3c93e72e9246cfe5e0ef3c9"
     },
     {
       "kind": "tree",
@@ -512,7 +512,7 @@
     {
       "kind": "tree",
       "path": "plugins/claude/measured-stack-profiles",
-      "sha256": "993689e9b6d3181b05214168c7548d532eafeb96fe860cdebe545fe893abd043"
+      "sha256": "c36f62477161d6d9d40e7c2cde06a6a9552b962ae613e6dd64260e19bc9ca33b"
     },
     {
       "kind": "tree",
@@ -557,12 +557,12 @@
     {
       "kind": "tree",
       "path": "plugins/codex/measured-stack-profiles",
-      "sha256": "7ba8fc1174ef44b9ea92e8f63c8083ec7395986273992d5f67881d4de1dfac44"
+      "sha256": "6373107687aa4f616636d81d9a636550f060058760543e2f4f96da3b75215917"
     },
     {
       "kind": "file",
       "path": "provenance/catalog.json",
-      "sha256": "a08013433a210acb23660c34a5d53e6fdf7d5f424344bcf8a56ef299fa462fde"
+      "sha256": "f9c51209a527b2acfd90b000d263511f2feefa265761ff31ddba1ce157e4fa31"
     }
   ]
 }
