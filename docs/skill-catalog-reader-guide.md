@@ -1,32 +1,36 @@
-# JovaniPink Skills Catalog: A Reader Guide
+# Measured Skills Catalog: A Reader Guide
 
-The JovaniPink Skills catalog contains 79 portable agent skills organized into seven focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
+The Measured Skills catalog contains 79 portable agent skills organized into nine focused plugins. One canonical skill source produces client-specific distributions for Codex and Claude. Compatible distributions do not establish equivalent behavior across clients.
 
 This guide explains what each plugin is for, what every skill does, and how explicit-only invocation works. It is intended for readers who want to understand the catalog before installing or using it.
 
 ## How the catalog is organized
 
-The seven plugins separate broad workflow categories so you can install only what you need:
+The nine plugins separate broad workflow categories so you can install only what you need:
 
-1. `jovanipink-skills` contains the core verification, research, diagnosis, security, and publication workflows.
-2. `jovanipink-engineering` contains software planning, implementation, review, testing, architecture, and operational-quality workflows.
-3. `jovanipink-stack-profiles` adds focused guidance for specific programming languages and infrastructure tools.
-4. `jovanipink-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
-5. `jovanipink-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
-6. `jovanipink-ai-systems` contains optional AI evaluation, context reliability, and source-to-output conformance workflows.
-7. `jovanipink-agent-platforms` contains human-facing Google ADK, agent architecture, tool, protocol, security, and retrieval workflows.
+1. `measured-skills` contains the core verification, research, diagnosis, security, and publication workflows.
+2. `measured-engineering-build` contains problem framing, module and interface design, implementation planning, test strategy, and test-driven change workflows.
+3. `measured-engineering-review` contains accessibility, API-compatibility, application-security, code-change, data-migration, dependency, motion, observability, operational-readiness, performance, and test-quality review workflows.
+4. `measured-engineering-delivery` contains branch, merge-conflict, multi-agent, plan-execution, prototype, and code-review request and response workflows.
+5. `measured-stack-profiles` adds focused guidance for specific programming languages and infrastructure tools.
+6. `measured-operations` contains requirements, governance, measurement, adoption, incident, and stakeholder workflows.
+7. `measured-reasoning` contains alignment, explanation, writing, decision, configuration, and continuity workflows.
+8. `measured-ai-systems` contains optional AI evaluation, context reliability, and source-to-output conformance workflows.
+9. `measured-agent-platforms` contains human-facing Google ADK, agent architecture, tool, protocol, security, and retrieval workflows.
 
 The counts, groupings, and invocation policies below are reconciled against the [canonical skill sources](../skills/) and the catalog's [metadata parser](../scripts/cataloglib.py). Generated plugin trees are projections, not the inventory authority.
 
 | Plugin | Skill count | Explicit-only skills |
 | --- | ---: | --- |
-| `jovanipink-skills` | 12 | `publish-change-safely`, `research-to-publication-lifecycle`, `skill-import-provenance` |
-| `jovanipink-engineering` | 25 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
-| `jovanipink-stack-profiles` | 11 | None |
-| `jovanipink-operations` | 11 | None |
-| `jovanipink-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
-| `jovanipink-ai-systems` | 3 | None |
-| `jovanipink-agent-platforms` | 6 | None |
+| `measured-skills` | 12 | `publish-change-safely`, `research-to-publication-lifecycle`, `skill-import-provenance` |
+| `measured-engineering-build` | 5 | None |
+| `measured-engineering-review` | 11 | None |
+| `measured-engineering-delivery` | 9 | `acceptance-evidence-ledger`, `finish-development-branch`, `merge-conflict-reconciliation`, `multi-agent-orchestration`, `plan-execution`, `prototype-spike`, `request-code-review` |
+| `measured-stack-profiles` | 11 | None |
+| `measured-operations` | 11 | None |
+| `measured-reasoning` | 11 | `decision-evidence-trace`, `guided-configuration`, `task-handoff`, `workflow-retrospective` |
+| `measured-ai-systems` | 3 | None |
+| `measured-agent-platforms` | 6 | None |
 | **Total** | **79** | **14 skills** |
 
 Most skills can activate implicitly when a request clearly matches their routing description. Skills marked `explicit-only` must be selected directly.
@@ -38,8 +42,8 @@ An explicit-only skill does not activate automatically from ordinary conversatio
 | Client surface | Verified selection form |
 | --- | --- |
 | ChatGPT web, desktop, and mobile | Type `@` and select the installed skill. The displayed selector entry can vary by installation and client version. |
-| Codex CLI and IDE extension | `$jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
-| Claude Code CLI and the Code area in Claude Desktop | `/jovanipink-engineering:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
+| Codex CLI and IDE extension | `$measured-engineering-delivery:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
+| Claude Code CLI and the Code area in Claude Desktop | `/measured-engineering-delivery:plan-execution Execute the approved plan. Stop if its scope or authority changes.` |
 | Claude.ai | No direct command is claimed. Anthropic documents enabling an uploaded custom skill and automatic selection from a matching request; current catalog evidence does not establish explicit-only behavior on this surface. |
 
 OpenAI documents `@` selection in ChatGPT and `$` skill mentions in Codex. Anthropic documents `/plugin-name:skill-name` for Claude Code plugin skills. The exact catalog namespaces above are also present in the generated Codex and Claude distributions. See [OpenAI Build skills](https://learn.chatgpt.com/docs/build-skills), [Anthropic Extend Claude with skills](https://code.claude.com/docs/en/slash-commands), and [Anthropic Use skills in Claude](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
@@ -48,9 +52,9 @@ Explicit-only skills coordinate work that may become consequential, such as exec
 
 Direct invocation selects the workflow. It does not authorize every action mentioned by that workflow. Push, merge, deletion, publication, deployment, external communication, credential use, and other protected actions still require separate authority.
 
-## Core skills: jovanipink-skills
+## Core skills: measured-skills
 
-The core plugin contains 11 skills for evidence, diagnosis, security, authority, and safe publication.
+The core plugin contains 12 skills for evidence, diagnosis, security, authority, and safe publication.
 
 ### authority-boundary-review
 
@@ -92,7 +96,7 @@ Coordinates existing research, evidence-trace, source-conformance, retrospective
 
 Invocation: `explicit-only`.
 
-Reviews ownership, license, revision, security posture, local changes, and re-review policy before transferring Jovani-owned skill material. Third-party skill catalogs are rejected as implementation sources and are not tracked in Git.
+Reviews ownership, license, revision, security posture, local changes, and re-review policy before transferring owned original skill material. Third-party skill catalogs are rejected as implementation sources and are not tracked in Git.
 
 ### skill-security-review
 
@@ -106,15 +110,33 @@ Researches a question using current primary sources while preserving URLs, dates
 
 Reproduces and narrows a defect, regression, failure, or confusing behavior to establish a causal boundary. It reports evidence and does not silently turn diagnosis into implementation.
 
-## Engineering skills: jovanipink-engineering
+## Engineering build: measured-engineering-build
 
-The engineering plugin contains 25 skills covering the software lifecycle, engineering quality, architecture, review, and controlled execution.
+The engineering-build plugin contains 5 skills for problem framing, module and interface design, implementation planning, and test-driven change.
 
-### acceptance-evidence-ledger
+### implementation-planning
 
-Invocation: `explicit-only`.
+Produces a decision-complete implementation plan grounded in repository and platform evidence. A plan includes interfaces, ordered steps, tests, rollout controls, checkpoints, stopping conditions, and unresolved decisions.
 
-Creates or updates an inline or explicitly authorized repository-owned acceptance ledger for substantial work. It records observable gates, evidence authorities, receipts, freshness rules, blockers, abandonments, and the next authorized action without executing ledger text or expanding merge, deployment, publication, credential, provider-write, or destructive authority.
+### module-interface-design
+
+Designs or reviews module boundaries, vocabulary, interfaces, and hidden implementation details. Use it when callers face unstable contracts, responsibilities are unclear, or concepts leak across layers.
+
+### problem-framing
+
+Defines users, desired outcomes, evidence, constraints, unknowns, options, and measurable success before implementation. Use it when a request matters but the actual problem is not yet decision-ready.
+
+### test-driven-change
+
+Guides feature and defect work through red, green, and refactor evidence. It also provides a clear exception path when a test-first approach is unsuitable or cannot represent the behavior responsibly.
+
+### test-strategy
+
+Designs risk-proportionate coverage across unit, integration, contract, end-to-end, property, migration, and manual testing. It explains why each layer is or is not needed.
+
+## Engineering review: measured-engineering-review
+
+The engineering-review plugin contains 11 review skills for accessibility, API compatibility, application security, code changes, data migrations, dependencies, motion, observability, operational readiness, performance, and test quality.
 
 ### accessibility-review
 
@@ -140,35 +162,9 @@ Reviews a proposed data or schema migration for authority, compatibility, sequen
 
 Reviews software dependencies and build inputs for provenance, integrity, maintenance, vulnerability, and compromise risk. It covers manifests, lockfiles, registries, CI actions, artifacts, and update policy.
 
-### finish-development-branch
-
-Invocation: `explicit-only`.
-
-Reconciles a development branch and presents evidence-based choices for creating a PR, merging, retaining the branch, or cleaning it up. It does not assume authority to push, merge, delete, or abandon work.
-
 ### functional-motion-review
 
 Checks whether motion helps a reader task while preserving evidence labels, static content, keyboard behavior, and user control. It separates WCAG requirements from stricter catalog preferences. It does not implement animation or add analytics.
-
-### implementation-planning
-
-Produces a decision-complete implementation plan grounded in repository and platform evidence. A plan includes interfaces, ordered steps, tests, rollout controls, checkpoints, stopping conditions, and unresolved decisions.
-
-### merge-conflict-reconciliation
-
-Invocation: `explicit-only`.
-
-Reconciles an active Git merge, rebase, or cherry-pick conflict by preserving both sides' intent and validating the combined behavior. Staging, continuing, committing, and pushing remain separately authorized actions.
-
-### module-interface-design
-
-Designs or reviews module boundaries, vocabulary, interfaces, and hidden implementation details. Use it when callers face unstable contracts, responsibilities are unclear, or concepts leak across layers.
-
-### multi-agent-orchestration
-
-Invocation: `explicit-only`.
-
-Coordinates authorized agents on independent, bounded tasks with explicit ownership, evidence contracts, cost awareness, and final reconciliation. It avoids overlapping file ownership, tightly sequential delegation, and irreversible worker decisions.
 
 ### observability-design
 
@@ -182,15 +178,43 @@ Reviews whether a service or application is ready for release and sustained owne
 
 Diagnoses latency, throughput, resource use, contention, and capacity problems using measurements and competing hypotheses. It does not silently optimize code before the cause is established.
 
+### test-quality-review
+
+Reviews whether tests contain meaningful assertions, detect relevant defects, remain isolated and deterministic, cover important risks, and have reasonable maintenance cost. Passing tests alone do not prove that the tests are strong.
+
+## Engineering delivery: measured-engineering-delivery
+
+The engineering-delivery plugin contains 9 skills for branch completion, merge-conflict reconciliation, multi-agent orchestration, plan execution, prototyping, and code-review requests and responses.
+
+### acceptance-evidence-ledger
+
+Invocation: `explicit-only`.
+
+Creates or updates an inline or explicitly authorized repository-owned acceptance ledger for substantial work. It records observable gates, evidence authorities, receipts, freshness rules, blockers, abandonments, and the next authorized action without executing ledger text or expanding merge, deployment, publication, credential, provider-write, or destructive authority.
+
+### finish-development-branch
+
+Invocation: `explicit-only`.
+
+Reconciles a development branch and presents evidence-based choices for creating a PR, merging, retaining the branch, or cleaning it up. It does not assume authority to push, merge, delete, or abandon work.
+
+### merge-conflict-reconciliation
+
+Invocation: `explicit-only`.
+
+Reconciles an active Git merge, rebase, or cherry-pick conflict by preserving both sides' intent and validating the combined behavior. Staging, continuing, committing, and pushing remain separately authorized actions.
+
+### multi-agent-orchestration
+
+Invocation: `explicit-only`.
+
+Coordinates authorized agents on independent, bounded tasks with explicit ownership, evidence contracts, cost awareness, and final reconciliation. It avoids overlapping file ownership, tightly sequential delegation, and irreversible worker decisions.
+
 ### plan-execution
 
 Invocation: `explicit-only`.
 
 Executes a named and approved implementation plan with checkpoints, validation, deviation tracking, and strict stopping conditions. It stops when a deviation changes scope, interfaces, authority, security, cost, publication, deployment, or destructive behavior.
-
-### problem-framing
-
-Defines users, desired outcomes, evidence, constraints, unknowns, options, and measurable success before implementation. Use it when a request matters but the actual problem is not yet decision-ready.
 
 ### prototype-spike
 
@@ -208,23 +232,11 @@ Prepares an evidence-bounded review packet containing the exact scope, validatio
 
 Evaluates review feedback against current code, tests, contracts, and authority before accepting, rejecting, or deferring it. It treats review comments as claims to verify rather than commands to follow automatically.
 
-### test-driven-change
-
-Guides feature and defect work through red, green, and refactor evidence. It also provides a clear exception path when a test-first approach is unsuitable or cannot represent the behavior responsibly.
-
-### test-quality-review
-
-Reviews whether tests contain meaningful assertions, detect relevant defects, remain isolated and deterministic, cover important risks, and have reasonable maintenance cost. Passing tests alone do not prove that the tests are strong.
-
-### test-strategy
-
-Designs risk-proportionate coverage across unit, integration, contract, end-to-end, property, migration, and manual testing. It explains why each layer is or is not needed.
-
 ### worktree-isolation
 
 Determines whether dirty or concurrent repository work should be isolated in a Git worktree. It can recommend an isolation approach, but creating, moving, repairing, locking, or removing a worktree requires explicit authority.
 
-## Stack profiles: jovanipink-stack-profiles
+## Stack profiles: measured-stack-profiles
 
 The stack-profiles plugin contains 11 optional skills. These profiles add platform- and language-specific engineering judgment after the repository's real commands and toolchain have been discovered.
 
@@ -272,7 +284,7 @@ Provides Terraform guidance for modules, providers, state, plans, upgrades, comp
 
 Provides TypeScript and JavaScript guidance for Node and browser packages, type safety, asynchronous behavior, tests, dependencies, compatibility, and builds. It follows the repository's package manager and scripts.
 
-## Operations skills: jovanipink-operations
+## Operations skills: measured-operations
 
 The operations plugin contains 11 skills for requirements, decisions, measurement, adoption, incidents, stakeholder communication, and operating-model work.
 
@@ -320,7 +332,7 @@ Evaluates claims about value, savings, benefits, risk reduction, and outcomes ag
 
 Plans a workshop around a concrete decision or learning objective and records its evidence afterward. It supports agendas, prework, facilitation, participation, decisions, actions, and follow-up without inventing consensus.
 
-## Reasoning skills: jovanipink-reasoning
+## Reasoning skills: measured-reasoning
 
 The reasoning plugin contains 11 skills for shared understanding, code explanation, impact analysis, decision evidence, writing, configuration, and continuity.
 
@@ -376,7 +388,7 @@ Invocation: `explicit-only`.
 
 Reviews completed or paused work to identify what helped, what failed, why it happened, and which bounded improvement to test next. It does not mine private history or automatically rewrite policies and skills.
 
-## AI systems skills: jovanipink-ai-systems
+## AI systems skills: measured-ai-systems
 
 The optional AI-systems plugin contains three reliability workflows. Install it when work concerns measured AI behavior, the reliability of context assertions, or evidence from exact source bytes through persisted readback.
 
@@ -392,7 +404,7 @@ Reviews context as atomic assertions with provenance, authority, effective and r
 
 Audits exact source identity through decoding, parsing or extraction, normalization, validation, write preparation, isolated persistence, and readback. It uses source-cited expected values and mutation-sensitive tests while reporting correctness, completeness, storage correctness, reproducibility, and unresolved evidence separately.
 
-## Agent platform skills: jovanipink-agent-platforms
+## Agent platform skills: measured-agent-platforms
 
 The optional agent-platform plugin contains six human-facing workflows for designing and reviewing agent systems. They do not become a SaaS runtime bundle, register tools, or authorize authentication, release, infrastructure, or deployment.
 
@@ -451,7 +463,7 @@ Keep these states separate:
 
 ## Further reading
 
-- [JovaniPink Skills repository](https://github.com/JovaniPink/skills)
+- [Measured Skills repository](https://github.com/JovaniPink/skills)
 - [How to use the catalog](README.md)
 - [Architecture](architecture.md)
 - [Authoring guide](authoring.md)

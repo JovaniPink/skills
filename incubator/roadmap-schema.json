@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://jovanipink.com/schemas/public-skill-roadmap-v1.json",
+  "$id": "https://measuredstudios.com/schemas/public-skill-roadmap-v1.json",
   "title": "Public skill roadmap",
   "type": "object",
   "required": ["$schema", "roadmap_version", "updated_on", "tracks"],

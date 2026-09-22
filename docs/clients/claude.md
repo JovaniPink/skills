@@ -6,7 +6,7 @@ A **Code plugin** is a package installed for Claude Code. An **account upload** 
 
 See the [September account repair check](../claude-account-repair-2026-09-08.md) for dated results and remaining app checks.
 
-Read the [current candidate record](../client-candidate-v0.16.0.md) before enabling an update. It records the 0.16.0 packages and the lifted Code engineering hold. The 0.13.0 command-line observation keeps its own record. The 0.12.0 account replacements and the older checks below keep their original dates and versions.
+Read the [current candidate record](../client-candidate-v0.17.0.md) before enabling an update. The [0.16.0 record](../client-candidate-v0.16.0.md) keeps the 0.16.0 packages and the lifted Code hold on the former engineering pack. That history does not carry over to the three packs that replaced it. The 0.13.0 command-line observation keeps its own record. The 0.12.0 account replacements and the older checks below keep their original dates and versions.
 
 ## Check what is there
 
@@ -23,18 +23,18 @@ Replace the example path with your local checkout. These commands change your in
 
 ```sh
 claude plugin marketplace add /absolute/path/to/skills --scope user
-claude plugin install jovanipink-skills@jovanipink-skills --scope user
+claude plugin install measured-skills@measured-skills --scope user
 claude plugin list --json
 ```
 
-The install argument is `plugin@marketplace`. The marketplace here is named `jovanipink-skills`, and one of its seven packs carries that same name, so `jovanipink-skills@jovanipink-skills` is correct rather than a typo. Every other pack reads as `jovanipink-engineering@jovanipink-skills` and follows the same shape.
+The install argument is `plugin@marketplace`. The marketplace here is named `measured-skills`, and one of its nine packs carries that same name, so `measured-skills@measured-skills` is correct rather than a typo. Every other pack reads as `measured-engineering-build@measured-skills` and follows the same shape.
 
 For an existing install, refresh the marketplace before updating the plugin. Use `claude plugin marketplace update --help` and `claude plugin update --help` to check the current command form. Save the old version and file hashes first. Check every installed file after the update. In the observed 2.1.220 update, all seven packs moved to 0.11.0 and their files matched the generated source. The desktop plugin pages also showed the new version; that did not establish behavior in an existing task.
 
 Start a fresh task, then select the full plugin command:
 
 ```text
-/jovanipink-skills:claim-verification Check which completion claims have evidence. Make no changes.
+/measured-skills:claim-verification Check which completion claims have evidence. Make no changes.
 ```
 
 Generated Claude packages omit Codex's `agents/` files. Skills that require direct selection get `disable-model-invocation: true`. Check both direct selection and a related prompt that should leave the skill inactive.

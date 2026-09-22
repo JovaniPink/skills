@@ -38,8 +38,8 @@ Invocation metadata is portable repository metadata, not a replacement for host 
 
 Direct invocation is also client-native and namespaced after plugin installation:
 
-- Codex plugin: `$jovanipink-skills:skill-name`
-- Claude plugin: `/jovanipink-skills:skill-name`
+- Codex plugin: `$measured-skills:skill-name`
+- Claude plugin: `/measured-skills:skill-name`
 
 Canonical unnamespaced forms remain useful when a client installs an individual skill rather than the plugin.
 

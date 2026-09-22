@@ -16,9 +16,9 @@ name: example-skill
 description: What the skill does and the concrete situations that should activate it.
 license: MIT
 metadata:
-  author: "Jovani Pink"
+  author: "Measured Studios"
   version: "0.9.0"
-  plugin: "jovanipink-skills"
+  plugin: "measured-skills"
   invocation: "implicit"
   provenance: "original"
   risk_class: "read-only"
@@ -40,7 +40,7 @@ policy:
   allow_implicit_invocation: true
 ```
 
-The canonical default prompt must mention the skill with `$skill-name`. Set the policy to `false` for explicit-only skills. Generation rewrites that prompt to `$jovanipink-skills:skill-name` for the installed plugin namespace.
+The canonical default prompt must mention the skill with `$skill-name`. Set the policy to `false` for explicit-only skills. Generation rewrites that prompt to `$measured-skills:skill-name` for the installed plugin namespace.
 
 ## Workflow rules
 
@@ -77,7 +77,7 @@ Source: [Skill authoring best practices](https://platform.claude.com/docs/en/age
 - Confirm that the skill structure is valid under the supported standards.
 - Confirm the native Codex and Claude invocation mappings.
 - Add a provenance record.
-- Confirm that the workflow is authored from Jovani-owned work and only primary authorities needed for format, interoperability, or correctness.
+- Confirm that the workflow is authored from owned original work and only primary authorities needed for format, interoperability, or correctness.
 - Do not track, cite, mirror, compare, or use third-party skill catalogs as implementation sources.
 - Add three positive, three near-miss, and one conflict or safety trigger case.
 - Add at least three output-quality criteria and an installed-versus-baseline record.

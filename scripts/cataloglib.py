@@ -10,8 +10,8 @@ from typing import TypedDict
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.16.0"
-CATALOG_NAME = "jovanipink-skills"
+VERSION = "0.17.0"
+CATALOG_NAME = "measured-skills"
 PLUGIN_CATEGORY = "Developer Tools"
 
 class PluginSpec(TypedDict):
@@ -24,44 +24,56 @@ class PluginSpec(TypedDict):
 
 
 PLUGIN_SPECS: dict[str, PluginSpec] = {
-    "jovanipink-skills": {
-        "display_name": "JovaniPink Skills",
+    "measured-skills": {
+        "display_name": "Measured Skills",
         "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
         "short_description": "Evidence-oriented workflows for Codex",
         "keywords": ["skills", "research", "diagnosis", "quality", "security"],
     },
-    "jovanipink-engineering": {
-        "display_name": "JovaniPink Engineering",
-        "description": "Portable planning, testing, review, worktree, branch, and orchestration workflows.",
-        "short_description": "Engineering lifecycle workflows for Codex",
-        "keywords": ["skills", "engineering", "testing", "review", "git"],
+    "measured-engineering-build": {
+        "display_name": "Measured Engineering Build",
+        "description": "Frame outcomes, design interfaces, plan vertical slices, and test behavior.",
+        "short_description": "Design and build cohesive software",
+        "keywords": ["skills", "engineering", "architecture", "testing"],
     },
-    "jovanipink-stack-profiles": {
-        "display_name": "JovaniPink Stack Profiles",
+    "measured-engineering-review": {
+        "display_name": "Measured Engineering Review",
+        "description": "Review correctness, compatibility, security, operations, and test quality.",
+        "short_description": "Risk-focused engineering review",
+        "keywords": ["skills", "review", "security", "quality"],
+    },
+    "measured-engineering-delivery": {
+        "display_name": "Measured Engineering Delivery",
+        "description": "Coordinate bounded execution, isolated work, review handoffs, and delivery evidence.",
+        "short_description": "Bounded execution and delivery workflows",
+        "keywords": ["skills", "delivery", "git", "execution"],
+    },
+    "measured-stack-profiles": {
+        "display_name": "Measured Stack Profiles",
         "description": "Optional language and infrastructure engineering profiles.",
         "short_description": "Stack-specific engineering guidance for Codex",
         "keywords": ["skills", "engineering", "languages", "infrastructure"],
     },
-    "jovanipink-operations": {
-        "display_name": "JovaniPink Operations",
+    "measured-operations": {
+        "display_name": "Measured Operations",
         "description": "Portable requirements, decision, measurement, adoption, and incident workflows.",
         "short_description": "Operating and decision workflows for Codex",
         "keywords": ["skills", "operations", "decisions", "measurement"],
     },
-    "jovanipink-reasoning": {
-        "display_name": "JovaniPink Reasoning",
+    "measured-reasoning": {
+        "display_name": "Measured Reasoning",
         "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
         "short_description": "Reasoning and communication workflows for Codex",
         "keywords": ["skills", "reasoning", "writing", "architecture", "evidence"],
     },
-    "jovanipink-ai-systems": {
-        "display_name": "JovaniPink AI Systems",
+    "measured-ai-systems": {
+        "display_name": "Measured AI Systems",
         "description": "Optional AI evaluation, context reliability, and source-to-output conformance workflows.",
         "short_description": "AI reliability workflows for Codex",
         "keywords": ["skills", "ai", "evaluation", "context", "conformance"],
     },
-    "jovanipink-agent-platforms": {
-        "display_name": "JovaniPink Agent Platforms",
+    "measured-agent-platforms": {
+        "display_name": "Measured Agent Platforms",
         "description": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
         "short_description": "Agent platform engineering workflows for Codex",
         "keywords": ["skills", "agents", "adk", "security", "retrieval"],
@@ -148,6 +160,16 @@ def skills_by_plugin() -> dict[str, tuple[str, ...]]:
         plugin = read_skill_metadata(ROOT / "skills" / skill)["plugin"]
         grouped.setdefault(plugin, []).append(skill)
     return {plugin: tuple(skills) for plugin, skills in sorted(grouped.items())}
+
+
+def discovery_estimate(skills: list[str], client: str) -> int:
+    """Count a reproducible native-layout listing, not an observed client prompt."""
+    total = 0
+    for skill in skills:
+        metadata = read_skill_metadata(ROOT / "skills" / skill)
+        path = f"plugins/{client}/{metadata['plugin']}/skills/{skill}/SKILL.md"
+        total += len(f"{skill}\t{path}\t{metadata['description']}\n")
+    return total
 
 
 ALL_SKILLS = skill_names()

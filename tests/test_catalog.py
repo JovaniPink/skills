@@ -80,7 +80,7 @@ class CatalogTests(unittest.TestCase):
         )
 
     def test_reasoning_plugin_keeps_discovery_scope_focused(self) -> None:
-        reasoning = skills_by_plugin()["jovanipink-reasoning"]
+        reasoning = skills_by_plugin()["measured-reasoning"]
         self.assertEqual(11, len(reasoning))
         descriptions = [
             read_skill_metadata(ROOT / "skills" / skill)["description"]
@@ -95,13 +95,15 @@ class CatalogTests(unittest.TestCase):
         )
         canonical = skills_by_plugin()
         section_plugins = {
-            "## Core skills: jovanipink-skills": "jovanipink-skills",
-            "## Engineering skills: jovanipink-engineering": "jovanipink-engineering",
-            "## Stack profiles: jovanipink-stack-profiles": "jovanipink-stack-profiles",
-            "## Operations skills: jovanipink-operations": "jovanipink-operations",
-            "## Reasoning skills: jovanipink-reasoning": "jovanipink-reasoning",
-            "## AI systems skills: jovanipink-ai-systems": "jovanipink-ai-systems",
-            "## Agent platform skills: jovanipink-agent-platforms": "jovanipink-agent-platforms",
+            "## Core skills: measured-skills": "measured-skills",
+            "## Engineering build: measured-engineering-build": "measured-engineering-build",
+            "## Engineering review: measured-engineering-review": "measured-engineering-review",
+            "## Engineering delivery: measured-engineering-delivery": "measured-engineering-delivery",
+            "## Stack profiles: measured-stack-profiles": "measured-stack-profiles",
+            "## Operations skills: measured-operations": "measured-operations",
+            "## Reasoning skills: measured-reasoning": "measured-reasoning",
+            "## AI systems skills: measured-ai-systems": "measured-ai-systems",
+            "## Agent platform skills: measured-agent-platforms": "measured-agent-platforms",
         }
         documented: dict[str, list[str]] = {plugin: [] for plugin in canonical}
         documented_explicit: set[str] = set()
@@ -141,13 +143,15 @@ class CatalogTests(unittest.TestCase):
         cheatsheet = (ROOT / "docs" / "skill-cheatsheet.md").read_text(encoding="utf-8")
         canonical = skills_by_plugin()
         section_plugins = {
-            "## Core: jovanipink-skills": "jovanipink-skills",
-            "## Engineering: jovanipink-engineering": "jovanipink-engineering",
-            "## Stack profiles: jovanipink-stack-profiles": "jovanipink-stack-profiles",
-            "## Operations: jovanipink-operations": "jovanipink-operations",
-            "## Reasoning: jovanipink-reasoning": "jovanipink-reasoning",
-            "## AI systems: jovanipink-ai-systems": "jovanipink-ai-systems",
-            "## Agent platforms: jovanipink-agent-platforms": "jovanipink-agent-platforms",
+            "## Core: measured-skills": "measured-skills",
+            "## Engineering build: measured-engineering-build": "measured-engineering-build",
+            "## Engineering review: measured-engineering-review": "measured-engineering-review",
+            "## Engineering delivery: measured-engineering-delivery": "measured-engineering-delivery",
+            "## Stack profiles: measured-stack-profiles": "measured-stack-profiles",
+            "## Operations: measured-operations": "measured-operations",
+            "## Reasoning: measured-reasoning": "measured-reasoning",
+            "## AI systems: measured-ai-systems": "measured-ai-systems",
+            "## Agent platforms: measured-agent-platforms": "measured-agent-platforms",
         }
         documented: dict[str, list[str]] = {plugin: [] for plugin in canonical}
         documented_invocation: dict[str, str] = {}
@@ -266,7 +270,7 @@ class CatalogTests(unittest.TestCase):
         action = "https://" + "github.com/" + "actions/checkout"
         ci_tool = "https://" + "github.com/" + "python/mypy"
         workflow_parser = "https://" + "github.com/" + "yaml/pyyaml"
-        package_id = "plugin install " + "jovanipink-engineering@jovanipink-skills"
+        package_id = "plugin install " + "measured-engineering@measured-skills"
         self.assertEqual([], scan_repository_independence("README.md", owned))
         self.assertEqual(
             [], scan_repository_independence("provenance/ci-actions.json", action)
@@ -948,7 +952,7 @@ class CatalogTests(unittest.TestCase):
         )
 
     def test_v07_acceptance_ledger_contract(self) -> None:
-        self.assertEqual(25, len(skills_by_plugin()["jovanipink-engineering"]))
+        self.assertEqual(25, sum(len(v) for k, v in skills_by_plugin().items() if k.startswith("measured-engineering-")))
         self.assertIn("acceptance-evidence-ledger", EXPLICIT_SKILLS)
 
         expanded_profiles = {
@@ -1027,7 +1031,7 @@ class CatalogTests(unittest.TestCase):
         self.assertGreaterEqual(len(SKILLS), 70)
         self.assertGreaterEqual(len(skills_by_plugin()), 6)
         self.assertEqual(
-            set(new_skills), set(skills_by_plugin()["jovanipink-ai-systems"])
+            set(new_skills), set(skills_by_plugin()["measured-ai-systems"])
         )
         self.assertEqual(14, len(EXPLICIT_SKILLS))
 
@@ -1059,7 +1063,7 @@ class CatalogTests(unittest.TestCase):
                 files,
             )
             metadata = read_skill_metadata(root)
-            self.assertEqual("jovanipink-ai-systems", metadata["plugin"])
+            self.assertEqual("measured-ai-systems", metadata["plugin"])
             self.assertEqual("implicit", metadata["invocation"])
             self.assertEqual("original", metadata["provenance"])
             self.assertEqual(risk_class, metadata["risk_class"])
@@ -1074,9 +1078,9 @@ class CatalogTests(unittest.TestCase):
             "retrieval-grounding-quality-review": "retrieval-evidence-matrix.md",
         }
         self.assertEqual(79, len(SKILLS))
-        self.assertEqual(7, len(skills_by_plugin()))
+        self.assertEqual(9, len(skills_by_plugin()))
         self.assertEqual(
-            set(new_skills), set(skills_by_plugin()["jovanipink-agent-platforms"])
+            set(new_skills), set(skills_by_plugin()["measured-agent-platforms"])
         )
         self.assertEqual(14, len(EXPLICIT_SKILLS))
 
@@ -1092,7 +1096,7 @@ class CatalogTests(unittest.TestCase):
                 files,
             )
             metadata = read_skill_metadata(root)
-            self.assertEqual("jovanipink-agent-platforms", metadata["plugin"])
+            self.assertEqual("measured-agent-platforms", metadata["plugin"])
             self.assertEqual("implicit", metadata["invocation"])
             self.assertEqual("clean-room", metadata["provenance"])
             self.assertEqual("read-only", metadata["risk_class"])

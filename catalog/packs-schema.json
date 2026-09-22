@@ -14,13 +14,15 @@
       "const": "./packs-schema.json"
     },
     "catalog_version": {
-      "const": "0.16.0"
+      "const": "0.17.0"
     },
     "budget_warning_characters": {
-      "const": 6000
+      "const": 6000,
+      "description": "Editorial warning threshold, not an observed client omission."
     },
     "budget_limit_characters": {
-      "const": 8000
+      "const": 8000,
+      "description": "Editorial description-size threshold, not a universal client limit."
     },
     "plugin_packs": {
       "type": "array",
@@ -32,12 +34,13 @@
           "purpose",
           "skills",
           "description_characters",
-          "budget_status"
+          "budget_status",
+          "discovery_estimates"
         ],
         "properties": {
           "plugin": {
             "type": "string",
-            "pattern": "^jovanipink-[a-z0-9]+(?:-[a-z0-9]+)*$"
+            "pattern": "^measured-[a-z0-9]+(?:-[a-z0-9]+)*$"
           },
           "purpose": {
             "type": "string",
@@ -62,6 +65,24 @@
               "warning",
               "over-limit"
             ]
+          },
+          "discovery_estimates": {
+            "type": "object",
+            "required": [
+              "codex",
+              "claude"
+            ],
+            "properties": {
+              "codex": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "claude": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false

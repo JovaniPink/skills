@@ -1,4 +1,4 @@
-# How to Use JovaniPink Skills
+# How to Use Measured Skills
 
 Codex, Claude Code, and Antigravity have equal priority for setup, documentation, and testing. The same source skills feed their packages. Each app and CLI needs its own checks before we call it tested. See the [client support guide](client-support.md) for current package limits and a checklist for each client.
 
@@ -31,13 +31,15 @@ Install the smallest plugin that covers the work.
 
 | Plugin | Use it for |
 | --- | --- |
-| `jovanipink-skills` | Verification, research, diagnosis, authority review, quality gates, launch review, safe publication, public boundary review, and skill security |
-| `jovanipink-engineering` | Problem framing, planning, test-driven work, test strategy, worktree assessment, change review, module design, bounded prototypes, conflict reconciliation, branch completion, application quality, and multi-agent coordination |
-| `jovanipink-stack-profiles` | Focused Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
-| `jovanipink-operations` | Requirements, decisions, workshops, measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incidents, and data authority decisions |
-| `jovanipink-reasoning` | Alignment, domain vocabulary, code explanation, design rationale, change impact, technical writing, decision traces, portable skill authoring, guided configuration, task handoff, and workflow retrospectives |
-| `jovanipink-ai-systems` | AI evaluation contracts, context reliability, and exact source-to-output conformance. Written from the author's own practice, with NIST test, evaluation, verification, and validation (TEVV) resources and the W3C PROV provenance standard used only as correctness authorities |
-| `jovanipink-agent-platforms` | Google ADK architecture, agent context, tool boundaries, protocols, agentic security, and retrieval grounding |
+| `measured-skills` | Verification, research, diagnosis, authority review, quality gates, launch review, safe publication, public boundary review, and skill security |
+| `measured-engineering-build` | Frame, design, plan, and test a vertical slice |
+| `measured-engineering-review` | Review correctness, compatibility, security, and operational risk |
+| `measured-engineering-delivery` | Coordinate bounded execution, Git, and delivery evidence |
+| `measured-stack-profiles` | Focused Adobe AEM, C# and .NET, Go, Java and Spring, PHP and Drupal, Python, Salesforce and Apex, Swift and SwiftUI, TypeScript and JavaScript, PostgreSQL and SQL, and Terraform guidance |
+| `measured-operations` | Requirements, decisions, workshops, measurement, value evidence, adoption, dependencies, stakeholder communication, postlaunch learning, incidents, and data authority decisions |
+| `measured-reasoning` | Alignment, domain vocabulary, code explanation, design rationale, change impact, technical writing, decision traces, portable skill authoring, guided configuration, task handoff, and workflow retrospectives |
+| `measured-ai-systems` | AI evaluation contracts, context reliability, and exact source-to-output conformance. Written from the author's own practice, with NIST test, evaluation, verification, and validation (TEVV) resources and the W3C PROV provenance standard used only as correctness authorities |
+| `measured-agent-platforms` | Google ADK architecture, agent context, tool boundaries, protocols, agentic security, and retrieval grounding |
 
 Installing every plugin at once increases the amount of skill description text loaded by a client. It can also increase trigger collisions. Start with one plugin and add another only when the work needs it.
 
@@ -75,13 +77,15 @@ codex plugin marketplace add /path/to/skills
 Install one or more focused plugins:
 
 ```sh
-codex plugin add jovanipink-skills@jovanipink-skills
-codex plugin add jovanipink-engineering@jovanipink-skills
-codex plugin add jovanipink-stack-profiles@jovanipink-skills
-codex plugin add jovanipink-operations@jovanipink-skills
-codex plugin add jovanipink-reasoning@jovanipink-skills
-codex plugin add jovanipink-ai-systems@jovanipink-skills
-codex plugin add jovanipink-agent-platforms@jovanipink-skills
+codex plugin add measured-skills@measured-skills
+codex plugin add measured-engineering-build@measured-skills
+codex plugin add measured-engineering-review@measured-skills
+codex plugin add measured-engineering-delivery@measured-skills
+codex plugin add measured-stack-profiles@measured-skills
+codex plugin add measured-operations@measured-skills
+codex plugin add measured-reasoning@measured-skills
+codex plugin add measured-ai-systems@measured-skills
+codex plugin add measured-agent-platforms@measured-skills
 ```
 
 Verify the installed version and enabled state:
@@ -116,13 +120,15 @@ claude plugin marketplace add /path/to/skills --scope user
 Install the focused plugins you need:
 
 ```sh
-claude plugin install jovanipink-skills@jovanipink-skills --scope user
-claude plugin install jovanipink-engineering@jovanipink-skills --scope user
-claude plugin install jovanipink-stack-profiles@jovanipink-skills --scope user
-claude plugin install jovanipink-operations@jovanipink-skills --scope user
-claude plugin install jovanipink-reasoning@jovanipink-skills --scope user
-claude plugin install jovanipink-ai-systems@jovanipink-skills --scope user
-claude plugin install jovanipink-agent-platforms@jovanipink-skills --scope user
+claude plugin install measured-skills@measured-skills --scope user
+claude plugin install measured-engineering-build@measured-skills --scope user
+claude plugin install measured-engineering-review@measured-skills --scope user
+claude plugin install measured-engineering-delivery@measured-skills --scope user
+claude plugin install measured-stack-profiles@measured-skills --scope user
+claude plugin install measured-operations@measured-skills --scope user
+claude plugin install measured-reasoning@measured-skills --scope user
+claude plugin install measured-ai-systems@measured-skills --scope user
+claude plugin install measured-agent-platforms@measured-skills --scope user
 ```
 
 Verify the installed version and enabled state:
@@ -180,13 +186,13 @@ Use direct invocation when you need a specific skill or when the skill is explic
 Codex example:
 
 ```text
-$jovanipink-engineering:plan-execution Run the approved plan. Stop if the scope or authority changes.
+$measured-engineering-delivery:plan-execution Run the approved plan. Stop if the scope or authority changes.
 ```
 
 Claude Code example:
 
 ```text
-/jovanipink-engineering:plan-execution Run the approved plan. Stop if the scope or authority changes.
+/measured-engineering-delivery:plan-execution Run the approved plan. Stop if the scope or authority changes.
 ```
 
 In ChatGPT, use the `@` skill selector documented by OpenAI. Exact display names and selection behavior can vary by installed plugin and client version.
@@ -244,7 +250,7 @@ codex plugin list --json
 Claude Code:
 
 ```sh
-claude plugin marketplace update jovanipink-skills
+claude plugin marketplace update measured-skills
 claude plugin list --json
 ```
 
@@ -255,16 +261,16 @@ Start a fresh session and repeat the relevant smoke tests after an update.
 Codex:
 
 ```sh
-codex plugin remove jovanipink-skills@jovanipink-skills
+codex plugin remove measured-skills@measured-skills
 ```
 
 Claude Code:
 
 ```sh
-claude plugin uninstall jovanipink-skills@jovanipink-skills --scope user
+claude plugin uninstall measured-skills@measured-skills --scope user
 ```
 
-Replace `jovanipink-skills` before the `@` character with the plugin you installed. Verify removal with the client plugin listing. Removing a marketplace advertisement cannot force deletion of copies that another user or client already installed.
+Replace `measured-skills` before the `@` character with the plugin you installed. Verify removal with the client plugin listing. Removing a marketplace advertisement cannot force deletion of copies that another user or client already installed.
 
 ## Validate a local clone
 
@@ -302,7 +308,7 @@ Use this workflow:
 2. Create or update the canonical `skills/skill-name/SKILL.md` source.
 3. Add focused references only when they are needed.
 4. Add positive, near-miss, safety, and output-quality evaluations.
-5. Record Jovani-authored provenance with only the applicable primary authority.
+5. Record independently authored provenance with only the applicable primary authority.
 6. Regenerate the Codex and Claude plugin trees.
 7. Package Claude.ai ZIP files.
 8. Run all validation and unit tests.

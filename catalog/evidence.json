@@ -1,6 +1,6 @@
 {
   "$schema": "./evidence-schema.json",
-  "catalog_version": "0.16.0",
+  "catalog_version": "0.17.0",
   "skills": [
     {
       "skill": "agent-context-state-memory-design",
@@ -198,7 +198,18 @@
         "verified_against_version": null,
         "observed_at": null
       },
-      "runtime_eligibility": "not_applicable"
+      "runtime_eligibility": "not_applicable",
+      "historical_observations": [
+        {
+          "record_file": "docs/client-observations-v0.15.json",
+          "case_id": "V0150-ANTIGRAVITYCLI-CODE-CHANGE-REVIEW-POSITIVE-1",
+          "client_version": "1.2.0",
+          "surface": "Antigravity CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.15.0",
+          "limit": "Historical fresh-single-turn observation on this client only; no 0.17.0 acceptance or comparative benefit is established."
+        }
+      ]
     },
     {
       "skill": "codebase-explanation",
@@ -352,7 +363,189 @@
         "verified_against_version": null,
         "observed_at": null
       },
-      "runtime_eligibility": "not_applicable"
+      "runtime_eligibility": "not_applicable",
+      "historical_observations": [
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-POSITIVE-1",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-POSITIVE-2",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-POSITIVE-3",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-NEAR-MISS-1",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-NEAR-MISS-2",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-NEAR-MISS-3",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-SAFETY-1",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-SAFETY-2",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-SAFETY-3",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CLAUDECODECLI-SAFETY-4",
+          "client_version": "2.1.220",
+          "surface": "Claude Code CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-POSITIVE-1",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-POSITIVE-2",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-POSITIVE-3",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-NEAR-MISS-1",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-NEAR-MISS-2",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-NEAR-MISS-3",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-SAFETY-1",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-SAFETY-2",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-SAFETY-3",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        },
+        {
+          "record_file": "docs/client-observations-v0.14.json",
+          "case_id": "V0140-CODEXCLI-SAFETY-4",
+          "client_version": "0.153.2",
+          "surface": "Codex CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.14.0",
+          "limit": "Historical fresh-single-turn routing/output observation; edited 0.17.0 behavior and comparative benefit unobserved."
+        }
+      ]
     },
     {
       "skill": "go-engineering-profile",
@@ -495,7 +688,18 @@
         "verified_against_version": null,
         "observed_at": null
       },
-      "runtime_eligibility": "not_applicable"
+      "runtime_eligibility": "not_applicable",
+      "historical_observations": [
+        {
+          "record_file": "docs/client-observations-v0.15.json",
+          "case_id": "V0150-ANTIGRAVITYCLI-MOTION-NEAR-MISS-3",
+          "client_version": "1.2.0",
+          "surface": "Antigravity CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.15.0",
+          "limit": "Historical fresh-single-turn observation on this client only; no 0.17.0 acceptance or comparative benefit is established."
+        }
+      ]
     },
     {
       "skill": "php-drupal-engineering-profile",
@@ -869,7 +1073,27 @@
         "verified_against_version": null,
         "observed_at": null
       },
-      "runtime_eligibility": "not_applicable"
+      "runtime_eligibility": "not_applicable",
+      "historical_observations": [
+        {
+          "record_file": "docs/client-observations-v0.15.json",
+          "case_id": "V0150-ANTIGRAVITYCLI-FINDING-CONSOLIDATION-POSITIVE-1",
+          "client_version": "1.2.0",
+          "surface": "Antigravity CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.15.0",
+          "limit": "Historical fresh-single-turn observation on this client only; no 0.17.0 acceptance or comparative benefit is established."
+        },
+        {
+          "record_file": "docs/client-observations-v0.15.json",
+          "case_id": "V0150-ANTIGRAVITYCLI-FINDING-CONSOLIDATION-NEAR-MISS-3",
+          "client_version": "1.2.0",
+          "surface": "Antigravity CLI",
+          "observed_at": "2026-09-10",
+          "catalog_version": "0.15.0",
+          "limit": "Historical fresh-single-turn observation on this client only; no 0.17.0 acceptance or comparative benefit is established."
+        }
+      ]
     }
   ]
 }

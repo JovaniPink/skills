@@ -1,4 +1,4 @@
-# JovaniPink Skills
+# Measured Skills
 
 This repository holds 79 Agent Skills for AI coding assistants.
 
@@ -6,17 +6,17 @@ A skill is a short set of written instructions for one kind of task. Reviewing a
 
 A skill is only text. It installs no programs and grants no new permissions. It changes how your assistant works through a task, not what it is allowed to do.
 
-[Getting started article](https://jovanipink.com/posts/getting-started-with-jovanipink-skills): try one skill with a small evidence exercise.
+Maintained by [Measured Studios](https://measuredstudios.com). This is the 0.17.0 release candidate; see the [migration guide](docs/measured-migration.md) before changing an existing install.
 
 ## Install one pack
 
-A pack is a group of related skills you install together. There are seven. Start with one.
+A pack is a group of related skills you install together. There are nine. Start with one. The commands below target the published marketplace; use a reviewed local checkout for this unreleased candidate, as described in the migration guide.
 
 For Claude Code:
 
 ```sh
 claude plugin marketplace add JovaniPink/skills --scope user
-claude plugin install jovanipink-skills@jovanipink-skills --scope user
+claude plugin install measured-skills@measured-skills --scope user
 claude plugin list --json
 ```
 
@@ -24,18 +24,18 @@ For Codex:
 
 ```sh
 codex plugin marketplace add JovaniPink/skills
-codex plugin add jovanipink-skills@jovanipink-skills
+codex plugin add measured-skills@measured-skills
 codex plugin list --json
 ```
 
-The install name has the form `plugin@marketplace`. A marketplace is a place your client looks for packs. This repository is the marketplace, and it is named `jovanipink-skills`. One pack carries that same name. So `jovanipink-skills@jovanipink-skills` is correct, not a repeated word. Every other pack reads like `jovanipink-engineering@jovanipink-skills`.
+The install name has the form `plugin@marketplace`. A marketplace is a place your client looks for packs. This repository is the marketplace, and it is named `measured-skills`. One pack carries that same name. So `measured-skills@measured-skills` is correct, not a repeated word. Every other pack reads like `measured-engineering-build@measured-skills`.
 
 Antigravity uses an offline preview instead. See [Antigravity setup](docs/clients/antigravity.md).
 
 Now start a fresh task and name a skill:
 
 ```text
-/jovanipink-skills:claim-verification Check which completion claims have evidence. Make no changes.
+/measured-skills:claim-verification Check which completion claims have evidence. Make no changes.
 ```
 
 Codex uses `$` in place of `/`.
@@ -44,7 +44,7 @@ For work where the risk is high, clone the repository first. Read the source, ch
 
 ## What these skills do for you
 
-Each skill slows the assistant down where answers usually go wrong. It has to name its evidence. It has to keep failed checks and unknowns visible. It has to stop at any action you did not approve.
+Skills help frame outcomes, design coherent interfaces, build vertical slices, and review risk at the right checkpoint. They keep evidence and unknowns visible without granting authority. These are intended behaviors, not demonstrated productivity gains.
 
 A few examples:
 
@@ -55,19 +55,21 @@ A few examples:
 
 These are authored instructions, not measured benefits. We wrote the skills to produce those habits. We have not run a study that shows they improve your results.
 
-## The seven packs
+## The nine packs
 
 Install the smallest pack that covers your work.
 
 | Pack | Use it for |
 | --- | --- |
-| `jovanipink-skills` | Verify claims, research, diagnose problems, review what is safe to publish |
-| `jovanipink-engineering` | Frame, plan, test, and review code changes |
-| `jovanipink-reasoning` | Explain code, improve writing, hand off work |
-| `jovanipink-operations` | Requirements, decisions, measurement, adoption, incidents |
-| `jovanipink-stack-profiles` | Language and platform guidance, such as Python, Go, and Terraform |
-| `jovanipink-ai-systems` | Evaluate AI behavior, context reliability, and source-to-output checks |
-| `jovanipink-agent-platforms` | Review agent architecture, tools, protocols, and retrieval |
+| `measured-skills` | Verify claims, research, diagnose problems, review what is safe to publish |
+| `measured-engineering-build` | Frame outcomes, design interfaces, plan and test behavior |
+| `measured-engineering-review` | Review correctness, compatibility, security, and readiness |
+| `measured-engineering-delivery` | Coordinate bounded execution, Git work, and delivery evidence |
+| `measured-reasoning` | Explain code, improve writing, hand off work |
+| `measured-operations` | Requirements, decisions, measurement, adoption, incidents |
+| `measured-stack-profiles` | Language and platform guidance, such as Python, Go, and Terraform |
+| `measured-ai-systems` | Evaluate AI behavior, context reliability, and source-to-output checks |
+| `measured-agent-platforms` | Review agent architecture, tools, protocols, and retrieval |
 
 The [skill cheatsheet](docs/skill-cheatsheet.md) lists all 79 skills with one line each. [Choose Your Skills](docs/choose-your-skills.md) helps you pick. The [skill catalog reader guide](docs/skill-catalog-reader-guide.md) explains every skill in full.
 
@@ -107,9 +109,9 @@ Authored means we wrote it. It says what the instructions intend.
 
 Observed means we ran it and wrote down what happened, with the exact client, version, and date.
 
-The current catalog is version 0.16.0. It has 79 skills in seven packs. The [current candidate record](docs/client-candidate-v0.16.0.md) holds the install and behavior results for it.
+The current candidate is 0.17.0: 79 skills in nine packs. The [candidate record](docs/client-candidate-v0.17.0.md) separates structural checks from behavior still requiring observation.
 
-The `jovanipink-engineering` pack was held after one of its skills failed a live safety test. Both command lines ran the ten original test cases on 2026-09-10 and cleared it. The pack is enabled there. Other app modes are still unchecked. Read the candidate record before you enable it somewhere else.
+Historical engineering checks retain their original versions. They do not establish behavior for renamed packs or edited skills. No 0.17.0 installed-client benefit is claimed.
 
 One limit is worth knowing before you test. Every result we have recorded was taken at the first turn of a fresh session. We have not measured whether a skill still shapes replies later in a long working session, and published research suggests instructions lose force as a conversation grows. The [study design](docs/turn-depth-study.md) says how we plan to find out.
 
@@ -145,4 +147,4 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) before you open a pull request. [Reposit
 - [Glossary](docs/glossary.md): what the terms mean
 - [Skill cheatsheet](docs/skill-cheatsheet.md): all 79 skills at a glance
 - [Client support checklist](docs/client-support.md): what to test in each app and CLI
-- [How to use JovaniPink Skills](docs/README.md): the full guide
+- [How to use Measured Skills](docs/README.md): the full guide

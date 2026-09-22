@@ -138,7 +138,7 @@ def scan_text(label: str, text: str) -> list[str]:
     for match in PACKAGE_MARKETPLACE_ID.finditer(text):
         plugin = match.group("plugin").casefold()
         marketplace = match.group("marketplace").casefold()
-        if plugin.startswith("jovanipink-") and marketplace == "jovanipink-skills":
+        if plugin.startswith("measured-") and marketplace == "measured-skills":
             continue
         line = text.count("\n", 0, match.start()) + 1
         errors.append(f"{label}:{line}: external package marketplace identifier is not permitted")

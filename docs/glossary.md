@@ -6,7 +6,7 @@ Plain definitions for the words this catalog uses. They are in alphabetical orde
 
 **Authored.** Something we wrote. An authored claim says what the instructions intend. It does not say what any client did.
 
-**Candidate.** A dated record for one catalog version. It lists what is prepared, installed, enabled, loaded, and behavior-tested in each app and CLI. See the [current candidate record](client-candidate-v0.16.0.md).
+**Candidate.** A dated record for one catalog version. It lists what is prepared, installed, enabled, loaded, and behavior-tested in each app and CLI. See the [current candidate record](client-candidate-v0.17.0.md).
 
 **Catalog.** All 79 skills in this repository, plus the records that describe them.
 
@@ -28,7 +28,7 @@ Plain definitions for the words this catalog uses. They are in alphabetical orde
 
 **Implicit.** A marking that means your client may pick the skill on its own when your request matches its description. You can still name it directly. 65 of the 79 skills are implicit.
 
-**Marketplace.** A place your client looks for packs. This repository is its own marketplace, and it is named `jovanipink-skills`.
+**Marketplace.** A place your client looks for packs. This repository is its own marketplace, and it is named `measured-skills`.
 
 **Near-miss.** A test request that looks like a match for a skill but should not start it. Near-miss cases check that a skill stays quiet when it should.
 
@@ -36,7 +36,7 @@ Plain definitions for the words this catalog uses. They are in alphabetical orde
 
 **Output style.** A client setting that changes tone and format for every reply. A skill is different: it loads instructions for one kind of task. Anthropic draws the same line, and its built-in Concise style needs Claude Code v2.1.237 or later. Every observation in this repository was taken on 2.1.220, before that existed. This catalog ships no output styles.
 
-**Pack.** A group of related skills you install together. Clients also call this a plugin. There are seven packs.
+**Pack.** A group of related skills you install together. Clients also call this a plugin. There are nine packs.
 
 **Plugin.** The client's word for a pack. Installing a pack and enabling each of its skills are separate choices.
 

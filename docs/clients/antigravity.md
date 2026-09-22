@@ -38,11 +38,11 @@ agy plugin install /absolute/path/to/antigravity-check/plugin
 agy plugin list
 ```
 
-In CLI 1.1.26, the native installer placed the tested preview under `~/.gemini/config/plugins/`, and the menu listed `/jovanipink-antigravity-preview:claim-verification`. Native validation, file hashes, disable/enable, removal, and reinstall checks passed. These results cover one skill and this CLI version.
+In CLI 1.1.26, the native installer placed the tested preview under `~/.gemini/config/plugins/`, and the menu listed `/measured-antigravity-preview:claim-verification`. Native validation, file hashes, disable/enable, removal, and reinstall checks passed. These results cover one skill and this CLI version.
 
 Record the names and path your client actually shows. Follow the [shared client checks](../client-support.md) in a fresh task. Verify live use and linked notes before widening the install. Keep personal and product skills separate from this public preview.
 
-If a check fails, run `agy plugin disable jovanipink-antigravity-preview` for this named preview. In 1.1.27, `agy plugin list` showed imports but did not show enabled state. Readback of the native plugin configuration showed this preview's `enabled` value as `false`. Record that separate state check. To restore a saved preview, use the native install command with its backup folder. Verify its files and state before using it again. Do not add another copy to force discovery.
+If a check fails, run `agy plugin disable measured-antigravity-preview` for this named preview. In 1.1.27, `agy plugin list` showed imports but did not show enabled state. Readback of the native plugin configuration showed this preview's `enabled` value as `false`. Record that separate state check. To restore a saved preview, use the native install command with its backup folder. Verify its files and state before using it again. Do not add another copy to force discovery.
 
 ## Enable the preview after installing it
 
@@ -50,7 +50,7 @@ If a check fails, run `agy plugin disable jovanipink-antigravity-preview` for th
 
 ```sh
 agy plugin install /absolute/path/to/antigravity-check/plugin
-agy plugin enable jovanipink-antigravity-preview
+agy plugin enable measured-antigravity-preview
 ```
 
 This matters because an unskilled reply looks reasonable. In a 1.1.28 check, ten cases ran against a disabled preview and returned fluent reviews with none of the skill's own output: no named sections, no evidence-kind labels, and no WCAG levels. The same ten cases returned all of that once the plugin was enabled. Before scoring any run, confirm the reply carries the skill's named sections. A plausible answer is not proof the skill loaded.

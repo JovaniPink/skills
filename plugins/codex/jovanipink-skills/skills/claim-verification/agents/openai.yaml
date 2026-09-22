@@ -1,6 +1,0 @@
-interface:
-  display_name: "Claim Verification"
-  short_description: "Verify claims against current evidence"
-  default_prompt: "Use $jovanipink-skills:claim-verification to test these claims against the relevant authorities."
-policy:
-  allow_implicit_invocation: true

@@ -1,6 +1,0 @@
-interface:
-  display_name: "Guided Configuration"
-  short_description: "Walk through protected setup with verified checkpoints"
-  default_prompt: "Use $jovanipink-reasoning:guided-configuration to guide me through this protected setup one verified step at a time."
-policy:
-  allow_implicit_invocation: false

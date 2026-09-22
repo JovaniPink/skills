@@ -28,7 +28,7 @@ Output styles matter here. A plugin is allowed to ship one that applies as soon 
 
 This matters because a skill you install can shape every later task. Keeping it to text means you can read the whole thing before you trust it.
 
-Repository scripts use only the Python standard library. They check and package files. They do not reach the network.
+Packaging scripts work offline. The upstream freshness checker can make network requests when explicitly run with `--online`; workflow validation uses the reviewed CI dependencies. Text-only skills do not prevent the host's tools from reaching the network. Sandbox, permissions, and explicit authority remain the enforcement boundary.
 
 A skill can recommend an action. Your client's permissions and your own approval decide whether it happens. A skill cannot grant itself a tool or a permission.
 

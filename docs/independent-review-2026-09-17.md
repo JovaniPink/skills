@@ -4,6 +4,8 @@ Reviewed by: an outside Claude Code session, not a catalog maintainer.
 
 Scope: the public skills catalog, and the skills-private policy repo.
 
+> Maintainer note, 2026-09-21: this is a historical review of 0.16.0, not current release acceptance. The review text below is unchanged. Maintainer corrections are listed at the end, and the 0.17.0 dispositions are in the [0.17.0 candidate record](client-candidate-v0.17.0.md#pr-44-disposition).
+
 Result: the main safety rule works as intended. Two real gaps were found and are fixed below. One doc line overclaims. One structural change is suggested.
 
 ## 1. The cross-platform gate works
@@ -55,3 +57,13 @@ The line in `SECURITY.md` should say the pull request checks never reach the net
 `catalog/evidence.json` marks every one of the 79 skills with `behavioral_evidence.status: "none"`. But real, dated pass and fail results already exist in plain text for at least three skills, including the `functional-motion-review` re-test described in `docs/client-candidate-v0.14.0.md`.
 
 This may be on purpose, matching the catalog's own rule that a pass on one client does not prove a pass on another. If it is on purpose, that is a fair choice. If it is not on purpose, the ledger should be updated to match the real, already-written evidence, so a reader checking only the ledger does not miss it.
+
+## Maintainer reconciliation, 2026-09-21
+
+Catalog maintainers added this section. The review text above is unchanged. These notes correct it.
+
+- **Result.** Two gaps were reported, not fixed. This review did not implement its own suggestions.
+- **Section 2.** The review treats 8,000 characters as a universal Codex limit. It is a documented fallback that applies when the model context size is unavailable.
+- **Section 3.** The skills-private validator enforces a fixed policy-only tree. It is not comprehensive secret detection. Adding a hook would require revisiting that repository's explicit no-hooks policy.
+- **Section 4.** The long `functional-motion-review` description adds to the pack's description total. The review did not establish that it is the main cause of discovery pressure.
+- **Section 5.** Explicit-only is an invocation restriction, not a grant of authority. The pack's other 18 skills include design work as well as reviews, so they are not all read-only reviews.
