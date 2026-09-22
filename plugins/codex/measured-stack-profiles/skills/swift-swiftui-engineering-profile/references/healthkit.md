@@ -45,6 +45,5 @@ Authorities: [Setting up HealthKit](https://developer.apple.com/documentation/he
 
 ## Testing
 
-- Put HealthKit behind a small protocol so tests can fake empty, denied-write, limited-history, and unavailable states. [unverified]
 - UI tests can reset Health authorization with `resetAuthorizationStatus(for: .health)` in XCUIAutomation. [verified declaration]
 - Report simulator results separately from device results. Device behavior was not tested here.

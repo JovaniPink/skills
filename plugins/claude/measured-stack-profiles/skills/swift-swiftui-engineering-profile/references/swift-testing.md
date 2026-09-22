@@ -44,7 +44,6 @@ A test that is partly migrated can pass while its assertions fail. [verified]
 
 - `@Test(arguments:)` reports each argument as its own case. [verified]
 - Tags and `.timeLimit(.minutes(n))` traits compile and run alongside other traits. [verified]
-- Prefer a parameterized test over a loop inside one test, so one failing input does not hide the others. [unverified]
 
 ## Isolation
 
@@ -60,5 +59,4 @@ A test that is partly migrated can pass while its assertions fail. [verified]
 ## Gaps to report
 
 - In Xcode 27, UI automation APIs such as `XCUIApplication` live in the XCUIAutomation framework. [verified declaration] Confirm which runner executes UI and performance tests before reporting them as covered. [unverified]
-- Timing assertions built on `Task.sleep` are flaky. Treat them as findings. [unverified]
 - A green `swift test` on macOS says nothing about iOS simulator or device behavior. Report the platform that ran.

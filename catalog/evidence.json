@@ -937,9 +937,9 @@
       "workflow_maturity": "candidate",
       "workflow_maturity_evidence": "evals/cases.json",
       "behavioral_evidence": {
-        "status": "none",
-        "verified_against_version": null,
-        "observed_at": null
+        "status": "partial",
+        "verified_against_version": "0.17.0",
+        "observed_at": "2026-09-22T20:31:51Z"
       },
       "runtime_eligibility": "not_applicable"
     },

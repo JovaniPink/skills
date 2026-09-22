@@ -48,7 +48,6 @@ Inserting a second model with the same unique value updates the existing row ins
 
 - Version shipped schemas with `VersionedSchema` and a `SchemaMigrationPlan`. [verified compiles]
 - In Swift 6 mode, `static var versionIdentifier` is a compile error for global mutable state. Declare it `static let`. [verified]
-- Ask for a migration test that opens a store written by the previous schema version. [unverified]
 
 ## Tests
 

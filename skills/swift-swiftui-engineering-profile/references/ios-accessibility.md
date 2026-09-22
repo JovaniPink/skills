@@ -6,22 +6,18 @@ Authorities: [Human Interface Guidelines: Accessibility](https://developer.apple
 
 ## Dynamic Type
 
-- Use text styles such as `.font(.body)` instead of fixed point sizes. [documented]
 - Scale icons, spacing, and other non-text sizes with `@ScaledMetric(relativeTo:)`. [verified]
 - Switch from a row to a column when `dynamicTypeSize.isAccessibilitySize` is true, for example with `AnyLayout`. [verified]
-- Flag fixed heights and `lineLimit(1)` on text that grows. Both cut off large text. [unverified]
 - Capping text with `.dynamicTypeSize(...DynamicTypeSize.accessibility3)` needs a stated reason. It limits what some people can read. [verified API; judgment]
 - Bar items and other controls that cannot grow with Dynamic Type can use `.accessibilityShowsLargeContentViewer()` so a long press shows an enlarged version. [verified API; judgment]
 
 ## VoiceOver on custom controls
 
-- Prefer a standard control such as `Button`, `Toggle`, or `Slider`. It brings the right traits and actions. [unverified]
 - For a custom drawing that acts as one control, use `.accessibilityElement(children: .ignore)` and then:
   - `accessibilityLabel` for what it is, for example "Daily goal". [verified]
   - `accessibilityValue` for its current state, for example "40 percent". [verified]
   - `accessibilityAdjustableAction` when people can raise or lower it. [verified]
 - `accessibilityRepresentation` lets a custom view borrow a standard control's behavior. [verified]
-- A view with `onTapGesture` needs `.accessibilityAddTraits(.isButton)` and a label, or it should be a `Button`. [verified API; judgment]
 - Hide decorative images with `.accessibilityHidden(true)`. [verified]
 - Add `accessibilityInputLabels` when the visible label is long or unclear for Voice Control. [verified]
 
@@ -34,7 +30,7 @@ Authorities: [Human Interface Guidelines: Accessibility](https://developer.apple
 ## Differentiate Without Color
 
 - Never use color alone to show status, errors, or chart series. Add a symbol, shape, pattern, or text. [documented]
-- Read `@Environment(\.accessibilityDifferentiateWithoutColor)` to add those cues when the setting is on. The safer default is to show them always. [verified API; judgment]
+- Read `@Environment(\.accessibilityDifferentiateWithoutColor)` to add those cues when the setting is on. [verified]
 
 ## Touch targets
 

@@ -40,16 +40,13 @@ Concurrency behavior depends on per-module settings. Review each target on its o
 
 ## Cancellation
 
-- Cancellation is cooperative. Long loops need `try Task.checkCancellation()` or a `Task.isCancelled` check. [documented]
 - Canceling a parent task cancels `async let` children and task-group children. [verified]
 - An unstructured `Task { }` does not see its creator's cancellation. In the test it ran to completion after the outer task was canceled. Keep its handle and cancel it yourself. [verified]
 - `Task.detached` does not inherit actor isolation or task-local values, and it is not canceled with its creator. Keep its handle. [documented]
 - Use `withTaskCancellationHandler` to stop callback-based work. The handler runs right away on cancellation, even if the operation never checks. It can run at the same time as the operation, so it must be safe to call from any context. [documented]
-- Do not show `CancellationError` to people as a failure. [unverified]
 
 ## Other checks
 
 - `Task.immediate` needs iOS 26 or later. [verified]
 - `MainActor.assumeIsolated` traps when the assumption is wrong. Prefer an isolation annotation. [documented]
-- Treat `@unchecked Sendable` and `nonisolated(unsafe)` as findings unless a comment names the lock or invariant that makes them safe. [unverified]
 - `Thread.isMainThread` is unavailable in async contexts in Swift 6 mode. Use isolation annotations or `MainActor.assertIsolated()`. [verified]
