@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -1509,6 +1510,26 @@ class CatalogTests(unittest.TestCase):
                 ROOT / "examples" / "private-overlay", check_only=True
             ),
         )
+
+    def test_private_overlay_sync_allows_repository_agents_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = Path(temporary) / "repo"
+            shutil.copytree(ROOT / "examples" / "private-overlay", repo)
+            (repo / "AGENTS.md").write_text("# Repository guidance\n", encoding="utf-8")
+            self.assertEqual([], sync_private_overlay(repo, check_only=False))
+            self.assertEqual([], sync_private_overlay(repo, check_only=True))
+
+    def test_private_overlay_refuses_existing_projection_without_source(self) -> None:
+        for projection in (".claude/skills", ".agents/skills"):
+            for check_only in (False, True):
+                with self.subTest(projection=projection, check_only=check_only):
+                    with tempfile.TemporaryDirectory() as temporary:
+                        repo = Path(temporary)
+                        (repo / projection / "local-skill").mkdir(parents=True)
+                        errors = sync_private_overlay(repo, check_only=check_only)
+                        self.assertEqual(1, len(errors))
+                        self.assertIn("existing repo-local skill convention", errors[0])
+                        self.assertTrue((repo / projection / "local-skill").is_dir())
 
     def test_upstream_review_freshness_is_current_offline(self) -> None:
         errors, report = check_upstream_freshness(online=False)

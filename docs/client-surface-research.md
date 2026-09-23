@@ -59,7 +59,7 @@ Google transitioned individual free, Google AI Pro, and Google AI Ultra users fr
 
 The repository preserves its Gemini CLI 0.56.0 rows as historical evidence for that exact package and workspace-link observation. Those rows do not establish current individual guidance or enterprise compatibility. A future Antigravity row must record the exact `agy` version and binary digest, model and effort, clean configuration home, source revision, discovery, activation, focused-reference loading, permissions, sandbox, network policy, normalized terminal and tool events, and removal result. Exit code zero alone is insufficient when a permission denial can be soft-denied while execution continues.
 
-The Delivery TypeScript profile includes the explicit-only `publish-change-safely` skill. In version 0.17.0, Antigravity adopts verified frontmatter explicit controls (`disable-model-invocation: true`), matching Claude Code's model invocation control to prevent autonomous selection while allowing explicit slash command invocation.
+The Delivery TypeScript profile includes the explicit-only `publish-change-safely` skill. In version 0.17.0, Antigravity packs include it with `disable-model-invocation: true`. That control is unverified on Antigravity: Google's skill docs list only `name` and `description`, and no agy run has shown that the field stops automatic selection. Claude Code behavior does not carry over.
 
 Primary sources:
 

@@ -45,23 +45,24 @@ def _render(repo: Path, output: Path) -> tuple[Path, Path]:
     return codex, claude
 
 
-def _check_existing_conventions(repo: Path) -> None:
-    if (repo / "AGENTS.md").exists():
-        raise RuntimeError(f"repository {repo} already has an AGENTS.md convention; aborting overlay sync to prevent overwrite.")
-    if (repo / ".claude/skills").exists() and not (repo / ".agent-skills").exists():
-        raise RuntimeError(f"repository {repo} already has a generated .claude/skills projection but no .agent-skills source; aborting overlay sync to prevent overwrite.")
+def _check_existing_conventions(repo: Path) -> list[str]:
+    """Refuse repositories whose client skill folders are not projections of .agent-skills/."""
+    if (repo / ".agent-skills").exists():
+        return []
+    for relative in (".claude/skills", ".agents/skills"):
+        if (repo / relative).exists():
+            return [
+                f"{relative} exists without .agent-skills/; follow the existing repo-local "
+                "skill convention instead of this synchronizer"
+            ]
+    return []
 
 
 def sync(repo: Path, check_only: bool) -> list[str]:
     repo = repo.resolve()
-    
-    if not check_only:
-        try:
-            _check_existing_conventions(repo)
-        except RuntimeError as e:
-            return [str(e)]
-            
-    errors: list[str] = []
+    errors = _check_existing_conventions(repo)
+    if errors:
+        return errors
     with tempfile.TemporaryDirectory(prefix="private-overlay-") as temporary:
         expected_codex, expected_claude = _render(repo, Path(temporary))
         pairs = (

@@ -41,13 +41,8 @@ def build(output: Path, selected: list[str] | None = None) -> Path:
             else:
                 shutil.copy2(item, target / item.name)
     (plugin / "plugin.json").write_text(json.dumps({
-        "$schema": "https://antigravity.google/schemas/v1/plugin.json",
         "name": "measured-antigravity-preview",
-        "version": VERSION,
         "description": "Selected workflow skills for an Antigravity loading check.",
-        "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
-        "homepage": "https://measuredstudios.com/skills",
-        "repository": "https://github.com/JovaniPink/skills",
     }, indent=2) + "\n", encoding="utf-8")
     receipt = {
         "format_version": 1,

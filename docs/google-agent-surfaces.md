@@ -25,7 +25,7 @@ Antigravity setup, packaging, and manual checks have equal priority with Codex a
 
 Each paired run must use fresh pinned worktrees, a natural empty configuration home, fixed model and effort, sandboxed scoped permissions, a fixed network policy, and headless JSON or stream-JSON evidence. The grader must parse terminal result status and tool events; process exit code zero is not sufficient evidence of success.
 
-The Delivery TypeScript profile includes the explicit-only `publish-change-safely` skill. In version 0.17.0, Antigravity uses verified frontmatter explicit controls (`disable-model-invocation: true`), matching Claude Code's model invocation control, which prevents autonomous selection while allowing explicit slash command invocation. Full catalog behavioral verification remains pending live test evidence.
+The Delivery TypeScript profile includes the explicit-only `publish-change-safely` skill. In version 0.17.0, Antigravity packs include it with `disable-model-invocation: true`. That control is unverified on Antigravity: Google's skill docs list only `name` and `description`, and no agy run has shown that the field stops automatic selection. Full catalog behavioral verification remains pending live test evidence.
 
 ## Packaging boundary
 
