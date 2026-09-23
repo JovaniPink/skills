@@ -1,7 +1,7 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.17.0",
-  "source_commit": "54c9a6f7c04f6ff3b4492dc629b9504409294d59",
+  "source_commit": "f3834ac3ec502dd75d10de38fa28744f0f3277b9",
   "created_on": "2026-09-23",
   "artifacts": [
     {
@@ -477,47 +477,47 @@
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-agent-platforms",
-      "sha256": "39b4d9578045880007b9ffe084d69eadc99982b77e6d66d4063aea89a8bc8431"
+      "sha256": "f06619b2c1ef058108845583225eb3436cf3490e0c3f6e249efc558af6d8732d"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-ai-systems",
-      "sha256": "fa3dbb08e714657d0436f93cb9d38904dfc1ecddb7e87279c56b7e014b080f59"
+      "sha256": "5cb0bda493fd2e3e87c3922dbefeb88f10179a3f1aa326dea84f3f11797c583f"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-engineering-build",
-      "sha256": "b1934a49167fccb456ca139133a8536a77e15a105f0291f406e7adaf8b4ccfe1"
+      "sha256": "4844e803db11cf9238137d8a586b0be1714df3a87692142f86d1a09bdcf1421b"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-engineering-delivery",
-      "sha256": "ca9300eac30da79f52e206ddd1a66e3e5ad125fc9ad352840f1f6da1c8cf5540"
+      "sha256": "567072696c558902785d066c72479944cc598cfb182cfa1d8e310e380ceba018"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-engineering-review",
-      "sha256": "b85a8d3f196dbe010f2111b08c87a368f92fe8ae604c63f5269a20649e674295"
+      "sha256": "9ca98efcbb600cae8edb19c6933f104c6f1d6f723a9a8d4f82d35ea43660a927"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-operations",
-      "sha256": "fe2b8af53b4bd24a07df4340de1f133b66198756cb3d37a719c094816077e19c"
+      "sha256": "7142f5759dae4b238cd178a2811433c8d984deef0028b0a578919d2a8ef98d50"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-reasoning",
-      "sha256": "40d900a6d66c35d2dfeb33b6b92beaa83d45fe10e7d967b8c3323d0488b7a535"
+      "sha256": "45dbc9a0c6f5556b547d40af2b4d4ae66ded3ff77fcabf6b71815bc9bbd001b1"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-skills",
-      "sha256": "9fa0093c57a58d713306c149f0e758d7a1d1e2390d172c3fb841612f9b2bf85e"
+      "sha256": "f5b138c2e2d7366bb2109650883ae1a275c1a3932b1a7c6c15ab649ebf9272ee"
     },
     {
       "kind": "tree",
       "path": "plugins/antigravity/measured-stack-profiles",
-      "sha256": "24305862054e8cec4c0b7f74bd1ac49903018a5b5aa0c3c68783062c3481559f"
+      "sha256": "e4712327c2caf80014150a1f83a90ddf72054c8bb053b6c598446a292cd1c092"
     },
     {
       "kind": "tree",
