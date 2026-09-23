@@ -2,7 +2,7 @@
 
 Catalog version: 0.17.0
 
-Updated: 2026-09-21
+Updated: 2026-09-23
 
 This candidate retains 79 skills and splits engineering into build, review, and delivery, for nine packs. Publisher metadata is Measured Studios. The source repository has not transferred. See the [migration guide](measured-migration.md).
 
@@ -11,6 +11,8 @@ This candidate retains 79 skills and splits engineering into build, review, and 
 Native adapters and package checks do not prove client discovery, behavioral benefit, or sustained-session adherence. Prior [0.16.0 evidence](client-candidate-v0.16.0.md) retains its original identity and limits. Explicit-only and turn-depth holds remain in effect on unverified surfaces.
 
 On 2026-09-21, a fresh Codex CLI 0.154.0 read-only session using the existing gpt-5.6-sol model at medium effort listed all seven focused native project skills. User configuration was excluded for that check. Unrelated global Clerk skills remained visible and were misclassified by the response as legacy skills, so the response is not a complete inventory oracle. This checks the standalone projection, not installation of the renamed plugin. No implementation task, controlled comparison, or default promotion followed from it.
+
+On 2026-09-23, all nine packs passed the native install, upgrade, downgrade, uninstall, and reinstall lifecycle, with installed files matching the generated source by hash, on Claude Code 2.1.280, Codex CLI 0.154.0, and Antigravity CLI 1.2.8. Each ran in a throwaway configuration upgraded from 0.16.0 by following the migration guide. No model prompt ran, so loading in a fresh task, selection, and explicit-only controls remain unverified. See the [lifecycle record](manual-smoke-tests.md#0170-isolated-install-lifecycle-2026-09-23).
 
 A fresh Claude Code 2.1.220 check using the staged build plugin and two project skills stopped before inference with HTTP 401: its OAuth token was expired. No discovery or behavioral pass is inferred. Marketplace and build-plugin native structural validation passed separately.
 

@@ -4,6 +4,30 @@ See the [current 0.17.0 candidate checks](client-candidate-v0.17.0.md). Older ob
 
 Start with the [September 8 Claude account repair](claude-account-repair-2026-09-08.md) for the latest account and CLI checks. The [client support checklist](client-support.md) tracks checks still open. Earlier sections retain their named versions, dates, and failures. They do not prove that a current install works.
 
+## 0.17.0 isolated install lifecycle, 2026-09-23
+
+This checks the native plugin lifecycle on each supported CLI: install, upgrade, downgrade, uninstall, and reinstall (release-process step 5). It is not a behavioral check. No model prompt ran in these configurations, so skill loading in a fresh task, selection, and explicit-only controls are not established here.
+
+Setup: each CLI ran against a throwaway configuration, so no personal install changed. Claude Code used `CLAUDE_CONFIG_DIR` and Codex used `CODEX_HOME`. Antigravity has no configuration-folder option, so `agy` ran with `HOME` set to a throwaway folder. A before-and-after check confirmed that nothing under the real `~/.gemini` changed. Sources were exact archives of `v0.16.0` (`89728f9`) and 0.17.0 candidate `a9b55e7`, each used as a local marketplace or plugin folder. Antigravity 0.16.0 is the offline preview built by that tag's `scripts/build_antigravity.py`, because 0.16.0 generated no Antigravity packs.
+
+Upgrade followed the [migration guide](measured-migration.md): disable every 0.16.0 identity, install the nine 0.17.0 packs, then remove the old identities. Downgrade reversed it. After every step, the enabled inventory was read back, and each enabled pack's installed files were compared by SHA-256 with the generated source it came from.
+
+| CLI | Install 0.16.0 | Upgrade to 0.17.0 | Downgrade | Uninstall | Reinstall 0.17.0 |
+| --- | --- | --- | --- | --- | --- |
+| Claude Code 2.1.280 | pass: 7 packs, 135 files | pass: 9 packs, 143 files; old packs disabled first, then removed | pass: 7 packs, 135 files | pass: none listed | pass: 9 packs, 143 files |
+| Codex CLI 0.154.0 | pass: 7 packs, 214 files | pass: 9 packs, 222 files; old packs disabled first, then removed | pass: 7 packs, 214 files | pass: none listed | pass: 9 packs, 222 files |
+| Antigravity CLI 1.2.8 | pass: preview, 103 files | pass: 9 packs, 143 files; preview disabled first, then removed | pass: preview, 103 files | pass: none imported | pass: 9 packs, 143 files |
+
+All 201 lifecycle commands after the initial reset exited 0. Six of the reset's 11 commands failed as expected; they were uninstall attempts for Claude packs that were not installed.
+
+Client behavior observed along the way:
+
+- **Claude Code:** `plugin uninstall` and `plugin marketplace remove` left each removed pack's cached files in `plugins/cache/<marketplace>/<plugin>/<version>/`. The inventory stopped listing them. Whether a fresh task still loads them was not checked.
+- **Codex:** `plugin add` copies each pack into `plugins/cache/<marketplace>/<plugin>/<version>/` under `CODEX_HOME`, and `plugin remove` deletes that copy. The CLI has no disable command, so disabling set `enabled = false` in that configuration's `config.toml`.
+- **Antigravity:** `plugin install` does not enable a pack. Enabled state lives in `.gemini/config/config.json`. A disabled pack stayed disabled when installed again over itself. `plugin uninstall` removed both the plugin folder and its enabled-state entry, so a later install again started disabled.
+
+Limits: the fresh-task checks were not run. The throwaway configurations had no sign-in, and signing in is an account action outside this run. Model selection, linked-reference reads, explicit-only controls, and removal as seen by a fresh task remain open for all three CLIs. Desktop, IDE, and account surfaces were not checked.
+
 ## Swift profile focused-reference check, 2026-09-22
 
 This checks skill selection and reference loading for the seven Swift profile cases added in 0.17.0 (`positive-4` to `positive-6`, `near-miss-4` to `near-miss-6`, and `safety-2`). It is not a controlled comparison against a no-skill baseline.

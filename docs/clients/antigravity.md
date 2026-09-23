@@ -61,11 +61,11 @@ In CLI 1.1.26, the native installer placed the tested preview under `~/.gemini/c
 
 Record the names and path your client actually shows. Follow the [shared client checks](../client-support.md) in a fresh task. Verify live use and linked notes before widening the install. Keep personal and product skills separate from this public preview.
 
-If a check fails, run `agy plugin disable measured-antigravity-preview` for this named preview. In 1.1.27, `agy plugin list` showed imports but did not show enabled state. Readback of the native plugin configuration showed this preview's `enabled` value as `false`. Record that separate state check. To restore a saved preview, use the native install command with its backup folder. Verify its files and state before using it again. Do not add another copy to force discovery.
+If a check fails, run `agy plugin disable measured-antigravity-preview` for this named preview. In 1.1.27, `agy plugin list` showed imports but did not show enabled state. Readback of the native plugin configuration showed this preview's `enabled` value as `false`. In CLI 1.2.8 that state is in `~/.gemini/config/config.json`, under `plugins.<name>.enabled`. Record that separate state check. To restore a saved preview, use the native install command with its backup folder. Verify its files and state before using it again. Do not add another copy to force discovery.
 
 ## Enable the preview after installing it
 
-`agy plugin install` reports success and lists the skills it processed. It does not enable the plugin. A preview that was disabled earlier stays disabled through a reinstall. Run the enable step and check it:
+`agy plugin install` reports success and lists the skills it processed. It does not enable the plugin. A preview that was disabled earlier stays disabled through a reinstall. In CLI 1.2.8, `agy plugin uninstall` removed the enabled-state entry as well as the folder, so a later install again started disabled. Run the enable step and check it:
 
 ```sh
 agy plugin install /absolute/path/to/antigravity-check/plugin
