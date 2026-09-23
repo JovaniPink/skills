@@ -38,6 +38,8 @@ class AntigravityBundleTests(unittest.TestCase):
                     self.assertEqual(expected, directory_hashes(destination))
             self.assertEqual(included, {path.name for path in (target / "plugin" / "skills").iterdir()})
             self.assertEqual({"plugin.json", "skills"}, {path.name for path in (target / "plugin").iterdir()})
+            manifest = json.loads((target / "plugin" / "plugin.json").read_text(encoding="utf-8"))
+            self.assertEqual({"name", "description"}, set(manifest))
 
     def test_focused_bundle_and_deterministic_output(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

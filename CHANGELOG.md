@@ -13,6 +13,8 @@ All notable changes use this file. The project follows semantic versioning after
 - Index historical motion observations without asserting current behavior or comparative benefit.
 - Reconcile PR 44 findings; defer the policy-only repository's prohibited pre-commit hook.
 - Keep client acceptance, comparative runs, the normal-work pilot, and default promotion unverified.
+- Mark Antigravity explicit-only controls and marketplace install as unverified; limit generated Antigravity `plugin.json` files to documented fields; install packs from local folders.
+- Narrow the private overlay guard to client skill folders without an `.agent-skills/` source, and apply it under `--check`.
 
 ## [0.16.0] - 2026-09-11
 

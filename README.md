@@ -31,13 +31,14 @@ codex plugin list --json
 For Antigravity:
 
 ```sh
-agy plugin marketplace add JovaniPink/skills
-agy plugin install measured-skills@measured-skills
+agy plugin install /absolute/path/to/skills/plugins/antigravity/measured-skills
 agy plugin enable measured-skills
 agy plugin list
 ```
 
-The install name has the form `plugin@marketplace`. A marketplace is a place your client looks for packs. This repository is the marketplace, and it is named `measured-skills`. One pack carries that same name. So `measured-skills@measured-skills` is correct, not a repeated word. Every other pack reads like `measured-engineering-build@measured-skills`.
+Antigravity installs a pack from a local folder in a reviewed checkout; Google documents no `agy` marketplace command. Explicit-only skill controls are unverified on Antigravity. See its setup guide before installing the delivery pack.
+
+For Claude and Codex, the install name has the form `plugin@marketplace`. A marketplace is a place your client looks for packs. This repository is the marketplace, and it is named `measured-skills`. One pack carries that same name. So `measured-skills@measured-skills` is correct, not a repeated word. Every other pack reads like `measured-engineering-build@measured-skills`.
 
 See [Antigravity setup](docs/clients/antigravity.md).
 

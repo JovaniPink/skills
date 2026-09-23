@@ -26,6 +26,7 @@ An overlay always lives inside the product repository that owns the private fact
 Before creating an overlay, check whether the product repository already has repo-local skills, a projection script, or `AGENTS.md` rules about them.
 - If it does, follow that repository's convention and its own checker. Do not add `.agent-skills/` or run the synchronizer there.
 - Use the synchronizer only for repositories that have no existing convention.
+- The synchronizer enforces part of this check. It refuses to write or check a repository that has `.claude/skills/` or `.agents/skills/` but no `.agent-skills/` source. A root `AGENTS.md` alone does not block it, so still read that file first.
 
 ## Fictional example
 

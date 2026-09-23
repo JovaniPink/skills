@@ -1,10 +1,10 @@
 # Antigravity setup
 
-Antigravity setup and testing have equal priority with Codex and Claude. In version 0.17.0, Antigravity receives first-class distribution support with all nine modular packs under `plugins/antigravity/` and marketplace manifest `.gemini/plugins/marketplace.json`. An offline preview builder is also provided via `scripts/build_antigravity.py`.
+Antigravity setup and testing have equal priority with Codex and Claude. In version 0.17.0, the repository generates all nine modular packs under `plugins/antigravity/`. It also writes `.gemini/plugins/marketplace.json`, but Google documents no Antigravity marketplace command or format, so that file is unverified. An offline preview builder is also provided via `scripts/build_antigravity.py`.
 
 A one-skill package passed native install and skill-menu checks in CLI 1.1.26; package and menu checks were repeated on 1.1.27. The [0.12.0 candidate record](../client-candidate-v0.12.0.md) adds a two-skill check on CLI 1.1.27. The motion reference and fixture loaded, but the answer invented evidence. The [0.14.0 record](../client-candidate-v0.14.0.md) adds a four-skill check on CLI 1.1.28. Nine of ten cases met their expectation and no reply invented evidence. That is one partial run on a different version, so the expansion, then 64 skills, remained held. The [0.15.0 candidate record](../client-candidate-v0.15.0.md) adds a five-skill check on CLI 1.2.0 (`accessibility-review`, `code-change-review`, `functional-motion-review`, `performance-scalability-diagnosis`, and `finding-consolidation`). Near-miss case 3 was re-examined under diagnostic bypass flags (`--dangerously-skip-permissions`), confirming routing to `performance-scalability-diagnosis` when commands are permitted, while standard headless permission denial remains a documented non-interactive boundary. The 0.15.0 SARIF finding vocabulary was observed live on `code-change-review`, and `finding-consolidation` passed both multi-review merging and single-review refusal.
 
-All 79 skills are distributed across the nine packs. The 14 explicit-only skills are unlocked using verified frontmatter controls (`disable-model-invocation: true`), preventing autonomous selection while permitting direct slash invocation (e.g., `/measured-engineering-delivery:publish-change-safely`). Behavioral verification across the full catalog remains bounded to observed evidence.
+All 79 skills are distributed across the nine packs. The 14 explicit-only skills ship with `disable-model-invocation: true` in their frontmatter. That control is unverified on Antigravity. Google's Antigravity skill docs list only `name` and `description` as frontmatter fields, and no recorded agy run shows that this field stops automatic selection. Treat explicit-only skills as possibly auto-selectable. Do not install the delivery pack where an agent must never start publication, merge, or branch cleanup on its own. Behavioral verification across the full catalog remains bounded to observed evidence.
 
 ## Check what is there
 
@@ -19,38 +19,17 @@ In the desktop app, open **Settings > Customizations** and inspect the skill lis
 
 ## Install modular packs
 
-To install from a local reviewed checkout:
+Google documents `agy plugin install` for a local plugin folder, plus `list`, `enable`, `disable`, and `uninstall`. It documents no `marketplace` subcommand. Clone and review the repository, then install one pack from its folder:
 
 ```sh
-agy plugin marketplace add /absolute/path/to/skills
-agy plugin install measured-skills@measured-skills
+agy plugin install /absolute/path/to/skills/plugins/antigravity/measured-skills
 agy plugin enable measured-skills
 agy plugin list
 ```
 
-To install from the GitHub source repository:
+Repeat with another folder under `plugins/antigravity/` for each pack you want. Each generated `plugin.json` holds only `name` and `description`, the fields in Google's documented schema.
 
-```sh
-agy plugin marketplace add JovaniPink/skills
-agy plugin install measured-skills@measured-skills
-agy plugin enable measured-skills
-agy plugin list
-```
-
-To install a specific pack directly from its local path:
-
-```sh
-agy plugin install /absolute/path/to/plugins/antigravity/measured-skills
-agy plugin enable measured-skills
-```
-
-Chain install and enable when setting up a fresh environment:
-
-```sh
-agy plugin install measured-skills@measured-skills && agy plugin enable measured-skills
-```
-
-Direct slash commands use the installed plugin namespace:
+The expected slash commands use the installed plugin namespace. This form has not been observed on agy for these packs:
 
 ```text
 /measured-skills:claim-verification Check which completion claims have evidence.
@@ -67,7 +46,7 @@ python3 scripts/build_antigravity.py --skill claim-verification --output dist/an
 
 The result contains `plugin/` and `bundle.json`. The latter lists selected skills, exclusions, and file hashes. Omit `--skill` to prepare all 79 skills. The builder does not install anything and refuses to overwrite an existing folder.
 
-The preview keeps `skills/<name>/SKILL.md` and linked notes. It omits Codex's `agents/` folder and applies `disable-model-invocation: true` to explicit-only skills. Direct directory layout has been verified to load correctly. Do not flatten files by hand or lose their links.
+The preview keeps `skills/<name>/SKILL.md` and linked notes. It omits Codex's `agents/` folder and applies `disable-model-invocation: true` to explicit-only skills; as noted above, that control is unverified on Antigravity. The directory layout loaded correctly on CLI 1.1.28; recheck it on a version you have not tested. Do not flatten files by hand or lose their links.
 
 ## Install after review
 

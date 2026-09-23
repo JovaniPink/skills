@@ -1,14 +1,4 @@
 {
-  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "measured-reasoning",
-  "version": "0.17.0",
-  "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
-  "author": {
-    "name": "Measured Studios",
-    "url": "https://measuredstudios.com"
-  },
-  "homepage": "https://measuredstudios.com/skills",
-  "repository": "https://github.com/JovaniPink/skills",
-  "license": "MIT",
-  "skills": "./skills/"
+  "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows."
 }
