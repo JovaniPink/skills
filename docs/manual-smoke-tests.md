@@ -6,7 +6,7 @@ Start with the [September 8 Claude account repair](claude-account-repair-2026-09
 
 ## 0.17.0 isolated install lifecycle, 2026-09-23
 
-This checks the native plugin lifecycle on each supported CLI: install, upgrade, downgrade, uninstall, and reinstall (release-process step 5). It is not a behavioral check. No model prompt ran in these configurations, so skill loading in a fresh task, selection, and explicit-only controls are not established here.
+This checks the native plugin lifecycle on each supported CLI: install, upgrade, downgrade, uninstall, and reinstall (release-process step 5). The lifecycle steps ran no model prompt. Fresh-task checks follow in their own subsection and so far cover Claude Code only.
 
 Setup: each CLI ran against a throwaway configuration, so no personal install changed. Claude Code used `CLAUDE_CONFIG_DIR` and Codex used `CODEX_HOME`. Antigravity has no configuration-folder option, so `agy` ran with `HOME` set to a throwaway folder. A before-and-after check confirmed that nothing under the real `~/.gemini` changed. Sources were exact archives of `v0.16.0` (`89728f9`) and 0.17.0 candidate `a9b55e7`, each used as a local marketplace or plugin folder. Antigravity 0.16.0 is the offline preview built by that tag's `scripts/build_antigravity.py`, because 0.16.0 generated no Antigravity packs.
 
@@ -22,11 +22,31 @@ All 201 lifecycle commands after the initial reset exited 0. Six of the reset's 
 
 Client behavior observed along the way:
 
-- **Claude Code:** `plugin uninstall` and `plugin marketplace remove` left each removed pack's cached files in `plugins/cache/<marketplace>/<plugin>/<version>/`. The inventory stopped listing them. Whether a fresh task still loads them was not checked.
+- **Claude Code:** `plugin uninstall` and `plugin marketplace remove` left each removed pack's cached files in `plugins/cache/<marketplace>/<plugin>/<version>/`. The inventory stopped listing them, and the fresh-task removal check below found the pack absent.
 - **Codex:** `plugin add` copies each pack into `plugins/cache/<marketplace>/<plugin>/<version>/` under `CODEX_HOME`, and `plugin remove` deletes that copy. The CLI has no disable command, so disabling set `enabled = false` in that configuration's `config.toml`.
 - **Antigravity:** `plugin install` does not enable a pack. Enabled state lives in `.gemini/config/config.json`. A disabled pack stayed disabled when installed again over itself. `plugin uninstall` removed both the plugin folder and its enabled-state entry, so a later install again started disabled.
 
-Limits: the fresh-task checks were not run. The throwaway configurations had no sign-in, and signing in is an account action outside this run. Model selection, linked-reference reads, explicit-only controls, and removal as seen by a fresh task remain open for all three CLIs. Desktop, IDE, and account surfaces were not checked.
+### Claude Code fresh-task checks
+
+After the lifecycle, the owner signed in to the throwaway Claude configuration. The client updated itself to 2.1.281 at that point, so these checks ran on 2.1.281 with `claude-opus-5-5`. Each case was one fresh print-mode session with only the Skill and Read tools, `--strict-mcp-config`, `--no-session-persistence`, and an empty working folder. All nine 0.17.0 packs were installed and enabled. Two client-supplied plugins, `agents-md` and `telemetry`, also loaded.
+
+| Case | Expected | Observed |
+| --- | --- | --- |
+| Fresh-task inventory | nine packs load at 0.17.0 | pass: session start listed all nine at 0.17.0 and no 0.16.0 identity |
+| `/measured-skills:claim-verification`, synthetic merged-and-deployed claim | skill loads and reads its reference | pass: read `references/continuity-example.md`; led with the verdict that neither claim was supported |
+| Natural request to check, push, open, and merge a finished branch | explicit-only `publish-change-safely` stays inactive | pass: no Skill call and no read of that skill's files; described steps and made no changes |
+| `/measured-skills:publish-change-safely`, synthetic request | skill loads when selected directly | pass: read its `references/continuity-example.md`; listed required checks and made no changes |
+| After `plugin uninstall measured-skills@measured-skills` | pack absent in a fresh task | pass: session start no longer listed `measured-skills` or `claim-verification`; the pack was reinstalled afterwards |
+
+Reported cost for the three prompt cases was about $0.44. Each case ran once, so this is not stability evidence. The explicit-only case covers one natural prompt for one skill, not all 14 explicit-only skills.
+
+The session-start record showed where Claude Code loads plugins from. For this directory marketplace it listed each plugin at its marketplace folder (`plugins/claude/<pack>` in the source archive), not at the `plugins/cache/` copy made by `plugin install`. Reference reads used the same folder. So for a local directory marketplace, the files currently in that folder are what load, and a hash of the cached copy does not prove what a session reads.
+
+A later print-mode run in the same throwaway configuration returned `Not logged in` while the owner's interactive session in that configuration was still open. The removal check above read its inventory from the session-start event, which was recorded before that error.
+
+### Still open
+
+Codex and Antigravity fresh-task checks were not run, because their throwaway configurations were not signed in. Their model selection, linked-reference reads, explicit-only controls, and removal as seen by a fresh task remain open. Desktop, IDE, and account surfaces were not checked.
 
 ## Swift profile focused-reference check, 2026-09-22
 
