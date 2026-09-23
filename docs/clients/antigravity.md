@@ -4,7 +4,7 @@ Antigravity setup and testing have equal priority with Codex and Claude. In vers
 
 A one-skill package passed native install and skill-menu checks in CLI 1.1.26; package and menu checks were repeated on 1.1.27. The [0.12.0 candidate record](../client-candidate-v0.12.0.md) adds a two-skill check on CLI 1.1.27. The motion reference and fixture loaded, but the answer invented evidence. The [0.14.0 record](../client-candidate-v0.14.0.md) adds a four-skill check on CLI 1.1.28. Nine of ten cases met their expectation and no reply invented evidence. That is one partial run on a different version, so the expansion, then 64 skills, remained held. The [0.15.0 candidate record](../client-candidate-v0.15.0.md) adds a five-skill check on CLI 1.2.0 (`accessibility-review`, `code-change-review`, `functional-motion-review`, `performance-scalability-diagnosis`, and `finding-consolidation`). Near-miss case 3 was re-examined under diagnostic bypass flags (`--dangerously-skip-permissions`), confirming routing to `performance-scalability-diagnosis` when commands are permitted, while standard headless permission denial remains a documented non-interactive boundary. The 0.15.0 SARIF finding vocabulary was observed live on `code-change-review`, and `finding-consolidation` passed both multi-review merging and single-review refusal.
 
-All 79 skills are distributed across the nine packs. The 14 explicit-only skills ship with `disable-model-invocation: true` in their frontmatter. That control is unverified on Antigravity. Google's Antigravity skill docs list only `name` and `description` as frontmatter fields, and no recorded agy run shows that this field stops automatic selection. Treat explicit-only skills as possibly auto-selectable. Do not install the delivery pack where an agent must never start publication, merge, or branch cleanup on its own. Behavioral verification across the full catalog remains bounded to observed evidence.
+All 79 skills are distributed across the nine packs. The 14 explicit-only skills ship with `disable-model-invocation: true` in their frontmatter. That control is unverified on Antigravity. Google's Antigravity skill docs list only `name` and `description` as frontmatter fields, and no recorded agy run shows that this field stops automatic selection. Treat explicit-only skills as possibly auto-selectable. They ship in three packs: `measured-skills` (including `publish-change-safely`), `measured-engineering-delivery`, and `measured-reasoning`. Do not install those packs where an agent must never start publication, merge, branch cleanup, or handoff workflows on its own. Behavioral verification across the full catalog remains bounded to observed evidence.
 
 ## Check what is there
 
@@ -33,7 +33,7 @@ The expected slash commands use the installed plugin namespace. This form has no
 
 ```text
 /measured-skills:claim-verification Check which completion claims have evidence.
-/measured-engineering-delivery:publish-change-safely Check release readiness.
+/measured-skills:publish-change-safely Check release readiness.
 ```
 
 ## Prepare a preview
@@ -61,11 +61,11 @@ In CLI 1.1.26, the native installer placed the tested preview under `~/.gemini/c
 
 Record the names and path your client actually shows. Follow the [shared client checks](../client-support.md) in a fresh task. Verify live use and linked notes before widening the install. Keep personal and product skills separate from this public preview.
 
-If a check fails, run `agy plugin disable measured-antigravity-preview` for this named preview. In 1.1.27, `agy plugin list` showed imports but did not show enabled state. Readback of the native plugin configuration showed this preview's `enabled` value as `false`. Record that separate state check. To restore a saved preview, use the native install command with its backup folder. Verify its files and state before using it again. Do not add another copy to force discovery.
+If a check fails, run `agy plugin disable measured-antigravity-preview` for this named preview. In 1.1.27, `agy plugin list` showed imports but did not show enabled state. Readback of the native plugin configuration showed this preview's `enabled` value as `false`. In CLI 1.2.8 that state is in `~/.gemini/config/config.json`, under `plugins.<name>.enabled`. Record that separate state check. To restore a saved preview, use the native install command with its backup folder. Verify its files and state before using it again. Do not add another copy to force discovery.
 
 ## Enable the preview after installing it
 
-`agy plugin install` reports success and lists the skills it processed. It does not enable the plugin. A preview that was disabled earlier stays disabled through a reinstall. Run the enable step and check it:
+`agy plugin install` reports success and lists the skills it processed. It does not enable the plugin. A preview that was disabled earlier stays disabled through a reinstall. In CLI 1.2.8, `agy plugin uninstall` removed the enabled-state entry as well as the folder, so a later install again started disabled. Run the enable step and check it:
 
 ```sh
 agy plugin install /absolute/path/to/antigravity-check/plugin

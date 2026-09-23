@@ -36,7 +36,7 @@ agy plugin enable measured-skills
 agy plugin list
 ```
 
-Antigravity installs a pack from a local folder in a reviewed checkout; Google documents no `agy` marketplace command. Explicit-only skill controls are unverified on Antigravity. See its setup guide before installing the delivery pack.
+Antigravity installs a pack from a local folder in a reviewed checkout; Google documents no `agy` marketplace command. Explicit-only skill controls are unverified on Antigravity. See its setup guide before installing `measured-skills`, `measured-engineering-delivery`, or `measured-reasoning`, the packs that carry explicit-only skills.
 
 For Claude and Codex, the install name has the form `plugin@marketplace`. A marketplace is a place your client looks for packs. This repository is the marketplace, and it is named `measured-skills`. One pack carries that same name. So `measured-skills@measured-skills` is correct, not a repeated word. Every other pack reads like `measured-engineering-build@measured-skills`.
 
