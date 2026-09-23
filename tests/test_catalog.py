@@ -520,7 +520,8 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(
             "primary-google-behavioral-portability", records["antigravity-cli"]["lane"]
         )
-        self.assertEqual("blocked", records["antigravity-cli"]["evidence_status"])
+        self.assertEqual("observed", records["antigravity-cli"]["evidence_status"])
+        self.assertEqual("manual", records["antigravity-cli"]["evidence_class"])
         self.assertEqual(
             "client-specific-install-and-control-checks", records["antigravity-cli"]["precondition"]
         )
@@ -863,7 +864,7 @@ class CatalogTests(unittest.TestCase):
     def test_clean_generation_and_packaging_in_temporary_directory(self) -> None:
         with tempfile.TemporaryDirectory(prefix="skill-catalog-test-") as temporary:
             temporary_root = Path(temporary)
-            _, claude_plugins = build(
+            _, claude_plugins, antigravity_plugins = build(
                 temporary_root / "plugins", write_marketplaces=False
             )
             generated = {
@@ -872,6 +873,12 @@ class CatalogTests(unittest.TestCase):
                 for path in (plugin / "skills").iterdir()
             }
             self.assertEqual(set(SKILLS), generated)
+            antigravity_generated = {
+                path.name
+                for plugin in antigravity_plugins.values()
+                for path in (plugin / "skills").iterdir()
+            }
+            self.assertEqual(set(SKILLS), antigravity_generated)
             archives = package(temporary_root / "archives")
             self.assertEqual(len(SKILLS), len(archives))
 
@@ -892,9 +899,12 @@ class CatalogTests(unittest.TestCase):
             text=True,
         ).stdout
         self.assertEqual(before, after)
-        codex, _ = marketplace_documents()
+        codex, _, antigravity = marketplace_documents()
         self.assertEqual(
             set(skills_by_plugin()), {entry["name"] for entry in codex["plugins"]}
+        )
+        self.assertEqual(
+            set(skills_by_plugin()), {entry["name"] for entry in antigravity["plugins"]}
         )
         for entry in codex["plugins"]:
             self.assertEqual(
@@ -904,6 +914,11 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(
                 {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
                 entry["policy"],
+            )
+        for ag_entry in antigravity["plugins"]:
+            self.assertEqual(
+                {"source": "local", "path": f"./plugins/antigravity/{ag_entry['name']}"},
+                ag_entry["source"],
             )
 
     def test_schema_validation_enforces_types_enums_dates_and_unknown_fields(

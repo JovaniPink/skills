@@ -11,20 +11,21 @@
 - a matching provenance record and trigger matrix
 - a matching strict taxonomy record with maturity evidence
 
-`scripts/build_distributions.py` creates two tracked adapters:
+`scripts/build_distributions.py` creates three tracked adapters:
 
 ```text
 skills/ --> plugins/codex/<metadata.plugin>/skills/
         --> plugins/claude/<metadata.plugin>/skills/
+        --> plugins/antigravity/<metadata.plugin>/skills/
 ```
 
-The Codex copy retains `agents/openai.yaml` and rewrites its direct-invocation prompt to the installed plugin namespace. The Claude copy omits that client-specific directory and adds `disable-model-invocation: true` to explicit-only skill frontmatter. No client adapter changes the workflow body.
+The Codex copy retains `agents/openai.yaml` and rewrites its direct-invocation prompt to the installed plugin namespace. The Claude and Antigravity copies omit that client-specific directory and add `disable-model-invocation: true` to explicit-only skill frontmatter. No client adapter changes the workflow body.
 
 Plugins are packaging routes, not the complete taxonomy. `catalog/skills.json` adds capability, lifecycle, target, risk, invocation, maturity, companion, and routing-conflict facets. `catalog/packs.json` measures plugin and recipe discovery-description sizes.
 
-## Antigravity preview
+## Antigravity distribution and preview
 
-`scripts/build_antigravity.py` prepares a new review folder from the same source. It keeps skill text and references, omits Codex metadata, and excludes every explicit-only skill. A separate `bundle.json` records file hashes and the unverified loading state. It adds no runner and changes no installed client. See [Antigravity setup](clients/antigravity.md).
+In addition to tracked distributions under `plugins/antigravity/` and `.gemini/plugins/marketplace.json`, `scripts/build_antigravity.py` prepares a self-contained review folder from the same source. It keeps skill text and references, omits Codex metadata, and applies explicit-only frontmatter controls. A separate `bundle.json` records file hashes and the unverified loading state. It adds no runner and changes no installed client. See [Antigravity setup](clients/antigravity.md).
 
 ## Invocation classes
 
@@ -35,11 +36,13 @@ Invocation metadata is portable repository metadata, not a replacement for host 
 - canonical: `metadata.invocation`
 - Codex: `policy.allow_implicit_invocation`
 - Claude: `disable-model-invocation`
+- Antigravity: `disable-model-invocation`
 
 Direct invocation is also client-native and namespaced after plugin installation:
 
 - Codex plugin: `$measured-skills:skill-name`
 - Claude plugin: `/measured-skills:skill-name`
+- Antigravity plugin: `/measured-skills:skill-name`
 
 Canonical unnamespaced forms remain useful when a client installs an individual skill rather than the plugin.
 

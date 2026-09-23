@@ -8,18 +8,16 @@ import json
 import shutil
 from pathlib import Path
 
-from cataloglib import EXPLICIT_SKILLS, ROOT, SKILLS, VERSION, directory_hashes
+from cataloglib import EXPLICIT_SKILLS, ROOT, SKILLS, VERSION, add_claude_explicit_control, directory_hashes
 
 
 def build(output: Path, selected: list[str] | None = None) -> Path:
-    """Copy only skills that allow automatic selection into a new directory."""
-    included = sorted(set(SKILLS) - set(EXPLICIT_SKILLS)) if selected is None else sorted(selected)
+    """Copy skills into a new Antigravity bundle with explicit controls applied."""
+    included = sorted(SKILLS) if selected is None else sorted(selected)
     if not included or len(included) != len(set(included)):
         raise ValueError("choose at least one skill without duplicate names")
     if set(included) - set(SKILLS):
         raise ValueError("selection contains an unknown skill")
-    if set(included) & set(EXPLICIT_SKILLS):
-        raise ValueError("Antigravity's direct-selection control is unverified; explicit-only skills are excluded")
     # Refuse existing paths, including dangling symlinks. Never reset evidence or settings.
     if output.exists() or output.is_symlink():
         raise FileExistsError(f"output already exists: {output}")
@@ -29,16 +27,27 @@ def build(output: Path, selected: list[str] | None = None) -> Path:
         source = ROOT / "skills" / skill
         target = plugin / "skills" / skill
         target.mkdir(parents=True)
+        explicit = skill in EXPLICIT_SKILLS
         for item in sorted(source.iterdir()):
             if item.name == "agents":
                 continue
             if item.is_dir():
                 shutil.copytree(item, target / item.name)
+            elif item.name == "SKILL.md" and explicit:
+                (target / item.name).write_text(
+                    add_claude_explicit_control(item.read_text(encoding="utf-8")),
+                    encoding="utf-8",
+                )
             else:
                 shutil.copy2(item, target / item.name)
     (plugin / "plugin.json").write_text(json.dumps({
+        "$schema": "https://antigravity.google/schemas/v1/plugin.json",
         "name": "measured-antigravity-preview",
+        "version": VERSION,
         "description": "Selected workflow skills for an Antigravity loading check.",
+        "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
+        "homepage": "https://measuredstudios.com/skills",
+        "repository": "https://github.com/JovaniPink/skills",
     }, indent=2) + "\n", encoding="utf-8")
     receipt = {
         "format_version": 1,
@@ -47,9 +56,9 @@ def build(output: Path, selected: list[str] | None = None) -> Path:
         "client_loading": "not_observed",
         "supported_install_claim": False,
         "included_skills": included,
-        "excluded_skills": sorted(EXPLICIT_SKILLS),
-        "exclusion_reason": "No verified control that prevents automatic skill selection.",
-        "unselected_skills": sorted(set(SKILLS) - set(EXPLICIT_SKILLS) - set(included)),
+        "explicit_skills": sorted(set(included) & EXPLICIT_SKILLS),
+        "excluded_skills": sorted(set(SKILLS) - set(included)),
+        "exclusion_reason": "Not selected in this bundle." if set(SKILLS) - set(included) else "none",
         "plugin_sha256": directory_hashes(plugin),
     }
     (output / "bundle.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")

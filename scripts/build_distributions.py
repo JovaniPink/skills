@@ -59,12 +59,31 @@ class ClaudeMarketplace(TypedDict):
     plugins: list[ClaudeMarketplacePlugin]
 
 
+class AntigravityMarketplaceSource(TypedDict):
+    source: str
+    path: str
+
+
+class AntigravityMarketplacePlugin(TypedDict):
+    name: str
+    source: AntigravityMarketplaceSource
+    description: str
+    version: str
+
+
+class AntigravityMarketplace(TypedDict):
+    name: str
+    description: str
+    owner: dict[str, str]
+    plugins: list[AntigravityMarketplacePlugin]
+
+
 def _write_json(path: Path, value: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, sort_keys=False) + "\n", encoding="utf-8")
 
 
-def marketplace_documents() -> tuple[CodexMarketplace, ClaudeMarketplace]:
+def marketplace_documents() -> tuple[CodexMarketplace, ClaudeMarketplace, AntigravityMarketplace]:
     """Return the client-native marketplace documents for tracked output."""
 
     codex: CodexMarketplace = {
@@ -100,7 +119,24 @@ def marketplace_documents() -> tuple[CodexMarketplace, ClaudeMarketplace]:
             for plugin in skills_by_plugin()
         ],
     }
-    return codex, claude
+    antigravity: AntigravityMarketplace = {
+        "name": CATALOG_NAME,
+        "description": "Portable workflow skills for software, research, and operations.",
+        "owner": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
+        "plugins": [
+            {
+                "name": plugin,
+                "source": {
+                    "source": "local",
+                    "path": f"./plugins/antigravity/{plugin}",
+                },
+                "description": PLUGIN_SPECS[plugin]["description"],
+                "version": VERSION,
+            }
+            for plugin in skills_by_plugin()
+        ],
+    }
+    return codex, claude, antigravity
 
 
 def _reset_directory(path: Path, allowed_parent: Path, allowed_names: set[str]) -> None:
@@ -140,74 +176,97 @@ def _copy_claude_skill(source: Path, target: Path, explicit: bool) -> None:
             shutil.copy2(item, destination)
 
 
-def build(output_root: Path, write_marketplaces: bool = False) -> tuple[dict[str, Path], dict[str, Path]]:
+def build(output_root: Path, write_marketplaces: bool = False) -> tuple[dict[str, Path], dict[str, Path], dict[str, Path]]:
     output_root = output_root.resolve()
     codex_parent = output_root / "codex"
     claude_parent = output_root / "claude"
+    antigravity_parent = output_root / "antigravity"
     codex_parent.mkdir(parents=True, exist_ok=True)
     claude_parent.mkdir(parents=True, exist_ok=True)
+    antigravity_parent.mkdir(parents=True, exist_ok=True)
     grouped = skills_by_plugin()
     allowed_names = set(grouped)
     codex_plugins = {plugin: codex_parent / plugin for plugin in grouped}
     claude_plugins = {plugin: claude_parent / plugin for plugin in grouped}
+    antigravity_plugins = {plugin: antigravity_parent / plugin for plugin in grouped}
     for path in codex_plugins.values():
         _reset_directory(path, codex_parent, allowed_names)
     for path in claude_plugins.values():
         _reset_directory(path, claude_parent, allowed_names)
+    for path in antigravity_plugins.values():
+        _reset_directory(path, antigravity_parent, allowed_names)
 
     for plugin, skills in grouped.items():
         codex_plugin = codex_plugins[plugin]
         claude_plugin = claude_plugins[plugin]
+        antigravity_plugin = antigravity_plugins[plugin]
         for skill in skills:
             source = ROOT / "skills" / skill
             metadata = read_skill_metadata(source)
+            is_explicit = metadata["invocation"] == "explicit"
             _copy_codex_skill(source, codex_plugin / "skills" / skill, skill, plugin)
-            _copy_claude_skill(source, claude_plugin / "skills" / skill, metadata["invocation"] == "explicit")
+            _copy_claude_skill(source, claude_plugin / "skills" / skill, is_explicit)
+            _copy_claude_skill(source, antigravity_plugin / "skills" / skill, is_explicit)
 
         spec = PLUGIN_SPECS[plugin]
         _write_json(
             codex_plugin / ".codex-plugin" / "plugin.json",
-        {
-            "name": plugin,
-            "version": VERSION,
-            "description": spec["description"],
-            "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
-            "homepage": "https://measuredstudios.com/skills",
-            "repository": "https://github.com/JovaniPink/skills",
-            "license": "MIT",
-            "skills": "./skills/",
-            "interface": {
-                "displayName": spec["display_name"],
-                "shortDescription": spec["short_description"],
-                "longDescription": spec["description"],
-                "developerName": "Measured Studios",
-                "category": PLUGIN_CATEGORY,
-                "capabilities": ["Skills"],
-                "defaultPrompt": [
-                    f"Help me choose and use a {spec['display_name']} workflow skill."
-                ],
+            {
+                "name": plugin,
+                "version": VERSION,
+                "description": spec["description"],
+                "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
+                "homepage": "https://measuredstudios.com/skills",
+                "repository": "https://github.com/JovaniPink/skills",
+                "license": "MIT",
+                "skills": "./skills/",
+                "interface": {
+                    "displayName": spec["display_name"],
+                    "shortDescription": spec["short_description"],
+                    "longDescription": spec["description"],
+                    "developerName": "Measured Studios",
+                    "category": PLUGIN_CATEGORY,
+                    "capabilities": ["Skills"],
+                    "defaultPrompt": [
+                        f"Help me choose and use a {spec['display_name']} workflow skill."
+                    ],
+                },
             },
-        },
         )
         _write_json(
             claude_plugin / ".claude-plugin" / "plugin.json",
-        {
-            "name": plugin,
-            "version": VERSION,
-            "description": spec["description"],
-            "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
-            "homepage": "https://measuredstudios.com/skills",
-            "repository": "https://github.com/JovaniPink/skills",
-            "license": "MIT",
-            "keywords": spec["keywords"],
-        },
+            {
+                "name": plugin,
+                "version": VERSION,
+                "description": spec["description"],
+                "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
+                "homepage": "https://measuredstudios.com/skills",
+                "repository": "https://github.com/JovaniPink/skills",
+                "license": "MIT",
+                "keywords": spec["keywords"],
+            },
+        )
+        _write_json(
+            antigravity_plugin / "plugin.json",
+            {
+                "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+                "name": plugin,
+                "version": VERSION,
+                "description": spec["description"],
+                "author": {"name": "Measured Studios", "url": "https://measuredstudios.com"},
+                "homepage": "https://measuredstudios.com/skills",
+                "repository": "https://github.com/JovaniPink/skills",
+                "license": "MIT",
+                "skills": "./skills/",
+            },
         )
 
     if write_marketplaces:
-        codex_marketplace, claude_marketplace = marketplace_documents()
+        codex_marketplace, claude_marketplace, antigravity_marketplace = marketplace_documents()
         _write_json(ROOT / ".agents" / "plugins" / "marketplace.json", codex_marketplace)
         _write_json(ROOT / ".claude-plugin" / "marketplace.json", claude_marketplace)
-    return codex_plugins, claude_plugins
+        _write_json(ROOT / ".gemini" / "plugins" / "marketplace.json", antigravity_marketplace)
+    return codex_plugins, claude_plugins, antigravity_plugins
 
 
 def main() -> int:
@@ -216,7 +275,7 @@ def main() -> int:
         "--output-root",
         type=Path,
         default=ROOT / "plugins",
-        help="Parent containing codex/ and claude/ distribution directories.",
+        help="Parent containing codex/, claude/, and antigravity/ distribution directories.",
     )
     parser.add_argument(
         "--write-marketplaces",
@@ -241,8 +300,9 @@ def main() -> int:
         print("Generated distributions and marketplaces match canonical sources.")
         return 0
     build(args.output_root, write_marketplaces=args.write_marketplaces)
-    print(f"Generated {len(SKILLS)} Codex skills and {len(SKILLS)} Claude skills.")
+    print(f"Generated {len(SKILLS)} Codex skills, {len(SKILLS)} Claude skills, and {len(SKILLS)} Antigravity skills.")
     return 0
+
 
 
 if __name__ == "__main__":

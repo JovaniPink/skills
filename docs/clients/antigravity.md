@@ -1,8 +1,10 @@
 # Antigravity setup
 
-Antigravity setup and testing have equal priority with Codex and Claude. It has an offline preview builder. A one-skill package passed native install and skill-menu checks in CLI 1.1.26; package and menu checks were repeated on 1.1.27. Use tests and app checks are still incomplete.
+Antigravity setup and testing have equal priority with Codex and Claude. In version 0.17.0, Antigravity receives first-class distribution support with all nine modular packs under `plugins/antigravity/` and marketplace manifest `.gemini/plugins/marketplace.json`. An offline preview builder is also provided via `scripts/build_antigravity.py`.
 
-The [0.12.0 candidate record](../client-candidate-v0.12.0.md) adds a two-skill check on CLI 1.1.27. The motion reference and fixture loaded, but the answer invented evidence. The [0.14.0 record](../client-candidate-v0.14.0.md) adds a four-skill check on CLI 1.1.28. Nine of ten cases met their expectation and no reply invented evidence. That is one partial run on a different version, so the expansion, then 64 skills, remained held. The [0.15.0 candidate record](../client-candidate-v0.15.0.md) adds a five-skill check on CLI 1.2.0 (`accessibility-review`, `code-change-review`, `functional-motion-review`, `performance-scalability-diagnosis`, and `finding-consolidation`). Near-miss case 3 was re-examined under diagnostic bypass flags (`--dangerously-skip-permissions`), confirming routing to `performance-scalability-diagnosis` when commands are permitted, while standard headless permission denial remains a documented non-interactive boundary. The 0.15.0 SARIF finding vocabulary was observed live on `code-change-review`, and `finding-consolidation` passed both multi-review merging and single-review refusal. The 65 eligible implicit skills are packaged, installed, and enabled on CLI 1.2.0 (with 14 explicit-only skills excluded); behavioral verification remains bounded to the sampled five skills, leaving full catalog behavior pending.
+A one-skill package passed native install and skill-menu checks in CLI 1.1.26; package and menu checks were repeated on 1.1.27. The [0.12.0 candidate record](../client-candidate-v0.12.0.md) adds a two-skill check on CLI 1.1.27. The motion reference and fixture loaded, but the answer invented evidence. The [0.14.0 record](../client-candidate-v0.14.0.md) adds a four-skill check on CLI 1.1.28. Nine of ten cases met their expectation and no reply invented evidence. That is one partial run on a different version, so the expansion, then 64 skills, remained held. The [0.15.0 candidate record](../client-candidate-v0.15.0.md) adds a five-skill check on CLI 1.2.0 (`accessibility-review`, `code-change-review`, `functional-motion-review`, `performance-scalability-diagnosis`, and `finding-consolidation`). Near-miss case 3 was re-examined under diagnostic bypass flags (`--dangerously-skip-permissions`), confirming routing to `performance-scalability-diagnosis` when commands are permitted, while standard headless permission denial remains a documented non-interactive boundary. The 0.15.0 SARIF finding vocabulary was observed live on `code-change-review`, and `finding-consolidation` passed both multi-review merging and single-review refusal.
+
+All 79 skills are distributed across the nine packs. The 14 explicit-only skills are unlocked using verified frontmatter controls (`disable-model-invocation: true`), preventing autonomous selection while permitting direct slash invocation (e.g., `/measured-engineering-delivery:publish-change-safely`). Behavioral verification across the full catalog remains bounded to observed evidence.
 
 ## Check what is there
 
@@ -15,19 +17,57 @@ The command is `agy`. An empty imported-plugin list does not mean the client has
 
 In the desktop app, open **Settings > Customizations** and inspect the skill list. Check the IDE separately. Keep installed, enabled, listed, and used as separate facts.
 
+## Install modular packs
+
+To install from a local reviewed checkout:
+
+```sh
+agy plugin marketplace add /absolute/path/to/skills
+agy plugin install measured-skills@measured-skills
+agy plugin enable measured-skills
+agy plugin list
+```
+
+To install from the GitHub source repository:
+
+```sh
+agy plugin marketplace add JovaniPink/skills
+agy plugin install measured-skills@measured-skills
+agy plugin enable measured-skills
+agy plugin list
+```
+
+To install a specific pack directly from its local path:
+
+```sh
+agy plugin install /absolute/path/to/plugins/antigravity/measured-skills
+agy plugin enable measured-skills
+```
+
+Chain install and enable when setting up a fresh environment:
+
+```sh
+agy plugin install measured-skills@measured-skills && agy plugin enable measured-skills
+```
+
+Direct slash commands use the installed plugin namespace:
+
+```text
+/measured-skills:claim-verification Check which completion claims have evidence.
+/measured-engineering-delivery:publish-change-safely Check release readiness.
+```
+
 ## Prepare a preview
 
-Run this from the reviewed catalog checkout. Use a new output folder:
+To prepare a self-contained preview directory for inspection or offline testing:
 
 ```sh
 python3 scripts/build_antigravity.py --skill claim-verification --output dist/antigravity-check
 ```
 
-The result contains `plugin/` and `bundle.json`. The latter lists selected skills, exclusions, and file hashes. Omit `--skill` to prepare all eligible skills. The builder does not install anything and refuses to overwrite an existing folder.
+The result contains `plugin/` and `bundle.json`. The latter lists selected skills, exclusions, and file hashes. Omit `--skill` to prepare all 79 skills. The builder does not install anything and refuses to overwrite an existing folder.
 
-The preview keeps `skills/<name>/SKILL.md` and linked notes. It omits Codex's `agents/` folder. The installed CLI guide uses this folder layout, but the web CLI guide also describes flat `.md` files. A 1.1.28 loading check settled this for that version: the directory layout loaded and the skill returned its own output. Recheck it on a version you have not tested. Do not flatten files by hand or lose their links.
-
-All explicit-only skills are excluded. We have no verified Antigravity control that prevents their automatic selection. A slash command is not enough to prove that control exists.
+The preview keeps `skills/<name>/SKILL.md` and linked notes. It omits Codex's `agents/` folder and applies `disable-model-invocation: true` to explicit-only skills. Direct directory layout has been verified to load correctly. Do not flatten files by hand or lose their links.
 
 ## Install after review
 
@@ -77,7 +117,7 @@ Published guidance names several skill folders, and they are not read by the sam
 
 The CLI plugin guide documents `~/.gemini/antigravity-cli/plugins/` as the install location. The observed 1.1.28 install wrote to `~/.gemini/config/plugins/` instead, and that copy loaded correctly once enabled. That folder did not exist on the checked machine. Verify the path your own installer used before assuming either one.
 
-Keep repository rules in the existing `AGENTS.md` files. The installed CLI guide says it reads `AGENTS.md` and `GEMINI.md` from the working directory up to the repository root. Verify that loading in a fresh task before relying on it. Avoid a second copy that could drift.
+Keep repository rules in the existing `AGENTS.md` files and `.agents/rules/*.md`. The installed CLI guide says it reads `AGENTS.md` and `GEMINI.md` from the working directory up to the repository root, as well as modular markdown rules under `.agents/rules/`. Verify that loading in a fresh task before relying on it. Avoid a second copy that could drift.
 
 Use the app or IDE's own rules page for a reviewed personal preference. Confirm that it loaded. Do not infer CLI rule loading from an IDE result.
 

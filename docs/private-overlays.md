@@ -21,6 +21,12 @@ The synchronizer writes only `.agents/skills/` and `.claude/skills/` inside the 
 
 An overlay always lives inside the product repository that owns the private facts. The separate `skills-private` repository holds only the policy and the validator. It stores no skills, and it is never a synchronizer target. Point `--repo` at the product repository, not at the policy repository.
 
+## Existing Conventions
+
+Before creating an overlay, check whether the product repository already has repo-local skills, a projection script, or `AGENTS.md` rules about them.
+- If it does, follow that repository's convention and its own checker. Do not add `.agent-skills/` or run the synchronizer there.
+- Use the synchronizer only for repositories that have no existing convention.
+
 ## Fictional example
 
 Assume a fictional warehouse service named Northwind Relay. Its public workflow can use `authority-boundary-review` to ask which system owns an order and which systems are projections. Its private overlay may identify `Order Ledger A` as the current authority, name an internal reconciliation report, and state who may ratify a writer change. Those private names and contracts remain in Northwind Relay's repository; the public skill contains none of them.

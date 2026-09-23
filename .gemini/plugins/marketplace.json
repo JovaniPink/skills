@@ -1,0 +1,91 @@
+{
+  "name": "measured-skills",
+  "description": "Portable workflow skills for software, research, and operations.",
+  "owner": {
+    "name": "Measured Studios",
+    "url": "https://measuredstudios.com"
+  },
+  "plugins": [
+    {
+      "name": "measured-agent-platforms",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-agent-platforms"
+      },
+      "description": "Human-facing agent architecture, security, tooling, context, protocol, retrieval, and Google ADK workflows.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-ai-systems",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-ai-systems"
+      },
+      "description": "Optional AI evaluation, context reliability, and source-to-output conformance workflows.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-engineering-build",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-engineering-build"
+      },
+      "description": "Frame outcomes, design interfaces, plan vertical slices, and test behavior.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-engineering-delivery",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-engineering-delivery"
+      },
+      "description": "Coordinate bounded execution, isolated work, review handoffs, and delivery evidence.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-engineering-review",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-engineering-review"
+      },
+      "description": "Review correctness, compatibility, security, operations, and test quality.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-operations",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-operations"
+      },
+      "description": "Portable requirements, decision, measurement, adoption, and incident workflows.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-reasoning",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-reasoning"
+      },
+      "description": "Portable alignment, explanation, impact, writing, evidence, and skill-authoring workflows.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-skills",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-skills"
+      },
+      "description": "Portable evidence, diagnosis, quality, publication, and skill-security workflows.",
+      "version": "0.17.0"
+    },
+    {
+      "name": "measured-stack-profiles",
+      "source": {
+        "source": "local",
+        "path": "./plugins/antigravity/measured-stack-profiles"
+      },
+      "description": "Optional language and infrastructure engineering profiles.",
+      "version": "0.17.0"
+    }
+  ]
+}

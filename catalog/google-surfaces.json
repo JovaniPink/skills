@@ -7,13 +7,13 @@
       "surface": "antigravity-cli",
       "lane": "primary-google-behavioral-portability",
       "question": "Does a focused skill treatment improve a clean local Google coding agent?",
-      "evidence_status": "blocked",
-      "evidence_class": "none",
+      "evidence_status": "observed",
+      "evidence_class": "manual",
       "lifecycle_status": "current",
       "precondition": "client-specific-install-and-control-checks",
-      "evidence_reference": null,
+      "evidence_reference": "docs/clients/antigravity.md",
       "historical_evidence_reference": null,
-      "claim": "Setup and manual tests have equal priority with other clients. Loading, invocation controls, and useful behavior still need separate evidence for this client."
+      "claim": "Native 9-pack distributions generate with disable-model-invocation: true for explicit skills; CLI 1.2.0 testing confirmed install, menu discovery, and five-skill behavioral compliance."
     },
     {
       "surface": "gemini-cli-enterprise",

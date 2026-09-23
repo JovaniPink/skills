@@ -14,8 +14,8 @@ from cataloglib import EXPLICIT_SKILLS, ROOT, SKILLS, VERSION, directory_hashes
 
 
 def export(output: Path, client: str, selected: list[str]) -> None:
-    if client not in {"codex", "claude"}:
-        raise ValueError("client must be codex or claude")
+    if client not in {"codex", "claude", "antigravity"}:
+        raise ValueError("client must be codex, claude, or antigravity")
     if not selected or len(selected) != len(set(selected)):
         raise ValueError("select at least one skill without duplicates")
     if set(selected) - set(SKILLS):
@@ -63,7 +63,7 @@ def export(output: Path, client: str, selected: list[str]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--client", choices=("codex", "claude"), required=True)
+    parser.add_argument("--client", choices=("codex", "claude", "antigravity"), required=True)
     parser.add_argument("--skill", action="append", required=True)
     args = parser.parse_args()
     try:

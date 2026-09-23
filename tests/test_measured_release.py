@@ -56,7 +56,7 @@ class MeasuredReleaseTests(unittest.TestCase):
     def test_selected_exports(self) -> None:
         from export_selected import export
 
-        for client in ("codex", "claude"):
+        for client in ("codex", "claude", "antigravity"):
             with tempfile.TemporaryDirectory() as tmp:
                 first, second = Path(tmp) / "first", Path(tmp) / "second"
                 export(first, client, ["test-strategy", "cross-stack-quality-gates"])
