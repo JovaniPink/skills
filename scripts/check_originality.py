@@ -32,7 +32,7 @@ def _scan_text(label: str, text: str) -> list[str]:
 
 
 def _content_paths() -> list[Path]:
-    roots = (ROOT / "skills", ROOT / "plugins" / "codex", ROOT / "plugins" / "claude")
+    roots = (ROOT / "skills", ROOT / "plugins" / "codex", ROOT / "plugins" / "claude", ROOT / "plugins" / "antigravity")
     return sorted(path for root in roots if root.is_dir() for path in root.rglob("*") if path.is_file())
 
 

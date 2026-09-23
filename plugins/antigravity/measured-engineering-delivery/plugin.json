@@ -1,0 +1,14 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "measured-engineering-delivery",
+  "version": "0.17.0",
+  "description": "Coordinate bounded execution, isolated work, review handoffs, and delivery evidence.",
+  "author": {
+    "name": "Measured Studios",
+    "url": "https://measuredstudios.com"
+  },
+  "homepage": "https://measuredstudios.com/skills",
+  "repository": "https://github.com/JovaniPink/skills",
+  "license": "MIT",
+  "skills": "./skills/"
+}

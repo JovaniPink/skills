@@ -887,6 +887,22 @@ def validate_marketplaces(errors: list[str]) -> None:
                 if plugin not in skills_by_plugin() or entry.get("version") != VERSION or entry.get("source") != f"./plugins/claude/{plugin}":
                     errors.append(f"{claude_path.relative_to(ROOT)}: Claude plugin name, version, or source is incorrect")
 
+    antigravity_path = ROOT / ".gemini" / "plugins" / "marketplace.json"
+    antigravity = _load_json(antigravity_path, errors)
+    if isinstance(antigravity, dict):
+        plugins = antigravity.get("plugins")
+        if antigravity.get("name") != CATALOG_NAME or not isinstance(plugins, list) or len(plugins) != len(skills_by_plugin()):
+            errors.append(f"{antigravity_path.relative_to(ROOT)}: malformed plugin marketplace")
+        else:
+            for entry in plugins:
+                if not isinstance(entry, dict):
+                    errors.append(f"{antigravity_path.relative_to(ROOT)}: malformed Antigravity plugin entry")
+                    continue
+                plugin = entry.get("name")
+                expected_source = {"source": "local", "path": f"./plugins/antigravity/{plugin}"}
+                if plugin not in skills_by_plugin() or entry.get("version") != VERSION or entry.get("source") != expected_source:
+                    errors.append(f"{antigravity_path.relative_to(ROOT)}: Antigravity plugin name, version, or source is incorrect")
+
 
 def validate_packages(errors: list[str]) -> None:
     package_root = ROOT / "dist" / "claude-ai"

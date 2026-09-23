@@ -28,9 +28,18 @@ codex plugin add measured-skills@measured-skills
 codex plugin list --json
 ```
 
+For Antigravity:
+
+```sh
+agy plugin marketplace add JovaniPink/skills
+agy plugin install measured-skills@measured-skills
+agy plugin enable measured-skills
+agy plugin list
+```
+
 The install name has the form `plugin@marketplace`. A marketplace is a place your client looks for packs. This repository is the marketplace, and it is named `measured-skills`. One pack carries that same name. So `measured-skills@measured-skills` is correct, not a repeated word. Every other pack reads like `measured-engineering-build@measured-skills`.
 
-Antigravity uses an offline preview instead. See [Antigravity setup](docs/clients/antigravity.md).
+See [Antigravity setup](docs/clients/antigravity.md).
 
 Now start a fresh task and name a skill:
 
@@ -91,7 +100,7 @@ Codex, Claude Code, and Antigravity get equal attention here. Equal attention do
 | --- | --- | --- |
 | Codex CLI and ChatGPT desktop | Native packs with all 79 skills | [Codex setup](docs/clients/codex.md) |
 | Claude Code | Native packs with all 79 skills, plus separate ZIP files for account uploads | [Claude setup](docs/clients/claude.md) |
-| Antigravity | An offline preview of the implicit skills; explicit-only skills are left out | [Antigravity setup](docs/clients/antigravity.md) |
+| Antigravity CLI and IDE | Native packs with all 79 skills, plus an offline preview builder | [Antigravity setup](docs/clients/antigravity.md) |
 
 Claude Code packs and Claude account uploads are two separate installs. Updating your Code packs does not update the skill library that Chat uses. Check both.
 
