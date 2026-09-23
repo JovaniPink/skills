@@ -10,7 +10,7 @@ Maintained by [Measured Studios](https://measuredstudios.com). This is the 0.17.
 
 ## Install one pack
 
-A pack is a group of related skills you install together. There are nine. Start with one. The commands below target the published marketplace; use a reviewed local checkout for this unreleased candidate, as described in the migration guide.
+A pack is a group of related skills you install together. There are nine. Start with one. The commands below target the GitHub source repository (`JovaniPink/skills`); you can also provide a local reviewed checkout path, as described in each client setup guide and the [migration guide](docs/measured-migration.md).
 
 For Claude Code:
 

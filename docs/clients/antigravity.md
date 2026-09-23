@@ -19,7 +19,16 @@ In the desktop app, open **Settings > Customizations** and inspect the skill lis
 
 ## Install modular packs
 
-To install from the published marketplace:
+To install from a local reviewed checkout:
+
+```sh
+agy plugin marketplace add /absolute/path/to/skills
+agy plugin install measured-skills@measured-skills
+agy plugin enable measured-skills
+agy plugin list
+```
+
+To install from the GitHub source repository:
 
 ```sh
 agy plugin marketplace add JovaniPink/skills
@@ -28,7 +37,7 @@ agy plugin enable measured-skills
 agy plugin list
 ```
 
-To install from a local checkout:
+To install a specific pack directly from its local path:
 
 ```sh
 agy plugin install /absolute/path/to/plugins/antigravity/measured-skills
