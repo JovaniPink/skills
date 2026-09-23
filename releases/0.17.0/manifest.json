@@ -1,8 +1,8 @@
 {
   "$schema": "../manifest-schema.json",
   "catalog_version": "0.17.0",
-  "source_commit": "6fb7fc3da33b2adc91a215c1ec2b0f8f04750540",
-  "created_on": "2026-09-22",
+  "source_commit": "be26d7479e60c41e9fe2b32fd0f3c25f783e866f",
+  "created_on": "2026-09-23",
   "artifacts": [
     {
       "kind": "file",
@@ -13,6 +13,11 @@
       "kind": "file",
       "path": ".claude-plugin/marketplace.json",
       "sha256": "9059aa01bbfe48ac7d70c995fce61aa5ce818dd8d008407f5f97332058620d46"
+    },
+    {
+      "kind": "file",
+      "path": ".gemini/plugins/marketplace.json",
+      "sha256": "48bf88244a6d303f56f2395dc9a309e8b152354e9a130cc8b635555fa222b1b8"
     },
     {
       "kind": "file",
@@ -32,7 +37,7 @@
     {
       "kind": "file",
       "path": "catalog/google-surfaces.json",
-      "sha256": "f09433afae9a7950eaa153875b05e2ee21eae20b32c85ccd36cce59f54b17ac4"
+      "sha256": "44a6406c1449c960f65136ec1a508d2e12879a87f3ec073f3e29308ff87e148d"
     },
     {
       "kind": "file",
@@ -468,6 +473,51 @@
       "kind": "file",
       "path": "evals/cases.json",
       "sha256": "20edc9a226964120127a7ecb844250db7c02c60dada789a03ec19cb1ce82850b"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-agent-platforms",
+      "sha256": "39b4d9578045880007b9ffe084d69eadc99982b77e6d66d4063aea89a8bc8431"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-ai-systems",
+      "sha256": "fa3dbb08e714657d0436f93cb9d38904dfc1ecddb7e87279c56b7e014b080f59"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-engineering-build",
+      "sha256": "b1934a49167fccb456ca139133a8536a77e15a105f0291f406e7adaf8b4ccfe1"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-engineering-delivery",
+      "sha256": "ca9300eac30da79f52e206ddd1a66e3e5ad125fc9ad352840f1f6da1c8cf5540"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-engineering-review",
+      "sha256": "b85a8d3f196dbe010f2111b08c87a368f92fe8ae604c63f5269a20649e674295"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-operations",
+      "sha256": "fe2b8af53b4bd24a07df4340de1f133b66198756cb3d37a719c094816077e19c"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-reasoning",
+      "sha256": "40d900a6d66c35d2dfeb33b6b92beaa83d45fe10e7d967b8c3323d0488b7a535"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-skills",
+      "sha256": "9fa0093c57a58d713306c149f0e758d7a1d1e2390d172c3fb841612f9b2bf85e"
+    },
+    {
+      "kind": "tree",
+      "path": "plugins/antigravity/measured-stack-profiles",
+      "sha256": "128bb1263c2c15a58b63762c60777b1930fe7fa711f8bac5d22921b177be67a9"
     },
     {
       "kind": "tree",
