@@ -42,8 +42,8 @@ def _directory_flags() -> int | None:
 
     Looked up lazily so importing this module, and running --check, work everywhere.
     """
-    directory = getattr(os, "O_DIRECTORY", None)
-    no_follow = getattr(os, "O_NOFOLLOW", None)
+    directory: int | None = getattr(os, "O_DIRECTORY", None)
+    no_follow: int | None = getattr(os, "O_NOFOLLOW", None)
     if directory is None or no_follow is None or not shutil.rmtree.avoids_symlink_attacks:
         return None
     return os.O_RDONLY | directory | no_follow
@@ -74,7 +74,8 @@ def _copy_tree_into(source: Path, name: str, dir_fd: int) -> None:
             if entry.is_dir():
                 _copy_tree_into(entry, entry.name, target_fd)
                 continue
-            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+            no_follow: int = getattr(os, "O_NOFOLLOW", 0)
+            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | no_follow
             output = os.open(entry.name, flags, stat.S_IMODE(entry.stat().st_mode), dir_fd=target_fd)
             try:
                 data = memoryview(entry.read_bytes())
