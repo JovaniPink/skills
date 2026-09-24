@@ -12,9 +12,25 @@ from cataloglib import add_claude_explicit_control, directory_hashes, read_skill
 
 
 def _safe_target(repo: Path, relative: str) -> Path:
+    """Return the projection folder inside repo, refusing any symlinked path.
+
+    Resolving through a symlinked `.agents` or `.claude` parent would let sync remove
+    and replace a directory outside the repository, so every component between the
+    repository and the target must be a real directory (or not exist yet), and the
+    resolved target must stay inside the repository.
+    """
+    current = repo
+    for part in Path(relative).parts:
+        current = current / part
+        if current.is_symlink():
+            raise ValueError(f"unsafe overlay target: {current} is a symlink")
     target = (repo / relative).resolve()
     expected_parent = (repo / Path(relative).parent).resolve()
-    if target.parent != expected_parent or target.name != "skills":
+    if (
+        target.parent != expected_parent
+        or target.name != "skills"
+        or not target.is_relative_to(repo)
+    ):
         raise ValueError(f"unsafe overlay target: {target}")
     return target
 

@@ -1531,6 +1531,29 @@ class CatalogTests(unittest.TestCase):
                         self.assertIn("existing repo-local skill convention", errors[0])
                         self.assertTrue((repo / projection / "local-skill").is_dir())
 
+    def test_private_overlay_refuses_symlinked_projection_paths(self) -> None:
+        # A symlinked .agents/.claude parent (or skills folder) must never let sync
+        # remove or replace a directory outside the repository.
+        for link in (".agents", ".claude", ".agents/skills", ".claude/skills"):
+            for check_only in (False, True):
+                with self.subTest(link=link, check_only=check_only):
+                    with tempfile.TemporaryDirectory() as temporary:
+                        root = Path(temporary)
+                        repo = root / "repo"
+                        shutil.copytree(ROOT / "examples" / "private-overlay", repo)
+                        outside = root / "outside"
+                        target = outside / "skills" if link.endswith("skills") else outside
+                        (outside / "skills").mkdir(parents=True)
+                        (outside / "skills" / "SENTINEL").write_text("keep", encoding="utf-8")
+                        linked = repo / link
+                        if linked.exists() or linked.is_symlink():
+                            shutil.rmtree(linked)
+                        linked.parent.mkdir(parents=True, exist_ok=True)
+                        linked.symlink_to(target, target_is_directory=True)
+                        with self.assertRaises(ValueError):
+                            sync_private_overlay(repo, check_only=check_only)
+                        self.assertTrue((outside / "skills" / "SENTINEL").is_file())
+
     def test_upstream_review_freshness_is_current_offline(self) -> None:
         errors, report = check_upstream_freshness(online=False)
         self.assertEqual([], errors)
