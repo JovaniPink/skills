@@ -139,10 +139,96 @@ def _replace_projection(repo_fd: int, relative: str, expected: Path) -> None:
         os.close(parent_fd)
 
 
-def _render(repo: Path, output: Path) -> tuple[Path, Path]:
-    source = repo / ".agent-skills" / "skills"
-    if not source.is_dir():
-        raise FileNotFoundError(f"missing canonical overlay source: {source}")
+def _exists_no_follow(name: str, dir_fd: int) -> bool:
+    try:
+        os.stat(name, dir_fd=dir_fd, follow_symlinks=False)
+    except FileNotFoundError:
+        return False
+    return True
+
+
+def _snapshot_tree(dir_fd: int, destination: Path) -> None:
+    """Copy the directory open at dir_fd into destination, refusing any symlink."""
+    destination.mkdir(parents=True)
+    with os.scandir(dir_fd) as entries:
+        names = sorted((entry.name, entry.is_symlink(), entry.is_dir(follow_symlinks=False)) for entry in entries)
+    for name, is_link, is_dir in names:
+        if is_link:
+            raise ValueError(f"canonical overlay source contains a symlink: {name}")
+        if is_dir:
+            child = _open_directory(name, dir_fd)
+            try:
+                _snapshot_tree(child, destination / name)
+            finally:
+                os.close(child)
+            continue
+        source = os.open(name, os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0), dir_fd=dir_fd)
+        try:
+            mode = stat.S_IMODE(os.fstat(source).st_mode)
+            with os.fdopen(os.dup(source), "rb") as handle:
+                data = handle.read()
+        finally:
+            os.close(source)
+        target = destination / name
+        target.write_bytes(data)
+        target.chmod(mode)
+
+
+def _snapshot_source(repo_fd: int, destination: Path) -> Path:
+    """Snapshot .agent-skills/skills through the bound repository handle."""
+    agent_fd = _open_directory(".agent-skills", repo_fd)
+    try:
+        skills_fd = _open_directory("skills", agent_fd)
+        try:
+            _snapshot_tree(skills_fd, destination)
+        finally:
+            os.close(skills_fd)
+    finally:
+        os.close(agent_fd)
+    return destination
+
+
+def _check_existing_conventions_fd(repo_fd: int) -> list[str]:
+    """Handle-bound version of _check_existing_conventions for the mutating path."""
+    if _exists_no_follow(".agent-skills", repo_fd):
+        return []
+    for parent, leaf in ((".claude", "skills"), (".agents", "skills")):
+        if not _exists_no_follow(parent, repo_fd):
+            continue
+        parent_fd = _open_directory(parent, repo_fd)
+        try:
+            if _exists_no_follow(leaf, parent_fd):
+                return [
+                    f"{parent}/{leaf} exists without .agent-skills/; follow the existing repo-local "
+                    "skill convention instead of this synchronizer"
+                ]
+        finally:
+            os.close(parent_fd)
+    return []
+
+
+def _validate_target_fd(repo_fd: int, relative: str) -> None:
+    """Refuse a projection whose parent or leaf is a symlink or not a directory."""
+    parent_name, leaf = Path(relative).parts
+    try:
+        parent = os.stat(parent_name, dir_fd=repo_fd, follow_symlinks=False)
+    except FileNotFoundError:
+        return
+    if not stat.S_ISDIR(parent.st_mode):
+        raise ValueError(f"unsafe overlay target: {parent_name} is a symlink or not a directory")
+    parent_fd = _open_directory(parent_name, repo_fd)
+    try:
+        try:
+            existing = os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)
+        except FileNotFoundError:
+            return
+        if not stat.S_ISDIR(existing.st_mode):
+            raise ValueError(f"unsafe overlay target: {relative} is a symlink or not a directory")
+    finally:
+        os.close(parent_fd)
+
+
+def _render_from(source: Path, output: Path) -> tuple[Path, Path]:
     codex = output / ".agents" / "skills"
     claude = output / ".claude" / "skills"
     for skill_dir in sorted(path for path in source.iterdir() if path.is_dir()):
@@ -165,6 +251,13 @@ def _render(repo: Path, output: Path) -> tuple[Path, Path]:
     return codex, claude
 
 
+def _render(repo: Path, output: Path) -> tuple[Path, Path]:
+    source = repo / ".agent-skills" / "skills"
+    if not source.is_dir():
+        raise FileNotFoundError(f"missing canonical overlay source: {source}")
+    return _render_from(source, output)
+
+
 def _check_existing_conventions(repo: Path) -> list[str]:
     """Refuse repositories whose client skill folders are not projections of .agent-skills/."""
     if (repo / ".agent-skills").exists():
@@ -179,39 +272,55 @@ def _check_existing_conventions(repo: Path) -> list[str]:
 
 
 def sync(repo: Path, check_only: bool) -> list[str]:
-    repo = repo.resolve()
     if check_only:
-        return _sync(repo, check_only=True, repo_fd=None)
-    # Bind the repository before rendering or validating anything, walking every path
-    # component without following symlinks, so no later rename of the repository or an
-    # ancestor can redirect the replacements.
-    repo_fd = _open_directory_path(repo)
+        return _check(repo.resolve())
+    # Mutating path: bind the repository first by walking every component of the
+    # absolute, unresolved path with no-follow opens, so any symlink in --repo or a
+    # later rename of the repository or an ancestor is refused rather than followed.
+    # Every read and write then goes through that one handle.
+    repo_path = Path(os.path.abspath(repo))
     try:
-        return _sync(repo, check_only=False, repo_fd=repo_fd)
+        repo_fd = _open_directory_path(repo_path)
+    except (NotADirectoryError, OSError) as error:
+        raise ValueError(
+            f"unsafe repository path {repo_path}: it must be a real directory with no symlinked "
+            "component; pass its real path"
+        ) from error
+    try:
+        return _sync_bound(repo_fd)
     finally:
         os.close(repo_fd)
 
 
-def _sync(repo: Path, check_only: bool, repo_fd: int | None) -> list[str]:
+def _check(repo: Path) -> list[str]:
+    """Read-only drift check; it never deletes or writes inside the repository."""
     errors = _check_existing_conventions(repo)
     if errors:
         return errors
     with tempfile.TemporaryDirectory(prefix="private-overlay-") as temporary:
         expected_codex, expected_claude = _render(repo, Path(temporary))
+        for expected, relative in ((expected_codex, ".agents/skills"), (expected_claude, ".claude/skills")):
+            actual = _safe_target(repo, relative)
+            if directory_hashes(expected) != directory_hashes(actual):
+                errors.append(f"private overlay projection drifted: {actual.relative_to(repo)}")
+    return errors
+
+
+def _sync_bound(repo_fd: int) -> list[str]:
+    errors = _check_existing_conventions_fd(repo_fd)
+    if errors:
+        return errors
+    if not _exists_no_follow(".agent-skills", repo_fd):
+        raise FileNotFoundError("missing canonical overlay source: .agent-skills/skills")
+    with tempfile.TemporaryDirectory(prefix="private-overlay-") as temporary:
+        snapshot = _snapshot_source(repo_fd, Path(temporary) / "source")
+        expected_codex, expected_claude = _render_from(snapshot, Path(temporary) / "rendered")
+        targets = ((expected_codex, ".agents/skills"), (expected_claude, ".claude/skills"))
         # Validate every target before changing any, so a bad second target cannot
         # leave the first one already replaced.
-        targets = [
-            (expected, relative, _safe_target(repo, relative))
-            for expected, relative in ((expected_codex, ".agents/skills"), (expected_claude, ".claude/skills"))
-        ]
-        if check_only:
-            for expected, _relative, actual in targets:
-                if directory_hashes(expected) != directory_hashes(actual):
-                    errors.append(f"private overlay projection drifted: {actual.relative_to(repo)}")
-            return errors
-        if repo_fd is None:
-            raise ValueError("synchronization requires a bound repository handle")
-        for expected, relative, _actual in targets:
+        for _expected, relative in targets:
+            _validate_target_fd(repo_fd, relative)
+        for expected, relative in targets:
             _replace_projection(repo_fd, relative, expected)
     return errors
 
@@ -221,7 +330,11 @@ def main() -> int:
     parser.add_argument("--repo", type=Path, required=True)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    errors = sync(args.repo, args.check)
+    try:
+        errors = sync(args.repo, args.check)
+    except (ValueError, OSError) as error:
+        print(f"ERROR: {error}")
+        return 1
     if errors:
         print("\n".join(f"ERROR: {error}" for error in errors))
         return 1

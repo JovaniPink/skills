@@ -1517,7 +1517,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_private_overlay_sync_allows_repository_agents_file(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
-            repo = Path(temporary) / "repo"
+            repo = Path(temporary).resolve() / "repo"
             shutil.copytree(ROOT / "examples" / "private-overlay", repo)
             (repo / "AGENTS.md").write_text("# Repository guidance\n", encoding="utf-8")
             self.assertEqual([], sync_private_overlay(repo, check_only=False))
@@ -1528,7 +1528,7 @@ class CatalogTests(unittest.TestCase):
             for check_only in (False, True):
                 with self.subTest(projection=projection, check_only=check_only):
                     with tempfile.TemporaryDirectory() as temporary:
-                        repo = Path(temporary)
+                        repo = Path(temporary).resolve()
                         (repo / projection / "local-skill").mkdir(parents=True)
                         errors = sync_private_overlay(repo, check_only=check_only)
                         self.assertEqual(1, len(errors))
@@ -1542,7 +1542,7 @@ class CatalogTests(unittest.TestCase):
             for check_only in (False, True):
                 with self.subTest(link=link, check_only=check_only):
                     with tempfile.TemporaryDirectory() as temporary:
-                        root = Path(temporary)
+                        root = Path(temporary).resolve()
                         repo = root / "repo"
                         shutil.copytree(ROOT / "examples" / "private-overlay", repo)
                         outside = root / "outside"
@@ -1564,7 +1564,7 @@ class CatalogTests(unittest.TestCase):
         for link in (".agents", ".agents/skills"):
             with self.subTest(link=link):
                 with tempfile.TemporaryDirectory() as temporary:
-                    root = Path(temporary)
+                    root = Path(temporary).resolve()
                     repo = root / "repo"
                     repo.mkdir()
                     expected = root / "expected"
@@ -1586,7 +1586,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_private_overlay_replacement_replaces_real_projection(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
+            root = Path(temporary).resolve()
             repo = root / "repo"
             (repo / ".agents" / "skills" / "stale").mkdir(parents=True)
             expected = root / "expected"
@@ -1608,7 +1608,7 @@ class CatalogTests(unittest.TestCase):
         # Once the repository handle is open, renaming the repository and putting a
         # symlink in its place must not redirect the replacement outside it.
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
+            root = Path(temporary).resolve()
             repo = root / "repo"
             (repo / ".agents").mkdir(parents=True)
             expected = root / "expected"
@@ -1629,7 +1629,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_private_overlay_validates_every_target_before_replacing(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
+            root = Path(temporary).resolve()
             repo = root / "repo"
             shutil.copytree(ROOT / "examples" / "private-overlay", repo)
             self.assertEqual([], sync_private_overlay(repo, check_only=False))
@@ -1643,7 +1643,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_private_overlay_check_runs_without_no_follow_support(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
-            repo = Path(temporary) / "repo"
+            repo = Path(temporary).resolve() / "repo"
             shutil.copytree(ROOT / "examples" / "private-overlay", repo)
             with unittest.mock.patch.object(overlay_module, "_directory_flags", return_value=None):
                 self.assertEqual([], sync_private_overlay(repo, check_only=True))
@@ -1665,6 +1665,39 @@ class CatalogTests(unittest.TestCase):
                 self.assertEqual(os.fstat(fd).st_ino, (root / "real" / "repo").stat().st_ino)
             finally:
                 os.close(fd)
+
+    def test_private_overlay_sync_refuses_symlinked_repository_path(self) -> None:
+        # The public entry point must refuse a --repo path with a symlinked ancestor
+        # instead of resolving it and writing into the link target.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            shutil.copytree(ROOT / "examples" / "private-overlay", root / "real" / "repo")
+            (root / "link").symlink_to(root / "real", target_is_directory=True)
+            before = sorted(p.relative_to(root / "real").as_posix() for p in (root / "real").rglob("*"))
+            with self.assertRaises(ValueError):
+                sync_private_overlay(root / "link" / "repo", check_only=False)
+            after = sorted(p.relative_to(root / "real").as_posix() for p in (root / "real").rglob("*"))
+            self.assertEqual(before, after)
+
+    def test_private_overlay_source_snapshot_reads_the_bound_repository(self) -> None:
+        # After the handle is bound, swapping a different repository into the path must
+        # not change what is read.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            repo = root / "repo"
+            (repo / ".agent-skills" / "skills" / "original").mkdir(parents=True)
+            (repo / ".agent-skills" / "skills" / "original" / "SKILL.md").write_text("one", encoding="utf-8")
+            impostor = root / "impostor"
+            (impostor / ".agent-skills" / "skills" / "replacement").mkdir(parents=True)
+            repo_fd = overlay_module._open_directory_path(repo)
+            try:
+                repo.rename(root / "moved")
+                impostor.rename(repo)
+                snapshot = overlay_module._snapshot_source(repo_fd, root / "snapshot")
+            finally:
+                os.close(repo_fd)
+            self.assertEqual(["original"], sorted(p.name for p in snapshot.iterdir()))
+            self.assertEqual("one", (snapshot / "original" / "SKILL.md").read_text(encoding="utf-8"))
 
     def test_upstream_review_freshness_is_current_offline(self) -> None:
         errors, report = check_upstream_freshness(online=False)
