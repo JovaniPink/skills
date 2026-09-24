@@ -37,18 +37,30 @@ def _safe_target(repo: Path, relative: str) -> Path:
     return target
 
 
-_DIRECTORY_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+def _directory_flags() -> int | None:
+    """No-follow directory open flags, or None where the platform lacks them (Windows).
+
+    Looked up lazily so importing this module, and running --check, work everywhere.
+    """
+    directory = getattr(os, "O_DIRECTORY", None)
+    no_follow = getattr(os, "O_NOFOLLOW", None)
+    if directory is None or no_follow is None or not shutil.rmtree.avoids_symlink_attacks:
+        return None
+    return os.O_RDONLY | directory | no_follow
 
 
 def _open_directory(name: str, dir_fd: int, create: bool = False) -> int:
     """Open a directory relative to dir_fd without following a symlink at name."""
+    flags = _directory_flags()
+    if flags is None:
+        raise ValueError("overlay synchronization requires no-follow directory support")
     try:
-        return os.open(name, _DIRECTORY_FLAGS, dir_fd=dir_fd)
+        return os.open(name, flags, dir_fd=dir_fd)
     except FileNotFoundError:
         if not create:
             raise
         os.mkdir(name, 0o755, dir_fd=dir_fd)
-        return os.open(name, _DIRECTORY_FLAGS, dir_fd=dir_fd)
+        return os.open(name, flags, dir_fd=dir_fd)
 
 
 def _copy_tree_into(source: Path, name: str, dir_fd: int) -> None:
@@ -62,7 +74,7 @@ def _copy_tree_into(source: Path, name: str, dir_fd: int) -> None:
             if entry.is_dir():
                 _copy_tree_into(entry, entry.name, target_fd)
                 continue
-            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW
+            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
             output = os.open(entry.name, flags, stat.S_IMODE(entry.stat().st_mode), dir_fd=target_fd)
             try:
                 data = memoryview(entry.read_bytes())
@@ -74,7 +86,7 @@ def _copy_tree_into(source: Path, name: str, dir_fd: int) -> None:
         os.close(target_fd)
 
 
-def _replace_projection(repo: Path, relative: str, expected: Path) -> None:
+def _replace_projection(repo_fd: int, relative: str, expected: Path) -> None:
     """Replace repo/relative with expected, bound to directory handles, never following links.
 
     The parent (.agents or .claude) is opened with O_NOFOLLOW, and every later step
@@ -85,26 +97,22 @@ def _replace_projection(repo: Path, relative: str, expected: Path) -> None:
     parent_name, leaf = Path(relative).parts
     token = f"{os.getpid()}-{os.urandom(4).hex()}"
     staging, retired = f".{leaf}.sync-{token}", f".{leaf}.old-{token}"
-    repo_fd = os.open(repo, os.O_RDONLY | os.O_DIRECTORY)
+    parent_fd = _open_directory(parent_name, repo_fd, create=True)
     try:
-        parent_fd = _open_directory(parent_name, repo_fd, create=True)
+        _copy_tree_into(expected, staging, parent_fd)
         try:
-            _copy_tree_into(expected, staging, parent_fd)
-            try:
-                existing = os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)
-            except FileNotFoundError:
-                existing = None
-            if existing is not None:
-                if not stat.S_ISDIR(existing.st_mode):
-                    shutil.rmtree(staging, dir_fd=parent_fd)
-                    raise ValueError(f"unsafe overlay target: {relative} is not a directory")
-                os.rename(leaf, retired, src_dir_fd=parent_fd, dst_dir_fd=parent_fd)
-                shutil.rmtree(retired, dir_fd=parent_fd)
-            os.rename(staging, leaf, src_dir_fd=parent_fd, dst_dir_fd=parent_fd)
-        finally:
-            os.close(parent_fd)
+            existing = os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)
+        except FileNotFoundError:
+            existing = None
+        if existing is not None:
+            if not stat.S_ISDIR(existing.st_mode):
+                shutil.rmtree(staging, dir_fd=parent_fd)
+                raise ValueError(f"unsafe overlay target: {relative} is not a directory")
+            os.rename(leaf, retired, src_dir_fd=parent_fd, dst_dir_fd=parent_fd)
+            shutil.rmtree(retired, dir_fd=parent_fd)
+        os.rename(staging, leaf, src_dir_fd=parent_fd, dst_dir_fd=parent_fd)
     finally:
-        os.close(repo_fd)
+        os.close(parent_fd)
 
 
 def _render(repo: Path, output: Path) -> tuple[Path, Path]:
@@ -153,17 +161,28 @@ def sync(repo: Path, check_only: bool) -> list[str]:
         return errors
     with tempfile.TemporaryDirectory(prefix="private-overlay-") as temporary:
         expected_codex, expected_claude = _render(repo, Path(temporary))
-        pairs = (
-            (expected_codex, ".agents/skills"),
-            (expected_claude, ".claude/skills"),
-        )
-        for expected, relative in pairs:
-            actual = _safe_target(repo, relative)
-            if check_only:
+        # Validate every target before changing any, so a bad second target cannot
+        # leave the first one already replaced.
+        targets = [
+            (expected, relative, _safe_target(repo, relative))
+            for expected, relative in ((expected_codex, ".agents/skills"), (expected_claude, ".claude/skills"))
+        ]
+        if check_only:
+            for expected, _relative, actual in targets:
                 if directory_hashes(expected) != directory_hashes(actual):
                     errors.append(f"private overlay projection drifted: {actual.relative_to(repo)}")
-                continue
-            _replace_projection(repo, relative, expected)
+            return errors
+        flags = _directory_flags()
+        if flags is None:
+            raise ValueError("overlay synchronization requires no-follow directory support; use --check on this platform")
+        # Bind the repository once, without following a symlink at its path, and do every
+        # replacement relative to that handle so a renamed repository cannot redirect it.
+        repo_fd = os.open(repo, flags)
+        try:
+            for expected, relative, _actual in targets:
+                _replace_projection(repo_fd, relative, expected)
+        finally:
+            os.close(repo_fd)
     return errors
 
 

@@ -3,11 +3,13 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from importlib.metadata import PackageNotFoundError
 from pathlib import Path
 from types import TracebackType
@@ -49,6 +51,7 @@ from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E
 from package_claude_ai import package  # noqa: E402
 from schema_validation import validate_instance  # noqa: E402
 from sync_private_overlay import sync as sync_private_overlay  # noqa: E402
+import sync_private_overlay as overlay_module  # noqa: E402
 from sync_private_overlay import _replace_projection  # noqa: E402
 from validate_catalog import (  # noqa: E402
     immutable_action_reference_errors,
@@ -1573,8 +1576,12 @@ class CatalogTests(unittest.TestCase):
                     linked = repo / link
                     linked.parent.mkdir(parents=True, exist_ok=True)
                     linked.symlink_to(outside if link == ".agents" else outside / "skills", target_is_directory=True)
-                    with self.assertRaises((OSError, ValueError)):
-                        _replace_projection(repo, ".agents/skills", expected)
+                    repo_fd = os.open(repo, os.O_RDONLY)
+                    try:
+                        with self.assertRaises((OSError, ValueError)):
+                            _replace_projection(repo_fd, ".agents/skills", expected)
+                    finally:
+                        os.close(repo_fd)
                     self.assertTrue((outside / "skills" / "SENTINEL").is_file())
 
     def test_private_overlay_replacement_replaces_real_projection(self) -> None:
@@ -1586,12 +1593,62 @@ class CatalogTests(unittest.TestCase):
             (expected / "demo" / "references").mkdir(parents=True)
             (expected / "demo" / "SKILL.md").write_text("new", encoding="utf-8")
             (expected / "demo" / "references" / "note.md").write_text("ref", encoding="utf-8")
-            _replace_projection(repo, ".agents/skills", expected)
+            repo_fd = os.open(repo, os.O_RDONLY)
+            try:
+                _replace_projection(repo_fd, ".agents/skills", expected)
+            finally:
+                os.close(repo_fd)
             actual = repo / ".agents" / "skills"
             self.assertFalse((actual / "stale").exists())
             self.assertEqual("new", (actual / "demo" / "SKILL.md").read_text(encoding="utf-8"))
             self.assertEqual("ref", (actual / "demo" / "references" / "note.md").read_text(encoding="utf-8"))
             self.assertEqual([".agents/skills"], [p.relative_to(repo).as_posix() for p in repo.glob(".agents/*")])
+
+    def test_private_overlay_replacement_stays_on_the_opened_repository(self) -> None:
+        # Once the repository handle is open, renaming the repository and putting a
+        # symlink in its place must not redirect the replacement outside it.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            (repo / ".agents").mkdir(parents=True)
+            expected = root / "expected"
+            (expected / "demo").mkdir(parents=True)
+            (expected / "demo" / "SKILL.md").write_text("x", encoding="utf-8")
+            outside = root / "outside"
+            (outside / ".agents" / "skills").mkdir(parents=True)
+            (outside / ".agents" / "skills" / "SENTINEL").write_text("keep", encoding="utf-8")
+            repo_fd = os.open(repo, os.O_RDONLY)
+            try:
+                repo.rename(root / "moved")
+                repo.symlink_to(outside, target_is_directory=True)
+                _replace_projection(repo_fd, ".agents/skills", expected)
+            finally:
+                os.close(repo_fd)
+            self.assertTrue((outside / ".agents" / "skills" / "SENTINEL").is_file())
+            self.assertTrue((root / "moved" / ".agents" / "skills" / "demo" / "SKILL.md").is_file())
+
+    def test_private_overlay_validates_every_target_before_replacing(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            shutil.copytree(ROOT / "examples" / "private-overlay", repo)
+            self.assertEqual([], sync_private_overlay(repo, check_only=False))
+            (repo / ".agents" / "skills" / "MARKER").write_text("before", encoding="utf-8")
+            shutil.rmtree(repo / ".claude")
+            (root / "outside").mkdir()
+            (repo / ".claude").symlink_to(root / "outside", target_is_directory=True)
+            with self.assertRaises(ValueError):
+                sync_private_overlay(repo, check_only=False)
+            self.assertTrue((repo / ".agents" / "skills" / "MARKER").is_file())
+
+    def test_private_overlay_check_runs_without_no_follow_support(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = Path(temporary) / "repo"
+            shutil.copytree(ROOT / "examples" / "private-overlay", repo)
+            with unittest.mock.patch.object(overlay_module, "_directory_flags", return_value=None):
+                self.assertEqual([], sync_private_overlay(repo, check_only=True))
+                with self.assertRaises(ValueError):
+                    sync_private_overlay(repo, check_only=False)
 
     def test_upstream_review_freshness_is_current_offline(self) -> None:
         errors, report = check_upstream_freshness(online=False)
