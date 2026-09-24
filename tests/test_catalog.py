@@ -3,11 +3,13 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from importlib.metadata import PackageNotFoundError
 from pathlib import Path
 from types import TracebackType
@@ -49,6 +51,8 @@ from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E
 from package_claude_ai import package  # noqa: E402
 from schema_validation import validate_instance  # noqa: E402
 from sync_private_overlay import sync as sync_private_overlay  # noqa: E402
+import sync_private_overlay as overlay_module  # noqa: E402
+from sync_private_overlay import _replace_projection  # noqa: E402
 from validate_catalog import (  # noqa: E402
     immutable_action_reference_errors,
     profile_measurement_surface_errors,
@@ -1513,7 +1517,7 @@ class CatalogTests(unittest.TestCase):
 
     def test_private_overlay_sync_allows_repository_agents_file(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
-            repo = Path(temporary) / "repo"
+            repo = Path(temporary).resolve() / "repo"
             shutil.copytree(ROOT / "examples" / "private-overlay", repo)
             (repo / "AGENTS.md").write_text("# Repository guidance\n", encoding="utf-8")
             self.assertEqual([], sync_private_overlay(repo, check_only=False))
@@ -1524,12 +1528,176 @@ class CatalogTests(unittest.TestCase):
             for check_only in (False, True):
                 with self.subTest(projection=projection, check_only=check_only):
                     with tempfile.TemporaryDirectory() as temporary:
-                        repo = Path(temporary)
+                        repo = Path(temporary).resolve()
                         (repo / projection / "local-skill").mkdir(parents=True)
                         errors = sync_private_overlay(repo, check_only=check_only)
                         self.assertEqual(1, len(errors))
                         self.assertIn("existing repo-local skill convention", errors[0])
                         self.assertTrue((repo / projection / "local-skill").is_dir())
+
+    def test_private_overlay_refuses_symlinked_projection_paths(self) -> None:
+        # A symlinked .agents/.claude parent (or skills folder) must never let sync
+        # remove or replace a directory outside the repository.
+        for link in (".agents", ".claude", ".agents/skills", ".claude/skills"):
+            for check_only in (False, True):
+                with self.subTest(link=link, check_only=check_only):
+                    with tempfile.TemporaryDirectory() as temporary:
+                        root = Path(temporary).resolve()
+                        repo = root / "repo"
+                        shutil.copytree(ROOT / "examples" / "private-overlay", repo)
+                        outside = root / "outside"
+                        target = outside / "skills" if link.endswith("skills") else outside
+                        (outside / "skills").mkdir(parents=True)
+                        (outside / "skills" / "SENTINEL").write_text("keep", encoding="utf-8")
+                        linked = repo / link
+                        if linked.exists() or linked.is_symlink():
+                            shutil.rmtree(linked)
+                        linked.parent.mkdir(parents=True, exist_ok=True)
+                        linked.symlink_to(target, target_is_directory=True)
+                        with self.assertRaises(ValueError):
+                            sync_private_overlay(repo, check_only=check_only)
+                        self.assertTrue((outside / "skills" / "SENTINEL").is_file())
+
+    def test_private_overlay_replacement_does_not_follow_swapped_symlinks(self) -> None:
+        # The destructive step must enforce no-follow itself, not rely on an earlier
+        # pathname check that a concurrent process could invalidate.
+        for link in (".agents", ".agents/skills"):
+            with self.subTest(link=link):
+                with tempfile.TemporaryDirectory() as temporary:
+                    root = Path(temporary).resolve()
+                    repo = root / "repo"
+                    repo.mkdir()
+                    expected = root / "expected"
+                    (expected / "demo").mkdir(parents=True)
+                    (expected / "demo" / "SKILL.md").write_text("x", encoding="utf-8")
+                    outside = root / "outside"
+                    (outside / "skills").mkdir(parents=True)
+                    (outside / "skills" / "SENTINEL").write_text("keep", encoding="utf-8")
+                    linked = repo / link
+                    linked.parent.mkdir(parents=True, exist_ok=True)
+                    linked.symlink_to(outside if link == ".agents" else outside / "skills", target_is_directory=True)
+                    repo_fd = os.open(repo, os.O_RDONLY)
+                    try:
+                        with self.assertRaises((OSError, ValueError)):
+                            _replace_projection(repo_fd, ".agents/skills", expected)
+                    finally:
+                        os.close(repo_fd)
+                    self.assertTrue((outside / "skills" / "SENTINEL").is_file())
+
+    def test_private_overlay_replacement_replaces_real_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            repo = root / "repo"
+            (repo / ".agents" / "skills" / "stale").mkdir(parents=True)
+            expected = root / "expected"
+            (expected / "demo" / "references").mkdir(parents=True)
+            (expected / "demo" / "SKILL.md").write_text("new", encoding="utf-8")
+            (expected / "demo" / "references" / "note.md").write_text("ref", encoding="utf-8")
+            repo_fd = os.open(repo, os.O_RDONLY)
+            try:
+                _replace_projection(repo_fd, ".agents/skills", expected)
+            finally:
+                os.close(repo_fd)
+            actual = repo / ".agents" / "skills"
+            self.assertFalse((actual / "stale").exists())
+            self.assertEqual("new", (actual / "demo" / "SKILL.md").read_text(encoding="utf-8"))
+            self.assertEqual("ref", (actual / "demo" / "references" / "note.md").read_text(encoding="utf-8"))
+            self.assertEqual([".agents/skills"], [p.relative_to(repo).as_posix() for p in repo.glob(".agents/*")])
+
+    def test_private_overlay_replacement_stays_on_the_opened_repository(self) -> None:
+        # Once the repository handle is open, renaming the repository and putting a
+        # symlink in its place must not redirect the replacement outside it.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            repo = root / "repo"
+            (repo / ".agents").mkdir(parents=True)
+            expected = root / "expected"
+            (expected / "demo").mkdir(parents=True)
+            (expected / "demo" / "SKILL.md").write_text("x", encoding="utf-8")
+            outside = root / "outside"
+            (outside / ".agents" / "skills").mkdir(parents=True)
+            (outside / ".agents" / "skills" / "SENTINEL").write_text("keep", encoding="utf-8")
+            repo_fd = os.open(repo, os.O_RDONLY)
+            try:
+                repo.rename(root / "moved")
+                repo.symlink_to(outside, target_is_directory=True)
+                _replace_projection(repo_fd, ".agents/skills", expected)
+            finally:
+                os.close(repo_fd)
+            self.assertTrue((outside / ".agents" / "skills" / "SENTINEL").is_file())
+            self.assertTrue((root / "moved" / ".agents" / "skills" / "demo" / "SKILL.md").is_file())
+
+    def test_private_overlay_validates_every_target_before_replacing(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            repo = root / "repo"
+            shutil.copytree(ROOT / "examples" / "private-overlay", repo)
+            self.assertEqual([], sync_private_overlay(repo, check_only=False))
+            (repo / ".agents" / "skills" / "MARKER").write_text("before", encoding="utf-8")
+            shutil.rmtree(repo / ".claude")
+            (root / "outside").mkdir()
+            (repo / ".claude").symlink_to(root / "outside", target_is_directory=True)
+            with self.assertRaises(ValueError):
+                sync_private_overlay(repo, check_only=False)
+            self.assertTrue((repo / ".agents" / "skills" / "MARKER").is_file())
+
+    def test_private_overlay_check_runs_without_no_follow_support(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = Path(temporary).resolve() / "repo"
+            shutil.copytree(ROOT / "examples" / "private-overlay", repo)
+            with unittest.mock.patch.object(overlay_module, "_directory_flags", return_value=None):
+                self.assertEqual([], sync_private_overlay(repo, check_only=True))
+                with self.assertRaises(ValueError):
+                    sync_private_overlay(repo, check_only=False)
+
+    def test_private_overlay_repository_handle_refuses_symlinked_ancestors(self) -> None:
+        # O_NOFOLLOW on the last component alone is not enough: a symlinked ancestor
+        # must also be refused when the repository handle is acquired.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            (root / "real" / "repo").mkdir(parents=True)
+            (root / "link").symlink_to(root / "real", target_is_directory=True)
+            with self.assertRaises(OSError):
+                fd = overlay_module._open_directory_path(root / "link" / "repo")
+                os.close(fd)
+            fd = overlay_module._open_directory_path(root / "real" / "repo")
+            try:
+                self.assertEqual(os.fstat(fd).st_ino, (root / "real" / "repo").stat().st_ino)
+            finally:
+                os.close(fd)
+
+    def test_private_overlay_sync_refuses_symlinked_repository_path(self) -> None:
+        # The public entry point must refuse a --repo path with a symlinked ancestor
+        # instead of resolving it and writing into the link target.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            shutil.copytree(ROOT / "examples" / "private-overlay", root / "real" / "repo")
+            (root / "link").symlink_to(root / "real", target_is_directory=True)
+            before = sorted(p.relative_to(root / "real").as_posix() for p in (root / "real").rglob("*"))
+            with self.assertRaises(ValueError):
+                sync_private_overlay(root / "link" / "repo", check_only=False)
+            after = sorted(p.relative_to(root / "real").as_posix() for p in (root / "real").rglob("*"))
+            self.assertEqual(before, after)
+
+    def test_private_overlay_source_snapshot_reads_the_bound_repository(self) -> None:
+        # After the handle is bound, swapping a different repository into the path must
+        # not change what is read.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            repo = root / "repo"
+            (repo / ".agent-skills" / "skills" / "original").mkdir(parents=True)
+            (repo / ".agent-skills" / "skills" / "original" / "SKILL.md").write_text("one", encoding="utf-8")
+            impostor = root / "impostor"
+            (impostor / ".agent-skills" / "skills" / "replacement").mkdir(parents=True)
+            repo_fd = overlay_module._open_directory_path(repo)
+            try:
+                repo.rename(root / "moved")
+                impostor.rename(repo)
+                snapshot = overlay_module._snapshot_source(repo_fd, root / "snapshot")
+            finally:
+                os.close(repo_fd)
+            self.assertEqual(["original"], sorted(p.name for p in snapshot.iterdir()))
+            self.assertEqual("one", (snapshot / "original" / "SKILL.md").read_text(encoding="utf-8"))
 
     def test_upstream_review_freshness_is_current_offline(self) -> None:
         errors, report = check_upstream_freshness(online=False)

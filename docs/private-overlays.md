@@ -17,7 +17,7 @@ python3 scripts/sync_private_overlay.py --repo path/to/private-repository
 python3 scripts/sync_private_overlay.py --repo path/to/private-repository --check
 ```
 
-The synchronizer writes only `.agents/skills/` and `.claude/skills/` inside the named repository. It does not publish, install, push, or grant tool permissions.
+The synchronizer writes only `.agents/skills/` and `.claude/skills/` inside the named repository. It does not publish, install, push, or grant tool permissions. When it writes, `--repo` must be a real path with no symlinked component; the synchronizer refuses a symlinked path rather than following it. Pass the repository's real path, for example the output of `pwd -P`. It also refuses symlinked `.agents` or `.claude` folders. The `--check` mode only reads.
 
 An overlay always lives inside the product repository that owns the private facts. The separate `skills-private` repository holds only the policy and the validator. It stores no skills, and it is never a synchronizer target. Point `--repo` at the product repository, not at the policy repository.
 
