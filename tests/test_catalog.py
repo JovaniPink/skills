@@ -49,6 +49,7 @@ from evaluate_gate_fixtures import evaluate as evaluate_gate_fixtures  # noqa: E
 from package_claude_ai import package  # noqa: E402
 from schema_validation import validate_instance  # noqa: E402
 from sync_private_overlay import sync as sync_private_overlay  # noqa: E402
+from sync_private_overlay import _replace_projection  # noqa: E402
 from validate_catalog import (  # noqa: E402
     immutable_action_reference_errors,
     profile_measurement_surface_errors,
@@ -1553,6 +1554,44 @@ class CatalogTests(unittest.TestCase):
                         with self.assertRaises(ValueError):
                             sync_private_overlay(repo, check_only=check_only)
                         self.assertTrue((outside / "skills" / "SENTINEL").is_file())
+
+    def test_private_overlay_replacement_does_not_follow_swapped_symlinks(self) -> None:
+        # The destructive step must enforce no-follow itself, not rely on an earlier
+        # pathname check that a concurrent process could invalidate.
+        for link in (".agents", ".agents/skills"):
+            with self.subTest(link=link):
+                with tempfile.TemporaryDirectory() as temporary:
+                    root = Path(temporary)
+                    repo = root / "repo"
+                    repo.mkdir()
+                    expected = root / "expected"
+                    (expected / "demo").mkdir(parents=True)
+                    (expected / "demo" / "SKILL.md").write_text("x", encoding="utf-8")
+                    outside = root / "outside"
+                    (outside / "skills").mkdir(parents=True)
+                    (outside / "skills" / "SENTINEL").write_text("keep", encoding="utf-8")
+                    linked = repo / link
+                    linked.parent.mkdir(parents=True, exist_ok=True)
+                    linked.symlink_to(outside if link == ".agents" else outside / "skills", target_is_directory=True)
+                    with self.assertRaises((OSError, ValueError)):
+                        _replace_projection(repo, ".agents/skills", expected)
+                    self.assertTrue((outside / "skills" / "SENTINEL").is_file())
+
+    def test_private_overlay_replacement_replaces_real_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            repo = root / "repo"
+            (repo / ".agents" / "skills" / "stale").mkdir(parents=True)
+            expected = root / "expected"
+            (expected / "demo" / "references").mkdir(parents=True)
+            (expected / "demo" / "SKILL.md").write_text("new", encoding="utf-8")
+            (expected / "demo" / "references" / "note.md").write_text("ref", encoding="utf-8")
+            _replace_projection(repo, ".agents/skills", expected)
+            actual = repo / ".agents" / "skills"
+            self.assertFalse((actual / "stale").exists())
+            self.assertEqual("new", (actual / "demo" / "SKILL.md").read_text(encoding="utf-8"))
+            self.assertEqual("ref", (actual / "demo" / "references" / "note.md").read_text(encoding="utf-8"))
+            self.assertEqual([".agents/skills"], [p.relative_to(repo).as_posix() for p in repo.glob(".agents/*")])
 
     def test_upstream_review_freshness_is_current_offline(self) -> None:
         errors, report = check_upstream_freshness(online=False)

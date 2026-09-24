@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
+import stat
 import tempfile
 from pathlib import Path
 
@@ -33,6 +35,76 @@ def _safe_target(repo: Path, relative: str) -> Path:
     ):
         raise ValueError(f"unsafe overlay target: {target}")
     return target
+
+
+_DIRECTORY_FLAGS = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+
+
+def _open_directory(name: str, dir_fd: int, create: bool = False) -> int:
+    """Open a directory relative to dir_fd without following a symlink at name."""
+    try:
+        return os.open(name, _DIRECTORY_FLAGS, dir_fd=dir_fd)
+    except FileNotFoundError:
+        if not create:
+            raise
+        os.mkdir(name, 0o755, dir_fd=dir_fd)
+        return os.open(name, _DIRECTORY_FLAGS, dir_fd=dir_fd)
+
+
+def _copy_tree_into(source: Path, name: str, dir_fd: int) -> None:
+    """Copy a trusted rendered tree to name under dir_fd, creating every entry exclusively."""
+    os.mkdir(name, 0o755, dir_fd=dir_fd)
+    target_fd = _open_directory(name, dir_fd)
+    try:
+        for entry in sorted(source.iterdir()):
+            if entry.is_symlink():
+                raise ValueError(f"rendered overlay contains a symlink: {entry}")
+            if entry.is_dir():
+                _copy_tree_into(entry, entry.name, target_fd)
+                continue
+            flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW
+            output = os.open(entry.name, flags, stat.S_IMODE(entry.stat().st_mode), dir_fd=target_fd)
+            try:
+                data = memoryview(entry.read_bytes())
+                while data:
+                    data = data[os.write(output, data):]
+            finally:
+                os.close(output)
+    finally:
+        os.close(target_fd)
+
+
+def _replace_projection(repo: Path, relative: str, expected: Path) -> None:
+    """Replace repo/relative with expected, bound to directory handles, never following links.
+
+    The parent (.agents or .claude) is opened with O_NOFOLLOW, and every later step
+    works relative to that handle, so a symlink swapped in after validation cannot
+    redirect the delete or the copy outside the repository. The old projection is
+    renamed aside and removed with the symlink-safe fd-based rmtree.
+    """
+    parent_name, leaf = Path(relative).parts
+    token = f"{os.getpid()}-{os.urandom(4).hex()}"
+    staging, retired = f".{leaf}.sync-{token}", f".{leaf}.old-{token}"
+    repo_fd = os.open(repo, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        parent_fd = _open_directory(parent_name, repo_fd, create=True)
+        try:
+            _copy_tree_into(expected, staging, parent_fd)
+            try:
+                existing = os.stat(leaf, dir_fd=parent_fd, follow_symlinks=False)
+            except FileNotFoundError:
+                existing = None
+            if existing is not None:
+                if not stat.S_ISDIR(existing.st_mode):
+                    shutil.rmtree(staging, dir_fd=parent_fd)
+                    raise ValueError(f"unsafe overlay target: {relative} is not a directory")
+                os.rename(leaf, retired, src_dir_fd=parent_fd, dst_dir_fd=parent_fd)
+                shutil.rmtree(retired, dir_fd=parent_fd)
+            os.rename(staging, leaf, src_dir_fd=parent_fd, dst_dir_fd=parent_fd)
+        finally:
+            os.close(parent_fd)
+    finally:
+        os.close(repo_fd)
 
 
 def _render(repo: Path, output: Path) -> tuple[Path, Path]:
@@ -82,18 +154,16 @@ def sync(repo: Path, check_only: bool) -> list[str]:
     with tempfile.TemporaryDirectory(prefix="private-overlay-") as temporary:
         expected_codex, expected_claude = _render(repo, Path(temporary))
         pairs = (
-            (expected_codex, _safe_target(repo, ".agents/skills")),
-            (expected_claude, _safe_target(repo, ".claude/skills")),
+            (expected_codex, ".agents/skills"),
+            (expected_claude, ".claude/skills"),
         )
-        for expected, actual in pairs:
+        for expected, relative in pairs:
+            actual = _safe_target(repo, relative)
             if check_only:
                 if directory_hashes(expected) != directory_hashes(actual):
                     errors.append(f"private overlay projection drifted: {actual.relative_to(repo)}")
                 continue
-            if actual.exists():
-                shutil.rmtree(actual)
-            actual.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copytree(expected, actual)
+            _replace_projection(repo, relative, expected)
     return errors
 
 
