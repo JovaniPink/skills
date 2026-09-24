@@ -49,6 +49,29 @@ def _directory_flags() -> int | None:
     return os.O_RDONLY | directory | no_follow
 
 
+def _open_directory_path(path: Path) -> int:
+    """Open an absolute directory by walking every component with no-follow opens.
+
+    O_NOFOLLOW on the final component alone would still follow a symlinked ancestor,
+    so each component is opened relative to its parent's handle, starting at "/".
+    """
+    flags = _directory_flags()
+    if flags is None:
+        raise ValueError("overlay synchronization requires no-follow directory support")
+    if not path.is_absolute():
+        raise ValueError(f"repository path must be absolute: {path}")
+    fd = os.open(path.anchor, flags)
+    try:
+        for part in path.parts[1:]:
+            next_fd = os.open(part, flags, dir_fd=fd)
+            os.close(fd)
+            fd = next_fd
+    except BaseException:
+        os.close(fd)
+        raise
+    return fd
+
+
 def _open_directory(name: str, dir_fd: int, create: bool = False) -> int:
     """Open a directory relative to dir_fd without following a symlink at name."""
     flags = _directory_flags()
@@ -157,6 +180,19 @@ def _check_existing_conventions(repo: Path) -> list[str]:
 
 def sync(repo: Path, check_only: bool) -> list[str]:
     repo = repo.resolve()
+    if check_only:
+        return _sync(repo, check_only=True, repo_fd=None)
+    # Bind the repository before rendering or validating anything, walking every path
+    # component without following symlinks, so no later rename of the repository or an
+    # ancestor can redirect the replacements.
+    repo_fd = _open_directory_path(repo)
+    try:
+        return _sync(repo, check_only=False, repo_fd=repo_fd)
+    finally:
+        os.close(repo_fd)
+
+
+def _sync(repo: Path, check_only: bool, repo_fd: int | None) -> list[str]:
     errors = _check_existing_conventions(repo)
     if errors:
         return errors
@@ -173,17 +209,10 @@ def sync(repo: Path, check_only: bool) -> list[str]:
                 if directory_hashes(expected) != directory_hashes(actual):
                     errors.append(f"private overlay projection drifted: {actual.relative_to(repo)}")
             return errors
-        flags = _directory_flags()
-        if flags is None:
-            raise ValueError("overlay synchronization requires no-follow directory support; use --check on this platform")
-        # Bind the repository once, without following a symlink at its path, and do every
-        # replacement relative to that handle so a renamed repository cannot redirect it.
-        repo_fd = os.open(repo, flags)
-        try:
-            for expected, relative, _actual in targets:
-                _replace_projection(repo_fd, relative, expected)
-        finally:
-            os.close(repo_fd)
+        if repo_fd is None:
+            raise ValueError("synchronization requires a bound repository handle")
+        for expected, relative, _actual in targets:
+            _replace_projection(repo_fd, relative, expected)
     return errors
 
 

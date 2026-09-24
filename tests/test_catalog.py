@@ -1650,6 +1650,22 @@ class CatalogTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     sync_private_overlay(repo, check_only=False)
 
+    def test_private_overlay_repository_handle_refuses_symlinked_ancestors(self) -> None:
+        # O_NOFOLLOW on the last component alone is not enough: a symlinked ancestor
+        # must also be refused when the repository handle is acquired.
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            (root / "real" / "repo").mkdir(parents=True)
+            (root / "link").symlink_to(root / "real", target_is_directory=True)
+            with self.assertRaises(OSError):
+                fd = overlay_module._open_directory_path(root / "link" / "repo")
+                os.close(fd)
+            fd = overlay_module._open_directory_path(root / "real" / "repo")
+            try:
+                self.assertEqual(os.fstat(fd).st_ino, (root / "real" / "repo").stat().st_ino)
+            finally:
+                os.close(fd)
+
     def test_upstream_review_freshness_is_current_offline(self) -> None:
         errors, report = check_upstream_freshness(online=False)
         self.assertEqual([], errors)
