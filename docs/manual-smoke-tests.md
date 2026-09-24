@@ -40,7 +40,7 @@ After the lifecycle, the owner signed in to the throwaway Claude configuration. 
 
 Reported cost for the three prompt cases was about $0.44. Each case ran once, so this is not stability evidence. The explicit-only case covers one natural prompt for one skill, not all 14 explicit-only skills.
 
-The session-start record showed where Claude Code loads plugins from. For this directory marketplace it listed each plugin at its marketplace folder (`plugins/claude/<pack>` in the source archive), not at the `plugins/cache/` copy made by `plugin install`. Reference reads used the same folder. So for a local directory marketplace, the files currently in that folder are what load, and a hash of the cached copy does not prove what a session reads.
+The session-start record showed where Claude Code loads plugins from. For this directory marketplace it listed each plugin at its marketplace folder (`plugins/claude/<pack>` in the source archive), not at the `plugins/cache/` copy made by `plugin install`. Reference reads used the same folder. So when a local directory marketplace's folder still contains a plugin, the files currently in that folder are what load, and a hash of the cached copy does not prove what a session reads. This was observed in 2.1.281 print mode. A separate session whose marketplace folder no longer contained its installed 0.16.0 plugins loaded them from `plugins/cache/`, so the folder is not the only possible source.
 
 A later print-mode run in the same throwaway configuration returned `Not logged in` while the owner's interactive session in that configuration was still open. The removal check above read its inventory from the session-start event, which was recorded before that error.
 
